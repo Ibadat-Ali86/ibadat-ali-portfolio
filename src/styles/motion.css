@@ -1,0 +1,1 @@
+@media (prefers-reduced-motion: no-preference) { .project-card { transition:transform .18s ease,box-shadow .18s ease; }.project-card:hover { transform:translate(-3px,-3px); box-shadow:13px 13px 0 var(--ink); }.hero-visual img { transition:transform .5s ease; }.hero-visual:hover img { transform:scale(1.04); } }
