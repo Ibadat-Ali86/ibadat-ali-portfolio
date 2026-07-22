@@ -2,7 +2,12 @@
 
 ## Status
 
-Implementation and verification are in progress. This report will record only executed commands and observed results.
+Implemented, verified locally, and squash-merged to `main` on 2026-07-22.
+
+- Repository: https://github.com/Ibadat-Ali86/ibadat-ali-portfolio
+- Pull request: https://github.com/Ibadat-Ali86/ibadat-ali-portfolio/pull/1
+- Merge commit: `99ecf8a8ae373e1f28d301e92742c0869d2715e9`
+- GitHub Actions `verify`: passed in 49 seconds before merge.
 
 ## Preflight evidence
 
