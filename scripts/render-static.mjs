@@ -69,9 +69,26 @@ function renderFilters() {
   return `<div class="filter-bar"><button class="filter-button is-selected" type="button" aria-pressed="true" data-filter="all">All work</button>${categories.map((category) => `<button class="filter-button" type="button" aria-pressed="false" data-filter="${escapeHtml(category)}">${escapeHtml(category)}</button>`).join('')}</div>`;
 }
 
+function renderTechMarquee() {
+  const technologies = [...new Set(projects.flatMap(({ stack }) => stack))];
+  const items = technologies.map((technology) => `<span class="tech-marquee__item">${escapeHtml(technology)}</span>`).join('');
+  const accessibleList = technologies.map(escapeHtml).join(', ');
+  return `<section class="tech-marquee" aria-label="Technology stack and tools" data-tech-marquee>
+    <div class="tech-marquee__header"><span>TECH STACK / TOOLS I USE</span><span>${technologies.length} ACROSS ${projects.length} PROJECTS</span></div>
+    <div class="tech-marquee__viewport">
+      <div class="tech-marquee__track">
+        <div class="tech-marquee__group" aria-hidden="true">${items}</div>
+        <div class="tech-marquee__group tech-marquee__group--clone" aria-hidden="true">${items}</div>
+      </div>
+    </div>
+    <p class="sr-only">Technologies and tools used across this portfolio: ${accessibleList}.</p>
+  </section>`;
+}
+
 assertProjectInventory();
 const template = await readFile(templatePath, 'utf8');
 const replacements = new Map([
+  ['<!-- TECH_STACK_MARQUEE -->', renderTechMarquee()],
   ['<!-- PROJECT_FILTERS -->', renderFilters()],
   ['<!-- FEATURED_PROJECTS -->', renderFeatured()],
   ['<!-- ATLAS_PROJECTS -->', renderAtlas()]

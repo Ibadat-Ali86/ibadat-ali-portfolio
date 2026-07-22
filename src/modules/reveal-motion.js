@@ -110,8 +110,7 @@ export function initRevealMotion() {
     .fromTo(heroWords, { autoAlpha: 0, yPercent: 115 }, { autoAlpha: 1, yPercent: 0, duration: 0.78, stagger: 0.045 }, '-=.2')
     .fromTo('[data-hero-copy]', { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.62 }, '-=.38')
     .fromTo('[data-hero-actions] > *', { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.52, stagger: 0.09 }, '-=.4')
-    .fromTo('[data-hero-visual]', { autoAlpha: 0, x: 36, rotate: 1.2 }, { autoAlpha: 1, x: 0, rotate: 0, duration: 0.8 }, '-=.78')
-    .fromTo('[data-hero-signals] > *', { autoAlpha: 0, x: -18 }, { autoAlpha: 1, x: 0, duration: 0.42, stagger: 0.08 }, '-=.35');
+    .fromTo('[data-hero-visual]', { autoAlpha: 0, x: 36, rotate: 1.2 }, { autoAlpha: 1, x: 0, rotate: 0, duration: 0.8 }, '-=.78');
 
   splitTargets.filter((element) => element !== heroTitle).forEach((element) => createScrubbedTextReveal(element, splitWords.get(element)));
 

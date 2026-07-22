@@ -11,6 +11,10 @@ test('renders the complete public project inventory and safe private-client acti
   await expect(page.getByRole('link', { name: 'Project Atlas' })).toHaveCount(1);
   await expect(page.locator('.hero-visual--portrait img')).toHaveAttribute('src', '/assets/profile/ibadat-profile.webp');
   await expect(page.locator('.hero-visual--portrait img')).toHaveAttribute('alt', /Portrait of Ibadat Ali/);
+  await expect(page.locator('[data-tech-marquee]')).toBeVisible();
+  await expect(page.locator('.tech-marquee__group').first().locator('.tech-marquee__item')).toHaveCount(79);
+  await expect(page.locator('[data-tech-marquee]')).toContainText('Technologies and tools used across this portfolio: Python, MCP, Tree-sitter');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(await page.evaluate(() => document.documentElement.clientWidth));
   await expect(page.locator('#interview')).toHaveCount(0);
   await expect(page.locator('.project-card--evershine [data-link-type="live"]')).toHaveText(/visit live website/i);
   await expect(page.locator('.project-card--evershine [data-link-type="source"]')).toHaveCount(0);
@@ -45,6 +49,7 @@ test('supports skip navigation, filter states, mobile keyboard menu, and reduced
   await page.reload();
   await expect(page.locator('[data-project-card]').first()).toBeVisible();
   await expect(page.locator('[data-scroll-progress]')).toBeHidden();
+  await expect(page.locator('.tech-marquee__track')).toHaveCSS('animation-name', 'none');
 });
 
 test('has no critical automated accessibility violations', async ({ page }) => {

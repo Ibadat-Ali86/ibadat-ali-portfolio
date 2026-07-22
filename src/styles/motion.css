@@ -44,4 +44,10 @@
   .scroll-progress { display:none; }
   .word-clip { overflow:visible; }
   .motion-word { transform:none !important; opacity:1 !important; }
+  .tech-marquee__viewport { overflow:visible; padding:1rem; }
+  .tech-marquee__track { width:auto; animation:none; transform:none; }
+  .tech-marquee__group { flex-wrap:wrap; gap:.55rem; padding:0; }
+  .tech-marquee__group--clone { display:none; }
+  .tech-marquee__item { gap:0; padding:.38rem .5rem; border:2px solid var(--ink); background:var(--paper); font-family:var(--mono); font-size:.72rem; letter-spacing:.02em; }
+  .tech-marquee__item::after { display:none; }
 }

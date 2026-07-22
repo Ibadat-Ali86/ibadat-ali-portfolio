@@ -56,3 +56,13 @@ test('renders the complete atlas and descriptive project media text', async () =
   assert.match(renderer, /function imageAlt\(project\)/);
   assert.doesNotMatch(linkChecker, /publicProjects/);
 });
+
+test('renders every project technology in an accessible left-to-right marquee', async () => {
+  const renderer = await readFile(new URL('../scripts/render-static.mjs', import.meta.url), 'utf8');
+  const sections = await readFile(new URL('../src/styles/sections.css', import.meta.url), 'utf8');
+  const motion = await readFile(new URL('../src/styles/motion.css', import.meta.url), 'utf8');
+  assert.match(renderer, /new Set\(projects\.flatMap\(\(\{ stack \}\) => stack\)\)/);
+  assert.match(renderer, /aria-label="Technology stack and tools"/);
+  assert.match(sections, /@keyframes tech-marquee-right[\s\S]*translate3d\(-50%,0,0\)[\s\S]*translate3d\(0,0,0\)/);
+  assert.match(motion, /\.tech-marquee__track \{ width:auto; animation:none; transform:none; \}/);
+});
