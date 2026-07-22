@@ -79,12 +79,12 @@ test('provides a responsive, keyboard-safe portfolio assistant with grounded sta
   await expect(page.locator('[data-assistant-suggestions] button')).toHaveCount(4);
   await expect(page.locator('[data-assistant-input]')).toBeFocused();
 
-  await page.getByRole('button', { name: 'What kinds of problems does Ibadat solve?' }).click();
-  await expect(page.locator('.assistant-message--user')).toContainText('What kinds of problems does Ibadat solve?');
+  await page.getByRole('button', { name: 'Why should a client work with Ibadat?' }).click();
+  await expect(page.locator('.assistant-message--user')).toContainText('Why should a client work with Ibadat?');
   await expect(page.locator('[data-assistant-loading]')).toBeVisible();
   await expect(page.locator('.assistant-message--assistant').last()).toContainText('end-to-end AI systems');
   await expect(page.locator('[data-assistant-loading]')).toHaveCount(0);
-  expect(requestBody.messages.at(-1)).toEqual({ role: 'user', content: 'What kinds of problems does Ibadat solve?' });
+  expect(requestBody.messages.at(-1)).toEqual({ role: 'user', content: 'Why should a client work with Ibadat?' });
 
   const report = await new AxeBuilder({ page }).disableRules(['color-contrast']).analyze();
   expect(report.violations).toEqual([]);

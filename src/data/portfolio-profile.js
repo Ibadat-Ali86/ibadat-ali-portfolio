@@ -35,8 +35,8 @@ export const publicProfile = {
 };
 
 export const assistantSuggestions = [
-  'What kinds of problems does Ibadat solve?',
-  'Which projects best show his AI engineering work?',
-  'What technologies does Ibadat use?',
-  'How can I contact Ibadat?'
+  'Why should a client work with Ibadat?',
+  'Which project best matches my needs?',
+  'What can Ibadat build end to end?',
+  'How can we start a conversation?'
 ];
