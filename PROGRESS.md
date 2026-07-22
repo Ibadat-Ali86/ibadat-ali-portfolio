@@ -20,10 +20,20 @@
 
 ## Phase 2 — handoff import and planning
 
-- In progress.
+- Completed 2026-07-22.
 - Imported the final handoff documents into `docs/portfolio-handoff/` and copied its governing `AGENTS.md` to the repository root.
 - Registry version discovery completed: Vite `8.1.5`, GSAP `3.15.0`, Lenis `1.3.25`, Lucide `1.25.0`, Playwright `1.61.1`, Axe Playwright `4.12.1`, HTML Validate `11.5.6`.
 
+## Phase 3–6 — scaffold, data contract, design system, and sections
+
+- In progress.
+- Added Vite `8.1.5`, GSAP `3.15.0`, Lenis `1.3.25`, Lucide `1.25.0`, ESLint `10.7.0`, Playwright `1.61.1`, Axe Playwright `4.12.1`, HTML Validate `11.5.6`, and Sharp `0.35.3` with exact version declarations.
+- Implemented a single canonical project source in `src/data/projects.js` and a build-time renderer that writes all 17 cards into `index.html`.
+- Added six Node invariant tests for inventory, order, URLs, private-client rules, exclusions, claims, and renderer link behavior.
+- Implemented the one-page semantic structure, controlled-brutalist tokens and components, desktop/mobile navigation, filters, no-JavaScript content, reduced-motion gate, safe external links, interview placeholder, profile asset, favicon, OG image, and 404 fallback.
+- Generated and inspected the first ImageGen asset (`hero-system-grid.webp`), then compressed it to 140 KB WebP. The user-supplied profile image was directly optimized to a 80 KB WebP without AI editing.
+- Initial quality run: lint and Node tests passed; Vite build passed with a 138.61 KB compressed JS bundle and 3.13 KB compressed CSS bundle. HTML validation exposed five markup issues, which have been corrected and are awaiting rerun.
+
 ## Next action
 
-- Finish the requirement map, commit the imported handoff, then scaffold the Vite project and quality gates.
+- Re-run quality checks, generate the remaining approved abstract artwork, add CI/repository maintenance documents, and begin browser QA.
