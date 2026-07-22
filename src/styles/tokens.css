@@ -1,0 +1,1 @@
+:root { --ink:#090909; --paper:#f6f4ec; --acid:#b8ff00; --cobalt:#2961ff; --white:#fff; --muted:#d1d1c7; --gray:#5f5f58; --border:3px; --shadow-sm:6px 6px 0 var(--ink); --shadow-lg:10px 10px 0 var(--ink); --content:1320px; --section:clamp(5rem, 9vw, 9rem); --sans:'Space Grotesk','Arial Black',Arial,sans-serif; --mono:'IBM Plex Mono','Courier New',monospace; }

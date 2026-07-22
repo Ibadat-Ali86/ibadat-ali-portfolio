@@ -1,0 +1,22 @@
+import { createIcons, icons } from 'lucide';
+import './styles/reset.css';
+import './styles/tokens.css';
+import './styles/base.css';
+import './styles/components.css';
+import './styles/sections.css';
+import './styles/motion.css';
+import './styles/responsive.css';
+import { initNavigation } from './modules/navigation.js';
+import { initProjectFilter } from './modules/project-filter.js';
+import { initSmoothScroll } from './modules/smooth-scroll.js';
+import { initRevealMotion } from './modules/reveal-motion.js';
+import { prefersReducedMotion } from './modules/reduced-motion.js';
+
+document.documentElement.classList.add('js');
+document.querySelector('[data-current-year]').textContent = String(new Date().getFullYear());
+document.querySelectorAll('img').forEach((image) => image.addEventListener('error', () => image.closest('.media-frame, .hero-visual, .profile-frame')?.classList.add('has-media-error')));
+createIcons({ icons });
+initNavigation();
+initProjectFilter();
+initSmoothScroll();
+if (!prefersReducedMotion()) initRevealMotion();
