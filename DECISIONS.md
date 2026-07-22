@@ -11,3 +11,7 @@ The user supplied a real profile image. It will be used directly, optimized loca
 ## 2026-07-22 — public site privacy
 
 Handoff documentation is retained for repository provenance but is not imported into the Vite public build. The static renderer and automated tests will keep the private-client card restricted to its required public label and live-site action.
+
+## 2026-07-22 — stale external destinations
+
+The original CareVision `/landing` route and TopoLite Kaggle notebook returned HTTP 404 during the launch check. CareVision now uses its verified root URL and the unavailable TopoLite live action is omitted. Kaggle rejects or mishandles HEAD requests but its supplied profile route responds successfully to GET, so the original visible profile link is retained and the checker uses a GET fallback.

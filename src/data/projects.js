@@ -14,7 +14,7 @@ export const projects = [
     hook: 'Multimodal clinical decision-support PWA designed around explainability, secure workflows, and practical field use.',
     problem: 'Assisted review needs usable, explainable workflows rather than unsupported medical conclusions.',
     solution: 'A multimodal PWA combines structured workflows, secure application services, and explainability-oriented interfaces.',
-    stack: ['React 18', 'TypeScript', 'Vite', 'Tailwind', 'Radix UI', 'Zustand', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'Gemini 2.0 Flash'], github: 'https://github.com/Ibadat-Ali86/carevision', live: 'https://carevision-chw.vercel.app/landing', sourceAccess: 'public', showSourceLink: true, image: projectArt('carevision'),
+    stack: ['React 18', 'TypeScript', 'Vite', 'Tailwind', 'Radix UI', 'Zustand', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'Gemini 2.0 Flash'], github: 'https://github.com/Ibadat-Ali86/carevision', live: 'https://carevision-chw.vercel.app/', sourceAccess: 'public', showSourceLink: true, image: projectArt('carevision'),
     editorialSafeguard: 'Research and decision-support context only; no diagnostic, treatment, or clinical-outcome claims.'
   },
   {
@@ -30,7 +30,7 @@ export const projects = [
     hook: 'Lightweight topology-aware knowledge distillation for COVID-19 CT-slice classification.',
     problem: 'Research into compact imaging models needs transparent framing of methods and limitations.',
     solution: 'A topology-aware knowledge-distillation approach explores lightweight architectures, attention, and explainability methods.',
-    stack: ['PyTorch', 'depthwise-separable CNN', 'Coordinate Attention', 'persistent homology', 'GUDHI', 'EfficientNet-B0', 'Grad-CAM'], github: 'https://github.com/Ibadat-Ali86/TopoLite-KD-Efficient-Topology-Aware-Knowledge-Distillation-for-COVID-19-CT-Slice-Classification', live: 'https://www.kaggle.com/code/ibadatali/topokd-research-finalv', sourceAccess: 'public', showSourceLink: true, image: projectArt('topolite'),
+    stack: ['PyTorch', 'depthwise-separable CNN', 'Coordinate Attention', 'persistent homology', 'GUDHI', 'EfficientNet-B0', 'Grad-CAM'], github: 'https://github.com/Ibadat-Ali86/TopoLite-KD-Efficient-Topology-Aware-Knowledge-Distillation-for-COVID-19-CT-Slice-Classification', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('topolite'),
     editorialSafeguard: 'Academic research context only; no clinical deployment or validation claim is made.'
   },
   {

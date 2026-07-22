@@ -35,7 +35,8 @@
 - Verified `npm run check` passed: lint, six Node tests, Vite build, and HTML validation. The production bundle measured 138.61 KB compressed JavaScript and 3.13 KB compressed CSS, within the stated budgets.
 - Browser QA caught an implementation issue in the first full-page capture: ScrollTrigger pre-hid content below the initial viewport. The reveal module now animates only on entry, keeping all not-yet-seen content visible and preserving the no-JavaScript fallback.
 - Playwright browser suite passed: 3 tests covering 17 cards, private-client action restrictions, safe external link attributes, skip navigation, mobile keyboard menu, reduced motion, and an Axe scan. Captures are stored locally in ignored `artifacts/screenshots/` at 1440, 1024, 768, 375, and 320 widths.
-- Generated and visually reviewed `project-codescope.webp` (48 KB WebP); remaining project visuals are still in progress.
+- Generated and visually reviewed unique abstract artwork for CodeScope, CareVision, SentinelIQ, TopoLite-KD, AdaptIQ, and Evershine. All remaining project cards use a documented reuse of the most relevant approved abstract artwork rather than fabricated product screenshots; all 17 media requests now resolve.
+- External-link recovery: replaced CareVision’s 404 `/landing` route with its verified root URL and removed the TopoLite 404 live action. The supplied Kaggle profile responds to GET despite its nonstandard HEAD response, so the original social link is retained and the checker now falls back to GET.
 
 ## Next action
 

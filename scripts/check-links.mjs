@@ -11,8 +11,9 @@ const uniqueUrls = [...new Set([
 
 const results = await Promise.all(uniqueUrls.map(async (url) => {
   try {
-    const response = await fetch(url, { method: 'HEAD', redirect: 'follow', signal: AbortSignal.timeout(15000) });
-    return { url, status: response.status, ok: response.ok || response.status === 405 };
+    let response = await fetch(url, { method: 'HEAD', redirect: 'follow', signal: AbortSignal.timeout(15000) });
+    if (!response.ok && ![405, 999].includes(response.status)) response = await fetch(url, { method: 'GET', redirect: 'follow', signal: AbortSignal.timeout(15000) });
+    return { url, status: response.status, ok: response.ok || [405, 999].includes(response.status) };
   } catch (error) {
     return { url, status: 'network error', ok: false, error: error.message };
   }

@@ -17,8 +17,12 @@ Implementation and verification are in progress. This report will record only ex
 
 ## Pending checks
 
-- Canonical project data and privacy invariants
-- Lint, HTML validation, unit tests, production build
-- Browser, keyboard, responsive, no-JavaScript, and reduced-motion checks
-- Accessibility scan, external link check, and dependency review
-- Pull request diff and GitHub Actions status
+- Passed — `npm run check`: ESLint, 6 Node data/privacy tests, static rendering, Vite build, and HTML validation.
+- Passed — `npm run test:e2e`: 3 Chromium checks for inventory, Evershine action restrictions, safe links, skip navigation, mobile keyboard menu, reduced motion, and Axe.
+- Passed — `npm run test:links`: all configured destinations returned a usable response; LinkedIn returned its expected anti-bot `405`, and Kaggle required a GET fallback after a nonstandard HEAD response.
+- Passed — production bundle: 138.61 KB gzip JavaScript and 3.13 KB gzip CSS. The JavaScript budget is met.
+- Passed — privacy scan of `dist/`: the Evershine card contains its label, public stack, and live-site action only; no matching source/GitHub/repository wording was found in that card region.
+- Passed — static JavaScript review: no secrets, dynamic code execution, untrusted DOM HTML sinks, storage, or cross-window messaging found in application code.
+- Captured locally — responsive full-page screenshots at 1440, 1024, 768, 375, and 320 widths under ignored `artifacts/screenshots/`.
+- Not run — Lighthouse measurements and real-phone testing (no device or deployment URL available).
+- Pending — pull request diff and GitHub Actions results.
