@@ -97,5 +97,6 @@ test('provides a responsive, keyboard-safe portfolio assistant with grounded sta
   const panelBox = await page.locator('[data-assistant-panel]').boundingBox();
   expect(panelBox.x).toBeGreaterThanOrEqual(0);
   expect(panelBox.x + panelBox.width).toBeLessThanOrEqual(360);
+  await expect(page.locator('.assistant-message--assistant').last()).toBeInViewport();
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(await page.evaluate(() => document.documentElement.clientWidth));
 });

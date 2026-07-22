@@ -19,12 +19,17 @@ export function initPortfolioAssistant() {
   const counter = root.querySelector('[data-assistant-counter]');
   const conversation = [];
   let isBusy = false;
+  let resizeFrame;
+
+  function scrollToLatestMessage() {
+    messagesElement.scrollTop = messagesElement.scrollHeight;
+  }
 
   function setOpen(open, restoreFocus = false) {
     panel.hidden = !open;
     launcher.setAttribute('aria-expanded', String(open));
     root.classList.toggle('is-open', open);
-    if (open) requestAnimationFrame(() => input.focus());
+    if (open) requestAnimationFrame(() => { scrollToLatestMessage(); input.focus(); });
     if (!open && restoreFocus) launcher.focus();
   }
 
@@ -38,7 +43,7 @@ export function initPortfolioAssistant() {
     text.textContent = content;
     article.append(label, text);
     messagesElement.append(article);
-    messagesElement.scrollTop = messagesElement.scrollHeight;
+    scrollToLatestMessage();
   }
 
   function appendLoadingMessage() {
@@ -57,7 +62,7 @@ export function initPortfolioAssistant() {
     accessibleText.textContent = 'Ibadat’s assistant is generating a response.';
     article.append(label, indicator, accessibleText);
     messagesElement.append(article);
-    messagesElement.scrollTop = messagesElement.scrollHeight;
+    scrollToLatestMessage();
     return article;
   }
 
@@ -138,5 +143,11 @@ export function initPortfolioAssistant() {
   });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && !panel.hidden) setOpen(false, true);
+  });
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(() => {
+      if (!panel.hidden) scrollToLatestMessage();
+    });
   });
 }
