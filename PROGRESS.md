@@ -32,7 +32,10 @@
 - Added six Node invariant tests for inventory, order, URLs, private-client rules, exclusions, claims, and renderer link behavior.
 - Implemented the one-page semantic structure, controlled-brutalist tokens and components, desktop/mobile navigation, filters, no-JavaScript content, reduced-motion gate, safe external links, interview placeholder, profile asset, favicon, OG image, and 404 fallback.
 - Generated and inspected the first ImageGen asset (`hero-system-grid.webp`), then compressed it to 140 KB WebP. The user-supplied profile image was directly optimized to a 80 KB WebP without AI editing.
-- Initial quality run: lint and Node tests passed; Vite build passed with a 138.61 KB compressed JS bundle and 3.13 KB compressed CSS bundle. HTML validation exposed five markup issues, which have been corrected and are awaiting rerun.
+- Verified `npm run check` passed: lint, six Node tests, Vite build, and HTML validation. The production bundle measured 138.61 KB compressed JavaScript and 3.13 KB compressed CSS, within the stated budgets.
+- Browser QA caught an implementation issue in the first full-page capture: ScrollTrigger pre-hid content below the initial viewport. The reveal module now animates only on entry, keeping all not-yet-seen content visible and preserving the no-JavaScript fallback.
+- Playwright browser suite passed: 3 tests covering 17 cards, private-client action restrictions, safe external link attributes, skip navigation, mobile keyboard menu, reduced motion, and an Axe scan. Captures are stored locally in ignored `artifacts/screenshots/` at 1440, 1024, 768, 375, and 320 widths.
+- Generated and visually reviewed `project-codescope.webp` (48 KB WebP); remaining project visuals are still in progress.
 
 ## Next action
 
