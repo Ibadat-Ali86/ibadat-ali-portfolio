@@ -9,6 +9,8 @@ test('renders the complete public project inventory and safe private-client acti
   await expect(page.locator('[data-project-card][data-tier="lab"]')).toHaveCount(5);
   await expect(page.getByText('LABS & TOOLS — FOCUSED TECHNICAL EXERCISES')).toHaveCount(1);
   await expect(page.getByRole('link', { name: 'Project Atlas' })).toHaveCount(1);
+  await expect(page.locator('.hero-visual--portrait img')).toHaveAttribute('src', '/assets/profile/ibadat-profile.webp');
+  await expect(page.locator('.hero-visual--portrait img')).toHaveAttribute('alt', /Portrait of Ibadat Ali/);
   await expect(page.locator('#interview')).toHaveCount(0);
   await expect(page.locator('.project-card--evershine [data-link-type="live"]')).toHaveText(/visit live website/i);
   await expect(page.locator('.project-card--evershine [data-link-type="source"]')).toHaveCount(0);
