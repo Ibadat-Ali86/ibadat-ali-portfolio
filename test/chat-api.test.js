@@ -38,6 +38,7 @@ test('uses the selected Meta Llama model and a public-only knowledge boundary', 
   assert.equal(NVIDIA_MODEL, 'meta/llama-3.1-8b-instruct');
   assert.match(ASSISTANT_SYSTEM_PROMPT, /thoughtful human guide/);
   assert.match(ASSISTANT_SYSTEM_PROMPT, /Use earlier turns/);
+  assert.match(ASSISTANT_SYSTEM_PROMPT, /cannot schedule meetings/);
   assert.match(ASSISTANT_SYSTEM_PROMPT, /why hire him/);
   assert.match(ASSISTANT_SYSTEM_PROMPT, /weaknesses, gaps, failures/);
   assert.match(ASSISTANT_SYSTEM_PROMPT, /pricing, availability/);
@@ -142,6 +143,9 @@ test('normalizes model formatting and keeps overlong answers complete and bounde
   assert.ok(normalized.split(/\s+/).length <= 120);
   assert.match(normalized, /Ask me about a specific project/);
   assert.match(normalized.split('\n\n')[0], /[.!?]$/);
+
+  const overreaching = normalizeAssistantMessage("CareVision demonstrates full-stack AI delivery. I'd be happy to set up a conversation. Contact Ibadat at ibadcodes@gmail.com.");
+  assert.equal(overreaching, 'CareVision demonstrates full-stack AI delivery. Contact Ibadat at ibadcodes@gmail.com.');
 });
 
 test('rejects model output that echoes hidden instructions', async () => {
