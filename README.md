@@ -43,11 +43,11 @@ npm run test:links
 
 - Generated abstract artwork lives in `public/assets/generated/`; provenance is documented there.
 - The profile image is user-supplied and optimized locally; no generated likeness is used.
-- The interview section intentionally displays an accessible placeholder until a video, poster, and captions are supplied.
-- No verified deployment URL, form endpoint, or analytics provider has been configured.
+- The interview section is intentionally absent from the public page until a video, poster, and captions are supplied.
+- No form endpoint or analytics provider has been configured.
 
 ## Deployment
 
-The production artifact is `dist/` after `npm run build`. Deploy it to a static host after a deployment URL and its release checks are available. No deployment status is claimed by this repository.
+The production artifact is `dist/` after `npm run build`. The portfolio is deployed through the linked Vercel project at https://ibadat-ali-portfolio.vercel.app.
 
 The original handoff documents are retained unchanged in `docs/portfolio-handoff/`.

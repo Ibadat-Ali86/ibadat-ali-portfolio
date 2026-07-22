@@ -1,1 +1,47 @@
-@media (prefers-reduced-motion: no-preference) { .project-card { transition:transform .18s ease,box-shadow .18s ease; }.project-card:hover { transform:translate(-3px,-3px); box-shadow:13px 13px 0 var(--ink); }.hero-visual img { transition:transform .5s ease; }.hero-visual:hover img { transform:scale(1.04); } }
+.word-clip { display:inline-block; overflow:clip; margin-bottom:-.1em; padding-bottom:.1em; vertical-align:top; }
+.motion-word { display:inline-block; will-change:transform,opacity; }
+.motion-enhanced [data-card-title] { perspective:900px; }
+
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  .nav-links a { position:relative; }
+  .nav-links a::after { position:absolute; right:0; bottom:-.35rem; left:0; height:3px; background:var(--cobalt); content:""; transform:scaleX(0); transform-origin:right center; transition:transform .26s cubic-bezier(.22,1,.36,1); }
+  .nav-links a:hover::after,.nav-links a:focus-visible::after,.nav-links a[aria-current]::after { transform:scaleX(1); transform-origin:left center; }
+
+  .button { transition:transform .22s cubic-bezier(.22,1,.36,1),box-shadow .22s cubic-bezier(.22,1,.36,1),background .18s,color .18s; }
+  .button > span { transition:transform .22s cubic-bezier(.22,1,.36,1); }
+  .button:hover,.button:focus-visible { transform:translate(-3px,-3px); box-shadow:9px 9px 0 var(--ink); }
+  .button:hover > span,.button:focus-visible > span { transform:translate(3px,-3px); }
+  .button:active { transform:translate(6px,6px); box-shadow:none; }
+
+  .project-card { transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s cubic-bezier(.22,1,.36,1); }
+  .project-card h3,.project-card .status-label,.project-card .media-frame img { transition:color .2s,transform .45s cubic-bezier(.22,1,.36,1); }
+  .project-card .media-frame::after { transition:transform .7s cubic-bezier(.22,1,.36,1); }
+  .project-card:hover,.project-card:focus-within { transform:translate(-5px,-5px); box-shadow:15px 15px 0 var(--ink); }
+  .project-card:hover h3,.project-card:focus-within h3 { color:var(--cobalt); }
+  .project-card:hover .status-label,.project-card:focus-within .status-label { transform:translate(-3px,3px); }
+  .project-card:hover .media-frame img,.project-card:focus-within .media-frame img { transform:scale(1.035); }
+  .project-card:hover .media-frame::after,.project-card:focus-within .media-frame::after { transform:translateX(125%); }
+
+  .capability-card { transition:transform .26s cubic-bezier(.22,1,.36,1),border-color .2s,box-shadow .26s; }
+  .capability-card:hover { border-color:var(--acid); box-shadow:7px 7px 0 var(--acid); transform:translate(-4px,-4px); }
+  .profile-frame img { transition:transform .7s cubic-bezier(.22,1,.36,1),filter .35s; }
+  .profile-frame:hover img { filter:contrast(1.04); transform:scale(1.025); }
+  .hero-visual img { transition:transform .8s cubic-bezier(.22,1,.36,1),filter .35s; }
+  .hero-visual:hover img,.hero-visual:focus-within img { filter:saturate(1) contrast(1.07); transform:scale(1.025); }
+  .credential { transition:background .2s,color .2s,transform .24s cubic-bezier(.22,1,.36,1); }
+  .credential:hover { background:var(--ink); color:var(--white); transform:translateY(-4px); }
+  .credential:hover span,.credential:hover small { color:var(--acid); }
+  .filter-button { transition:background .18s,color .18s,transform .2s cubic-bezier(.22,1,.36,1),box-shadow .2s; }
+  .filter-button:hover,.filter-button:focus-visible { box-shadow:4px 4px 0 var(--ink); transform:translate(-2px,-2px); }
+  .social-list a,.social-list a span { transition:background .2s,color .2s,transform .25s cubic-bezier(.22,1,.36,1); }
+  .social-list a:hover span,.social-list a:focus-visible span { transform:translate(4px,-4px); }
+  .contact-method { transition:background .2s,color .2s,transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s; }
+  .contact-method:hover,.contact-method:focus-visible { background:var(--acid); color:var(--ink); transform:translate(-3px,-3px); box-shadow:6px 6px 0 var(--acid); }
+  .contact-method:hover .contact-method__label,.contact-method:focus-visible .contact-method__label,.contact-method:hover .contact-method__action,.contact-method:focus-visible .contact-method__action { color:var(--ink); }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .scroll-progress { display:none; }
+  .word-clip { overflow:visible; }
+  .motion-word { transform:none !important; opacity:1 !important; }
+}

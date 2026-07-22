@@ -41,3 +41,48 @@
 ## Next action
 
 - Completed: PR #1 was squash-merged to `main` after the required GitHub Actions `verify` workflow passed. No deployment was attempted because no hosting target or deployment URL was supplied.
+
+## Thumbnail quality pass
+
+- Completed 2026-07-22.
+- Replaced all reused project-card artwork with 17 individually generated, project-specific ImageGen thumbnails in a cohesive premium editorial 3D technical-still-life direction.
+- Visually reviewed every output for subject fit, readable text, branding, identifiable people, misleading UI, and Evershine privacy. Regenerated Evershine, Netflix analysis, and Employee Information Form after the first candidates revealed a crest, human film frames, and numeric markings.
+- Corrected the CareVision/SentinelIQ filename mapping during contact-sheet review.
+- Exported every project thumbnail at the declared 1600×1000 aspect ratio. Featured images are each below 160 KiB; selected and lab images are each below 110 KiB.
+
+## LinkedIn profile and motion pass
+
+- Completed 2026-07-22.
+- Rendered and reviewed both pages of the user-supplied LinkedIn profile PDF, then strengthened the public positioning with its factual location, education, practice areas, and certification details.
+- Kept the LinkedIn profile's 40%, 579K, 92%, $38K, and RMSE claims out of the public portfolio because the repository rules require independent reproduction or verification before publication.
+- Added accessible word-split headline animation, staged GSAP/ScrollTrigger reveals, a scroll-progress rail, refined Lenis scrolling, and coordinated hover/focus motion for cards, buttons, navigation, filters, credentials, profile media, and social links.
+- Preserved immediate content visibility without JavaScript and under reduced motion. Motion remains a progressive enhancement and no interaction depends on hover.
+- Browser QA covered desktop and mobile hero layout, live scroll reveals, project-card hover states, the new credentials content, active navigation, and scroll progress.
+
+## Professional case-study and motion pass
+
+- Completed 2026-07-22.
+- Removed the five lab and compact-tool cards from the public page so the portfolio presents only seven featured systems and five selected case studies. Their records remain archived in `src/data/projects.js` and can be restored without losing source information.
+- Repositioned the former project atlas as a focused selected-case-studies section and removed the lab-only filter category.
+- Upgraded section headings and all project titles to scroll-scrubbed word reveals, synchronized Lenis with ScrollTrigger, and added restrained project-media parallax while preserving keyboard behavior and reduced-motion fallbacks.
+
+## Direct contact channels
+
+- Added professionally styled email and WhatsApp contact cards with direct `mailto:` and secure `wa.me` actions.
+
+## Hero identity pass
+
+- Replaced the abstract hero diagram with the user-supplied profile portrait, framed as the primary identity anchor with technical grid treatment and role metadata.
+- Updated hero positioning to `DATA ANALYST × DATA SCIENTIST × ML ENGINEER` and preserved the original portrait asset without AI alteration.
+
+## Vercel deployment
+
+- Authorized the Vercel CLI as `ibadcodes-6074`, created the `ibadat-ali-portfolio` Vercel project, and connected it to the existing GitHub repository.
+- Vercel completed the Vite build and assigned the live alias: https://ibadat-ali-portfolio.vercel.app
+- Vercel added `.vercel` to `.gitignore`; local project-link metadata remains untracked as intended.
+
+## Portfolio audit v3 remediation
+
+- Applied the July 2026 audit copy and positioning pass: removed location and student framing, upgraded the hero to `DATA SCIENTIST × ML ENGINEER × DEVOPS`, and rewrote capabilities around client outcomes.
+- Restored all 17 source-of-truth projects to the public Project Atlas, including the compact labs grid, and added descriptive thumbnail alt text for every card.
+- Removed the unfinished Interview section and navigation item, removed the public WhatsApp number, restored the Project Atlas navigation label, and removed the orphaned hero identity code.

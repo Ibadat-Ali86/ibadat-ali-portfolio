@@ -21,13 +21,36 @@ function externalLink(href, label, type) {
   return `<a class="text-link" data-link-type="${type}" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)} <span aria-hidden="true">↗</span></a>`;
 }
 
+function imageAlt(project) {
+  const descriptions = {
+    codescope: 'abstract local-first repository intelligence diagram',
+    carevision: 'abstract multimodal clinical decision-support system diagram',
+    sentineliq: 'abstract NASA turbofan remaining-useful-life forecasting system diagram',
+    topolite: 'abstract topology-aware medical imaging research diagram',
+    adaptiq: 'abstract retail forecasting and decision-support system diagram',
+    'vital-link': 'abstract multimodal health prototype workflow diagram',
+    evershine: 'abstract education platform and learning management system diagram',
+    'resume-builder': 'abstract AI resume builder workflow diagram',
+    'learning-dashboard': 'abstract personalized learning analytics dashboard diagram',
+    'covid-analytics': 'abstract pandemic analytics and ETL platform diagram',
+    'pakistan-ecommerce': 'abstract e-commerce price prediction workflow diagram',
+    'vendor-analysis': 'abstract procurement and vendor performance analytics diagram',
+    mnist: 'abstract handwritten digit classification pipeline diagram',
+    'spam-classifier': 'abstract email and SMS text classification workflow diagram',
+    netflix: 'abstract streaming catalog exploratory data analysis diagram',
+    'employee-form': 'abstract reactive employee information form workflow diagram',
+    'csv-cleaner': 'abstract tabular data cleaning utility workflow diagram'
+  };
+  return `${project.title} — ${descriptions[project.slug] ?? 'abstract technical systems illustration'}`;
+}
+
 function projectCard(project, index) {
   const isPrivate = project.slug === 'evershine';
   const actions = [project.live && externalLink(project.live, isPrivate ? 'VISIT LIVE WEBSITE' : 'VISIT LIVE', 'live'), project.showSourceLink && project.github && externalLink(project.github, 'VIEW SOURCE', 'source')].filter(Boolean).join('');
   const details = project.tier === 'featured' ? `<div class="project-details"><p><strong>Constraint:</strong> ${escapeHtml(project.problem)}</p><p><strong>System:</strong> ${escapeHtml(project.solution)}</p><p class="safeguard"><strong>Scope note:</strong> ${escapeHtml(project.editorialSafeguard)}</p></div>` : '';
   return `<article class="project-card project-card--${escapeHtml(project.tier)} project-card--${escapeHtml(project.slug)}" data-project-card data-category="${escapeHtml(project.category)}" data-tier="${escapeHtml(project.tier)}">
-    <figure class="media-frame"><img src="${escapeHtml(project.image)}" alt="" width="1600" height="1000" loading="lazy" decoding="async"><figcaption class="media-fallback" aria-hidden="true">${escapeHtml(project.category)}</figcaption></figure>
-    <div class="project-card__body"><div class="project-meta"><span>${String(index + 1).padStart(2, '0')}</span><span class="status-label">${isPrivate ? 'PRIVATE CLIENT PROJECT' : escapeHtml(project.status)}</span></div><h3>${escapeHtml(project.title)}</h3><p class="project-hook">${escapeHtml(project.hook)}</p>${details}<ul class="tag-list">${project.stack.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul><div class="project-actions">${actions}</div></div>
+    <figure class="media-frame"><div class="media-frame__inner" data-media-inner><img src="${escapeHtml(project.image)}" alt="${escapeHtml(imageAlt(project))}" width="1600" height="1000" loading="lazy" decoding="async"></div><figcaption class="media-fallback" aria-hidden="true">${escapeHtml(project.category)}</figcaption></figure>
+    <div class="project-card__body"><div class="project-meta"><span>${String(index + 1).padStart(2, '0')}</span><span class="status-label">${isPrivate ? 'PRIVATE CLIENT PROJECT' : escapeHtml(project.status)}</span></div><h3 data-card-title>${escapeHtml(project.title)}</h3><p class="project-hook">${escapeHtml(project.hook)}</p>${details}<ul class="tag-list">${project.stack.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul><div class="project-actions">${actions}</div></div>
   </article>`;
 }
 
@@ -38,11 +61,11 @@ function renderFeatured() {
 function renderAtlas() {
   const selected = projects.filter(({ tier }) => tier === 'selected');
   const labs = projects.filter(({ tier }) => tier === 'lab');
-  return `<div class="atlas-group"><h2 class="atlas-group__title">Selected case studies</h2><div class="project-grid project-grid--selected">${selected.map((project, index) => projectCard(project, index + 7)).join('\n')}</div></div><div class="atlas-group"><h2 class="atlas-group__title">Labs &amp; compact tools</h2><div class="project-grid project-grid--lab">${labs.map((project, index) => projectCard(project, index + 12)).join('\n')}</div></div>`;
+  return `<div class="atlas-group"><div class="project-grid project-grid--selected">${selected.map((project, index) => projectCard(project, index + 7)).join('\n')}</div></div><div class="atlas-group atlas-group--labs"><h2 class="atlas-group__title" data-split>LABS &amp; TOOLS — FOCUSED TECHNICAL EXERCISES</h2><div class="project-grid project-grid--lab">${labs.map((project, index) => projectCard(project, index + 12)).join('\n')}</div></div>`;
 }
 
 function renderFilters() {
-  const categories = [...new Set(projects.filter(({ tier }) => tier !== 'featured').map(({ category }) => category))];
+  const categories = ['Full-Stack & Client Platforms', 'Analytics & BI', 'Data Science & Forecasting'];
   return `<div class="filter-bar"><button class="filter-button is-selected" type="button" aria-pressed="true" data-filter="all">All work</button>${categories.map((category) => `<button class="filter-button" type="button" aria-pressed="false" data-filter="${escapeHtml(category)}">${escapeHtml(category)}</button>`).join('')}</div>`;
 }
 

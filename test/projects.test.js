@@ -47,3 +47,12 @@ test('renderer uses explicit links and never derives a source URL from a slug', 
   assert.doesNotMatch(renderer, /github\.com[^\n]*project\.slug/);
   assert.match(renderer, /project\.showSourceLink/);
 });
+
+test('renders the complete atlas and descriptive project media text', async () => {
+  const renderer = await readFile(new URL('../scripts/render-static.mjs', import.meta.url), 'utf8');
+  const linkChecker = await readFile(new URL('../scripts/check-links.mjs', import.meta.url), 'utf8');
+  assert.match(renderer, /project-grid--lab/);
+  assert.match(renderer, /LABS &amp; TOOLS — FOCUSED TECHNICAL EXERCISES/);
+  assert.match(renderer, /function imageAlt\(project\)/);
+  assert.doesNotMatch(linkChecker, /publicProjects/);
+});
