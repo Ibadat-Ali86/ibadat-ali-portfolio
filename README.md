@@ -8,7 +8,7 @@ A responsive, static Vite portfolio for Ibadat Ali: AI systems, research enginee
 - Vanilla JavaScript for navigation, filters, the portfolio assistant, restrained GSAP reveal motion, Lenis enhancement, and media fallbacks
 - Modular CSS with controlled digital-brutalist tokens and responsive grids
 - One canonical project source: `src/data/projects.js`
-- A serverless `/api/chat` route using `meta/llama-3.3-70b-instruct` through NVIDIA's hosted API
+- A serverless `/api/chat` route using `meta/llama-3.1-8b-instruct` through NVIDIA's hosted API
 
 The build-time renderer writes all project cards into `index.html`, so project content remains available before JavaScript loads.
 

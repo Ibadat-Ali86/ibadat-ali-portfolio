@@ -1,7 +1,7 @@
 import { projects } from '../src/data/projects.js';
 import { publicProfile } from '../src/data/portfolio-profile.js';
 
-export const NVIDIA_MODEL = 'meta/llama-3.3-70b-instruct';
+export const NVIDIA_MODEL = 'meta/llama-3.1-8b-instruct';
 const NVIDIA_CHAT_URL = 'https://integrate.api.nvidia.com/v1/chat/completions';
 const MAX_MESSAGES = 8;
 const MAX_MESSAGE_LENGTH = 700;
@@ -146,7 +146,7 @@ export default async function handler(request, response) {
         ],
         temperature: 0.2,
         top_p: 0.7,
-        max_tokens: 420,
+        max_tokens: 320,
         stream: false
       }),
       signal: controller.signal

@@ -66,7 +66,7 @@ test('provides a responsive, keyboard-safe portfolio assistant with grounded sta
     await route.fulfill({
       status: 200,
       contentType: 'application/json',
-      body: JSON.stringify({ success: true, data: { message: 'Ibadat builds end-to-end AI systems across data, models, APIs, interfaces, deployment, and monitoring.', model: 'meta/llama-3.3-70b-instruct' }, error: null })
+      body: JSON.stringify({ success: true, data: { message: 'Ibadat builds end-to-end AI systems across data, models, APIs, interfaces, deployment, and monitoring.', model: 'meta/llama-3.1-8b-instruct' }, error: null })
     });
   });
 
