@@ -11,6 +11,7 @@ import { initProjectFilter } from './modules/project-filter.js';
 import { initSmoothScroll } from './modules/smooth-scroll.js';
 import { initRevealMotion } from './modules/reveal-motion.js';
 import { prefersReducedMotion } from './modules/reduced-motion.js';
+import { initPortfolioAssistant } from './modules/portfolio-assistant.js';
 
 document.documentElement.classList.add('js');
 document.querySelector('[data-current-year]').textContent = String(new Date().getFullYear());
@@ -19,4 +20,5 @@ createIcons({ icons });
 initNavigation();
 initProjectFilter();
 initSmoothScroll();
+initPortfolioAssistant();
 if (!prefersReducedMotion()) initRevealMotion();

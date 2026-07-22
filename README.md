@@ -5,9 +5,10 @@ A responsive, static Vite portfolio for Ibadat Ali: AI systems, research enginee
 ## Architecture
 
 - Semantic single-page HTML with build-time project rendering
-- Vanilla JavaScript for navigation, filters, restrained GSAP reveal motion, Lenis enhancement, and media fallbacks
+- Vanilla JavaScript for navigation, filters, the portfolio assistant, restrained GSAP reveal motion, Lenis enhancement, and media fallbacks
 - Modular CSS with controlled digital-brutalist tokens and responsive grids
 - One canonical project source: `src/data/projects.js`
+- A serverless `/api/chat` route using `meta/llama-3.3-70b-instruct` through NVIDIA's hosted API
 
 The build-time renderer writes all project cards into `index.html`, so project content remains available before JavaScript loads.
 
@@ -26,6 +27,8 @@ nvm use
 npm ci
 npm run dev
 ```
+
+Copy `.env.example` to `.env.local` and provide `NVIDIA_API_KEY` to enable the assistant locally. The key is server-only: never use a `VITE_` prefix and never commit the populated environment file.
 
 ## Quality commands
 
@@ -48,6 +51,6 @@ npm run test:links
 
 ## Deployment
 
-The production artifact is `dist/` after `npm run build`. The portfolio is deployed through the linked Vercel project at https://ibadat-ali-portfolio.vercel.app.
+The production artifact is `dist/` after `npm run build`. The portfolio is deployed through the linked Vercel project at https://ibadat-ali-portfolio.vercel.app. Add `NVIDIA_API_KEY` to the Vercel project's Production, Preview, and Development environments before deployment.
 
 The original handoff documents are retained unchanged in `docs/portfolio-handoff/`.

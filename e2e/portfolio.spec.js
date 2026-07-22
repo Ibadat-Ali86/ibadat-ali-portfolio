@@ -57,3 +57,42 @@ test('has no critical automated accessibility violations', async ({ page }) => {
   const report = await new AxeBuilder({ page }).disableRules(['color-contrast']).analyze();
   expect(report.violations).toEqual([]);
 });
+
+test('provides a responsive, keyboard-safe portfolio assistant with grounded starter questions', async ({ page }) => {
+  let requestBody;
+  await page.route('**/api/chat', async (route) => {
+    requestBody = route.request().postDataJSON();
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({ success: true, data: { message: 'Ibadat builds end-to-end AI systems across data, models, APIs, interfaces, deployment, and monitoring.', model: 'meta/llama-3.3-70b-instruct' }, error: null })
+    });
+  });
+
+  await page.goto('/');
+  const launcher = page.getByRole('button', { name: /ask ia portfolio assistant/i });
+  await expect(launcher).toBeVisible();
+  await launcher.click();
+  await expect(launcher).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.getByRole('heading', { name: 'ASK ABOUT IBADAT.' })).toBeVisible();
+  await expect(page.locator('[data-assistant-suggestions] button')).toHaveCount(4);
+  await expect(page.locator('[data-assistant-input]')).toBeFocused();
+
+  await page.getByRole('button', { name: 'What kinds of problems does Ibadat solve?' }).click();
+  await expect(page.locator('.assistant-message--user')).toContainText('What kinds of problems does Ibadat solve?');
+  await expect(page.locator('.assistant-message--assistant').last()).toContainText('end-to-end AI systems');
+  expect(requestBody.messages.at(-1)).toEqual({ role: 'user', content: 'What kinds of problems does Ibadat solve?' });
+
+  const report = await new AxeBuilder({ page }).disableRules(['color-contrast']).analyze();
+  expect(report.violations).toEqual([]);
+  await page.keyboard.press('Escape');
+  await expect(launcher).toHaveAttribute('aria-expanded', 'false');
+  await expect(launcher).toBeFocused();
+
+  await page.setViewportSize({ width: 360, height: 720 });
+  await launcher.click();
+  const panelBox = await page.locator('[data-assistant-panel]').boundingBox();
+  expect(panelBox.x).toBeGreaterThanOrEqual(0);
+  expect(panelBox.x + panelBox.width).toBeLessThanOrEqual(360);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(await page.evaluate(() => document.documentElement.clientWidth));
+});
