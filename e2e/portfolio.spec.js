@@ -62,6 +62,7 @@ test('provides a responsive, keyboard-safe portfolio assistant with grounded sta
   let requestBody;
   await page.route('**/api/chat', async (route) => {
     requestBody = route.request().postDataJSON();
+    await new Promise((resolve) => setTimeout(resolve, 350));
     await route.fulfill({
       status: 200,
       contentType: 'application/json',
@@ -80,7 +81,9 @@ test('provides a responsive, keyboard-safe portfolio assistant with grounded sta
 
   await page.getByRole('button', { name: 'What kinds of problems does Ibadat solve?' }).click();
   await expect(page.locator('.assistant-message--user')).toContainText('What kinds of problems does Ibadat solve?');
+  await expect(page.locator('[data-assistant-loading]')).toBeVisible();
   await expect(page.locator('.assistant-message--assistant').last()).toContainText('end-to-end AI systems');
+  await expect(page.locator('[data-assistant-loading]')).toHaveCount(0);
   expect(requestBody.messages.at(-1)).toEqual({ role: 'user', content: 'What kinds of problems does Ibadat solve?' });
 
   const report = await new AxeBuilder({ page }).disableRules(['color-contrast']).analyze();

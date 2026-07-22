@@ -1,7 +1,7 @@
 import { assistantSuggestions } from '../data/portfolio-profile.js';
 
 const MAX_MESSAGE_LENGTH = 700;
-const REQUEST_TIMEOUT_MS = 25_000;
+const REQUEST_TIMEOUT_MS = 50_000;
 
 export function initPortfolioAssistant() {
   const root = document.querySelector('[data-portfolio-assistant]');
@@ -41,6 +41,26 @@ export function initPortfolioAssistant() {
     messagesElement.scrollTop = messagesElement.scrollHeight;
   }
 
+  function appendLoadingMessage() {
+    const article = document.createElement('article');
+    const label = document.createElement('span');
+    const indicator = document.createElement('span');
+    const accessibleText = document.createElement('span');
+    article.className = 'assistant-message assistant-message--assistant assistant-message--loading';
+    article.dataset.assistantLoading = '';
+    label.className = 'assistant-message__label';
+    label.textContent = 'IA ASSISTANT';
+    indicator.className = 'assistant-typing';
+    indicator.setAttribute('aria-hidden', 'true');
+    indicator.append(document.createElement('span'), document.createElement('span'), document.createElement('span'));
+    accessibleText.className = 'sr-only';
+    accessibleText.textContent = 'Ibadat’s assistant is generating a response.';
+    article.append(label, indicator, accessibleText);
+    messagesElement.append(article);
+    messagesElement.scrollTop = messagesElement.scrollHeight;
+    return article;
+  }
+
   function setBusy(busy) {
     isBusy = busy;
     input.disabled = busy;
@@ -56,6 +76,7 @@ export function initPortfolioAssistant() {
 
     conversation.push({ role: 'user', content });
     appendMessage('user', content);
+    const loadingMessage = appendLoadingMessage();
     input.value = '';
     counter.textContent = `0 / ${MAX_MESSAGE_LENGTH}`;
     setBusy(true);
@@ -75,10 +96,12 @@ export function initPortfolioAssistant() {
 
       const reply = payload.data.message;
       conversation.push({ role: 'assistant', content: reply });
+      loadingMessage.remove();
       appendMessage('assistant', reply);
       status.textContent = 'Answer received.';
     } catch (error) {
       conversation.pop();
+      loadingMessage.remove();
       const message = error?.name === 'AbortError' ? 'The request timed out. Please try again.' : error.message;
       appendMessage('error', message || 'The assistant is temporarily unavailable.');
       status.textContent = 'The assistant could not answer that question.';

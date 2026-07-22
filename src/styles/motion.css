@@ -43,6 +43,17 @@
   .assistant-suggestion:hover,.assistant-suggestion:focus-visible { transform:translateY(-2px); }
 }
 
+@keyframes assistant-typing {
+  0%,60%,100% { opacity:.35; transform:translateY(0); }
+  30% { opacity:1; transform:translateY(-4px); }
+}
+
+@media (prefers-reduced-motion:no-preference) {
+  .assistant-typing span { animation:assistant-typing 1s ease-in-out infinite; }
+  .assistant-typing span:nth-child(2) { animation-delay:.14s; }
+  .assistant-typing span:nth-child(3) { animation-delay:.28s; }
+}
+
 @media (prefers-reduced-motion:reduce) {
   .scroll-progress { display:none; }
   .word-clip { overflow:visible; }
@@ -54,4 +65,5 @@
   .tech-marquee__item { gap:0; padding:.38rem .5rem; border:2px solid var(--ink); background:var(--paper); font-family:var(--mono); font-size:.72rem; letter-spacing:.02em; }
   .tech-marquee__item::after { display:none; }
   .assistant-launcher,.assistant-suggestion { transition:none; }
+  .assistant-typing span { animation:none; opacity:1; transform:none; }
 }
