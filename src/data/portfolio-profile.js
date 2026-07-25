@@ -1,6 +1,6 @@
 export const publicProfile = {
   name: 'Ibadat Ali',
-  headline: 'Data Scientist, ML Engineer, and DevOps practitioner who builds AI systems for real-world constraints.',
+  headline: 'Data Scientist & ML Engineer building predictive analytics, ML pipelines, and full-stack AI products for real constraints.',
   summary: [
     'Ibadat works across the full lifecycle of intelligent products: data preparation, model development, backend APIs, interfaces, deployment, monitoring, and honest evaluation.',
     'His work focuses on the point where modeling meets security, usability, explainability, latency, uncertainty, and dependable delivery.',
@@ -30,7 +30,8 @@ export const publicProfile = {
     github: 'https://github.com/Ibadat-Ali86',
     kaggle: 'https://www.kaggle.com/ibadatali',
     tiktok: 'https://www.tiktok.com/@deepfx6',
-    instagram: 'https://www.instagram.com/expla_inableai'
+    instagram: 'https://www.instagram.com/deepfx_ai/',
+    whatsapp: 'https://wa.me/923220692321'
   }
 };
 

@@ -15,6 +15,9 @@ function assertProjectInventory() {
   if (!privateClient || privateClient.github !== null || privateClient.showSourceLink !== false || privateClient.sourceAccess !== 'private') throw new Error('Private client guard failed.');
   if (projects.some(({ title }) => excludedProjectNames.includes(title))) throw new Error('An excluded collection cannot render as a project.');
   if (projects.filter(({ canonicalWalmart }) => canonicalWalmart).length !== 1 || !projects.find(({ slug }) => slug === 'adaptiq').canonicalWalmart) throw new Error('Only AdaptIQ may be the Walmart forecasting card.');
+  const primaryFeatureSlugs = projects.filter(({ primaryFeature }) => primaryFeature).map(({ slug }) => slug);
+  const requiredPrimaryFeatures = ['carevision', 'sentineliq', 'adaptiq', 'evershine', 'covid-analytics'];
+  if (primaryFeatureSlugs.length !== requiredPrimaryFeatures.length || requiredPrimaryFeatures.some((slug) => !primaryFeatureSlugs.includes(slug))) throw new Error('Primary feature rail must stay focused on the five v2 proof projects.');
 }
 
 function externalLink(href, label, type) {
@@ -47,21 +50,23 @@ function imageAlt(project) {
 function projectCard(project, index) {
   const isPrivate = project.slug === 'evershine';
   const actions = [project.live && externalLink(project.live, isPrivate ? 'VISIT LIVE WEBSITE' : 'VISIT LIVE', 'live'), project.showSourceLink && project.github && externalLink(project.github, 'VIEW SOURCE', 'source')].filter(Boolean).join('');
-  const details = project.tier === 'featured' ? `<div class="project-details"><p><strong>Constraint:</strong> ${escapeHtml(project.problem)}</p><p><strong>System:</strong> ${escapeHtml(project.solution)}</p><p class="safeguard"><strong>Scope note:</strong> ${escapeHtml(project.editorialSafeguard)}</p></div>` : '';
+  const details = project.tier === 'featured' || project.primaryFeature ? `<div class="project-details"><p><strong>Problem:</strong> ${escapeHtml(project.problem)}</p><p><strong>System:</strong> ${escapeHtml(project.solution)}</p></div>` : '';
+  const videoBadge = project.hasVideo ? '<span class="project-video-badge">PLAY</span>' : '';
   return `<article class="project-card project-card--${escapeHtml(project.tier)} project-card--${escapeHtml(project.slug)}" data-project-card data-category="${escapeHtml(project.category)}" data-tier="${escapeHtml(project.tier)}">
-    <figure class="media-frame"><div class="media-frame__inner" data-media-inner><img src="${escapeHtml(project.image)}" alt="${escapeHtml(imageAlt(project))}" width="1600" height="1000" loading="lazy" decoding="async"></div><figcaption class="media-fallback" aria-hidden="true">${escapeHtml(project.category)}</figcaption></figure>
-    <div class="project-card__body"><div class="project-meta"><span>${String(index + 1).padStart(2, '0')}</span><span class="status-label">${isPrivate ? 'PRIVATE CLIENT PROJECT' : escapeHtml(project.status)}</span></div><h3 data-card-title>${escapeHtml(project.title)}</h3><p class="project-hook">${escapeHtml(project.hook)}</p>${details}<ul class="tag-list">${project.stack.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul><div class="project-actions">${actions}</div></div>
+    <figure class="media-frame"><div class="media-frame__inner" data-media-inner><img src="${escapeHtml(project.image)}" alt="${escapeHtml(imageAlt(project))}" width="1600" height="1000" loading="lazy" decoding="async"></div>${videoBadge}<figcaption class="media-fallback" aria-hidden="true">${escapeHtml(project.category)}</figcaption></figure>
+    <div class="project-card__body"><div class="project-meta"><span>${String(index + 1).padStart(2, '0')}</span><span class="status-label">${isPrivate ? 'PRIVATE CLIENT PROJECT' : escapeHtml(project.status)}</span></div><h3 data-card-title>${escapeHtml(project.title)}</h3><p class="project-metric">${escapeHtml(project.metric)}</p><p class="project-hook">${escapeHtml(project.hook)}</p>${details}<ul class="tag-list">${project.stack.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul><div class="project-actions">${actions}</div></div>
   </article>`;
 }
 
 function renderFeatured() {
-  return projects.filter(({ tier }) => tier === 'featured').map((project, index) => projectCard(project, index)).join('\n');
+  const featured = projects.filter(({ primaryFeature }) => primaryFeature);
+  return `<div class="project-rail" data-project-rail-section><div class="project-rail__track" data-project-rail-track>${featured.map((project, index) => projectCard(project, index)).join('\n')}</div></div>`;
 }
 
 function renderAtlas() {
-  const selected = projects.filter(({ tier }) => tier === 'selected');
+  const selected = projects.filter((project) => !project.primaryFeature && project.tier !== 'lab');
   const labs = projects.filter(({ tier }) => tier === 'lab');
-  return `<div class="atlas-group"><div class="project-grid project-grid--selected">${selected.map((project, index) => projectCard(project, index + 7)).join('\n')}</div></div><div class="atlas-group atlas-group--labs"><h2 class="atlas-group__title" data-split>LABS &amp; TOOLS — FOCUSED TECHNICAL EXERCISES</h2><div class="project-grid project-grid--lab">${labs.map((project, index) => projectCard(project, index + 12)).join('\n')}</div></div>`;
+  return `<div class="atlas-group"><h2 class="atlas-group__title" data-split>MORE SYSTEMS &amp; CASE STUDIES</h2><div class="project-grid project-grid--selected">${selected.map((project, index) => projectCard(project, index + 5)).join('\n')}</div></div><div class="atlas-group atlas-group--labs"><h2 class="atlas-group__title" data-split>LABS &amp; EXERCISES — CLEARLY SEPARATED</h2><p class="atlas-group__note">Practice work stays here so the main proof section stays focused on serious data, ML, and product systems.</p><div class="project-grid project-grid--lab">${labs.map((project, index) => projectCard(project, index + 12)).join('\n')}</div></div>`;
 }
 
 function renderFilters() {
@@ -70,11 +75,11 @@ function renderFilters() {
 }
 
 function renderTechMarquee() {
-  const technologies = [...new Set(projects.flatMap(({ stack }) => stack))];
+  const technologies = ['Python', 'PyTorch', 'XGBoost', 'Scikit-learn', 'FastAPI', 'Next.js 15', 'PostgreSQL', 'Docker', 'Gemini API', 'LangChain', 'SHAP', 'Prophet'];
   const items = technologies.map((technology) => `<span class="tech-marquee__item">${escapeHtml(technology)}</span>`).join('');
   const accessibleList = technologies.map(escapeHtml).join(', ');
   return `<section class="tech-marquee" aria-label="Technology stack and tools" data-tech-marquee>
-    <div class="tech-marquee__header"><span>TECH STACK / TOOLS I USE</span><span>${technologies.length} ACROSS ${projects.length} PROJECTS</span></div>
+    <div class="tech-marquee__header"><span>CURATED ML / DATA / PRODUCT STACK</span><span>${technologies.length} HIGH-SIGNAL TOOLS</span></div>
     <div class="tech-marquee__viewport">
       <div class="tech-marquee__track">
         <div class="tech-marquee__group" aria-hidden="true">${items}</div>

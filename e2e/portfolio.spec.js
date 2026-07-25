@@ -5,21 +5,28 @@ test('renders the complete public project inventory and safe private-client acti
   const errors = [];
   page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
   await page.goto('/');
+  await expect(page).toHaveTitle('Ibadat Ali — Data Scientist & ML Engineer');
   await expect(page.locator('[data-project-card]')).toHaveCount(17);
   await expect(page.locator('[data-project-card][data-tier="lab"]')).toHaveCount(5);
-  await expect(page.getByText('LABS & TOOLS — FOCUSED TECHNICAL EXERCISES')).toHaveCount(1);
-  await expect(page.getByRole('link', { name: 'Project Atlas' })).toHaveCount(1);
+  await expect(page.getByText('LABS & EXERCISES — CLEARLY SEPARATED')).toHaveCount(1);
+  await expect(page.locator('[data-project-rail-track] [data-project-card]')).toHaveCount(5);
+  await expect(page.getByRole('link', { name: 'Work' })).toHaveCount(1);
+  await expect(page.getByRole('heading', { name: /From raw data/i })).toBeVisible();
+  await expect(page.locator('[data-role-rotator]')).toContainText('$38K in savings');
   await expect(page.locator('.hero-visual--portrait img')).toHaveAttribute('src', '/assets/profile/ibadat-profile.webp');
   await expect(page.locator('.hero-visual--portrait img')).toHaveAttribute('alt', /Portrait of Ibadat Ali/);
   await expect(page.locator('[data-tech-marquee]')).toBeVisible();
-  await expect(page.locator('.tech-marquee__group').first().locator('.tech-marquee__item')).toHaveCount(79);
-  await expect(page.locator('[data-tech-marquee]')).toContainText('Technologies and tools used across this portfolio: Python, MCP, Tree-sitter');
+  await expect(page.locator('.tech-marquee__group').first().locator('.tech-marquee__item')).toHaveCount(12);
+  await expect(page.locator('[data-tech-marquee]')).toContainText('Technologies and tools used across this portfolio: Python, PyTorch, XGBoost');
+  await expect(page.getByText('Scope note')).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(await page.evaluate(() => document.documentElement.clientWidth));
   await expect(page.locator('#interview')).toHaveCount(0);
   await expect(page.locator('.project-card--evershine [data-link-type="live"]')).toHaveText(/visit live website/i);
   await expect(page.locator('.project-card--evershine [data-link-type="source"]')).toHaveCount(0);
-  await expect(page.locator('.contact-method[href="mailto:ibadcodes@gmail.com"]')).toHaveCount(1);
-  await expect(page.locator('.contact-method[href="https://wa.me/923220692321"]')).toHaveCount(0);
+  await expect(page.locator('[data-copy-email="ibadcodes@gmail.com"]')).toHaveCount(1);
+  await expect(page.locator('.contact-method[href="https://wa.me/923220692321"]')).toHaveCount(1);
+  await expect(page.locator('[data-contact-form] input[name="name"]')).toBeVisible();
+  await expect(page.locator('[data-contact-form] fieldset')).toBeVisible();
   await expect(page.locator('[data-project-card] img[alt]:not([alt=""])')).toHaveCount(17);
   const unsafeExternalLinks = await page.locator('a[target="_blank"]').evaluateAll((links) => links.filter((link) => !link.relList.contains('noopener') || !link.relList.contains('noreferrer')).map((link) => link.href));
   expect(unsafeExternalLinks).toEqual([]);
@@ -50,6 +57,20 @@ test('supports skip navigation, filter states, mobile keyboard menu, and reduced
   await expect(page.locator('[data-project-card]').first()).toBeVisible();
   await expect(page.locator('[data-scroll-progress]')).toBeHidden();
   await expect(page.locator('.tech-marquee__track')).toHaveCSS('animation-name', 'none');
+});
+
+test('validates the static contact conversion form without navigation', async ({ page }) => {
+  await page.goto('/');
+  const status = page.locator('[data-contact-status]');
+  await page.locator('[data-contact-form]').evaluate((form) => { form.dataset.noNavigate = 'true'; });
+  await page.getByRole('button', { name: /send message/i }).click();
+  await expect(status).toContainText('Please complete all fields');
+  await page.locator('#contact-name').fill('Ibadat Test');
+  await page.locator('#contact-email').fill('client@example.com');
+  await page.locator('input[value="freelance"]').check();
+  await page.locator('#contact-description').fill('I need a production ML forecasting workflow with deployment support.');
+  await page.locator('[data-contact-form]').dispatchEvent('submit');
+  await expect(status).toContainText('Opening your email app');
 });
 
 test('has no critical automated accessibility violations', async ({ page }) => {

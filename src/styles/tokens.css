@@ -1,1 +1,21 @@
-:root { --ink:#090909; --paper:#f6f4ec; --acid:#b8ff00; --cobalt:#2961ff; --white:#fff; --muted:#d1d1c7; --gray:#5f5f58; --border:3px; --shadow-sm:6px 6px 0 var(--ink); --shadow-lg:10px 10px 0 var(--ink); --content:1320px; --section:clamp(5rem, 9vw, 9rem); --sans:'Space Grotesk','Arial Black',Arial,sans-serif; --mono:'IBM Plex Mono','Courier New',monospace; }
+:root {
+  --ink:#07070d;
+  --paper:#0a0a0f;
+  --acid:#00d4a0;
+  --cobalt:#7b61ff;
+  --coral:#ff6b35;
+  --white:#111118;
+  --muted:#18181f;
+  --gray:#b0afbe;
+  --line:#1e1e2e;
+  --text-primary:#f0eff4;
+  --text-secondary:#b0afbe;
+  --text-muted:#6b6a7a;
+  --border:1px;
+  --shadow-sm:0 0 0 1px var(--line), 0 10px 30px rgba(0,0,0,.28);
+  --shadow-lg:0 0 0 1px var(--line), 0 24px 70px rgba(0,0,0,.42);
+  --content:1200px;
+  --section:clamp(5rem, 9vw, 8rem);
+  --sans:'Space Grotesk','Arial Black',Arial,sans-serif;
+  --mono:'IBM Plex Mono','Courier New',monospace;
+}

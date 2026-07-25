@@ -4,7 +4,9 @@ const uniqueUrls = [...new Set([
   ...projects.flatMap(({ github, live }) => [github, live]),
   'https://www.linkedin.com/in/mirzaibadatali',
   'https://www.tiktok.com/@deepfx6',
-  'https://www.instagram.com/expla_inableai',
+  'https://www.instagram.com/deepfx_ai/',
+  'https://huggingface.co/ibadatali',
+  'https://wa.me/923220692321',
   'https://www.kaggle.com/ibadatali',
   'https://github.com/Ibadat-Ali86'
 ].filter(Boolean))];

@@ -12,6 +12,9 @@ import { initSmoothScroll } from './modules/smooth-scroll.js';
 import { initRevealMotion } from './modules/reveal-motion.js';
 import { prefersReducedMotion } from './modules/reduced-motion.js';
 import { initPortfolioAssistant } from './modules/portfolio-assistant.js';
+import { initHeroProof } from './modules/hero-proof.js';
+import { initProjectRail } from './modules/project-rail.js';
+import { initContactForm } from './modules/contact-form.js';
 
 document.documentElement.classList.add('js');
 document.querySelector('[data-current-year]').textContent = String(new Date().getFullYear());
@@ -21,4 +24,7 @@ initNavigation();
 initProjectFilter();
 initSmoothScroll();
 initPortfolioAssistant();
+initHeroProof();
+initContactForm();
 if (!prefersReducedMotion()) initRevealMotion();
+if (!prefersReducedMotion()) initProjectRail();

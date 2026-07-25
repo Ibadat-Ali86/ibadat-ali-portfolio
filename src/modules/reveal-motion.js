@@ -99,16 +99,20 @@ export function initRevealMotion() {
   gsap.registerPlugin(ScrollTrigger);
   document.documentElement.classList.add('motion-enhanced');
 
-  const splitTargets = [...document.querySelectorAll('[data-split], [data-card-title]')];
+  const splitTargets = [...document.querySelectorAll('[data-split], [data-card-title]')]
+    .filter((element) => !element.closest('[data-project-rail-section]'));
   const splitWords = new Map(splitTargets.map((element) => [element, splitIntoWords(element)]));
   const heroTitle = document.querySelector('#hero-title');
-  const heroWords = splitWords.get(heroTitle) ?? [];
+  const heroLines = [...document.querySelectorAll('#hero-title > span')];
 
   const heroTimeline = gsap.timeline({ defaults: { ease } });
   heroTimeline
-    .fromTo('[data-hero-eyebrow]', { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.45 })
-    .fromTo(heroWords, { autoAlpha: 0, yPercent: 115 }, { autoAlpha: 1, yPercent: 0, duration: 0.78, stagger: 0.045 }, '-=.2')
+    .fromTo('[data-hero-availability]', { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.55 })
+    .fromTo('[data-hero-eyebrow]', { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.45 }, '-=.18')
+    .fromTo(heroLines, { autoAlpha: 0, yPercent: 115 }, { autoAlpha: 1, yPercent: 0, duration: 0.78, stagger: 0.12 }, '-=.16')
+    .fromTo('[data-role-rotator], [data-tech-chip-cycler]', { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.55, stagger: 0.08 }, '-=.32')
     .fromTo('[data-hero-copy]', { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.62 }, '-=.38')
+    .fromTo('[data-hero-metrics] > *', { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.06 }, '-=.34')
     .fromTo('[data-hero-actions] > *', { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.52, stagger: 0.09 }, '-=.4')
     .fromTo('[data-hero-visual]', { autoAlpha: 0, x: 36, rotate: 1.2 }, { autoAlpha: 1, x: 0, rotate: 0, duration: 0.8 }, '-=.78');
 
