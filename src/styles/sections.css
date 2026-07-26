@@ -122,3 +122,26 @@
 .contact-form__status[data-state="success"] { color:var(--acid) !important; }
 .contact-form__status[data-state="error"] { color:var(--coral) !important; }
 .site-footer { border-top:1px solid var(--line); color:var(--text-secondary); }
+
+/* Site-wide depth layer: decorative, pointer-safe, and animated only through scroll. */
+.ambient-field { position:fixed; z-index:0; inset:-20vmax; overflow:hidden; pointer-events:none; contain:paint; }
+.ambient-field__grid { position:absolute; inset:9vmax; background-image:linear-gradient(rgba(123,97,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,160,.09) 1px,transparent 1px); background-size:72px 72px; mask-image:radial-gradient(ellipse at 50% 50%,#000 12%,transparent 68%); opacity:.48; will-change:transform; }
+.ambient-field__orb { position:absolute; width:clamp(20rem,40vw,48rem); aspect-ratio:1; border-radius:50%; filter:blur(42px); opacity:.17; will-change:transform; }
+.ambient-field__orb--cobalt { top:8%; left:6%; background:#7b61ff; }
+.ambient-field__orb--acid { top:44%; right:4%; background:#00d4a0; }
+.ambient-field__orb--coral { bottom:4%; left:34%; width:clamp(16rem,28vw,34rem); background:#ff6b35; opacity:.1; }
+
+/* Keep the moving field visible through a controlled dark surface, without reducing text contrast. */
+.about,.featured,.atlas { background:linear-gradient(135deg,rgba(10,10,15,.95),rgba(10,10,15,.86)); }
+.credentials,.video-showcase,.contact,.site-footer { background:rgba(7,7,13,.9); }
+.capabilities { background:radial-gradient(circle at 88% 8%,rgba(123,97,255,.16),transparent 28rem),linear-gradient(180deg,rgba(13,13,20,.94),rgba(9,9,14,.88)); }
+.capabilities h2 { color:var(--text-primary); text-shadow:0 2px 20px rgba(0,0,0,.45); }
+.capabilities .section-heading--split > p { color:#c9c7d5; }
+.social { background:rgba(13,13,20,.9); }
+
+@media (max-width:760px) {
+  .ambient-field { inset:-32vmax; }
+  .ambient-field__grid { background-size:52px 52px; opacity:.34; }
+  .ambient-field__orb { opacity:.12; filter:blur(34px); }
+  .capabilities h2 { font-size:clamp(2rem,9.4vw,3rem); }
+}

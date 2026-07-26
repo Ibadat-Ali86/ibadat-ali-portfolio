@@ -96,6 +96,36 @@ function createMediaParallax() {
   });
 }
 
+function createAmbientFieldMotion() {
+  const field = document.querySelector('[data-ambient-field]');
+  if (!field) return;
+
+  const grid = field.querySelector('[data-ambient-grid]');
+  const orbs = [...field.querySelectorAll('[data-ambient-orb]')];
+
+  if (grid) {
+    gsap.to(grid, {
+      xPercent: 8,
+      yPercent: -13,
+      ease: 'none',
+      scrollTrigger: { start: 0, end: 'max', scrub: 0.75 }
+    });
+  }
+
+  const ambientPaths = [
+    { xPercent: -13, yPercent: 18 },
+    { xPercent: 16, yPercent: -15 },
+    { xPercent: -9, yPercent: -11 }
+  ];
+  orbs.forEach((orb, index) => {
+    gsap.to(orb, {
+      ...ambientPaths[index % ambientPaths.length],
+      ease: 'none',
+      scrollTrigger: { start: 0, end: 'max', scrub: 1.1 }
+    });
+  });
+}
+
 export function initRevealMotion() {
   gsap.registerPlugin(ScrollTrigger);
   document.documentElement.classList.add('motion-enhanced');
@@ -125,6 +155,7 @@ export function initRevealMotion() {
   revealBatch([...document.querySelectorAll('.social-list li')], { y: 22, duration: 0.55, stagger: 0.06 });
   revealBatch([...document.querySelectorAll('.section-index, .section-heading--split > p, [data-stack-heading], .about__copy > p:not(.section-index), .contact__grid > div:last-child, .contact-method')], { y: 20, duration: 0.58, stagger: 0.07 });
   createMediaParallax();
+  createAmbientFieldMotion();
 
   const progress = document.querySelector('[data-scroll-progress]');
   if (progress) {

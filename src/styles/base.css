@@ -1,8 +1,9 @@
-body { background:var(--paper); color:var(--text-primary); font-family:var(--sans); font-size:16px; line-height:1.5; overflow-x:hidden; }
+body { background:var(--ink); color:var(--text-primary); font-family:var(--sans); font-size:16px; line-height:1.5; overflow-x:hidden; }
 a { color:inherit; text-decoration-thickness:2px; text-underline-offset:3px; }
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline:3px solid var(--cobalt); outline-offset:4px; }
 .container { width:min(var(--content), calc(100% - 48px)); margin-inline:auto; }
 .section { padding-block:var(--section); border-top:var(--border) solid var(--line); }
+main,.site-footer { position:relative; z-index:1; }
 h1,h2,h3 { font-weight:700; line-height:.98; letter-spacing:-.03em; }
 h1 { font-size:clamp(2.75rem,5.8vw,4.9rem); max-width:12ch; } h2 { font-size:clamp(2.1rem,4.8vw,4.4rem); max-width:13ch; } h3 { font-size:clamp(1.35rem,2.2vw,2.2rem); }
 p { max-width:67ch; } .eyebrow,.section-index,.project-meta,.status-label,.tag-list,.credibility-strip,.button,.tech-marquee,.social-list,.site-footer,.filter-button,.profile-frame figcaption { font-family:var(--mono); font-size:.74rem; font-weight:700; letter-spacing:.04em; }

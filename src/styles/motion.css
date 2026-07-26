@@ -56,6 +56,7 @@
 
 @media (prefers-reduced-motion:reduce) {
   .scroll-progress { display:none; }
+  .ambient-field { display:none; }
   .word-clip { overflow:visible; }
   .motion-word { transform:none !important; opacity:1 !important; }
   .tech-marquee__viewport { overflow:visible; padding:1rem; }
