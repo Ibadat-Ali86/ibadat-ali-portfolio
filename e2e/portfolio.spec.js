@@ -18,11 +18,16 @@ test('renders the complete public project inventory and safe private-client acti
   await expect(page.getByRole('heading', { name: 'Data Science & Forecasting' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'ML Engineering & Research' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'ML Deployment & AI Products' })).toBeVisible();
-  await expect(page.locator('.stack-map')).toHaveCount(4);
-  await expect(page.getByRole('heading', { name: 'Four disciplines. One delivery standard.' })).toHaveCSS('color', 'rgb(240, 239, 244)');
+  await expect(page.locator('.stack-map')).toHaveCount(8);
+  await expect(page.locator('.stack-map--industry')).toHaveCount(4);
+  await expect(page.getByRole('heading', { name: 'Four disciplines. Full delivery toolkit.' })).toHaveCSS('color', 'rgb(240, 239, 244)');
   await expect(page.locator('[data-ambient-field]')).toBeVisible();
   await expect(page.locator('[data-ambient-grid]')).toHaveCount(1);
   await expect(page.locator('[data-ambient-orb]')).toHaveCount(3);
+  await expect(page.getByText('PORTFOLIO-PROVEN FOUNDATION').first()).toBeVisible();
+  await expect(page.getByText('INDUSTRY-STANDARD ROLE TOOLKIT', { exact: false }).first()).toBeVisible();
+  await expect(page.getByText('Power BI', { exact: true })).toBeVisible();
+  await expect(page.getByText('Google Vertex AI', { exact: true })).toBeVisible();
   await expect(page.locator('.hero-visual--portrait img')).toHaveAttribute('src', '/assets/profile/ibadat-profile.webp');
   await expect(page.locator('.hero-visual--portrait img')).toHaveAttribute('alt', /Portrait of Ibadat Ali/);
   await expect(page.locator('[data-tech-marquee]')).toBeVisible();

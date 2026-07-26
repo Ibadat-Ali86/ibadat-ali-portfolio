@@ -26,8 +26,9 @@ function assertSpecializations() {
   const expectedSlugs = ['data-analysis', 'data-science', 'ml-engineering', 'ai-products'];
   if (!Array.isArray(specializations) || specializations.length !== expectedSlugs.length) throw new Error('Professional stack map must contain four specializations.');
   if (expectedSlugs.some((slug) => !specializations.some((specialization) => specialization.slug === slug))) throw new Error('Professional stack map is missing a required specialization.');
-  specializations.forEach(({ title, description, groups }) => {
-    if (!title || !description || !Array.isArray(groups) || groups.length < 3 || groups.some(({ label, tools }) => !label || !Array.isArray(tools) || tools.length < 2)) throw new Error('Each professional stack map needs complete, readable groups.');
+  specializations.forEach(({ title, description, groups, industryGroups }) => {
+    if (!title || !description || !Array.isArray(groups) || groups.length < 3 || groups.some(({ label, tools }) => !label || !Array.isArray(tools) || tools.length < 2)) throw new Error('Each professional stack map needs complete, readable proven-tool groups.');
+    if (!Array.isArray(industryGroups) || industryGroups.length < 3 || industryGroups.some(({ label, tools }) => !label || !Array.isArray(tools) || tools.length < 3)) throw new Error('Each professional stack map needs complete, readable industry-tool groups.');
   });
 }
 
@@ -90,7 +91,15 @@ function renderSpecializations() {
     <p class="capability-kicker">${escapeHtml(specialization.index)}</p>
     <h3>${escapeHtml(specialization.title)}</h3>
     <p>${escapeHtml(specialization.description)}</p>
-    <dl class="stack-map">${specialization.groups.map((group) => `<div><dt>${escapeHtml(group.label)}</dt><dd><ul class="stack-tools">${group.tools.map((tool) => `<li>${escapeHtml(tool)}</li>`).join('')}</ul></dd></div>`).join('')}</dl>
+    <div class="stack-map__block">
+      <p class="stack-map__label">PORTFOLIO-PROVEN FOUNDATION</p>
+      <dl class="stack-map">${specialization.groups.map((group) => `<div><dt>${escapeHtml(group.label)}</dt><dd><ul class="stack-tools">${group.tools.map((tool) => `<li>${escapeHtml(tool)}</li>`).join('')}</ul></dd></div>`).join('')}</dl>
+    </div>
+    <div class="stack-map__block stack-map__block--industry">
+      <p class="stack-map__label">INDUSTRY-STANDARD ROLE TOOLKIT</p>
+      <p class="stack-map__note">Role-readiness map — not a claim of project use.</p>
+      <dl class="stack-map stack-map--industry">${specialization.industryGroups.map((group) => `<div><dt>${escapeHtml(group.label)}</dt><dd><ul class="stack-tools">${group.tools.map((tool) => `<li>${escapeHtml(tool)}</li>`).join('')}</ul></dd></div>`).join('')}</dl>
+    </div>
   </article>`).join('\n');
 }
 

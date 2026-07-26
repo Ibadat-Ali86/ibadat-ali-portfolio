@@ -15,17 +15,24 @@ test('keeps the canonical 7 / 5 / 5 project inventory', () => {
   assert.deepEqual(projects.filter(({ primaryFeature }) => primaryFeature).map(({ slug }) => slug), ['carevision', 'sentineliq', 'adaptiq', 'evershine', 'covid-analytics']);
 });
 
-test('keeps a complete, proof-led professional stack map', () => {
+test('keeps a complete, role-ready professional stack map without conflating proof and industry tools', () => {
   const specializations = publicProfile.specializations;
   assert.deepEqual(specializations.map(({ slug }) => slug), ['data-analysis', 'data-science', 'ml-engineering', 'ai-products']);
-  specializations.forEach(({ title, description, groups }) => {
+  specializations.forEach(({ title, description, groups, industryGroups }) => {
     assert.ok(title && description);
     assert.equal(groups.length, 4);
     groups.forEach(({ label, tools }) => {
       assert.ok(label);
       assert.ok(Array.isArray(tools) && tools.length >= 2);
     });
+    assert.ok(industryGroups.length >= 4);
+    industryGroups.forEach(({ label, tools }) => {
+      assert.ok(label);
+      assert.ok(Array.isArray(tools) && tools.length >= 3);
+    });
   });
+  assert.deepEqual(specializations[0].industryGroups[0].tools.slice(0, 4), ['Power BI', 'Tableau', 'Looker', 'Looker Studio']);
+  assert.ok(specializations[3].industryGroups.flatMap(({ tools }) => tools).includes('Google Vertex AI'));
 });
 
 test('has unique slugs and required render fields', () => {

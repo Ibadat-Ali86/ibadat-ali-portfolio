@@ -35,6 +35,12 @@ export const publicProfile = {
         { label: 'Analysis & notebooks', tools: ['Python', 'Pandas', 'NumPy', 'Jupyter'] },
         { label: 'Visualisation', tools: ['Matplotlib', 'Seaborn', 'Chart.js'] },
         { label: 'Data workflows', tools: ['ETL pipelines', 'CSV workflows', 'R Shiny'] }
+      ],
+      industryGroups: [
+        { label: 'Business intelligence', tools: ['Power BI', 'Tableau', 'Looker', 'Looker Studio', 'Excel', 'Google Sheets'] },
+        { label: 'Semantic modelling', tools: ['Power Query', 'DAX', 'LookML', 'Data modelling', 'Row-level security'] },
+        { label: 'Warehouses & lakehouse', tools: ['BigQuery', 'Snowflake', 'Redshift', 'Microsoft Fabric', 'Databricks SQL', 'DuckDB'] },
+        { label: 'Transformation & quality', tools: ['dbt', 'Apache Airflow', 'Fivetran', 'Azure Data Factory', 'Great Expectations', 'Alteryx'] }
       ]
     },
     {
@@ -47,6 +53,12 @@ export const publicProfile = {
         { label: 'Forecasting', tools: ['Prophet', 'SARIMA', 'XGBoost', 'LSTM'] },
         { label: 'Features & NLP', tools: ['PCA', 'TF-IDF', 'NLTK', 'Pandas'] },
         { label: 'Explainability', tools: ['SHAP', 'Grad-CAM', 'RMSE', 'MAPE'] }
+      ],
+      industryGroups: [
+        { label: 'Scientific & statistical Python', tools: ['SciPy', 'Statsmodels', 'Polars', 'DuckDB', 'Featuretools', 'JupyterLab'] },
+        { label: 'Gradient boosting & tuning', tools: ['LightGBM', 'CatBoost', 'Optuna', 'imbalanced-learn', 'Cross-validation', 'Calibration'] },
+        { label: 'NLP & foundation models', tools: ['spaCy', 'Transformers', 'SentenceTransformers', 'Hugging Face Datasets', 'Tokenizers', 'Embeddings'] },
+        { label: 'Reproducibility & experiments', tools: ['MLflow', 'Weights & Biases', 'DVC', 'Git', 'Conda', 'Poetry'] }
       ]
     },
     {
@@ -59,6 +71,12 @@ export const publicProfile = {
         { label: 'Computer vision', tools: ['EfficientNet-B0', 'CNN', 'Coordinate Attention', 'Grad-CAM'] },
         { label: 'Anomaly & optimisation', tools: ['Isolation Forest', 'PuLP', 'SHAP', 'Sequence modelling'] },
         { label: 'Research methods', tools: ['GUDHI', 'Persistent homology', 'Knowledge distillation', 'Evaluation design'] }
+      ],
+      industryGroups: [
+        { label: 'Frameworks & acceleration', tools: ['TensorFlow', 'Keras', 'ONNX', 'ONNX Runtime', 'TensorRT', 'CUDA'] },
+        { label: 'Scalable data & compute', tools: ['PySpark', 'Ray', 'Dask', 'WebDataset', 'Hugging Face Datasets', 'Apache Arrow'] },
+        { label: 'Experiment control', tools: ['MLflow', 'Weights & Biases', 'DVC', 'Hydra', 'Git LFS', 'Reproducible configs'] },
+        { label: 'Pipelines & packaging', tools: ['Kubeflow Pipelines', 'Prefect', 'Metaflow', 'Docker', 'FastAPI', 'BentoML'] }
       ]
     },
     {
@@ -71,6 +89,13 @@ export const publicProfile = {
         { label: 'Product interface', tools: ['React', 'Next.js 15', 'TypeScript', 'Vite'] },
         { label: 'Persistence & state', tools: ['PostgreSQL', 'Prisma', 'Supabase', 'Zustand'] },
         { label: 'Shipping', tools: ['Docker', 'Hugging Face', 'Vercel', 'Zod'] }
+      ],
+      industryGroups: [
+        { label: 'Cloud ML platforms', tools: ['AWS SageMaker', 'Google Vertex AI', 'Azure Machine Learning', 'Databricks', 'Cloud Run', 'Azure Functions'] },
+        { label: 'Serving & registries', tools: ['MLflow Registry', 'KServe', 'Seldon', 'BentoML', 'NVIDIA Triton', 'FastAPI'] },
+        { label: 'Containers & delivery', tools: ['GitHub Actions', 'Docker', 'Kubernetes', 'Helm', 'Terraform', 'GitOps'] },
+        { label: 'Monitoring & reliability', tools: ['Evidently', 'Arize', 'WhyLabs', 'Prometheus', 'Grafana', 'OpenTelemetry'] },
+        { label: 'LLM & retrieval systems', tools: ['LangChain', 'LangGraph', 'LlamaIndex', 'pgvector', 'Pinecone', 'Qdrant'] }
       ]
     }
   ],
