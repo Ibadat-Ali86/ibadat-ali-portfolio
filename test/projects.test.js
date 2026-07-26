@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFile } from 'node:fs/promises';
+import { publicProfile } from '../src/data/portfolio-profile.js';
 import { excludedProjectNames, projects } from '../src/data/projects.js';
 
 const externalUrls = (project) => [project.github, project.live].filter(Boolean);
@@ -12,6 +13,19 @@ test('keeps the canonical 7 / 5 / 5 project inventory', () => {
   assert.equal(projects.filter(({ tier }) => tier === 'lab').length, 5);
   assert.deepEqual(projects.slice(0, 7).map(({ title }) => title), ['CodeScope MCP Preflight', 'CareVision', 'SentinelIQ', 'TopoLite-KD', 'AdaptIQ / ForecastAI', 'VITAL-LINK', 'Evershine Academy LMS']);
   assert.deepEqual(projects.filter(({ primaryFeature }) => primaryFeature).map(({ slug }) => slug), ['carevision', 'sentineliq', 'adaptiq', 'evershine', 'covid-analytics']);
+});
+
+test('keeps a complete, proof-led professional stack map', () => {
+  const specializations = publicProfile.specializations;
+  assert.deepEqual(specializations.map(({ slug }) => slug), ['data-analysis', 'data-science', 'ml-engineering', 'ai-products']);
+  specializations.forEach(({ title, description, groups }) => {
+    assert.ok(title && description);
+    assert.equal(groups.length, 4);
+    groups.forEach(({ label, tools }) => {
+      assert.ok(label);
+      assert.ok(Array.isArray(tools) && tools.length >= 2);
+    });
+  });
 });
 
 test('has unique slugs and required render fields', () => {
@@ -56,6 +70,7 @@ test('renders the complete atlas and descriptive project media text', async () =
   assert.match(renderer, /LABS &amp; EXERCISES — CLEARLY SEPARATED/);
   assert.doesNotMatch(renderer, /Scope note/);
   assert.match(renderer, /function imageAlt\(project\)/);
+  assert.match(renderer, /function renderSpecializations\(\)/);
   assert.doesNotMatch(linkChecker, /publicProjects/);
 });
 

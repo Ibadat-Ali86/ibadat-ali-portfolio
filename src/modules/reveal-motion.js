@@ -65,21 +65,22 @@ function revealBatch(elements, options = {}) {
 
 function createScrubbedTextReveal(element, words) {
   if (!words.length) return;
-  gsap.set(words, { autoAlpha: 0.12, yPercent: 112, transformOrigin: 'left bottom' });
-  const timeline = gsap.timeline({ paused: true });
-  timeline.to(words, {
-    autoAlpha: 1,
-    yPercent: 0,
-    duration: 1,
-    stagger: 0.055,
-    ease: 'none'
-  });
   ScrollTrigger.create({
     trigger: element,
-    start: 'top 91%',
-    end: 'top 54%',
-    scrub: 0.7,
-    onUpdate: (self) => timeline.progress(self.progress)
+    start: 'top 90%',
+    once: true,
+    onEnter: () => gsap.fromTo(words, {
+      autoAlpha: 0,
+      yPercent: 112,
+      transformOrigin: 'left bottom'
+    }, {
+      autoAlpha: 1,
+      yPercent: 0,
+      duration: 0.64,
+      stagger: 0.045,
+      ease,
+      clearProps: 'opacity,visibility,transform'
+    })
   });
 }
 
@@ -122,7 +123,7 @@ export function initRevealMotion() {
   revealBatch([...document.querySelectorAll('.credential, .capability-card')], { y: 38, stagger: 0.08 });
   revealBatch([...document.querySelectorAll('[data-project-card]')], { y: 54, rotateX: 2, duration: 0.78, stagger: 0.1 });
   revealBatch([...document.querySelectorAll('.social-list li')], { y: 22, duration: 0.55, stagger: 0.06 });
-  revealBatch([...document.querySelectorAll('.section-index, .section-heading--split > p, .about__copy > p:not(.section-index), .contact__grid > div:last-child, .contact-method')], { y: 20, duration: 0.58, stagger: 0.07 });
+  revealBatch([...document.querySelectorAll('.section-index, .section-heading--split > p, [data-stack-heading], .about__copy > p:not(.section-index), .contact__grid > div:last-child, .contact-method')], { y: 20, duration: 0.58, stagger: 0.07 });
   createMediaParallax();
 
   const progress = document.querySelector('[data-scroll-progress]');

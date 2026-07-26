@@ -12,7 +12,14 @@ test('renders the complete public project inventory and safe private-client acti
   await expect(page.locator('[data-project-rail-track] [data-project-card]')).toHaveCount(5);
   await expect(page.getByRole('link', { name: 'Work' })).toHaveCount(1);
   await expect(page.getByRole('heading', { name: /From raw data/i })).toBeVisible();
-  await expect(page.locator('[data-role-rotator]')).toContainText('$38K in savings');
+  await expect(page.locator('[data-hero-eyebrow]')).toContainText('DATA ANALYSIS');
+  await expect(page.locator('[data-role-rotator]')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Data Analysis & BI' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Data Science & Forecasting' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'ML Engineering & Research' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'ML Deployment & AI Products' })).toBeVisible();
+  await expect(page.locator('.stack-map')).toHaveCount(4);
+  await expect(page.getByRole('heading', { name: 'Four disciplines. One delivery standard.' })).toHaveCSS('color', 'rgb(240, 239, 244)');
   await expect(page.locator('.hero-visual--portrait img')).toHaveAttribute('src', '/assets/profile/ibadat-profile.webp');
   await expect(page.locator('.hero-visual--portrait img')).toHaveAttribute('alt', /Portrait of Ibadat Ali/);
   await expect(page.locator('[data-tech-marquee]')).toBeVisible();

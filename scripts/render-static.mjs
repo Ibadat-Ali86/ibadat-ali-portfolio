@@ -1,5 +1,6 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { publicProfile } from '../src/data/portfolio-profile.js';
 import { excludedProjectNames, projects } from '../src/data/projects.js';
 
 const root = resolve(import.meta.dirname, '..');
@@ -18,6 +19,16 @@ function assertProjectInventory() {
   const primaryFeatureSlugs = projects.filter(({ primaryFeature }) => primaryFeature).map(({ slug }) => slug);
   const requiredPrimaryFeatures = ['carevision', 'sentineliq', 'adaptiq', 'evershine', 'covid-analytics'];
   if (primaryFeatureSlugs.length !== requiredPrimaryFeatures.length || requiredPrimaryFeatures.some((slug) => !primaryFeatureSlugs.includes(slug))) throw new Error('Primary feature rail must stay focused on the five v2 proof projects.');
+}
+
+function assertSpecializations() {
+  const specializations = publicProfile.specializations;
+  const expectedSlugs = ['data-analysis', 'data-science', 'ml-engineering', 'ai-products'];
+  if (!Array.isArray(specializations) || specializations.length !== expectedSlugs.length) throw new Error('Professional stack map must contain four specializations.');
+  if (expectedSlugs.some((slug) => !specializations.some((specialization) => specialization.slug === slug))) throw new Error('Professional stack map is missing a required specialization.');
+  specializations.forEach(({ title, description, groups }) => {
+    if (!title || !description || !Array.isArray(groups) || groups.length < 3 || groups.some(({ label, tools }) => !label || !Array.isArray(tools) || tools.length < 2)) throw new Error('Each professional stack map needs complete, readable groups.');
+  });
 }
 
 function externalLink(href, label, type) {
@@ -74,6 +85,15 @@ function renderFilters() {
   return `<div class="filter-bar"><button class="filter-button is-selected" type="button" aria-pressed="true" data-filter="all">All work</button>${categories.map((category) => `<button class="filter-button" type="button" aria-pressed="false" data-filter="${escapeHtml(category)}">${escapeHtml(category)}</button>`).join('')}</div>`;
 }
 
+function renderSpecializations() {
+  return publicProfile.specializations.map((specialization) => `<article class="capability-card capability-card--${escapeHtml(specialization.slug)}" data-reveal>
+    <p class="capability-kicker">${escapeHtml(specialization.index)}</p>
+    <h3>${escapeHtml(specialization.title)}</h3>
+    <p>${escapeHtml(specialization.description)}</p>
+    <dl class="stack-map">${specialization.groups.map((group) => `<div><dt>${escapeHtml(group.label)}</dt><dd><ul class="stack-tools">${group.tools.map((tool) => `<li>${escapeHtml(tool)}</li>`).join('')}</ul></dd></div>`).join('')}</dl>
+  </article>`).join('\n');
+}
+
 function renderTechMarquee() {
   const technologies = ['Python', 'PyTorch', 'XGBoost', 'Scikit-learn', 'FastAPI', 'Next.js 15', 'PostgreSQL', 'Docker', 'Gemini API', 'LangChain', 'SHAP', 'Prophet'];
   const items = technologies.map((technology) => `<span class="tech-marquee__item">${escapeHtml(technology)}</span>`).join('');
@@ -91,11 +111,13 @@ function renderTechMarquee() {
 }
 
 assertProjectInventory();
+assertSpecializations();
 const template = await readFile(templatePath, 'utf8');
 const replacements = new Map([
   ['<!-- TECH_STACK_MARQUEE -->', renderTechMarquee()],
   ['<!-- PROJECT_FILTERS -->', renderFilters()],
   ['<!-- FEATURED_PROJECTS -->', renderFeatured()],
+  ['<!-- SPECIALIZATION_STACKS -->', renderSpecializations()],
   ['<!-- ATLAS_PROJECTS -->', renderAtlas()]
 ]);
 const output = [...replacements].reduce((html, [marker, value]) => html.replace(marker, value), template);

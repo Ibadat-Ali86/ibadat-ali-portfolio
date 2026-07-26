@@ -1,9 +1,10 @@
 import { prefersReducedMotion } from './reduced-motion.js';
 
 const roles = [
-  'Predictive analytics · $38K in savings',
-  'ML pipelines built for production',
-  'Full-stack AI from model to product'
+  'Data analysis · SQL, Pandas & visualisation',
+  'Data science · forecasting & explainability',
+  'ML engineering · PyTorch, XGBoost & Scikit-learn',
+  'AI products · FastAPI, Docker & PostgreSQL'
 ];
 
 function formatMetric(value, { prefix = '', suffix = '', decimals = 0 }) {
