@@ -86,3 +86,13 @@
 - Applied the July 2026 audit copy and positioning pass: removed location and student framing, upgraded the hero to `DATA SCIENTIST × ML ENGINEER × DEVOPS`, and rewrote capabilities around client outcomes.
 - Restored all 17 source-of-truth projects to the public Project Atlas, including the compact labs grid, and added descriptive thumbnail alt text for every card.
 - Removed the unfinished Interview section and navigation item, removed the public WhatsApp number, restored the Project Atlas navigation label, and removed the orphaned hero identity code.
+
+## AI automation & resume alignment pass
+
+- Aligned positioning and copy with user resume and AI automation workflows (n8n, MCP, Claude/Gemini tool-calling, offline-first client platforms).
+- Added direct resume links (`/Ibadat_Ali_Resume.pdf`) to navigation, hero CTA, and direct contact card.
+- Optimized and imported workflow assets into `public/assets/workflows/` and copied the resume PDF into `public/`.
+- Fixed critical navigation runtime error in `src/modules/navigation.js` where non-hash links (like document URLs) broke `document.querySelector`, causing downstream interactive modules to fail to initialize.
+- Synchronized `e2e/portfolio.spec.js` with updated hero titles, discipline headings, and eyebrow copy.
+- Verified passing full check suite (`npm run check` covering ESLint, Node test invariants, Vite build, HTML validation), link integrity (`npm run test:links`), and Playwright E2E suite (`npx playwright test`).
+

@@ -3,28 +3,28 @@ const projectArt = (slug) => `/assets/generated/project-${slug}.webp`;
 export const projects = [
   {
     slug: 'codescope', title: 'CodeScope MCP Preflight', tier: 'featured', category: 'AI Agents & Developer Tools', status: 'LOCAL TOOL',
-    hook: 'Local-first repository intelligence that decides whether code should be reused, extended, or created.',
-    metric: 'Local-first code intelligence',
-    problem: 'Code work often starts without enough repository context to make a safe implementation choice.',
-    solution: 'A local-first MCP workflow maps relevant code, retrieves context, and supports deliberate reuse or extension decisions.',
+    hook: 'Local-first MCP server serving Tree-sitter AST intelligence and vector retrieval as tool context for AI agents.',
+    metric: 'Agent tool-calling · MCP & RAG',
+    problem: 'Autonomous coding agents make conflicting or hallucinated changes without structured repository context.',
+    solution: 'A local-first Model Context Protocol (MCP) server combines Tree-sitter parsing and Chroma vector retrieval to ground agent reasoning before code generation.',
     stack: ['Python', 'MCP', 'Tree-sitter', 'sentence-transformers', 'Chroma', 'CLI'], github: 'https://github.com/Ibadat-Ali86/codescope-mcp-preflight', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('codescope'),
     editorialSafeguard: 'Repository figures are intentionally omitted until the current suite is reproduced.'
   },
   {
     slug: 'carevision', title: 'CareVision', tier: 'featured', category: 'AI Health & Applied ML', status: 'LIVE',
-    hook: 'Multimodal clinical decision-support PWA designed around explainability, secure workflows, and practical field use.',
-    metric: 'Multimodal clinical PWA',
-    problem: 'Assisted review needs usable, explainable workflows rather than unsupported medical conclusions.',
-    solution: 'A multimodal PWA combines structured workflows, secure application services, and explainability-oriented interfaces.',
+    hook: 'Multimodal clinical AI workflow integrating Gemini 2.0 Flash with explainability-first human review gates and offline-capable fallback.',
+    metric: 'Multimodal clinical workflow · Gemma 4 Hackathon',
+    problem: 'Assisted review requires dependable, explainable workflows with explicit confidence gates rather than opaque generative outputs.',
+    solution: 'A multimodal PWA combining Gemini 2.0 Flash structured outputs, step-level audit logging, PostgreSQL persistence, and offline-capable inference fallback.',
     stack: ['React 18', 'TypeScript', 'Vite', 'Tailwind', 'Radix UI', 'Zustand', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'Gemini 2.0 Flash'], github: 'https://github.com/Ibadat-Ali86/carevision', live: 'https://carevision-chw.vercel.app/', sourceAccess: 'public', showSourceLink: true, image: projectArt('carevision'), primaryFeature: true,
     editorialSafeguard: 'Research and decision-support context only; no diagnostic, treatment, or clinical-outcome claims.'
   },
   {
     slug: 'sentineliq', title: 'SentinelIQ', tier: 'featured', category: 'Predictive Maintenance', status: 'LIVE',
-    hook: 'NASA turbofan remaining-useful-life forecasting with anomaly detection, explainability, and maintenance planning.',
+    hook: 'Predictive maintenance automation combining TCN-LSTM forecasting, dual anomaly detection, SHAP attribution, and PuLP scheduling.',
     metric: 'RMSE 14.37 · $38K savings',
     problem: 'Maintenance planning benefits from forecast, anomaly, and explanation signals in one operational flow.',
-    solution: 'A predictive-maintenance system connects sequence models, anomaly detection, explanation, planning, APIs, and an interface.',
+    solution: 'An automated pipeline connecting sequence models, dual anomaly detection (Isolation Forest + Autoencoder), SHAP attribution, and PuLP intervention scheduling.',
     stack: ['PyTorch', 'TCN', 'LSTM', 'Isolation Forest', 'Autoencoder', 'SHAP', 'PuLP', 'FastAPI', 'Next.js 15', 'PostgreSQL', 'Docker'], github: 'https://github.com/Ibadat-Ali86/sentinel-iq-cmpass-nasa-rul-prediction', live: 'https://sentinel-iq-nasa.vercel.app', sourceAccess: 'public', showSourceLink: true, image: projectArt('sentineliq'), primaryFeature: true, hasVideo: true,
     editorialSafeguard: 'No winning-model or RMSE claim is shown while repository experiment tables remain contradictory.'
   },
@@ -39,28 +39,28 @@ export const projects = [
   },
   {
     slug: 'adaptiq', title: 'AdaptIQ / ForecastAI', tier: 'featured', category: 'Forecasting & Decision Systems', status: 'LIVE',
-    hook: 'An end-to-end forecasting SaaS that turns uploaded retail data into forecasts, scenarios, confidence ranges, monitoring, and reports.',
+    hook: 'Automated demand forecasting SaaS running 4-model ensembles over 580K+ transactions with automated regime selection and scenario reports.',
     metric: 'MAPE 1.23% · 580K+ rows',
-    problem: 'Forecasting is only useful when teams can move from data intake to interpretable planning outputs.',
-    solution: 'A single workflow connects multiple forecasting approaches with scenarios, confidence ranges, monitoring, and report delivery.',
+    problem: 'Forecasting is only useful when teams can move from raw transaction data to automated, interpretable planning outputs.',
+    solution: 'An automated forecasting workflow pairing Prophet, XGBoost, SARIMA, and LSTM with regime selection, monitoring hooks, and PDF/CSV report generation.',
     stack: ['Prophet', 'XGBoost', 'SARIMA', 'LSTM', 'FastAPI', 'React', 'Vite', 'Chart.js', 'Docker', 'Hugging Face'], github: 'https://github.com/Ibadat-Ali86/Demand-Sales-Walmart-Forecasting', live: 'https://huggingface.co/spaces/ibadatali/walmart-sales-forecasting-saas', sourceAccess: 'public', showSourceLink: true, canonicalWalmart: true, image: projectArt('adaptiq'), primaryFeature: true,
     editorialSafeguard: 'This is the sole Walmart forecasting card; unsupported accuracy language is omitted.'
   },
   {
     slug: 'vital-link', title: 'VITAL-LINK', tier: 'featured', category: 'AI Health & Applied ML', status: 'PROTOTYPE',
-    hook: 'A multimodal clinical prototype combining chest X-ray, lung audio, and patient vitals into one assisted-review workflow.',
+    hook: 'Multimodal LLM clinical workflow fusing chest X-ray, lung audio, and vital-sign telemetry via Gemini 2.0 Flash into an assisted-review interface.',
     metric: 'Multimodal assisted-review prototype',
     problem: 'Multimodal health prototypes require careful assisted-review framing and useful consolidation of diverse inputs.',
-    solution: 'A prototype brings image, audio, and vital-sign inputs into one review-oriented workflow with explicit boundaries.',
+    solution: 'A prototype brings image, audio, and vital-sign inputs into one review-oriented workflow with explicit model boundaries.',
     stack: ['Python', 'Flask', 'Gemini 2.0 Flash', 'Chart.js', 'jsPDF'], github: 'https://github.com/Ibadat-Ali86/data-science-portfolio/tree/main/projects/02-multimodal-medical-diagnosis-ai-gemini', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('vital-link'),
     editorialSafeguard: 'Prototype and assisted-review language only; no diagnosis or clinical validation claim is made.'
   },
   {
     slug: 'evershine', title: 'Evershine Academy LMS', tier: 'featured', category: 'Full-Stack & Client Platforms', status: 'PRIVATE CLIENT',
-    hook: 'A private client education platform bringing admissions, programs, campus information, and LMS access into one public experience.',
-    metric: 'Private client · live platform',
-    problem: 'Education journeys need a clear public path across admissions, programs, campus information, and LMS access.',
-    solution: 'A private client platform unifies those public touchpoints into a coherent experience.',
+    hook: 'Enterprise multi-campus LMS delivered to an institutional client with 9-layer technical handoff documentation.',
+    metric: 'Enterprise client delivery · Live',
+    problem: 'Multi-campus institutions need reliable integration across admissions, academic portals, role-based dashboards, and LMS access.',
+    solution: 'A production client platform built with Next.js 15, Prisma, and PostgreSQL, accompanied by detailed technical documentation for independent client operation.',
     stack: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Prisma', 'PostgreSQL', 'role-based dashboards'], github: null, live: 'https://evershineacadmey.com/', sourceAccess: 'private', showSourceLink: false, image: projectArt('evershine'), primaryFeature: true,
     editorialSafeguard: 'Private client project with a live-site action only.'
   },

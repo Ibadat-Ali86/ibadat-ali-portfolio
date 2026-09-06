@@ -15,3 +15,8 @@ Handoff documentation is retained for repository provenance but is not imported 
 ## 2026-07-22 — stale external destinations
 
 The original CareVision `/landing` route and TopoLite Kaggle notebook returned HTTP 404 during the launch check. CareVision now uses its verified root URL and the unavailable TopoLite live action is omitted. Kaggle rejects or mishandles HEAD requests but its supplied profile route responds successfully to GET, so the original visible profile link is retained and the checker uses a GET fallback.
+
+## 2026-09-06 — AI automation positioning and safe non-hash navigation
+
+Elevated primary positioning to AI Automation Engineer & Systems Builder to match user-supplied production resume and n8n/MCP workflow artifacts. Added direct resume links to navigation and contact cards. Hardened `initNavigation` to filter `href` attributes strictly for in-page hash anchors before invoking `document.querySelector`, preventing syntax crashes on asset links and guaranteeing that downstream UI modules initialize reliably.
+

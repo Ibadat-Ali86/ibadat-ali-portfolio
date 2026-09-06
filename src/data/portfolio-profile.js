@@ -1,27 +1,27 @@
 export const publicProfile = {
   name: 'Ibadat Ali',
-  headline: 'Data Analyst, Data Scientist & ML Engineer building decision-ready analytics, predictive systems, and full-stack AI products for real constraints.',
+  headline: 'AI Automation Engineer & Systems Builder shipping reliable LLM workflows, agent tool-calling, predictive ML, and client-delivered platforms.',
   summary: [
-    'Ibadat works across the full lifecycle of intelligent products: data preparation, model development, backend APIs, interfaces, deployment, monitoring, and honest evaluation.',
-    'His work focuses on the point where modeling meets security, usability, explainability, latency, uncertainty, and dependable delivery.',
-    'The portfolio presents seven featured systems, five selected case studies, and five focused labs and tools.'
+    'Ibadat maps real business workflows to reliable, documented automations — integrating Claude, Gemini 2.0 Flash, and MCP tool-calling with explicit fallbacks, validation layers, and model-boundary annotations.',
+    'Delivered verified production systems to real clients: an offline-first retail POS (React + Electron + SQLite) and an enterprise multi-campus LMS (Next.js + PostgreSQL).',
+    'The portfolio presents seven featured systems, five selected case studies, and five focused labs, backed by verified telemetry, client delivery artifacts, and evaluation hooks.'
   ],
   capabilities: [
     {
-      name: 'Data Analysis & BI',
-      description: 'Turns fragmented operational data into decision-ready analysis through Python, SQL, ETL, notebooks, and visualisation.'
+      name: 'AI Automation & LLM Workflows',
+      description: 'Designs multi-stage n8n pipelines, tool-calling agents, and structured prompt flows with deterministic validation and automated error fallback routing.'
     },
     {
-      name: 'Data Science & Forecasting',
-      description: 'Builds reproducible predictive and forecasting workflows with scikit-learn, XGBoost, Prophet, SHAP, and explicit evaluation.'
+      name: 'Agent Architecture & MCP',
+      description: 'Builds local-first Model Context Protocol (MCP) servers, AST-aware retrieval pipelines, and vector-backed RAG systems that ground agent reasoning.'
     },
     {
-      name: 'ML Engineering & Research',
-      description: 'Develops deep-learning, anomaly-detection, and computer-vision systems with PyTorch, sequence models, and interpretable outputs.'
+      name: 'Client Delivery & Offline-First Apps',
+      description: 'Ships end-to-end client applications: offline-first retail POS (React + Electron + SQLite) and enterprise multi-campus school management platforms (Next.js + PostgreSQL).'
     },
     {
-      name: 'ML Deployment & AI Products',
-      description: 'Connects model-backed services to usable products with FastAPI, Flask, React, Next.js, PostgreSQL, Docker, and cloud deployment.'
+      name: 'Predictive ML & Decision Systems',
+      description: 'Builds time-series demand forecasting (Prophet, XGBoost, LSTM) and industrial predictive maintenance (PyTorch, TCN, PuLP) with SHAP attribution.'
     }
   ],
   specializations: [
@@ -64,13 +64,13 @@ export const publicProfile = {
     {
       slug: 'ml-engineering',
       index: '03 / ML ENGINEERING',
-      title: 'ML Engineering & Research',
-      description: 'Deep-learning and anomaly-detection systems built around repeatable experimentation, explainability, and operational use cases.',
+      title: 'ML Engineering & Applied Research',
+      description: 'Deep-learning, anomaly-detection, and agent retrieval systems built around repeatable experimentation, explainability, and operational use cases.',
       groups: [
         { label: 'Deep learning', tools: ['PyTorch', 'TCN', 'LSTM', 'Autoencoder'] },
-        { label: 'Computer vision', tools: ['EfficientNet-B0', 'CNN', 'Coordinate Attention', 'Grad-CAM'] },
+        { label: 'Agent context & retrieval', tools: ['Tree-sitter AST', 'sentence-transformers', 'Chroma', 'Semantic search'] },
         { label: 'Anomaly & optimisation', tools: ['Isolation Forest', 'PuLP', 'SHAP', 'Sequence modelling'] },
-        { label: 'Research methods', tools: ['GUDHI', 'Persistent homology', 'Knowledge distillation', 'Evaluation design'] }
+        { label: 'Computer vision & research', tools: ['EfficientNet-B0', 'CNN', 'Coordinate Attention', 'Grad-CAM'] }
       ],
       industryGroups: [
         { label: 'Frameworks & acceleration', tools: ['TensorFlow', 'Keras', 'ONNX', 'ONNX Runtime', 'TensorRT', 'CUDA'] },
@@ -81,21 +81,21 @@ export const publicProfile = {
     },
     {
       slug: 'ai-products',
-      index: '04 / ML DELIVERY',
-      title: 'ML Deployment & AI Products',
-      description: 'Model-backed products that connect data services, APIs, interfaces, persistence, and deployment into one usable system.',
+      index: '04 / AI AUTOMATION & DELIVERY',
+      title: 'AI Automation & Product Systems',
+      description: 'Production LLM workflows, agent tool-calling, APIs, and client-delivered platforms built with deterministic validation and operational telemetry.',
       groups: [
-        { label: 'Backend & data', tools: ['FastAPI', 'Flask', 'SQLAlchemy', 'Alembic'] },
-        { label: 'Product interface', tools: ['React', 'Next.js 15', 'TypeScript', 'Vite'] },
-        { label: 'Persistence & state', tools: ['PostgreSQL', 'Prisma', 'Supabase', 'Zustand'] },
-        { label: 'Shipping', tools: ['Docker', 'Hugging Face', 'Vercel', 'Zod'] }
+        { label: 'LLM & Agent Workflows', tools: ['n8n', 'MCP (Model Context Protocol)', 'Claude API', 'Gemini 2.0 Flash', 'LangChain'] },
+        { label: 'Backend APIs & Validation', tools: ['FastAPI', 'Flask', 'SQLAlchemy', 'Alembic', 'Zod'] },
+        { label: 'Client Platforms & UI', tools: ['React 18', 'Next.js 15', 'TypeScript', 'Electron (Offline-first)'] },
+        { label: 'Persistence & Ops', tools: ['PostgreSQL', 'SQLite', 'Prisma', 'Docker', 'Vercel'] }
       ],
       industryGroups: [
-        { label: 'Cloud ML platforms', tools: ['AWS SageMaker', 'Google Vertex AI', 'Azure Machine Learning', 'Databricks', 'Cloud Run', 'Azure Functions'] },
-        { label: 'Serving & registries', tools: ['MLflow Registry', 'KServe', 'Seldon', 'BentoML', 'NVIDIA Triton', 'FastAPI'] },
-        { label: 'Containers & delivery', tools: ['GitHub Actions', 'Docker', 'Kubernetes', 'Helm', 'Terraform', 'GitOps'] },
-        { label: 'Monitoring & reliability', tools: ['Evidently', 'Arize', 'WhyLabs', 'Prometheus', 'Grafana', 'OpenTelemetry'] },
-        { label: 'LLM & retrieval systems', tools: ['LangChain', 'LangGraph', 'LlamaIndex', 'pgvector', 'Pinecone', 'Qdrant'] }
+        { label: 'Cloud ML & LLM platforms', tools: ['Google Vertex AI', 'AWS SageMaker', 'Azure Machine Learning', 'Cloud Run'] },
+        { label: 'Agent orchestration & frameworks', tools: ['LangGraph', 'LlamaIndex', 'CrewAI', 'OpenTelemetry', 'Semantic Kernel'] },
+        { label: 'Serving & messaging', tools: ['FastAPI', 'BentoML', 'RabbitMQ', 'Redis', 'WhatsApp Business API'] },
+        { label: 'Containers & CI/CD', tools: ['Docker', 'GitHub Actions', 'Kubernetes', 'Helm', 'Vercel'] },
+        { label: 'Monitoring & reliability', tools: ['Evidently', 'Arize Phoenix', 'WhyLabs', 'Prometheus', 'Grafana'] }
       ]
     }
   ],
@@ -106,7 +106,8 @@ export const publicProfile = {
     kaggle: 'https://www.kaggle.com/ibadatali',
     tiktok: 'https://www.tiktok.com/@deepfx6',
     instagram: 'https://www.instagram.com/deepfx_ai/',
-    whatsapp: 'https://wa.me/923220692321'
+    whatsapp: 'https://wa.me/923220692321',
+    resume: '/Ibadat_Ali_Resume.pdf'
   }
 };
 

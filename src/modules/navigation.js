@@ -21,7 +21,11 @@ export function initNavigation() {
     }
   });
 
-  const sections = navLinks.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+  const sections = navLinks
+    .map((link) => link.getAttribute('href'))
+    .filter((href) => typeof href === 'string' && href.startsWith('#') && href.length > 1)
+    .map((href) => document.querySelector(href))
+    .filter(Boolean);
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;

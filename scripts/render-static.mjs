@@ -104,11 +104,11 @@ function renderSpecializations() {
 }
 
 function renderTechMarquee() {
-  const technologies = ['Python', 'PyTorch', 'XGBoost', 'Scikit-learn', 'FastAPI', 'Next.js 15', 'PostgreSQL', 'Docker', 'Gemini API', 'LangChain', 'SHAP', 'Prophet'];
+  const technologies = ['Python', 'PyTorch', 'XGBoost', 'Scikit-learn', 'FastAPI', 'Next.js 15', 'n8n', 'MCP', 'Claude API', 'Gemini API', 'PostgreSQL', 'Docker'];
   const items = technologies.map((technology) => `<span class="tech-marquee__item">${escapeHtml(technology)}</span>`).join('');
   const accessibleList = technologies.map(escapeHtml).join(', ');
   return `<section class="tech-marquee" aria-label="Technology stack and tools" data-tech-marquee>
-    <div class="tech-marquee__header"><span>CURATED ML / DATA / PRODUCT STACK</span><span>${technologies.length} HIGH-SIGNAL TOOLS</span></div>
+    <div class="tech-marquee__header"><span>CURATED AI / AUTOMATION / FULL-STACK</span><span>${technologies.length} HIGH-SIGNAL TOOLS</span></div>
     <div class="tech-marquee__viewport">
       <div class="tech-marquee__track">
         <div class="tech-marquee__group" aria-hidden="true">${items}</div>
