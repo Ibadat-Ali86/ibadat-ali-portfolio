@@ -13,9 +13,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 .site-backdrop { position: fixed; z-index: 0; inset: 0; overflow: hidden; pointer-events: none; }
 .site-backdrop::before { position: absolute; inset: 0; background-image: linear-gradient(rgba(23,32,39,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(23,32,39,.045) 1px, transparent 1px); background-size: 84px 84px; mask-image: linear-gradient(to bottom, #000 0, transparent 70%); content: ''; }
+.site-backdrop::after { position: absolute; inset: -20%; background: radial-gradient(circle at 18% 22%, rgba(79,220,255,.12), transparent 24%), radial-gradient(circle at 78% 12%, rgba(130,146,255,.13), transparent 22%), radial-gradient(circle at 62% 78%, rgba(213,255,114,.07), transparent 18%); animation: field-drift 24s ease-in-out infinite alternate; content: ''; }
 .site-backdrop span { position: absolute; display: block; width: min(48vw, 44rem); aspect-ratio: 1; border-radius: 50%; filter: blur(50px); opacity: .16; }
 .site-backdrop span:first-child { top: -12rem; right: -12rem; background: var(--accent); }
 .site-backdrop span:last-child { bottom: 18rem; left: -22rem; background: var(--cobalt); opacity: .09; }
+.site-backdrop span:first-child { opacity: .12; }
+.site-backdrop span:last-child { opacity: .1; }
 
 .container { width: min(var(--content), calc(100% - 96px)); margin-inline: auto; }
 .section { position: relative; z-index: 1; padding-block: var(--section); border-top: 1px solid var(--line); }

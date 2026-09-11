@@ -1,4 +1,5 @@
 @keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes field-drift { from { transform: translate3d(-2%, -1%, 0) scale(1); } to { transform: translate3d(3%, 2%, 0) scale(1.08); } }
 @keyframes stack-pop { from { opacity: 0; transform: translateY(6px) scale(.96); } to { opacity: 1; transform: none; } }
 .project-modal[open] .project-modal__panel { animation: modal-rise .35s cubic-bezier(.2,.75,.2,1) both; }
 .project-modal[open] .project-modal__stack li { animation: stack-pop .35s cubic-bezier(.2,.75,.2,1) both; }
@@ -8,13 +9,15 @@
 .project-modal[open] .project-modal__stack li:nth-child(5) { animation-delay: .12s; }
 @keyframes modal-rise { from { opacity: 0; transform: translateY(18px) scale(.985); } to { opacity: 1; transform: none; } }
 
-html.motion-enhanced [data-reveal] { opacity: 0; transform: translateY(24px); }
-html.motion-enhanced [data-reveal].is-visible { opacity: 1; transform: none; transition: opacity .75s ease, transform .75s cubic-bezier(.2,.75,.2,1); }
+/* Content stays visible by default. GSAP adds motion only after a trigger fires,
+   so direct anchor navigation can never strand a section at opacity: 0. */
+.motion-enhanced [data-reveal].is-visible { opacity: 1; transform: none; transition: opacity .75s ease, transform .75s cubic-bezier(.2,.75,.2,1); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
   .tech-marquee__track { animation: none !important; }
+  .site-backdrop::after { animation: none !important; }
   .project-modal[open] .project-modal__panel, .project-modal[open] .project-modal__stack li { animation: none !important; }
   html.js [data-reveal] { opacity: 1; transform: none; }
 }
