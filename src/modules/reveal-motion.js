@@ -130,11 +130,11 @@ export function initRevealMotion() {
   gsap.registerPlugin(ScrollTrigger);
   document.documentElement.classList.add('motion-enhanced');
 
-  const splitTargets = [...document.querySelectorAll('[data-split], [data-card-title]')]
+  const splitTargets = [...document.querySelectorAll('[data-split], [data-card-title], #hero-title')]
     .filter((element) => !element.closest('[data-project-rail-section]'));
   const splitWords = new Map(splitTargets.map((element) => [element, splitIntoWords(element)]));
   const heroTitle = document.querySelector('#hero-title');
-  const heroLines = [...document.querySelectorAll('#hero-title > span')];
+  const heroWords = splitWords.get(heroTitle) ?? [];
 
   const heroTimeline = gsap.timeline({ defaults: { ease } });
   heroTimeline
@@ -142,7 +142,7 @@ export function initRevealMotion() {
     .fromTo('.hero__visual', { autoAlpha: 0, x: 28, rotate: 1.5 }, { autoAlpha: 1, x: 0, rotate: 0, duration: 0.82 }, '-=.52')
     .fromTo('[data-hero-availability]', { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.55 })
     .fromTo('[data-hero-eyebrow]', { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.45 }, '-=.18')
-    .fromTo(heroLines, { autoAlpha: 0, yPercent: 115 }, { autoAlpha: 1, yPercent: 0, duration: 0.78, stagger: 0.12 }, '-=.16')
+    .fromTo(heroWords, { autoAlpha: 0, yPercent: 115 }, { autoAlpha: 1, yPercent: 0, duration: 0.78, stagger: 0.12 }, '-=.16')
     .fromTo('[data-role-rotator], [data-tech-chip-cycler]', { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.55, stagger: 0.08 }, '-=.32')
     .fromTo('[data-hero-copy]', { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.62 }, '-=.38')
     .fromTo('[data-hero-metrics] > *', { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.06 }, '-=.34')

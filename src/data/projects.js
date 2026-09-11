@@ -25,7 +25,7 @@ export const projects = [
     metric: 'Predictive maintenance · anomaly detection + scheduling',
     problem: 'Maintenance planning benefits from forecast, anomaly, and explanation signals in one operational flow.',
     solution: 'An automated pipeline connecting sequence models, dual anomaly detection (Isolation Forest + Autoencoder), SHAP attribution, and PuLP intervention scheduling.',
-    stack: ['PyTorch', 'TCN', 'LSTM', 'Isolation Forest', 'Autoencoder', 'SHAP', 'PuLP', 'FastAPI', 'Next.js 15', 'PostgreSQL', 'Docker'], github: 'https://github.com/Ibadat-Ali86/sentinel-iq-cmpass-nasa-rul-prediction', live: 'https://sentinel-iq-nasa.vercel.app', sourceAccess: 'public', showSourceLink: true, image: projectArt('sentineliq'), primaryFeature: true, hasVideo: true,
+    stack: ['PyTorch', 'TCN', 'LSTM', 'Isolation Forest', 'Autoencoder', 'SHAP', 'PuLP', 'FastAPI', 'Next.js 15', 'PostgreSQL', 'Docker'], github: 'https://github.com/Ibadat-Ali86/sentinel-iq-cmpass-nasa-rul-prediction', live: 'https://sentinel-iq-nasa.vercel.app', sourceAccess: 'public', showSourceLink: true, clientProject: true, image: projectArt('sentineliq'), primaryFeature: true, hasVideo: true,
     editorialSafeguard: 'No winning-model or RMSE claim is shown while repository experiment tables remain contradictory.'
   },
   {
@@ -34,7 +34,7 @@ export const projects = [
     metric: 'Topology-aware KD research',
     problem: 'Research into compact imaging models needs transparent framing of methods and limitations.',
     solution: 'A topology-aware knowledge-distillation approach explores lightweight architectures, attention, and explainability methods.',
-    stack: ['PyTorch', 'depthwise-separable CNN', 'Coordinate Attention', 'persistent homology', 'GUDHI', 'EfficientNet-B0', 'Grad-CAM'], github: 'https://github.com/Ibadat-Ali86/TopoLite-KD-Efficient-Topology-Aware-Knowledge-Distillation-for-COVID-19-CT-Slice-Classification', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('topolite'),
+    stack: ['PyTorch', 'depthwise-separable CNN', 'Coordinate Attention', 'persistent homology', 'GUDHI', 'EfficientNet-B0', 'Grad-CAM'], github: 'https://github.com/Ibadat-Ali86/TopoLite-KD-Efficient-Topology-Aware-Knowledge-Distillation-for-COVID-19-CT-Slice-Classification', live: null, sourceAccess: 'public', showSourceLink: true, clientProject: true, image: projectArt('topolite'),
     editorialSafeguard: 'Academic research context only; no clinical deployment or validation claim is made.'
   },
   {
@@ -43,7 +43,7 @@ export const projects = [
     metric: 'Demand forecasting · 4-model ensemble',
     problem: 'Forecasting is only useful when teams can move from raw transaction data to automated, interpretable planning outputs.',
     solution: 'An automated forecasting workflow pairing Prophet, XGBoost, SARIMA, and LSTM with regime selection, monitoring hooks, and PDF/CSV report generation.',
-    stack: ['Prophet', 'XGBoost', 'SARIMA', 'LSTM', 'FastAPI', 'React', 'Vite', 'Chart.js', 'Docker', 'Hugging Face'], github: 'https://github.com/Ibadat-Ali86/Demand-Sales-Walmart-Forecasting', live: 'https://huggingface.co/spaces/ibadatali/walmart-sales-forecasting-saas', sourceAccess: 'public', showSourceLink: true, canonicalWalmart: true, image: projectArt('adaptiq'), primaryFeature: true,
+    stack: ['Prophet', 'XGBoost', 'SARIMA', 'LSTM', 'FastAPI', 'React', 'Vite', 'Chart.js', 'Docker', 'Hugging Face'], github: 'https://github.com/Ibadat-Ali86/Demand-Sales-Walmart-Forecasting', live: 'https://huggingface.co/spaces/ibadatali/walmart-sales-forecasting-saas', sourceAccess: 'public', showSourceLink: true, clientProject: true, canonicalWalmart: true, image: projectArt('adaptiq'), primaryFeature: true,
     editorialSafeguard: 'This is the sole Walmart forecasting card; unsupported accuracy language is omitted.'
   },
   {
@@ -62,7 +62,7 @@ export const projects = [
     problem: 'Multi-campus institutions need reliable integration across admissions, academic portals, role-based dashboards, and LMS access.',
     solution: 'A production client platform built with Next.js 15, Prisma, and PostgreSQL, accompanied by detailed technical documentation for independent client operation.',
     stack: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Prisma', 'PostgreSQL', 'role-based dashboards'], github: null, live: 'https://evershineacadmey.com/', sourceAccess: 'private', showSourceLink: false, image: projectArt('evershine'), primaryFeature: true,
-    editorialSafeguard: 'Private client project with a live-site action only.'
+    clientProject: true, editorialSafeguard: 'Private client project with a live-site action only.'
   },
   {
     slug: 'ai-lead-generation', title: 'AI-Powered Lead Generation Workflow', tier: 'selected', category: 'AI Automation & Lead Generation', status: 'WORKFLOW PROOF',
@@ -71,7 +71,7 @@ export const projects = [
     problem: 'Lead operations become inconsistent when submissions, qualification, outreach, and tracking live in separate manual steps.',
     solution: 'The workflow captures form submissions, scrapes Google Maps, filters duplicates, classifies promising leads, checks website availability, uses a Gemini-powered agent to prepare outreach, sends Gmail messages, and records lead state in Google Sheets.',
     stack: ['n8n', 'Google Gemini', 'Google Maps', 'Gmail', 'Google Sheets', 'AI agent', 'web scraping'], github: null, live: null, sourceAccess: 'private', showSourceLink: false, workflow: true, image: '/assets/workflows/ai-lead-generation-workflow.png',
-    editorialSafeguard: 'Workflow diagram supplied as portfolio evidence; no client, conversion, lead-volume, or production claims are made.'
+    clientProject: true, editorialSafeguard: 'Client workflow evidence; no conversion, lead-volume, or production claims are made.'
   },
   {
     slug: 'ai-restaurant-chatbot', title: 'AI-Powered WhatsApp Restaurant Chatbot', tier: 'selected', category: 'AI Automation & Conversational Systems', status: 'WORKFLOW PROOF',
@@ -80,7 +80,7 @@ export const projects = [
     problem: 'Restaurant conversations need quick, consistent answers across FAQs, ordering, and inventory without losing context.',
     solution: 'A WhatsApp trigger routes messages to a Gemini-powered AI agent with simple memory and Google Sheets tools for FAQs, orders, and inventory before sending a reply back to the customer.',
     stack: ['n8n', 'WhatsApp Business', 'Google Gemini', 'Simple memory', 'Google Sheets', 'AI agent', 'FAQ + orders + inventory'], github: null, live: null, sourceAccess: 'private', showSourceLink: false, workflow: true, image: '/assets/workflows/ai-restaurant-chatbot.png',
-    editorialSafeguard: 'Workflow diagram supplied as portfolio evidence; no restaurant client, order-volume, or production claims are made.'
+    clientProject: true, editorialSafeguard: 'Client workflow evidence; no order-volume or production claims are made.'
   },
   {
     slug: 'resume-builder', title: 'AI Resume Builder', tier: 'selected', category: 'Full-Stack & Client Platforms', status: 'LIVE',
@@ -144,7 +144,7 @@ export const projects = [
     metric: 'Exploratory data analysis',
     problem: 'Exploration needs a focused way to inspect distributions and relationships before deciding what is worth modeling.',
     solution: 'A notebook-based analysis turns catalog metadata into readable views of genres, release patterns, popularity, and feature relationships.',
-    stack: ['Python', 'pandas', 'Matplotlib', 'seaborn', 'Jupyter'], github: 'https://github.com/Ibadat-Ali86/Netflix_DataAnalysis', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('netflix'), editorialSafeguard: 'Presented as exploratory analysis rather than predictive modeling.'
+    stack: ['Python', 'pandas', 'Matplotlib', 'seaborn', 'Jupyter'], github: 'https://github.com/Ibadat-Ali86/Netflix_DataAnalysis', live: null, sourceAccess: 'public', showSourceLink: true, clientProject: true, image: projectArt('netflix'), editorialSafeguard: 'Client analysis presented as exploratory work rather than predictive modeling.'
   },
   {
     slug: 'employee-form', title: 'Employee Information Form', tier: 'lab', category: 'ML & Data Labs', status: 'R SHINY LAB',

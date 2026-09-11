@@ -4,7 +4,8 @@ const roles = [
   'AI automation · n8n, Gemini & Claude workflows',
   'Agent systems · MCP tool-calling & RAG retrieval',
   'Client delivery · Next.js 15, Electron & PostgreSQL',
-  'Predictive ML · PyTorch, XGBoost & Time-Series'
+  'Predictive ML · PyTorch, XGBoost & Time-Series',
+  'Content creator · sharing useful systems in public'
 ];
 
 function formatMetric(value, { prefix = '', suffix = '', decimals = 0 }) {
@@ -26,7 +27,7 @@ function initRoleRotator(reduced) {
   };
   window.setTimeout(() => {
     rotate();
-    window.setInterval(rotate, 3500);
+    window.setInterval(rotate, 3200);
   }, 2000);
 }
 

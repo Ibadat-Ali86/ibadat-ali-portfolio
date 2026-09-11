@@ -1,13 +1,28 @@
 @keyframes marquee { to { transform: translateX(-50%); } }
 @keyframes field-drift { from { transform: translate3d(-2%, -1%, 0) scale(1); } to { transform: translate3d(3%, 2%, 0) scale(1.08); } }
+@keyframes portrait-ticker { to { transform: translateX(-50%); } }
+@keyframes border-sweep { to { background-position: 220% 0; } }
 @keyframes stack-pop { from { opacity: 0; transform: translateY(6px) scale(.96); } to { opacity: 1; transform: none; } }
-.project-modal[open] .project-modal__panel { animation: modal-rise .35s cubic-bezier(.2,.75,.2,1) both; }
+.project-modal[open]::backdrop { animation: modal-backdrop-in .3s ease both; }
+.project-modal[open] .project-modal__panel { animation: modal-rise .48s cubic-bezier(.2,.75,.2,1) both; }
+.project-modal[open] .project-modal__content > * { animation: modal-content-in .52s cubic-bezier(.2,.75,.2,1) both; }
+.project-modal[open] .project-modal__content > *:nth-child(2) { animation-delay: .04s; }
+.project-modal[open] .project-modal__content > *:nth-child(3) { animation-delay: .08s; }
+.project-modal[open] .project-modal__content > *:nth-child(4) { animation-delay: .12s; }
+.project-modal[open] .project-modal__content > *:nth-child(5) { animation-delay: .16s; }
+.project-modal[open] .project-modal__content > *:nth-child(6) { animation-delay: .2s; }
+.project-modal[open] .project-modal__content > *:nth-child(7) { animation-delay: .24s; }
 .project-modal[open] .project-modal__stack li { animation: stack-pop .35s cubic-bezier(.2,.75,.2,1) both; }
 .project-modal[open] .project-modal__stack li:nth-child(2) { animation-delay: .03s; }
 .project-modal[open] .project-modal__stack li:nth-child(3) { animation-delay: .06s; }
 .project-modal[open] .project-modal__stack li:nth-child(4) { animation-delay: .09s; }
 .project-modal[open] .project-modal__stack li:nth-child(5) { animation-delay: .12s; }
-@keyframes modal-rise { from { opacity: 0; transform: translateY(18px) scale(.985); } to { opacity: 1; transform: none; } }
+@keyframes modal-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modal-rise { from { opacity: 0; transform: translateY(24px) scale(.975) rotateX(1deg); } to { opacity: 1; transform: none; } }
+@keyframes modal-content-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+.word-clip { display: inline-block; overflow: hidden; vertical-align: top; }
+.motion-word { display: inline-block; will-change: transform, opacity; }
 
 /* Content stays visible by default. GSAP adds motion only after a trigger fires,
    so direct anchor navigation can never strand a section at opacity: 0. */
@@ -17,7 +32,8 @@
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
   .tech-marquee__track { animation: none !important; }
+  .portrait-ticker__track, .portrait-ticker::before { animation: none !important; }
   .site-backdrop::after { animation: none !important; }
-  .project-modal[open] .project-modal__panel, .project-modal[open] .project-modal__stack li { animation: none !important; }
+  .project-modal[open] .project-modal__panel, .project-modal[open] .project-modal__content > *, .project-modal[open] .project-modal__stack li { animation: none !important; }
   html.js [data-reveal] { opacity: 1; transform: none; }
 }

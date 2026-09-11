@@ -100,7 +100,7 @@ test('renders the curated technology stack in an accessible left-to-right marque
   assert.match(template, /aria-label="Technology stack and tools"/);
   assert.match(template, /class="tech-marquee__track"/);
   assert.match(renderer, /function renderTechMarquee\(\)/);
-  assert.match(components, /\.tech-marquee__track \{ display: flex; width: max-content; animation: marquee 34s linear infinite; \}/);
+  assert.match(components, /\.tech-marquee__track \{ display: flex; width: max-content; animation: marquee 34s linear infinite;(?: will-change: transform;)? \}/);
   assert.match(motion, /@keyframes marquee/);
 });
 

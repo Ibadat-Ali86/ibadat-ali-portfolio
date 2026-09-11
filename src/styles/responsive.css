@@ -21,6 +21,7 @@
   .hero__visual { min-height: min(125vw, 500px); margin-top: 1rem; }
   .hero__visual-grid { inset: 1.8rem .4rem 1.8rem 1.5rem; }
   .portrait-card { right: 4%; bottom: 5%; left: 4%; }
+  .portrait-ticker { right: 0; bottom: -1rem; left: 0; transform: scale(1); }
   .hero__signal--top { top: .4rem; right: -.25rem; }
   .hero__signal--bottom { bottom: .5rem; left: -.25rem; }
   .proof-strip { grid-template-columns: repeat(3, 1fr); gap: .8rem; margin-top: 3.5rem; }
@@ -46,6 +47,9 @@
   h2 { font-size: clamp(2.45rem, 13vw, 4rem); }
   .brand__name { display: none; }
   .hero__links { gap: .65rem; }
+  .hero__role-rotator { max-width: 34ch; font-size: .58rem; line-height: 1.5; }
+  .hero__links .social-link { padding-inline: .3rem; }
+  .social-link__icon { width: 1.3rem; height: 1.3rem; }
   .portrait-card figcaption { align-items: flex-start; flex-direction: column; gap: .2rem; }
   .proof-strip strong { font-size: 1.65rem; }
   .proof-strip span { font-size: .53rem; }

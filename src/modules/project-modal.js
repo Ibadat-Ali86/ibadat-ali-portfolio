@@ -25,7 +25,8 @@ function openProject(project, opener) {
   const note = modal.querySelector('[data-modal-note]');
   image.src = project.image;
   image.alt = `${project.title} — case study visual`;
-  setText('[data-modal-status]', project.slug === 'evershine' ? 'PRIVATE CLIENT PROJECT' : project.status);
+  const privateClient = project.sourceAccess === 'private';
+  setText('[data-modal-status]', privateClient ? 'PRIVATE CLIENT PROJECT' : project.clientProject ? `CLIENT PROJECT · ${project.status}` : project.status);
   setText('[data-modal-metric]', project.metric);
   setText('[data-modal-title]', project.title);
   setText('[data-modal-hook]', project.hook);
@@ -40,7 +41,7 @@ function openProject(project, opener) {
   actions.replaceChildren();
   if (project.live) actions.append(createAction(project.live, project.slug === 'evershine' ? 'VISIT LIVE WEBSITE' : 'VISIT LIVE'));
   if (project.showSourceLink && project.github) actions.append(createAction(project.github, 'VIEW SOURCE'));
-  if (project.slug === 'evershine') {
+  if (privateClient) {
     note.textContent = 'Source code is not linked because this is a private client project and its implementation details are confidential.';
   } else if (!project.live && !project.github) {
     note.textContent = 'This entry is presented as workflow evidence; no public repository or live demo was supplied.';

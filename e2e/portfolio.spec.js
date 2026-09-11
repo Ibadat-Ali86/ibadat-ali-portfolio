@@ -21,6 +21,12 @@ test('renders the human-first portfolio and complete project inventory', async (
   await expect(page.getByRole('heading', { name: 'Evershine Academy LMS' })).toBeVisible();
   await expect(page.locator('.project-card--evershine [data-link-type="live"]')).toHaveText(/visit live website/i);
   await expect(page.locator('.project-card--evershine [data-link-type="source"]')).toHaveCount(0);
+  for (const slug of ['sentineliq', 'topolite', 'adaptiq', 'ai-lead-generation', 'ai-restaurant-chatbot', 'netflix']) {
+    await expect(page.locator(`.project-card--${slug} .client-label`)).toHaveText('CLIENT PROJECT');
+  }
+  await expect(page.locator('.social-link[href*="instagram.com"]')).toHaveCount(1);
+  await expect(page.locator('.social-link[href*="tiktok.com"]')).toHaveCount(1);
+  await expect(page.locator('.eyebrow')).toContainText('CONTENT CREATOR');
   await expect(page.locator('.project-card--ai-lead-generation [data-link-type="source"]')).toHaveCount(0);
   await expect(page.locator('.project-card--ai-restaurant-chatbot [data-link-type="source"]')).toHaveCount(0);
   await expect(page.locator('[data-copy-email="ibadcodes@gmail.com"]')).toHaveCount(1);

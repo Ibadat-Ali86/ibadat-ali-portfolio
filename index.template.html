@@ -18,7 +18,7 @@
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
-    <div class="site-backdrop" aria-hidden="true"><span></span><span></span></div>
+    <div class="site-backdrop" data-ambient-field aria-hidden="true"><div class="site-backdrop__grid" data-ambient-grid></div><span data-ambient-orb></span><span data-ambient-orb></span><span data-ambient-orb></span></div>
     <header class="site-header" data-site-header>
       <nav class="site-nav container" aria-label="Primary navigation">
         <a class="brand" href="#top" aria-label="Ibadat Ali home"><span class="brand__mark">IA</span><span class="brand__name">Ibadat Ali</span></a>
@@ -40,7 +40,8 @@
         <div class="container hero__grid">
           <div class="hero__content" data-reveal>
             <p class="availability-badge"><span class="availability-dot" aria-hidden="true"></span>Available for projects · remote / worldwide</p>
-            <p class="eyebrow">DATA SCIENTIST <span aria-hidden="true">/</span> AI SYSTEMS BUILDER</p>
+            <p class="eyebrow">DATA SCIENTIST <span aria-hidden="true">/</span> AI SYSTEMS BUILDER <span aria-hidden="true">/</span> CONTENT CREATOR</p>
+            <p class="hero__role-rotator" data-role-rotator aria-live="polite">AI automation · n8n, Gemini &amp; Claude workflows</p>
             <h1 id="hero-title">I build intelligent systems that feel <em>useful.</em></h1>
             <p class="hero__lede">Predictive ML, agentic workflows, and client-ready products that move from messy data to decisions people can actually use.</p>
             <div class="button-row" data-hero-actions>
@@ -49,9 +50,11 @@
             </div>
             <nav class="hero__links" aria-label="Professional profiles">
               <span>Find me in</span>
-              <a href="https://www.linkedin.com/in/mirzaibadatali" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-              <a href="https://github.com/Ibadat-Ali86" target="_blank" rel="noopener noreferrer">GitHub</a>
-              <a href="https://www.kaggle.com/ibadatali" target="_blank" rel="noopener noreferrer">Kaggle</a>
+              <a class="social-link" href="https://www.linkedin.com/in/mirzaibadatali" target="_blank" rel="noopener noreferrer"><span class="social-link__icon" aria-hidden="true">in</span>LinkedIn</a>
+              <a class="social-link" href="https://github.com/Ibadat-Ali86" target="_blank" rel="noopener noreferrer"><span class="social-link__icon" aria-hidden="true">GH</span>GitHub</a>
+              <a class="social-link" href="https://www.kaggle.com/ibadatali" target="_blank" rel="noopener noreferrer"><span class="social-link__icon" aria-hidden="true">K</span>Kaggle</a>
+              <a class="social-link" href="https://www.instagram.com/deepfx_ai/" target="_blank" rel="noopener noreferrer"><span class="social-link__icon" aria-hidden="true">IG</span>Instagram</a>
+              <a class="social-link" href="https://www.tiktok.com/@deepfx6" target="_blank" rel="noopener noreferrer"><span class="social-link__icon" aria-hidden="true">TT</span>TikTok</a>
             </nav>
           </div>
           <div class="hero__visual" data-reveal>
@@ -60,6 +63,11 @@
               <div class="portrait-card__image"><img src="/assets/profile/ibadat-profile.webp" alt="Portrait of Ibadat Ali, data scientist and AI systems builder" width="960" height="960" fetchpriority="high"></div>
               <figcaption><span>Ibadat Ali</span><small>Data Scientist · AI Systems Builder</small></figcaption>
             </figure>
+            <div class="portrait-ticker" role="group" aria-label="Content creator and systems builder focus">
+              <span class="sr-only">Content creator sharing AI, data, and automation systems in public.</span>
+              <span class="portrait-ticker__label" aria-hidden="true">BUILDING IN PUBLIC</span>
+              <div class="portrait-ticker__viewport" aria-hidden="true"><div class="portrait-ticker__track"><div class="portrait-ticker__group"><span>AI AUTOMATION</span><span>DATA STORIES</span><span>CLIENT SYSTEMS</span><span>BUILD IN PUBLIC</span></div><div class="portrait-ticker__group" aria-hidden="true"><span>AI AUTOMATION</span><span>DATA STORIES</span><span>CLIENT SYSTEMS</span><span>BUILD IN PUBLIC</span></div></div></div>
+            </div>
             <div class="hero__signal hero__signal--top" aria-hidden="true"><span>01</span><b>data → model → product</b></div>
             <div class="hero__signal hero__signal--bottom" aria-hidden="true"><span class="signal-dot"></span><b>systems with a point of view</b></div>
           </div>
@@ -113,7 +121,7 @@
       <section class="section about" id="about" aria-labelledby="about-title">
         <div class="container about__grid">
           <div class="about__label" data-reveal><p class="section-index">04 / ABOUT</p><span>From raw data<br>to useful systems.</span></div>
-          <div class="about__copy" data-reveal><h2 id="about-title">I work across the whole journey, not just the model.</h2><p>Ibadat maps real problems into reliable systems: cleaning and understanding data, designing models, building APIs and interfaces, adding validation and explainability, then documenting the handoff so the work can keep moving.</p><p>The result is a portfolio spanning forecasting, predictive maintenance, multimodal AI, agent tooling, research prototypes, and client platforms. Different domains, same instinct: make complex technology feel clear and useful.</p><div class="about__details"><span>Based in Pakistan · working worldwide</span><span>Data science · ML engineering · AI automation</span></div></div>
+          <div class="about__copy" data-reveal><h2 id="about-title">I work across the whole journey, not just the model.</h2><p>Ibadat maps real problems into reliable systems: cleaning and understanding data, designing models, building APIs and interfaces, adding validation and explainability, then documenting the handoff so the work can keep moving.</p><p>The result is a portfolio spanning forecasting, predictive maintenance, multimodal AI, agent tooling, research prototypes, and client platforms. Different domains, same instinct: make complex technology feel clear and useful.</p><div class="about__details"><span>Based in Pakistan · working worldwide</span><span>Data science · ML engineering · AI automation</span><span>Content creator · building in public</span></div></div>
         </div>
       </section>
 
@@ -128,7 +136,7 @@
       <section class="section contact" id="contact" aria-labelledby="contact-title">
         <div class="container contact__grid" data-reveal>
           <div><p class="section-index">06 / CONTACT</p><h2 id="contact-title">Have a problem worth building around?</h2><p>Tell me what you’re working on. I’ll read the context, reply honestly, and suggest the most useful next step.</p><div class="contact__actions"><a class="button button--primary" href="mailto:ibadcodes@gmail.com?subject=Portfolio%20inquiry">Email Ibadat <span aria-hidden="true">↗</span></a><button class="button button--outline" type="button" data-copy-email="ibadcodes@gmail.com">Copy email</button></div><p class="contact__availability"><span class="availability-dot" aria-hidden="true"></span>Usually replies within 24 hours</p></div>
-          <div class="contact-card"><span>DIRECT CONTACT</span><a href="mailto:ibadcodes@gmail.com">ibadcodes@gmail.com</a><a href="https://www.linkedin.com/in/mirzaibadatali" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a><a href="/Ibadat_Ali_Resume.pdf" target="_blank" rel="noopener noreferrer">Résumé PDF <span aria-hidden="true">↗</span></a></div>
+          <div class="contact-card"><span>DIRECT CONTACT</span><a href="mailto:ibadcodes@gmail.com">ibadcodes@gmail.com</a><a href="https://www.linkedin.com/in/mirzaibadatali" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a><a href="https://www.instagram.com/deepfx_ai/" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a><a href="https://www.tiktok.com/@deepfx6" target="_blank" rel="noopener noreferrer">TikTok <span aria-hidden="true">↗</span></a><a href="/Ibadat_Ali_Resume.pdf" target="_blank" rel="noopener noreferrer">Résumé PDF <span aria-hidden="true">↗</span></a></div>
         </div>
       </section>
     </main>

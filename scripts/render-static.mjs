@@ -19,6 +19,8 @@ function assertProjectInventory() {
   const primaryFeatureSlugs = projects.filter(({ primaryFeature }) => primaryFeature).map(({ slug }) => slug);
   const requiredPrimaryFeatures = ['codescope', 'carevision', 'sentineliq', 'adaptiq', 'evershine'];
   if (primaryFeatureSlugs.length !== requiredPrimaryFeatures.length || requiredPrimaryFeatures.some((slug) => !primaryFeatureSlugs.includes(slug))) throw new Error('Primary feature rail must stay focused on the five v2 proof projects.');
+  const attachedClientProjects = ['sentineliq', 'topolite', 'adaptiq', 'evershine', 'ai-lead-generation', 'ai-restaurant-chatbot', 'netflix'];
+  if (attachedClientProjects.some((slug) => !projects.find((project) => project.slug === slug && project.clientProject))) throw new Error('Attached client projects must remain visibly labeled as client work.');
 }
 
 function assertSpecializations() {
@@ -66,13 +68,14 @@ function imageAlt(project) {
 }
 
 function projectCard(project, index) {
-  const isPrivate = project.slug === 'evershine';
-  const actions = [projectOpenButton(project), project.live && externalLink(project.live, isPrivate ? 'VISIT LIVE WEBSITE' : 'VISIT LIVE', 'live'), project.showSourceLink && project.github && externalLink(project.github, 'VIEW SOURCE', 'source')].filter(Boolean).join('');
+  const isPrivateClient = project.slug === 'evershine';
+  const clientBadge = project.clientProject && !isPrivateClient ? '<span class="client-label">CLIENT PROJECT</span>' : '';
+  const actions = [projectOpenButton(project), project.live && externalLink(project.live, isPrivateClient ? 'VISIT LIVE WEBSITE' : 'VISIT LIVE', 'live'), project.showSourceLink && project.github && externalLink(project.github, 'VIEW SOURCE', 'source')].filter(Boolean).join('');
   const details = project.tier === 'featured' || project.primaryFeature || project.workflow ? `<div class="project-details"><p><strong>Problem:</strong> ${escapeHtml(project.problem)}</p><p><strong>System:</strong> ${escapeHtml(project.solution)}</p></div>` : '';
   const videoBadge = project.video ? '<span class="project-video-badge">PLAY</span>' : '';
   return `<article class="project-card project-card--${escapeHtml(project.tier)} project-card--${escapeHtml(project.slug)}" data-project-card data-category="${escapeHtml(project.category)}" data-tier="${escapeHtml(project.tier)}">
     <figure class="media-frame"><div class="media-frame__inner" data-media-inner><img src="${escapeHtml(project.image)}" alt="${escapeHtml(imageAlt(project))}" width="1600" height="1000" loading="lazy" decoding="async"></div>${videoBadge}<figcaption class="media-fallback" aria-hidden="true">${escapeHtml(project.category)}</figcaption></figure>
-    <div class="project-card__body"><div class="project-meta"><span>${String(index + 1).padStart(2, '0')}</span><span class="status-label">${isPrivate ? 'PRIVATE CLIENT PROJECT' : escapeHtml(project.status)}</span></div><h3 data-card-title>${escapeHtml(project.title)}</h3><p class="project-metric">${escapeHtml(project.metric)}</p><p class="project-hook">${escapeHtml(project.hook)}</p>${details}<ul class="tag-list">${project.stack.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul><div class="project-actions">${actions}</div></div>
+    <div class="project-card__body"><div class="project-meta"><span>${String(index + 1).padStart(2, '0')}</span><span class="project-meta__badges"><span class="status-label">${isPrivateClient ? 'PRIVATE CLIENT PROJECT' : escapeHtml(project.status)}</span>${clientBadge}</span></div><h3 data-card-title>${escapeHtml(project.title)}</h3><p class="project-metric">${escapeHtml(project.metric)}</p><p class="project-hook">${escapeHtml(project.hook)}</p>${details}<ul class="tag-list">${project.stack.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul><div class="project-actions">${actions}</div></div>
   </article>`;
 }
 
