@@ -23,7 +23,7 @@
   .portrait-card { right: 4%; bottom: 5%; left: 4%; }
   .portrait-ticker { right: 0; bottom: -1rem; left: 0; transform: scale(1); }
   .hero__signal--top { top: .4rem; right: -.25rem; }
-  .hero__signal--bottom { bottom: .5rem; left: -.25rem; }
+  .hero__signal--bottom { top: 4.6rem; bottom: auto; left: -.25rem; }
   .proof-strip { grid-template-columns: repeat(3, 1fr); gap: .8rem; margin-top: 3.5rem; }
   .proof-strip p { grid-column: 1 / -1; justify-self: start; padding-top: .65rem; border-top: 1px solid var(--line); }
   .section-heading--split, .research__grid, .about__grid, .contact__grid { grid-template-columns: 1fr; gap: 2rem; }
