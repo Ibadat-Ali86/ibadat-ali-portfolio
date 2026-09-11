@@ -95,3 +95,15 @@ test('supports reduced motion and remains accessible', async ({ page }) => {
   const report = await new AxeBuilder({ page }).disableRules(['color-contrast']).analyze();
   expect(report.violations).toEqual([]);
 });
+
+test('keeps anchored lower sections visible on direct navigation', async ({ page }) => {
+  await page.goto('/#contact');
+  await expect(page.locator('#expertise')).toBeVisible();
+  await expect(page.locator('#research')).toBeVisible();
+  await expect(page.locator('#about')).toBeVisible();
+  await expect(page.locator('#contact')).toBeVisible();
+  await expect(page.locator('#expertise h2')).toBeVisible();
+  await expect(page.locator('#research-title')).toBeVisible();
+  await expect(page.locator('#about-title')).toBeVisible();
+  await expect(page.locator('#contact-title')).toBeVisible();
+});

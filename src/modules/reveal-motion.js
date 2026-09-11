@@ -151,6 +151,10 @@ export function initRevealMotion() {
 
   splitTargets.filter((element) => element !== heroTitle).forEach((element) => createScrubbedTextReveal(element, splitWords.get(element)));
 
+  // Every reveal wrapper gets one observer. This keeps section-level wrappers
+  // visible when a user jumps directly to an anchor instead of scrolling from
+  // the top, while the more specific batches below still animate their cards.
+  revealBatch([...document.querySelectorAll('[data-reveal]')].filter((element) => !element.closest('.hero')), { y: 28, duration: 0.7, stagger: 0.07 });
   revealBatch([...document.querySelectorAll('.profile-frame, .interview-placeholder')], { y: 34, duration: 0.8 });
   revealBatch([...document.querySelectorAll('.credential, .capability-card')], { y: 38, stagger: 0.08 });
   revealBatch([...document.querySelectorAll('[data-project-card]')], { y: 54, rotateX: 2, duration: 0.78, stagger: 0.1 });
