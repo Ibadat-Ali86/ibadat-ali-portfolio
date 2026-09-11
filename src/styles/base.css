@@ -1,12 +1,35 @@
-body { background:var(--ink); color:var(--text-primary); font-family:var(--sans); font-size:16px; line-height:1.5; overflow-x:hidden; }
-a { color:inherit; text-decoration-thickness:2px; text-underline-offset:3px; }
-a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline:3px solid var(--cobalt); outline-offset:4px; }
-.container { width:min(var(--content), calc(100% - 48px)); margin-inline:auto; }
-.section { padding-block:var(--section); border-top:var(--border) solid var(--line); }
-main,.site-footer { position:relative; z-index:1; }
-h1,h2,h3 { font-weight:700; line-height:.98; letter-spacing:-.03em; }
-h1 { font-size:clamp(2.75rem,5.8vw,4.9rem); max-width:12ch; } h2 { font-size:clamp(2.1rem,4.8vw,4.4rem); max-width:13ch; } h3 { font-size:clamp(1.35rem,2.2vw,2.2rem); }
-p { max-width:67ch; } .eyebrow,.section-index,.project-meta,.status-label,.tag-list,.credibility-strip,.button,.tech-marquee,.social-list,.site-footer,.filter-button,.profile-frame figcaption { font-family:var(--mono); font-size:.74rem; font-weight:700; letter-spacing:.04em; }
-.section-index { margin-bottom:1rem; color:var(--acid); } .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
-.skip-link { position:fixed; top:0; left:0; z-index:20; padding:1rem; background:var(--acid); color:var(--ink); transform:translateY(-110%); } .skip-link:focus { transform:translateY(0); }
-[hidden] { display:none !important; }
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; background: var(--paper); }
+body { margin: 0; overflow-x: hidden; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; }
+body::selection { background: var(--ink); color: var(--acid); }
+
+a { color: inherit; text-underline-offset: 4px; }
+button, input, textarea { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+
+.site-backdrop { position: fixed; z-index: 0; inset: 0; overflow: hidden; pointer-events: none; }
+.site-backdrop::before { position: absolute; inset: 0; background-image: linear-gradient(rgba(23,32,39,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(23,32,39,.045) 1px, transparent 1px); background-size: 84px 84px; mask-image: linear-gradient(to bottom, #000 0, transparent 70%); content: ''; }
+.site-backdrop span { position: absolute; display: block; width: min(48vw, 44rem); aspect-ratio: 1; border-radius: 50%; filter: blur(50px); opacity: .16; }
+.site-backdrop span:first-child { top: -12rem; right: -12rem; background: var(--accent); }
+.site-backdrop span:last-child { bottom: 18rem; left: -22rem; background: var(--cobalt); opacity: .09; }
+
+.container { width: min(var(--content), calc(100% - 96px)); margin-inline: auto; }
+.section { position: relative; z-index: 1; padding-block: var(--section); border-top: 1px solid var(--line); }
+main, .site-footer, .site-header { position: relative; z-index: 1; }
+
+h1, h2, h3, p { margin-top: 0; }
+h1, h2, h3 { font-weight: 800; line-height: 1.02; letter-spacing: -.045em; }
+h1 { max-width: 8ch; font-size: clamp(3.7rem, 8vw, 8.5rem); }
+h2 { max-width: 13ch; font-size: clamp(2.65rem, 5.4vw, 5.8rem); }
+h3 { font-size: clamp(1.35rem, 2vw, 2rem); }
+p { max-width: 68ch; }
+.eyebrow, .section-index, .availability-badge, .button, .hero__links, .proof-strip, .project-meta, .status-label, .project-metric, .tag-list, .tech-marquee, .site-footer, .filter-button, .capability-kicker, .stack-map__label, .stack-map__note, .contact-card > span, .contact__availability, .research__list span, .work-note { font-family: var(--mono); }
+.section-index { margin-bottom: 1.15rem; color: var(--accent-deep); font-size: .68rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.skip-link { position: fixed; top: 0; left: 0; z-index: 30; padding: .8rem 1rem; background: var(--ink); color: var(--acid); transform: translateY(-120%); transition: transform .2s ease; }
+.skip-link:focus { transform: translateY(0); }
+[hidden] { display: none !important; }

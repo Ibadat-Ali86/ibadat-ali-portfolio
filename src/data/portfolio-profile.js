@@ -1,10 +1,10 @@
 export const publicProfile = {
   name: 'Ibadat Ali',
-  headline: 'AI Automation Engineer & Systems Builder shipping reliable LLM workflows, agent tool-calling, predictive ML, and client-delivered platforms.',
+  headline: 'Data Scientist & AI Systems Builder creating predictive ML, agentic workflows, and client-ready products that turn raw data into useful decisions.',
   summary: [
     'Ibadat maps real business workflows to reliable, documented automations — integrating Claude, Gemini 2.0 Flash, and MCP tool-calling with explicit fallbacks, validation layers, and model-boundary annotations.',
     'Delivered verified production systems to real clients: an offline-first retail POS (React + Electron + SQLite) and an enterprise multi-campus LMS (Next.js + PostgreSQL).',
-    'The portfolio presents seven featured systems, five selected case studies, and five focused labs, backed by verified telemetry, client delivery artifacts, and evaluation hooks.'
+    'The portfolio presents seven featured systems, seven selected case studies, and five focused labs, backed by verified telemetry, client delivery artifacts, workflow evidence, and evaluation hooks.'
   ],
   capabilities: [
     {

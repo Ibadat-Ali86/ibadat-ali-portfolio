@@ -15,6 +15,7 @@ import { initPortfolioAssistant } from './modules/portfolio-assistant.js';
 import { initHeroProof } from './modules/hero-proof.js';
 import { initProjectRail } from './modules/project-rail.js';
 import { initContactForm } from './modules/contact-form.js';
+import { initProjectModal } from './modules/project-modal.js';
 
 document.documentElement.classList.add('js');
 document.querySelector('[data-current-year]').textContent = String(new Date().getFullYear());
@@ -26,5 +27,6 @@ initSmoothScroll();
 initPortfolioAssistant();
 initHeroProof();
 initContactForm();
+initProjectModal();
 if (!prefersReducedMotion()) initRevealMotion();
 if (!prefersReducedMotion()) initProjectRail();

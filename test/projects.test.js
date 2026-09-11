@@ -6,13 +6,14 @@ import { excludedProjectNames, projects } from '../src/data/projects.js';
 
 const externalUrls = (project) => [project.github, project.live].filter(Boolean);
 
-test('keeps the canonical 7 / 5 / 5 project inventory', () => {
-  assert.equal(projects.length, 17);
+test('keeps the canonical 7 / 7 / 5 project inventory', () => {
+  assert.equal(projects.length, 19);
   assert.equal(projects.filter(({ tier }) => tier === 'featured').length, 7);
-  assert.equal(projects.filter(({ tier }) => tier === 'selected').length, 5);
+  assert.equal(projects.filter(({ tier }) => tier === 'selected').length, 7);
   assert.equal(projects.filter(({ tier }) => tier === 'lab').length, 5);
   assert.deepEqual(projects.slice(0, 7).map(({ title }) => title), ['CodeScope MCP Preflight', 'CareVision', 'SentinelIQ', 'TopoLite-KD', 'AdaptIQ / ForecastAI', 'VITAL-LINK', 'Evershine Academy LMS']);
-  assert.deepEqual(projects.filter(({ primaryFeature }) => primaryFeature).map(({ slug }) => slug), ['carevision', 'sentineliq', 'adaptiq', 'evershine', 'covid-analytics']);
+  assert.deepEqual(projects.filter(({ primaryFeature }) => primaryFeature).map(({ slug }) => slug), ['codescope', 'carevision', 'sentineliq', 'adaptiq', 'evershine']);
+  assert.deepEqual(projects.filter(({ workflow }) => workflow).map(({ slug }) => slug), ['ai-lead-generation', 'ai-restaurant-chatbot']);
 });
 
 test('keeps a complete, role-ready professional stack map without conflating proof and industry tools', () => {
@@ -52,6 +53,16 @@ test('uses valid external project URLs and exact Evershine live URL', () => {
   assert.equal(evershine.live, 'https://evershineacadmey.com/');
 });
 
+test('keeps workflow proof grounded and source-free', () => {
+  projects.filter(({ workflow }) => workflow).forEach((project) => {
+    assert.equal(project.github, null);
+    assert.equal(project.live, null);
+    assert.equal(project.showSourceLink, false);
+    assert.match(project.image, /^\/assets\/workflows\//);
+    assert.match(project.editorialSafeguard, /no .*claims are made/i);
+  });
+});
+
 test('excludes collection-only repositories and retains one canonical forecast card', () => {
   assert.equal(projects.some(({ title }) => excludedProjectNames.includes(title)), false);
   assert.equal(projects.filter(({ canonicalWalmart }) => canonicalWalmart).length, 1);
@@ -83,11 +94,25 @@ test('renders the complete atlas and descriptive project media text', async () =
 
 test('renders the curated technology stack in an accessible left-to-right marquee', async () => {
   const renderer = await readFile(new URL('../scripts/render-static.mjs', import.meta.url), 'utf8');
-  const sections = await readFile(new URL('../src/styles/sections.css', import.meta.url), 'utf8');
+  const template = await readFile(new URL('../index.template.html', import.meta.url), 'utf8');
+  const components = await readFile(new URL('../src/styles/components.css', import.meta.url), 'utf8');
   const motion = await readFile(new URL('../src/styles/motion.css', import.meta.url), 'utf8');
-  assert.match(renderer, /'Python', 'PyTorch', 'XGBoost', 'Scikit-learn'/);
-  assert.doesNotMatch(renderer, /projects\.flatMap/);
-  assert.match(renderer, /aria-label="Technology stack and tools"/);
-  assert.match(sections, /@keyframes tech-marquee-right[\s\S]*translate3d\(-50%,0,0\)[\s\S]*translate3d\(0,0,0\)/);
-  assert.match(motion, /\.tech-marquee__track \{ width:auto; animation:none; transform:none; \}/);
+  assert.match(template, /aria-label="Technology stack and tools"/);
+  assert.match(template, /class="tech-marquee__track"/);
+  assert.match(renderer, /function renderTechMarquee\(\)/);
+  assert.match(components, /\.tech-marquee__track \{ display: flex; width: max-content; animation: marquee 34s linear infinite; \}/);
+  assert.match(motion, /@keyframes marquee/);
+});
+
+test('renders a reusable privacy-safe case-study modal entry point', async () => {
+  const renderer = await readFile(new URL('../scripts/render-static.mjs', import.meta.url), 'utf8');
+  const template = await readFile(new URL('../index.template.html', import.meta.url), 'utf8');
+  const module = await readFile(new URL('../src/modules/project-modal.js', import.meta.url), 'utf8');
+  assert.match(renderer, /data-project-open/);
+  assert.match(template, /data-project-modal/);
+  assert.match(template, /THE PROBLEM/);
+  assert.match(template, /THE PLAN/);
+  assert.match(template, /HOW IT WAS SOLVED/);
+  assert.match(module, /private client project and its implementation details are confidential/);
+  assert.match(module, /projectPlan\(project\)/);
 });

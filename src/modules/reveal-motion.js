@@ -138,6 +138,8 @@ export function initRevealMotion() {
 
   const heroTimeline = gsap.timeline({ defaults: { ease } });
   heroTimeline
+    .fromTo('.hero__content', { autoAlpha: 0, y: 22 }, { autoAlpha: 1, y: 0, duration: 0.72 })
+    .fromTo('.hero__visual', { autoAlpha: 0, x: 28, rotate: 1.5 }, { autoAlpha: 1, x: 0, rotate: 0, duration: 0.82 }, '-=.52')
     .fromTo('[data-hero-availability]', { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.55 })
     .fromTo('[data-hero-eyebrow]', { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.45 }, '-=.18')
     .fromTo(heroLines, { autoAlpha: 0, yPercent: 115 }, { autoAlpha: 1, yPercent: 0, duration: 0.78, stagger: 0.12 }, '-=.16')

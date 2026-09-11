@@ -15,7 +15,7 @@ The build-time renderer writes all project cards into `index.html`, so project c
 ## Project hierarchy
 
 - 7 featured systems
-- 5 selected case studies
+- 7 selected case studies, including two workflow-proof automations supplied as portfolio evidence
 - 5 labs and compact tools
 
 Parent collections and duplicate/upstream repositories are intentionally excluded. The private-client card presents its required public live-site action only.

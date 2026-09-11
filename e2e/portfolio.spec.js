@@ -1,142 +1,97 @@
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-test('renders the complete public project inventory and safe private-client action', async ({ page }) => {
+test('renders the human-first portfolio and complete project inventory', async ({ page }) => {
   const errors = [];
   page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
+
   await page.goto('/');
-  await expect(page).toHaveTitle('Ibadat Ali — AI Automation Engineer & Systems Builder');
-  await expect(page.locator('[data-project-card]')).toHaveCount(17);
+  await expect(page).toHaveTitle('Ibadat Ali — Data Scientist & AI Systems Builder');
+  await expect(page.getByRole('heading', { name: 'I build intelligent systems that feel useful.' })).toBeVisible();
+  await expect(page.getByText('Predictive ML, agentic workflows, and client-ready products')).toBeVisible();
+  await expect(page.locator('[data-project-card]')).toHaveCount(19);
+  await expect(page.locator('.project-grid--featured [data-project-card]')).toHaveCount(5);
+  await expect(page.locator('[data-project-card][data-tier="selected"]')).toHaveCount(7);
   await expect(page.locator('[data-project-card][data-tier="lab"]')).toHaveCount(5);
-  await expect(page.getByText('LABS & EXERCISES — CLEARLY SEPARATED')).toHaveCount(1);
-  await expect(page.locator('[data-project-rail-track] [data-project-card]')).toHaveCount(5);
-  await expect(page.getByRole('link', { name: 'Work' })).toHaveCount(1);
-  await expect(page.getByRole('heading', { name: /From business workflows/i })).toBeVisible();
-  await expect(page.locator('[data-hero-eyebrow]')).toContainText('AI AUTOMATION');
-  await expect(page.locator('[data-role-rotator]')).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Data Analysis & BI' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Data Science & Forecasting' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'ML Engineering & Applied Research' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'AI Automation & Product Systems' })).toBeVisible();
-  await expect(page.locator('.stack-map')).toHaveCount(8);
-  await expect(page.locator('.stack-map--industry')).toHaveCount(4);
-  await expect(page.getByRole('heading', { name: 'Four disciplines. Full delivery toolkit.' })).toHaveCSS('color', 'rgb(240, 239, 244)');
-  await expect(page.locator('[data-ambient-field]')).toBeVisible();
-  await expect(page.locator('[data-ambient-grid]')).toHaveCount(1);
-  await expect(page.locator('[data-ambient-orb]')).toHaveCount(3);
-  await expect(page.getByText('PORTFOLIO-PROVEN FOUNDATION').first()).toBeVisible();
-  await expect(page.getByText('INDUSTRY-STANDARD ROLE TOOLKIT', { exact: false }).first()).toBeVisible();
-  await expect(page.getByText('Power BI', { exact: true })).toBeVisible();
-  await expect(page.getByText('Google Vertex AI', { exact: true })).toBeVisible();
-  await expect(page.locator('.hero-visual--portrait img')).toHaveAttribute('src', '/assets/profile/ibadat-profile.webp');
-  await expect(page.locator('.hero-visual--portrait img')).toHaveAttribute('alt', /Portrait of Ibadat Ali/);
-  await expect(page.locator('[data-tech-marquee]')).toBeVisible();
-  await expect(page.locator('.tech-marquee__group').first().locator('.tech-marquee__item')).toHaveCount(12);
-  await expect(page.locator('[data-tech-marquee]')).toContainText('Technologies and tools used across this portfolio: Python, PyTorch, XGBoost');
-  await expect(page.getByText('Scope note')).toHaveCount(0);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(await page.evaluate(() => document.documentElement.clientWidth));
-  await expect(page.locator('#interview')).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: 'A few systems I’m proud to have built.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'The complete body of work.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'LABS & EXERCISES — CLEARLY SEPARATED' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'AI-Powered Lead Generation Workflow' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'AI-Powered WhatsApp Restaurant Chatbot' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Evershine Academy LMS' })).toBeVisible();
   await expect(page.locator('.project-card--evershine [data-link-type="live"]')).toHaveText(/visit live website/i);
   await expect(page.locator('.project-card--evershine [data-link-type="source"]')).toHaveCount(0);
+  await expect(page.locator('.project-card--ai-lead-generation [data-link-type="source"]')).toHaveCount(0);
+  await expect(page.locator('.project-card--ai-restaurant-chatbot [data-link-type="source"]')).toHaveCount(0);
   await expect(page.locator('[data-copy-email="ibadcodes@gmail.com"]')).toHaveCount(1);
-  await expect(page.locator('.contact-method[href="https://wa.me/923220692321"]')).toHaveCount(1);
-  await expect(page.locator('[data-contact-form] input[name="name"]')).toBeVisible();
-  await expect(page.locator('[data-contact-form] fieldset')).toBeVisible();
-  await expect(page.locator('[data-project-card] img[alt]:not([alt=""])')).toHaveCount(17);
-  const unsafeExternalLinks = await page.locator('a[target="_blank"]').evaluateAll((links) => links.filter((link) => !link.relList.contains('noopener') || !link.relList.contains('noreferrer')).map((link) => link.href));
+  await expect(page.locator('a[href="/Ibadat_Ali_Resume.pdf"]')).toHaveCount(3);
+  await expect(page.locator('[data-project-card] img[alt]:not([alt=""])')).toHaveCount(19);
+  await expect(page.locator('#interview')).toHaveCount(0);
+  await expect(page.locator('[data-portfolio-assistant]')).toHaveCount(0);
+
+  const unsafeExternalLinks = await page.locator('a[target="_blank"]').evaluateAll((links) => links
+    .filter((link) => !link.relList.contains('noopener') || !link.relList.contains('noreferrer'))
+    .map((link) => link.href));
   expect(unsafeExternalLinks).toEqual([]);
-  const ambientTransformAtStart = await page.locator('[data-ambient-grid]').evaluate((element) => getComputedStyle(element).transform);
-  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
-  await expect.poll(() => page.locator('[data-ambient-grid]').evaluate((element) => getComputedStyle(element).transform)).not.toBe(ambientTransformAtStart);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth))
+    .toBe(await page.evaluate(() => document.documentElement.clientWidth));
   expect(errors).toEqual([]);
 });
 
-test('supports skip navigation, filter states, mobile keyboard menu, and reduced motion', async ({ page }) => {
+test('supports skip navigation, project filters, details, and mobile navigation', async ({ page }) => {
   await page.goto('/');
+
   await page.keyboard.press('Tab');
   await expect(page.locator('.skip-link')).toBeFocused();
   await page.keyboard.press('Enter');
   await expect(page.locator('main')).toBeFocused();
-  const filter = page.getByRole('button', { name: 'Analytics & BI' });
+
+  const filter = page.locator('[data-filter="Analytics & BI"]');
   await filter.click();
   await expect(filter).toHaveAttribute('aria-pressed', 'true');
-  await page.getByRole('button', { name: 'Full-Stack & Client Platforms' }).click();
-  await expect(page.locator('.atlas-group--labs')).toBeHidden();
-  await page.getByRole('button', { name: 'All work' }).click();
-  await expect(page.locator('.atlas-group--labs')).toBeVisible();
+  await expect(page.locator('[data-atlas-projects] [data-project-card]:not([hidden])')).toHaveCount(3);
+  await page.locator('[data-filter="all"]').evaluate((button) => button.click());
+  await expect(page.locator('[data-atlas-projects] [data-project-card]:not([hidden])')).toHaveCount(14);
+
+  const toolkit = page.locator('details').first();
+  await expect(toolkit).not.toHaveAttribute('open', '');
+  await toolkit.locator('summary').click();
+  await expect(toolkit).toHaveAttribute('open', '');
+
   await page.setViewportSize({ width: 375, height: 740 });
   const menu = page.getByRole('button', { name: 'Toggle navigation' });
   await menu.click();
   await expect(menu).toHaveAttribute('aria-expanded', 'true');
   await page.keyboard.press('Escape');
   await expect(menu).toHaveAttribute('aria-expanded', 'false');
+});
+
+test('opens consistent case studies and preserves private-client boundaries', async ({ page }) => {
+  await page.goto('/');
+
+  await page.locator('.project-card--codescope [data-project-open]').click();
+  const modal = page.locator('[data-project-modal]');
+  await expect(modal).toBeVisible();
+  await expect(modal.locator('[data-modal-title]')).toHaveText('CodeScope MCP Preflight');
+  await expect(modal.locator('[data-modal-problem]')).not.toBeEmpty();
+  await expect(modal.locator('[data-modal-plan]')).not.toBeEmpty();
+  await expect(modal.locator('[data-modal-solution]')).not.toBeEmpty();
+  await expect(modal.locator('[data-modal-stack] li')).toHaveCount(6);
+  await modal.locator('.project-modal__close').click();
+  await expect(modal).not.toBeVisible();
+
+  await page.locator('.project-card--evershine [data-project-open]').click();
+  await expect(modal.locator('[data-modal-note]')).toHaveText(/private client project/i);
+  await expect(modal.locator('[data-modal-actions] a[href*="github.com"]')).toHaveCount(0);
+  await modal.locator('.project-modal__close').click();
+});
+
+test('supports reduced motion and remains accessible', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.reload();
-  await expect(page.locator('[data-project-card]').first()).toBeVisible();
-  await expect(page.locator('[data-scroll-progress]')).toBeHidden();
+  await page.goto('/');
   await expect(page.locator('.tech-marquee__track')).toHaveCSS('animation-name', 'none');
-  await expect(page.locator('[data-ambient-field]')).toBeHidden();
-});
-
-test('validates the static contact conversion form without navigation', async ({ page }) => {
-  await page.goto('/');
-  const status = page.locator('[data-contact-status]');
-  await page.locator('[data-contact-form]').evaluate((form) => { form.dataset.noNavigate = 'true'; });
-  await page.getByRole('button', { name: /send message/i }).click();
-  await expect(status).toContainText('Please complete all fields');
-  await page.locator('#contact-name').fill('Ibadat Test');
-  await page.locator('#contact-email').fill('client@example.com');
-  await page.locator('input[value="freelance"]').check();
-  await page.locator('#contact-description').fill('I need a production ML forecasting workflow with deployment support.');
-  await page.locator('[data-contact-form]').dispatchEvent('submit');
-  await expect(status).toContainText('Opening your email app');
-});
-
-test('has no critical automated accessibility violations', async ({ page }) => {
-  await page.goto('/');
-  const report = await new AxeBuilder({ page }).disableRules(['color-contrast']).analyze();
-  expect(report.violations).toEqual([]);
-});
-
-test('provides a responsive, keyboard-safe portfolio assistant with grounded starter questions', async ({ page }) => {
-  let requestBody;
-  await page.route('**/api/chat', async (route) => {
-    requestBody = route.request().postDataJSON();
-    await new Promise((resolve) => setTimeout(resolve, 350));
-    await route.fulfill({
-      status: 200,
-      contentType: 'application/json',
-      body: JSON.stringify({ success: true, data: { message: 'Ibadat builds end-to-end AI systems across data, models, APIs, interfaces, deployment, and monitoring.', model: 'meta/llama-3.1-8b-instruct' }, error: null })
-    });
-  });
-
-  await page.goto('/');
-  const launcher = page.getByRole('button', { name: /ask ia portfolio assistant/i });
-  await expect(launcher).toBeVisible();
-  await launcher.click();
-  await expect(launcher).toHaveAttribute('aria-expanded', 'true');
-  await expect(page.getByRole('heading', { name: 'ASK ABOUT IBADAT.' })).toBeVisible();
-  await expect(page.locator('[data-assistant-suggestions] button')).toHaveCount(4);
-  await expect(page.locator('[data-assistant-input]')).toBeFocused();
-
-  await page.getByRole('button', { name: 'Why should a client work with Ibadat?' }).click();
-  await expect(page.locator('.assistant-message--user')).toContainText('Why should a client work with Ibadat?');
-  await expect(page.locator('[data-assistant-loading]')).toBeVisible();
-  await expect(page.locator('.assistant-message--assistant').last()).toContainText('end-to-end AI systems');
-  await expect(page.locator('[data-assistant-loading]')).toHaveCount(0);
-  expect(requestBody.messages.at(-1)).toEqual({ role: 'user', content: 'Why should a client work with Ibadat?' });
+  await expect(page.locator('[data-scroll-progress]')).toBeHidden();
 
   const report = await new AxeBuilder({ page }).disableRules(['color-contrast']).analyze();
   expect(report.violations).toEqual([]);
-  await page.keyboard.press('Escape');
-  await expect(launcher).toHaveAttribute('aria-expanded', 'false');
-  await expect(launcher).toBeFocused();
-
-  await page.setViewportSize({ width: 360, height: 720 });
-  await launcher.click();
-  const panelBox = await page.locator('[data-assistant-panel]').boundingBox();
-  expect(panelBox.x).toBeGreaterThanOrEqual(0);
-  expect(panelBox.x + panelBox.width).toBeLessThanOrEqual(360);
-  await expect(page.locator('.assistant-message--assistant').last()).toBeInViewport();
-  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(await page.evaluate(() => document.documentElement.clientWidth));
 });

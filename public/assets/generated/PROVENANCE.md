@@ -1,31 +1,27 @@
-# Generated artwork provenance
+# Project artwork provenance
 
-All 17 project thumbnails were generated individually with Codex built-in ImageGen (`gpt-image`) on 2026-07-22. The shared direction is a premium editorial 3D technical still life with warm paper, near-black machined geometry, restrained acid-lime and cobalt accents, hard studio light, and screen-print texture.
+The portfolio uses one consistent 1600×1000 visual canvas for project cards and case-study views. Twelve remaining project concepts were generated individually with Codex built-in ImageGen (`gpt-image`) on 2026-09-11, then reviewed and center-cropped to WebP with ImageMagick. Five project visuals were supplied by Ibadat and optimized to the same canvas. The two automation workflow diagrams remain supplied workflow evidence.
 
-| File | Project-specific visual subject | Post-processing |
-| --- | --- | --- |
-| `project-codescope.webp` | Repository chassis, scanner, and three geometric implementation paths | Center-cropped to 1600×1000; WebP quality 78 with Sharp. |
-| `project-carevision.webp` | Abstract clinical modalities converging through an explainability prism | Center-cropped to 1600×1000; WebP quality 78 with Sharp. |
-| `project-sentineliq.webp` | Cutaway turbofan, sensor rings, life-cycle ribbons, and maintenance blocks | Center-cropped to 1600×1000; WebP quality 78 with Sharp. |
-| `project-topolite.webp` | Large teacher lattice transferring topology into a compact student model | Center-cropped to 1600×1000; WebP quality 78 with Sharp. |
-| `project-adaptiq.webp` | Retail-data flow through a forecasting engine into scenarios and reports | Center-cropped to 1600×1000; WebP quality 78 with Sharp. |
-| `project-vital-link.webp` | Imaging, audio, and vital-signal modules inside an assisted-review lens | Center-cropped to 1600×1000; WebP quality 78 with Sharp. |
-| `project-evershine.webp` | Unbranded modernist campus modules connected by a protected portal bridge | Center-cropped to 1600×1000; WebP quality 70 with Sharp. |
-| `project-resume-builder.webp` | Blank document modules assembled, validated, and exported | Center-cropped to 1600×1000; WebP quality 64 with Sharp. |
-| `project-learning-dashboard.webp` | Learning-planning core coordinating resources, timing, and reports | Center-cropped to 1600×1000; WebP quality 54 with Sharp. |
-| `project-covid-analytics.webp` | Global data sphere feeding ETL, database, and analytics components | Center-cropped to 1600×1000; WebP quality 64 with Sharp. |
-| `project-pakistan-ecommerce.webp` | Parcel and transaction tokens moving through a price-prediction engine | Center-cropped to 1600×1000; WebP quality 64 with Sharp. |
-| `project-vendor-analysis.webp` | Inventory, invoice, supplier, and evaluation-balance system | Center-cropped to 1600×1000; WebP quality 64 with Sharp. |
-| `project-mnist.webp` | Abstract pixel patterns separated by a compact linear decision plane | Center-cropped to 1600×1000; WebP quality 64 with Sharp. |
-| `project-spam-classifier.webp` | Message capsules split by a lexical sieve and linear decision gate | Center-cropped to 1600×1000; WebP quality 58 with Sharp. |
-| `project-netflix.webp` | Blank film geometry feeding an exploratory metadata-analysis table | Center-cropped to 1600×1000; WebP quality 64 with Sharp. |
-| `project-employee-form.webp` | Blank form plates, peg-based date selection, validation, and record output | Center-cropped to 1600×1000; WebP quality 54 with Sharp. |
-| `project-csv-cleaner.webp` | Disordered table cells passing through a cleaning station into an ordered grid | Center-cropped to 1600×1000; WebP quality 50 with Sharp. |
+| File | Project-specific visual subject | Source | Post-processing |
+| --- | --- | --- | --- |
+| `project-codescope.webp` | Repository tree, parsing layers, retrieval context, and agent output | ImageGen | Center-cropped to 1600×1000; WebP quality 82. |
+| `project-carevision.webp` | Image, audio, and structured inputs flowing through assisted review | ImageGen | Center-cropped to 1600×1000; WebP quality 82. |
+| `project-sentineliq.webp` | Supplied predictive-maintenance poster with turbofan, telemetry, RUL, and SHAP views | User supplied: `sentinel IQ.png` | Center-cropped to 1600×1000; WebP quality 84. |
+| `project-topolite.webp` | Supplied medical-AI research poster with topology and knowledge distillation | User supplied: `Topolight KD.png` | Center-cropped to 1600×1000; WebP quality 84. |
+| `project-adaptiq.webp` | Supplied demand-forecasting poster with sales, forecast, and inventory decisions | User supplied: `Walmart demand forecasting.png` | Center-cropped to 1600×1000; WebP quality 84. |
+| `project-vital-link.webp` | Multimodal image, audio, and vital-signal streams converging into review | ImageGen | Center-cropped to 1600×1000; WebP quality 82. |
+| `project-evershine.webp` | Supplied LMS poster with admin, student, teacher, and parent portals | User supplied: `EVERSHINE LMS.png` | Center-cropped to 1600×1000; WebP quality 84. |
+| `project-resume-builder.webp` | Structured form input, AI drafting, validation, preview, and PDF export | ImageGen | Center-cropped to 1600×1000; WebP quality 82. |
+| `project-learning-dashboard.webp` | Goals and resources moving through progress, reminders, analytics, and assistance | ImageGen | Center-cropped to 1600×1000; WebP quality 82. |
+| `project-covid-analytics.webp` | Source records moving through validation, ETL, storage, API, and analytics | ImageGen | Center-cropped to 1600×1000; WebP quality 82. |
+| `project-pakistan-ecommerce.webp` | Marketplace signals flowing through feature engineering into price inference | ImageGen | Center-cropped to 1600×1000; WebP quality 82. |
+| `project-vendor-analysis.webp` | Procurement records, vendor comparison, and decision dashboards | ImageGen | Center-cropped to 1600×1000; WebP quality 82. |
+| `project-mnist.webp` | Pixel grids flowing through a compact neural classifier | ImageGen | Center-cropped to 1600×1000; WebP quality 82. |
+| `project-spam-classifier.webp` | Message cards flowing through text features into safe and suspicious branches | ImageGen | Center-cropped to 1600×1000; WebP quality 82. |
+| `project-netflix.webp` | Supplied content-analysis poster with catalog, genres, release trends, and insights | User supplied: `netflix content analysis.png` | Center-cropped to 1600×1000; WebP quality 84. |
+| `project-employee-form.webp` | Form input, validation, reactive state, and saved record | ImageGen | Center-cropped to 1600×1000; WebP quality 82. |
+| `project-csv-cleaner.webp` | Messy table flowing through detection, cleanup, preview, and export | ImageGen | Center-cropped to 1600×1000; WebP quality 82. |
 
-The shared non-project asset retains its original provenance:
+The automation evidence remains user supplied at `public/assets/workflows/ai-lead-generation-workflow.png` and `public/assets/workflows/ai-restaurant-chatbot.png`.
 
-| File | Prompt heading | Generated | Tool | Post-processing |
-| --- | --- | --- | --- | --- |
-| `hero-system-grid.webp` | `hero-system-grid.webp` | 2026-07-22 | Codex built-in ImageGen (`gpt-image`) | Resized to 1586×992 and encoded as WebP at quality 78 with Sharp. |
-
-Every final project image was visually reviewed. The set contains no readable text, logos, watermarks, fake dashboards, identifiable people, patient data, or private administration material. Evershine artwork is entirely conceptual and exposes no source information.
+The shared hero asset `hero-system-grid.webp` retains its earlier generated provenance. The project artwork contains no generated likenesses, watermarks, private administration material, or source-code claims. The supplied project posters are presented as visual evidence, while project copy remains grounded in the repository and the user-provided workflow diagrams.

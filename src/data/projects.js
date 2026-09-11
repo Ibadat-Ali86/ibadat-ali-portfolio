@@ -4,7 +4,7 @@ export const projects = [
   {
     slug: 'codescope', title: 'CodeScope MCP Preflight', tier: 'featured', category: 'AI Agents & Developer Tools', status: 'LOCAL TOOL',
     hook: 'Local-first MCP server serving Tree-sitter AST intelligence and vector retrieval as tool context for AI agents.',
-    metric: 'Agent tool-calling · MCP & RAG',
+    metric: 'Agent tool-calling · MCP & RAG', primaryFeature: true,
     problem: 'Autonomous coding agents make conflicting or hallucinated changes without structured repository context.',
     solution: 'A local-first Model Context Protocol (MCP) server combines Tree-sitter parsing and Chroma vector retrieval to ground agent reasoning before code generation.',
     stack: ['Python', 'MCP', 'Tree-sitter', 'sentence-transformers', 'Chroma', 'CLI'], github: 'https://github.com/Ibadat-Ali86/codescope-mcp-preflight', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('codescope'),
@@ -22,7 +22,7 @@ export const projects = [
   {
     slug: 'sentineliq', title: 'SentinelIQ', tier: 'featured', category: 'Predictive Maintenance', status: 'LIVE',
     hook: 'Predictive maintenance automation combining TCN-LSTM forecasting, dual anomaly detection, SHAP attribution, and PuLP scheduling.',
-    metric: 'RMSE 14.37 · $38K savings',
+    metric: 'Predictive maintenance · anomaly detection + scheduling',
     problem: 'Maintenance planning benefits from forecast, anomaly, and explanation signals in one operational flow.',
     solution: 'An automated pipeline connecting sequence models, dual anomaly detection (Isolation Forest + Autoencoder), SHAP attribution, and PuLP intervention scheduling.',
     stack: ['PyTorch', 'TCN', 'LSTM', 'Isolation Forest', 'Autoencoder', 'SHAP', 'PuLP', 'FastAPI', 'Next.js 15', 'PostgreSQL', 'Docker'], github: 'https://github.com/Ibadat-Ali86/sentinel-iq-cmpass-nasa-rul-prediction', live: 'https://sentinel-iq-nasa.vercel.app', sourceAccess: 'public', showSourceLink: true, image: projectArt('sentineliq'), primaryFeature: true, hasVideo: true,
@@ -40,7 +40,7 @@ export const projects = [
   {
     slug: 'adaptiq', title: 'AdaptIQ / ForecastAI', tier: 'featured', category: 'Forecasting & Decision Systems', status: 'LIVE',
     hook: 'Automated demand forecasting SaaS running 4-model ensembles over 580K+ transactions with automated regime selection and scenario reports.',
-    metric: 'MAPE 1.23% · 580K+ rows',
+    metric: 'Demand forecasting · 4-model ensemble',
     problem: 'Forecasting is only useful when teams can move from raw transaction data to automated, interpretable planning outputs.',
     solution: 'An automated forecasting workflow pairing Prophet, XGBoost, SARIMA, and LSTM with regime selection, monitoring hooks, and PDF/CSV report generation.',
     stack: ['Prophet', 'XGBoost', 'SARIMA', 'LSTM', 'FastAPI', 'React', 'Vite', 'Chart.js', 'Docker', 'Hugging Face'], github: 'https://github.com/Ibadat-Ali86/Demand-Sales-Walmart-Forecasting', live: 'https://huggingface.co/spaces/ibadatali/walmart-sales-forecasting-saas', sourceAccess: 'public', showSourceLink: true, canonicalWalmart: true, image: projectArt('adaptiq'), primaryFeature: true,
@@ -65,6 +65,24 @@ export const projects = [
     editorialSafeguard: 'Private client project with a live-site action only.'
   },
   {
+    slug: 'ai-lead-generation', title: 'AI-Powered Lead Generation Workflow', tier: 'selected', category: 'AI Automation & Lead Generation', status: 'WORKFLOW PROOF',
+    hook: 'An n8n workflow that captures, filters, enriches, summarizes, and routes qualified leads into outreach and reporting.',
+    metric: 'Capture · enrich · outreach · report',
+    problem: 'Lead operations become inconsistent when submissions, qualification, outreach, and tracking live in separate manual steps.',
+    solution: 'The workflow captures form submissions, scrapes Google Maps, filters duplicates, classifies promising leads, checks website availability, uses a Gemini-powered agent to prepare outreach, sends Gmail messages, and records lead state in Google Sheets.',
+    stack: ['n8n', 'Google Gemini', 'Google Maps', 'Gmail', 'Google Sheets', 'AI agent', 'web scraping'], github: null, live: null, sourceAccess: 'private', showSourceLink: false, workflow: true, image: '/assets/workflows/ai-lead-generation-workflow.png',
+    editorialSafeguard: 'Workflow diagram supplied as portfolio evidence; no client, conversion, lead-volume, or production claims are made.'
+  },
+  {
+    slug: 'ai-restaurant-chatbot', title: 'AI-Powered WhatsApp Restaurant Chatbot', tier: 'selected', category: 'AI Automation & Conversational Systems', status: 'WORKFLOW PROOF',
+    hook: 'An n8n-powered WhatsApp assistant for menu questions, order capture, inventory lookups, and contextual replies.',
+    metric: 'WhatsApp trigger · memory · tool use',
+    problem: 'Restaurant conversations need quick, consistent answers across FAQs, ordering, and inventory without losing context.',
+    solution: 'A WhatsApp trigger routes messages to a Gemini-powered AI agent with simple memory and Google Sheets tools for FAQs, orders, and inventory before sending a reply back to the customer.',
+    stack: ['n8n', 'WhatsApp Business', 'Google Gemini', 'Simple memory', 'Google Sheets', 'AI agent', 'FAQ + orders + inventory'], github: null, live: null, sourceAccess: 'private', showSourceLink: false, workflow: true, image: '/assets/workflows/ai-restaurant-chatbot.png',
+    editorialSafeguard: 'Workflow diagram supplied as portfolio evidence; no restaurant client, order-volume, or production claims are made.'
+  },
+  {
     slug: 'resume-builder', title: 'AI Resume Builder', tier: 'selected', category: 'Full-Stack & Client Platforms', status: 'LIVE',
     hook: 'A guided resume-building application with structured forms, live state, authentication, and PDF export.',
     metric: 'Live resume product workflow',
@@ -86,7 +104,7 @@ export const projects = [
     metric: 'Automated ETL · global analytics',
     problem: 'Analytics systems need dependable movement from source data through services to interpretable views.',
     solution: 'An automated ETL and database-backed API layer feeds an interactive analytical interface.',
-    stack: ['Python', 'MySQL', 'FastAPI', 'React', 'TypeScript', 'Tailwind', 'Vite', 'Docker'], github: 'https://github.com/Ibadat-Ali86/Data_Analysis_Projects/tree/main/COVID19-Data-Analytics-Platform', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('covid-analytics'), primaryFeature: true, editorialSafeguard: 'Presented as an analytics case study without medical or public-health outcome claims.'
+    stack: ['Python', 'MySQL', 'FastAPI', 'React', 'TypeScript', 'Tailwind', 'Vite', 'Docker'], github: 'https://github.com/Ibadat-Ali86/Data_Analysis_Projects/tree/main/COVID19-Data-Analytics-Platform', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('covid-analytics'), editorialSafeguard: 'Presented as an analytics case study without medical or public-health outcome claims.'
   },
   {
     slug: 'pakistan-ecommerce', title: 'Pakistan E-commerce Price Prediction', tier: 'selected', category: 'Data Science & Forecasting', status: 'ML CASE STUDY',
@@ -108,32 +126,32 @@ export const projects = [
     slug: 'mnist', title: 'MNIST Logistic Regression', tier: 'lab', category: 'ML & Data Labs', status: 'ML LAB',
     hook: 'A compact handwritten-digit classification pipeline with custom IDX loading, preprocessing, training, evaluation, persistence, and CLI prediction.',
     metric: 'Foundational ML lab',
-    problem: 'A foundational ML workflow is more useful when each stage remains inspectable and runnable.',
-    solution: 'The lab covers data loading, preprocessing, logistic-regression training, evaluation, persistence, and CLI prediction.',
+    problem: 'A foundational ML workflow is easy to hide behind a single score unless loading, preprocessing, training, and prediction remain inspectable.',
+    solution: 'The lab keeps the full path visible with custom IDX loading, preprocessing, logistic-regression training, evaluation, persistence, and CLI prediction.',
     stack: ['Python', 'NumPy', 'scikit-learn', 'Logistic Regression', 'SGD', 'PCA', 'CLI'], github: 'https://github.com/Ibadat-Ali86/ML_Projects/tree/main/data/MNIST', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('mnist'), editorialSafeguard: 'Accuracy figures are omitted until reproduced.'
   },
   {
     slug: 'spam-classifier', title: 'Email / SMS Spam Classifier', tier: 'lab', category: 'ML & Data Labs', status: 'ML LAB',
     hook: 'A Streamlit text-classification app using normalized text, TF-IDF features, and logistic regression.',
     metric: 'TF-IDF text classifier',
-    problem: 'Text classification benefits from explicit, inspectable preprocessing and feature construction.',
-    solution: 'A compact Streamlit lab applies normalized text, TF-IDF features, and logistic regression.',
+    problem: 'Text classification needs explicit preprocessing and feature construction so the model behavior can be inspected and maintained.',
+    solution: 'A compact Streamlit lab makes normalization, TF-IDF feature extraction, and logistic regression part of one readable workflow.',
     stack: ['Python', 'NLTK', 'TF-IDF', 'Logistic Regression', 'Streamlit'], github: 'https://github.com/Ibadat-Ali86/ML_Projects/tree/main/data/Spam%20Email%20Classifier/TASK%201/sms-spam-classifier-main', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('spam-classifier'), editorialSafeguard: 'Local-path limitations are retained as a maintenance consideration.'
   },
   {
     slug: 'netflix', title: 'Netflix Data Analysis', tier: 'lab', category: 'Analytics & BI', status: 'DATA LAB',
     hook: 'Exploratory analysis of movie metadata, genres, release patterns, popularity, and feature relationships.',
     metric: 'Exploratory data analysis',
-    problem: 'Exploration needs a concise way to inspect distributions and relationships before modeling decisions.',
-    solution: 'A notebook-based lab studies metadata, genres, release patterns, popularity, and feature relationships.',
+    problem: 'Exploration needs a focused way to inspect distributions and relationships before deciding what is worth modeling.',
+    solution: 'A notebook-based analysis turns catalog metadata into readable views of genres, release patterns, popularity, and feature relationships.',
     stack: ['Python', 'pandas', 'Matplotlib', 'seaborn', 'Jupyter'], github: 'https://github.com/Ibadat-Ali86/Netflix_DataAnalysis', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('netflix'), editorialSafeguard: 'Presented as exploratory analysis rather than predictive modeling.'
   },
   {
     slug: 'employee-form', title: 'Employee Information Form', tier: 'lab', category: 'ML & Data Labs', status: 'R SHINY LAB',
     hook: 'A reactive R Shiny form with validation, dates, file upload, and structured output.',
     metric: 'R Shiny exercise',
-    problem: 'Structured input tools need visible validation and predictable state transitions.',
-    solution: 'An R Shiny exercise combines reactive inputs, dates, file upload, validation, and structured output.',
+    problem: 'Structured input tools need visible validation and predictable state transitions to stay trustworthy.',
+    solution: 'An R Shiny exercise combines reactive inputs, dates, file upload, validation, and structured output in one focused interface.',
     stack: ['R', 'Shiny', 'reactive programming', 'form validation'], github: 'https://github.com/Ibadat-Ali86/R_Shiny-Web_Apps/blob/main/Scenario1.R', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('employee-form'), editorialSafeguard: 'Displayed as a focused child lab, not as the parent collection.'
   },
   {
@@ -141,7 +159,7 @@ export const projects = [
     hook: 'A small R Shiny utility for uploading, previewing, cleaning, and downloading tabular data.',
     metric: 'R Shiny utility',
     problem: 'Small data-cleaning tasks still need transparent upload, inspection, transformation, and download steps.',
-    solution: 'An R Shiny utility supports a concise tabular-data cleaning workflow.',
+    solution: 'An R Shiny utility keeps tabular-data cleaning concise while preserving preview and export as first-class steps.',
     stack: ['R', 'Shiny', 'CSV parsing', 'reactive data cleaning'], github: 'https://github.com/Ibadat-Ali86/R_Shiny-Web_Apps/blob/main/Scenario2.R', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('csv-cleaner'), editorialSafeguard: 'Displayed as a focused child tool, not as the parent collection.'
   }
 ];
@@ -149,3 +167,14 @@ export const projects = [
 export const excludedProjectNames = [
   'Data_Analysis_Projects', 'ML_Projects', 'R_Shiny-Web_Apps', 'portfolio', 'Learning_Dasboard', 'My_Python_Projects', 'claw-code', 'everything-claude-code', 'data-science-portfolio'
 ];
+
+export function projectPlan(project) {
+  if (project.workflow) return 'Map the business trigger to deterministic qualification, agent reasoning, tool calls, and traceable output.';
+  if (project.category.includes('Forecasting')) return 'Define the data horizon, establish a repeatable forecasting baseline, compare model families, and design a decision-ready delivery surface.';
+  if (project.category.includes('Predictive Maintenance')) return 'Connect sensor history to a monitored prediction path, add anomaly and explanation signals, then route the result into an operational decision.';
+  if (project.category.includes('Analytics')) return 'Move from raw tables to a clean analytical model, expose the important patterns, and turn them into a clear decision surface.';
+  if (project.category.includes('Health')) return 'Keep the system assistive and bounded: structure the inputs, preserve human review, and make limitations visible at every decision point.';
+  if (project.category.includes('Agents')) return 'Ground the agent with structured repository context, retrieval, and explicit tool boundaries before it can act.';
+  if (project.category.includes('Full-Stack')) return 'Trace the work from input to usable output, keeping validation, state, and handoff visible throughout.';
+  return 'Keep the workflow inspectable from input to output, with clear validation, reproducibility, and a useful handoff.';
+}
