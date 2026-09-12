@@ -95,6 +95,22 @@ function renderFilters() {
   return `<div class="filter-bar"><button class="filter-button is-selected" type="button" aria-pressed="true" data-filter="all">All work</button>${categories.map((category) => `<button class="filter-button" type="button" aria-pressed="false" data-filter="${escapeHtml(category)}">${escapeHtml(category)}</button>`).join('')}</div>`;
 }
 
+function renderExperience() {
+  return `<div class="experience-timeline">${publicProfile.experience.map((item, index) => `<article class="experience-card" data-reveal>
+    <div class="experience-card__index">${String(index + 1).padStart(2, '0')}</div>
+    <div class="experience-card__period">${escapeHtml(item.period)}</div>
+    <div class="experience-card__content"><h3>${escapeHtml(item.role)}</h3><p class="experience-card__organization">${escapeHtml(item.organization)}</p><p>${escapeHtml(item.description)}</p></div>
+    <p class="experience-card__duration">${escapeHtml(item.duration)}</p>
+  </article>`).join('\n')}</div>`;
+}
+
+function renderCertifications() {
+  return `<div class="certification-grid">${publicProfile.certifications.map((certificate) => `<article class="certification-card" data-reveal>
+    <a class="certification-card__preview" href="${escapeHtml(certificate.pdf)}" target="_blank" rel="noopener noreferrer"><img src="${escapeHtml(certificate.image)}" alt="${escapeHtml(certificate.title)} certificate issued by ${escapeHtml(certificate.issuer)}" width="1200" height="928" loading="lazy" decoding="async"><span>Open certificate ↗</span></a>
+    <div class="certification-card__body"><p class="section-index">${escapeHtml(certificate.issuer)} · ${escapeHtml(certificate.year)}</p><h4>${escapeHtml(certificate.title)}</h4><a class="text-link" href="${escapeHtml(certificate.pdf)}" target="_blank" rel="noopener noreferrer">View PDF ↗</a></div>
+  </article>`).join('\n')}</div>`;
+}
+
 function renderSpecializations() {
   const proof = { 'data-analysis': 'vendor-analysis', 'data-science': 'adaptiq', 'ml-engineering': 'sentineliq', 'ai-products': 'ai-lead-generation' };
   return publicProfile.specializations.map((specialization) => `<article class="capability-card capability-card--${escapeHtml(specialization.slug)}" data-reveal>
@@ -140,6 +156,8 @@ const replacements = new Map([
   ['<!-- TECH_STACK_MARQUEE -->', renderTechMarquee()],
   ['<!-- PROJECT_FILTERS -->', renderFilters()],
   ['<!-- FEATURED_PROJECTS -->', renderFeatured()],
+  ['<!-- EXPERIENCE_TIMELINE -->', renderExperience()],
+  ['<!-- CERTIFICATIONS -->', renderCertifications()],
   ['<!-- SPECIALIZATION_STACKS -->', renderSpecializations()],
   ['<!-- ATLAS_PROJECTS -->', renderAtlas()]
 ]);

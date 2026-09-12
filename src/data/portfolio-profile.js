@@ -24,6 +24,45 @@ export const publicProfile = {
       description: 'Builds time-series demand forecasting (Prophet, XGBoost, LSTM) and industrial predictive maintenance (PyTorch, TCN, PuLP) with SHAP attribution.'
     }
   ],
+  experience: [
+    {
+      period: '2025 — Present',
+      role: 'Independent Data Scientist / AI Consultant',
+      organization: 'Fiverr · Remote',
+      duration: 'Ongoing freelance delivery',
+      description: 'Delivering predictive modeling, forecasting, NLP, RAG, computer vision, and AI automation systems for international clients, with stakeholder-ready reports and structured handoff documentation.'
+    },
+    {
+      period: 'Dec 2025 — Mar 2026',
+      role: 'ML / AI Engineer',
+      organization: 'Soft Shack · Full-time, on-site',
+      duration: '4 months',
+      description: 'Designed production ML and LLM-integrated automation pipelines with FastAPI and Docker, adding RAG retrieval, confidence gates, audit logging, and client-ready technical handoffs.'
+    },
+    {
+      period: 'May 2025 — Aug 2025',
+      role: 'Data Scientist Intern',
+      organization: 'Arch Technologies · Internship',
+      duration: '4 months',
+      description: 'Built and evaluated forecasting and predictive analytics models with Python, Scikit-learn, XGBoost, and Pandas; engineered SQL/CSV ETL workflows and delivered SHAP-based reports.'
+    }
+  ],
+  certifications: [
+    {
+      title: 'AI Fluency: Framework & Foundations',
+      issuer: 'Anthropic',
+      year: '2026',
+      image: '/assets/certificates/ai-fluency-framework-foundations.png',
+      pdf: '/assets/certificates/ai-fluency-framework-foundations.pdf'
+    },
+    {
+      title: 'Claude 101',
+      issuer: 'Anthropic',
+      year: '2026',
+      image: '/assets/certificates/claude-101.png',
+      pdf: '/assets/certificates/claude-101.pdf'
+    }
+  ],
   specializations: [
     {
       slug: 'data-analysis',
@@ -105,7 +144,7 @@ export const publicProfile = {
     github: 'https://github.com/Ibadat-Ali86',
     kaggle: 'https://www.kaggle.com/ibadatali',
     tiktok: 'https://www.tiktok.com/@deepfx6',
-    instagram: 'https://www.instagram.com/deepfx_ai/',
+    instagram: 'https://www.instagram.com/expla_inableai?stkn=N2xnN3NsOHEzbjdi',
     whatsapp: 'https://wa.me/923220692321',
     resume: '/Ibadat_Ali_Resume.pdf'
   }

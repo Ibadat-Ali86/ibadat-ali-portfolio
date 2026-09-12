@@ -4,7 +4,7 @@ const uniqueUrls = [...new Set([
   ...projects.flatMap(({ github, live }) => [github, live]),
   'https://www.linkedin.com/in/mirzaibadatali',
   'https://www.tiktok.com/@deepfx6',
-  'https://www.instagram.com/deepfx_ai/',
+  'https://www.instagram.com/expla_inableai?stkn=N2xnN3NsOHEzbjdi',
   'https://huggingface.co/ibadatali',
   'https://wa.me/923220692321',
   'https://www.kaggle.com/ibadatali',

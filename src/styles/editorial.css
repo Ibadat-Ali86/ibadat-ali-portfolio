@@ -121,6 +121,30 @@ p { line-height: 1.7; }
 .working-steps li { display: grid; gap: .4rem; }
 .working-steps b { font-size: .88rem; color: var(--accent); }
 .working-steps span { font-size: .85rem; color: var(--ink-soft); }
+.experience { background: var(--paper); }
+.experience-timeline { position: relative; display: grid; gap: 1px; margin-top: 2.5rem; border-top: 1px solid var(--line); }
+.experience-timeline::before { position: absolute; top: 0; bottom: 0; left: 2.4rem; width: 1px; background: var(--line); content: ''; }
+.experience-card { position: relative; display: grid; grid-template-columns: 4.8rem minmax(150px,.45fr) minmax(0,1.5fr) auto; gap: 1.5rem; align-items: start; padding: 1.7rem 0; border-bottom: 1px solid var(--line); }
+.experience-card__index { position: relative; z-index: 1; display: grid; width: 4.8rem; height: 2.2rem; place-items: center; color: var(--accent); background: var(--paper); font-size: .7rem; font-weight: 800; }
+.experience-card__period, .experience-card__duration { color: var(--muted); font-size: .76rem; font-weight: 700; line-height: 1.6; }
+.experience-card__content { max-width: 62ch; }
+.experience-card h3 { margin-bottom: .25rem; font-size: 1.25rem; line-height: 1.3; }
+.experience-card__organization { margin-bottom: .6rem; color: var(--accent); font-size: .82rem; font-weight: 700; }
+.experience-card__content > p:last-child { color: var(--ink-soft); font-size: .9rem; line-height: 1.7; }
+.experience-card__duration { justify-self: end; padding: .35rem .6rem; border: 1px solid #c9d9d2; border-radius: 999px; color: var(--accent); background: #edf3ef; white-space: nowrap; }
+.certifications { display: grid; grid-template-columns: minmax(220px,.65fr) minmax(0,1.35fr); gap: 2rem 4rem; margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+.certifications__heading h3 { max-width: 14ch; font-size: clamp(1.7rem,2.5vw,2.5rem); }
+.certification-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; }
+.certification-card { overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: #fff; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.certification-card:hover, .certification-card:focus-within { border-color: var(--line-strong); box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+.certification-card__preview { position: relative; display: block; overflow: hidden; aspect-ratio: 1.3 / 1; background: var(--paper-deep); }
+.certification-card__preview img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease; }
+.certification-card__preview:hover img, .certification-card__preview:focus-visible img { transform: scale(1.035); }
+.certification-card__preview span { position: absolute; right: .75rem; bottom: .75rem; padding: .35rem .55rem; border: 1px solid rgba(255,255,255,.7); border-radius: 999px; background: rgba(23,33,43,.88); color: #fff; font-size: .68rem; font-weight: 700; }
+.certification-card__body { display: grid; gap: .55rem; padding: 1rem; }
+.certification-card__body .section-index { margin-bottom: 0; color: var(--accent); font-size: .64rem; }
+.certification-card h4 { font-size: 1rem; line-height: 1.35; }
+.certification-card .text-link { justify-self: start; }
 .atlas { padding-top: var(--section); }
 .filter-bar { gap: .5rem; }
 .filter-button { font-size: .72rem; padding: .6rem .85rem; border-color: var(--line); }
@@ -176,6 +200,13 @@ p { line-height: 1.7; }
   .proof-strip strong { font-size: 1rem; }
   .proof-strip span { font-size: .8rem; }
   .section-heading--split, .research__grid, .about__grid, .contact__grid { grid-template-columns: 1fr; gap: 1.6rem; }
+  .experience-card { grid-template-columns: 3rem minmax(0,1fr); gap: .7rem 1rem; }
+  .experience-timeline::before { left: 1.45rem; }
+  .experience-card__index { width: 3rem; }
+  .experience-card__period { grid-column: 2; grid-row: 1; }
+  .experience-card__content { grid-column: 2; }
+  .experience-card__duration { grid-column: 2; justify-self: start; }
+  .certifications { grid-template-columns: 1fr; gap: 1.5rem; margin-top: 3.5rem; }
   .project-grid--featured .project-card { display: flex; }
   .project-grid--selected, .project-grid--lab { grid-template-columns: 1fr; }
   .atlas .project-card { grid-template-columns: 105px minmax(0,1fr); }

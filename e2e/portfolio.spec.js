@@ -27,6 +27,10 @@ test('renders the human-first portfolio and complete project inventory', async (
   await expect(page.locator('.social-link[href*="instagram.com"]')).toHaveCount(1);
   await expect(page.locator('.social-link[href*="tiktok.com"]')).toHaveCount(1);
   await expect(page.locator('#creator h2')).toHaveText('Sharing what I learn and build.');
+  await expect(page.locator('#experience .experience-card')).toHaveCount(3);
+  await expect(page.locator('#experience .certification-card')).toHaveCount(2);
+  await expect(page.locator('#experience .certification-card img')).toHaveCount(2);
+  await expect(page.locator('a[href*="expla_inableai"]')).toHaveCount(3);
   await expect(page.locator('.project-card--ai-lead-generation [data-link-type="source"]')).toHaveCount(0);
   await expect(page.locator('.project-card--ai-restaurant-chatbot [data-link-type="source"]')).toHaveCount(0);
   await expect(page.locator('[data-copy-email="ibadcodes@gmail.com"]')).toHaveCount(1);
@@ -107,10 +111,12 @@ test('keeps anchored lower sections visible on direct navigation', async ({ page
   await expect(page.locator('#expertise')).toBeVisible();
   await expect(page.locator('#research')).toBeVisible();
   await expect(page.locator('#about')).toBeVisible();
+  await expect(page.locator('#experience')).toBeVisible();
   await expect(page.locator('#contact')).toBeVisible();
   await expect(page.locator('#expertise h2')).toBeVisible();
   await expect(page.locator('#research-title')).toBeVisible();
   await expect(page.locator('#about-title')).toBeVisible();
+  await expect(page.locator('#experience-title')).toBeVisible();
   await expect(page.locator('#contact-title')).toBeVisible();
 });
 
@@ -118,7 +124,7 @@ test('keeps content and thumbnails readable across mobile and desktop widths', a
   await page.goto('/');
   for (const width of [375, 768, 1440]) {
     await page.setViewportSize({ width, height: 900 });
-    for (const selector of ['#top', '#featured', '#expertise', '#research', '#about', '#atlas', '#creator', '#contact']) {
+    for (const selector of ['#top', '#featured', '#expertise', '#research', '#about', '#experience', '#atlas', '#creator', '#contact']) {
       const section = page.locator(selector);
       await section.scrollIntoViewIfNeeded();
       await expect(section).toHaveCSS('opacity', '1');
@@ -150,7 +156,7 @@ test('keeps the page content available without JavaScript', async ({ browser }) 
   const page = await context.newPage();
   await page.goto('/');
   await expect(page.locator('[data-project-card]')).toHaveCount(19);
-  for (const selector of ['#expertise h2', '#research h2', '#about h2', '#contact h2']) {
+  for (const selector of ['#expertise h2', '#research h2', '#about h2', '#experience h2', '#contact h2']) {
     await expect(page.locator(selector)).toBeVisible();
   }
   await context.close();
