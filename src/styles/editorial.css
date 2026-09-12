@@ -20,7 +20,19 @@
   --shadow-hover: 0 14px 36px rgba(23,33,43,.08);
 }
 html { scroll-padding-top: 100px; }
-body { font-size: 17px; }
+body { font-size: 17px; background: var(--paper); }
+main, .site-footer { background: transparent; }
+.ambient-field { position: fixed; z-index: 0; inset: 0; overflow: hidden; pointer-events: none; isolation: isolate; }
+.ambient-field::before { position: absolute; inset: -1px; background-image: linear-gradient(rgba(23,33,43,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(23,33,43,.035) 1px, transparent 1px); background-size: 92px 92px; mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,.78) 42%, transparent 92%); content: ''; }
+.ambient-field::after { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 10%, rgba(255,255,255,.38), transparent 52%), linear-gradient(180deg, transparent 0%, rgba(247,247,242,.16) 70%, rgba(247,247,242,.42) 100%); content: ''; }
+.ambient-field__glow { position: absolute; display: block; width: clamp(18rem, 42vw, 38rem); aspect-ratio: 1; border-radius: 50%; filter: blur(84px); opacity: .16; transform: translate3d(0,0,0); animation: ambient-drift 24s ease-in-out infinite alternate; }
+.ambient-field__glow--teal { top: -14rem; right: -10rem; background: rgba(39,157,158,.72); }
+.ambient-field__glow--blue { top: 34%; left: 20%; background: rgba(108,141,235,.46); animation-delay: -8s; opacity: .1; }
+.ambient-field__glow--gold { right: 12%; bottom: -18rem; background: rgba(227,170,84,.42); animation-delay: -15s; opacity: .1; }
+.hero, .featured, .research, .experience, .atlas, .contact { background: rgba(247,247,242,.78); }
+.capabilities, .about, .creator { background: rgba(238,239,233,.84); }
+.tech-marquee { background: rgba(238,239,233,.86); }
+@keyframes ambient-drift { 0% { transform: translate3d(-1.5rem, .75rem, 0) scale(1); } 100% { transform: translate3d(1.5rem, -1.25rem, 0) scale(1.06); } }
 h1, h2, h3 { letter-spacing: -.045em; line-height: 1.12; }
 h1 { max-width: 12ch; font-size: clamp(3.25rem, 5.9vw, 5.1rem); }
 h2 { max-width: 16ch; font-size: clamp(2.2rem, 3.5vw, 3.5rem); }
@@ -216,10 +228,16 @@ p { line-height: 1.7; }
   .tech-marquee__group { gap: .6rem 1.2rem; font-size: .68rem; }
   .contact h2 { font-size: clamp(2.2rem,7.5vw,3rem); }
   .contact-card { max-width: none; }
+  .ambient-field::before { background-size: 72px 72px; opacity: .75; }
+  .ambient-field__glow { filter: blur(58px); opacity: .11; }
+  .ambient-field__glow--blue { left: -22%; }
+  .ambient-field__glow--gold { right: -26%; }
 }
 @media (max-width: 400px) {
   .atlas .project-card { grid-template-columns: 1fr; }
   .atlas .media-frame { width: 130px; }
   .working-steps { grid-template-columns: 1fr; }
 }
-@media (prefers-reduced-motion: reduce) { .project-modal[open] .project-modal__panel { animation: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .ambient-field__glow, .project-modal[open] .project-modal__panel { animation: none; }
+}
