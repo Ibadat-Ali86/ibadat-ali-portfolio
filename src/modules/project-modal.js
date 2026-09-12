@@ -49,14 +49,17 @@ function openProject(project, opener) {
     note.textContent = project.editorialSafeguard ?? '';
   }
   modal.showModal();
+  document.body.style.overflow = 'hidden';
   modal.querySelector('.project-modal__close').focus();
-  modal.dataset.previousFocus = opener?.dataset.projectOpen ?? '';
+  openers.forEach((button) => delete button.dataset.modalReturn);
+  if (opener) opener.dataset.modalReturn = 'true';
 }
 
 function closeProject() {
   if (!modal.open) return;
   modal.close();
-  const previous = [...openers].find((opener) => opener.dataset.projectOpen === modal.dataset.previousFocus);
+  document.body.style.overflow = '';
+  const previous = [...openers].find((opener) => opener.dataset.modalReturn === 'true');
   previous?.focus();
 }
 

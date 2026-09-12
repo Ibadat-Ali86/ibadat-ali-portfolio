@@ -17,8 +17,8 @@ function assertProjectInventory() {
   if (projects.some(({ title }) => excludedProjectNames.includes(title))) throw new Error('An excluded collection cannot render as a project.');
   if (projects.filter(({ canonicalWalmart }) => canonicalWalmart).length !== 1 || !projects.find(({ slug }) => slug === 'adaptiq').canonicalWalmart) throw new Error('Only AdaptIQ may be the Walmart forecasting card.');
   const primaryFeatureSlugs = projects.filter(({ primaryFeature }) => primaryFeature).map(({ slug }) => slug);
-  const requiredPrimaryFeatures = ['codescope', 'carevision', 'sentineliq', 'adaptiq', 'evershine'];
-  if (primaryFeatureSlugs.length !== requiredPrimaryFeatures.length || requiredPrimaryFeatures.some((slug) => !primaryFeatureSlugs.includes(slug))) throw new Error('Primary feature rail must stay focused on the five v2 proof projects.');
+  const requiredPrimaryFeatures = ['evershine', 'adaptiq', 'ai-lead-generation'];
+  if (primaryFeatureSlugs.length !== requiredPrimaryFeatures.length || requiredPrimaryFeatures.some((slug) => !primaryFeatureSlugs.includes(slug))) throw new Error('Selected work must contain the three approved client projects.');
   const attachedClientProjects = ['sentineliq', 'topolite', 'adaptiq', 'evershine', 'ai-lead-generation', 'ai-restaurant-chatbot', 'netflix'];
   if (attachedClientProjects.some((slug) => !projects.find((project) => project.slug === slug && project.clientProject))) throw new Error('Attached client projects must remain visibly labeled as client work.');
 }
@@ -71,16 +71,15 @@ function projectCard(project, index) {
   const isPrivateClient = project.slug === 'evershine';
   const clientBadge = project.clientProject && !isPrivateClient ? '<span class="client-label">CLIENT PROJECT</span>' : '';
   const actions = [projectOpenButton(project), project.live && externalLink(project.live, isPrivateClient ? 'VISIT LIVE WEBSITE' : 'VISIT LIVE', 'live'), project.showSourceLink && project.github && externalLink(project.github, 'VIEW SOURCE', 'source')].filter(Boolean).join('');
-  const details = project.tier === 'featured' || project.primaryFeature || project.workflow ? `<div class="project-details"><p><strong>Problem:</strong> ${escapeHtml(project.problem)}</p><p><strong>System:</strong> ${escapeHtml(project.solution)}</p></div>` : '';
   const videoBadge = project.video ? '<span class="project-video-badge">PLAY</span>' : '';
   return `<article class="project-card project-card--${escapeHtml(project.tier)} project-card--${escapeHtml(project.slug)}" data-project-card data-category="${escapeHtml(project.category)}" data-tier="${escapeHtml(project.tier)}">
     <figure class="media-frame"><div class="media-frame__inner" data-media-inner><img src="${escapeHtml(project.image)}" alt="${escapeHtml(imageAlt(project))}" width="1600" height="1000" loading="lazy" decoding="async"></div>${videoBadge}<figcaption class="media-fallback" aria-hidden="true">${escapeHtml(project.category)}</figcaption></figure>
-    <div class="project-card__body"><div class="project-meta"><span>${String(index + 1).padStart(2, '0')}</span><span class="project-meta__badges"><span class="status-label">${isPrivateClient ? 'PRIVATE CLIENT PROJECT' : escapeHtml(project.status)}</span>${clientBadge}</span></div><h3 data-card-title>${escapeHtml(project.title)}</h3><p class="project-metric">${escapeHtml(project.metric)}</p><p class="project-hook">${escapeHtml(project.hook)}</p>${details}<ul class="tag-list">${project.stack.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul><div class="project-actions">${actions}</div></div>
+    <div class="project-card__body"><div class="project-meta"><span>${String(index + 1).padStart(2, '0')}</span><span class="project-meta__badges"><span class="status-label">${isPrivateClient ? 'PRIVATE CLIENT PROJECT' : escapeHtml(project.status)}</span>${clientBadge}</span></div><h3 data-card-title>${escapeHtml(project.title)}</h3><p class="project-metric">${escapeHtml(project.metric)}</p><p class="project-hook">${escapeHtml(project.hook)}</p><ul class="tag-list">${project.stack.slice(0, 4).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul><div class="project-actions">${actions}</div></div>
   </article>`;
 }
 
 function renderFeatured() {
-  const featuredOrder = ['adaptiq', 'sentineliq', 'codescope', 'carevision', 'evershine'];
+  const featuredOrder = ['evershine', 'adaptiq', 'ai-lead-generation'];
   const featured = featuredOrder.map((slug) => projects.find((project) => project.slug === slug)).filter(Boolean);
   return `<div class="project-grid project-grid--featured" data-project-rail-section>${featured.map((project, index) => projectCard(project, index)).join('\n')}</div>`;
 }
@@ -88,23 +87,25 @@ function renderFeatured() {
 function renderAtlas() {
   const selected = projects.filter((project) => !project.primaryFeature && project.tier !== 'lab');
   const labs = projects.filter(({ tier }) => tier === 'lab');
-  return `<div class="atlas-group"><h2 class="atlas-group__title" data-split>MORE SYSTEMS &amp; CASE STUDIES</h2><div class="project-grid project-grid--selected">${selected.map((project, index) => projectCard(project, index + 5)).join('\n')}</div></div><div class="atlas-group atlas-group--labs"><h2 class="atlas-group__title" data-split>LABS &amp; EXERCISES — CLEARLY SEPARATED</h2><p class="atlas-group__note">Practice work stays here so the main proof section stays focused on serious data, ML, and product systems.</p><div class="project-grid project-grid--lab">${labs.map((project, index) => projectCard(project, index + 5 + selected.length)).join('\n')}</div></div>`;
+  return `<div class="atlas-group"><h2 class="atlas-group__title" data-split>MORE SYSTEMS &amp; CASE STUDIES</h2><div class="project-grid project-grid--selected">${selected.map((project, index) => projectCard(project, index + 3)).join('\n')}</div></div><div class="atlas-group atlas-group--labs"><h2 class="atlas-group__title" data-split>EXPERIMENTS &amp; ANALYSIS</h2><p class="atlas-group__note">Focused studies and smaller tools, with their scope clearly described.</p><div class="project-grid project-grid--lab">${labs.map((project, index) => projectCard(project, index + 3 + selected.length)).join('\n')}</div></div>`;
 }
 
 function renderFilters() {
-  const categories = [...new Set(projects.map(({ category }) => category))];
+  const categories = [...new Set(projects.filter((project) => !project.primaryFeature).map(({ category }) => category))];
   return `<div class="filter-bar"><button class="filter-button is-selected" type="button" aria-pressed="true" data-filter="all">All work</button>${categories.map((category) => `<button class="filter-button" type="button" aria-pressed="false" data-filter="${escapeHtml(category)}">${escapeHtml(category)}</button>`).join('')}</div>`;
 }
 
 function renderSpecializations() {
+  const proof = { 'data-analysis': 'vendor-analysis', 'data-science': 'adaptiq', 'ml-engineering': 'sentineliq', 'ai-products': 'ai-lead-generation' };
   return publicProfile.specializations.map((specialization) => `<article class="capability-card capability-card--${escapeHtml(specialization.slug)}" data-reveal>
     <p class="capability-kicker">${escapeHtml(specialization.index)}</p>
     <h3>${escapeHtml(specialization.title)}</h3>
     <p>${escapeHtml(specialization.description)}</p>
-    <div class="stack-map__block">
+    <button class="text-link project-card__open" type="button" data-project-open="${proof[specialization.slug]}">Explore a related project ↗</button>
+    <details><summary>Explore the technologies</summary><div class="stack-map__block">
       <p class="stack-map__label">PORTFOLIO-PROVEN FOUNDATION</p>
       <dl class="stack-map">${specialization.groups.map((group) => `<div><dt>${escapeHtml(group.label)}</dt><dd><ul class="stack-tools">${group.tools.map((tool) => `<li>${escapeHtml(tool)}</li>`).join('')}</ul></dd></div>`).join('')}</dl>
-    </div>
+    </div></details>
     <details>
       <summary>Show broader toolkit</summary>
       <div class="stack-map__block stack-map__block--industry">

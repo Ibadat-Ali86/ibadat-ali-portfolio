@@ -12,7 +12,7 @@ test('keeps the canonical 7 / 7 / 5 project inventory', () => {
   assert.equal(projects.filter(({ tier }) => tier === 'selected').length, 7);
   assert.equal(projects.filter(({ tier }) => tier === 'lab').length, 5);
   assert.deepEqual(projects.slice(0, 7).map(({ title }) => title), ['CodeScope MCP Preflight', 'CareVision', 'SentinelIQ', 'TopoLite-KD', 'AdaptIQ / ForecastAI', 'VITAL-LINK', 'Evershine Academy LMS']);
-  assert.deepEqual(projects.filter(({ primaryFeature }) => primaryFeature).map(({ slug }) => slug), ['codescope', 'carevision', 'sentineliq', 'adaptiq', 'evershine']);
+  assert.deepEqual(projects.filter(({ primaryFeature }) => primaryFeature).map(({ slug }) => slug), ['adaptiq', 'evershine', 'ai-lead-generation']);
   assert.deepEqual(projects.filter(({ workflow }) => workflow).map(({ slug }) => slug), ['ai-lead-generation', 'ai-restaurant-chatbot']);
 });
 
@@ -85,7 +85,7 @@ test('renders the complete atlas and descriptive project media text', async () =
   const renderer = await readFile(new URL('../scripts/render-static.mjs', import.meta.url), 'utf8');
   const linkChecker = await readFile(new URL('../scripts/check-links.mjs', import.meta.url), 'utf8');
   assert.match(renderer, /project-grid--lab/);
-  assert.match(renderer, /LABS &amp; EXERCISES — CLEARLY SEPARATED/);
+  assert.match(renderer, /EXPERIMENTS &amp; ANALYSIS/);
   assert.doesNotMatch(renderer, /Scope note/);
   assert.match(renderer, /function imageAlt\(project\)/);
   assert.match(renderer, /function renderSpecializations\(\)/);
