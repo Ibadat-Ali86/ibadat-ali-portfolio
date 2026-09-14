@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFile } from 'node:fs/promises';
 import { publicProfile } from '../src/data/portfolio-profile.js';
-import { excludedProjectNames, projects } from '../src/data/projects.js';
+import { excludedProjectNames, professionalProjectSlugs, projects, secondaryProjectGroups, secondaryProjectSlugs, showcaseProjectSlugs } from '../src/data/projects.js';
 
 const externalUrls = (project) => [project.github, project.live].filter(Boolean);
 
@@ -14,6 +14,14 @@ test('keeps the canonical 7 / 7 / 5 project inventory', () => {
   assert.deepEqual(projects.slice(0, 7).map(({ title }) => title), ['CodeScope MCP Preflight', 'CareVision', 'SentinelIQ', 'TopoLite-KD', 'AdaptIQ / ForecastAI', 'VITAL-LINK', 'Evershine Academy LMS']);
   assert.deepEqual(projects.filter(({ primaryFeature }) => primaryFeature).map(({ slug }) => slug), ['adaptiq', 'evershine', 'ai-lead-generation']);
   assert.deepEqual(projects.filter(({ workflow }) => workflow).map(({ slug }) => slug), ['ai-lead-generation', 'ai-restaurant-chatbot']);
+});
+
+test('keeps a focused public portfolio plus a complete professional secondary set', () => {
+  assert.deepEqual(showcaseProjectSlugs, ['evershine', 'adaptiq', 'sentineliq', 'carevision', 'ai-lead-generation', 'codescope']);
+  assert.equal(secondaryProjectGroups.length, 2);
+  assert.deepEqual(secondaryProjectSlugs, ['ai-restaurant-chatbot', 'resume-builder', 'learning-dashboard', 'covid-analytics', 'topolite', 'vital-link', 'pakistan-ecommerce', 'vendor-analysis']);
+  assert.equal(professionalProjectSlugs.length, 14);
+  assert.equal(projects.filter(({ slug, tier }) => professionalProjectSlugs.includes(slug) && tier === 'lab').length, 0);
 });
 
 test('keeps a complete, role-ready professional stack map without conflating proof and industry tools', () => {
@@ -81,11 +89,13 @@ test('renderer uses explicit links and never derives a source URL from a slug', 
   assert.match(renderer, /project\.showSourceLink/);
 });
 
-test('renders the complete atlas and descriptive project media text', async () => {
+test('renders a focused case-study index and descriptive project media text', async () => {
   const renderer = await readFile(new URL('../scripts/render-static.mjs', import.meta.url), 'utf8');
   const linkChecker = await readFile(new URL('../scripts/check-links.mjs', import.meta.url), 'utf8');
-  assert.match(renderer, /project-grid--lab/);
-  assert.match(renderer, /EXPERIMENTS &amp; ANALYSIS/);
+  assert.match(renderer, /case-study-index/);
+  assert.match(renderer, /showcaseProjectSlugs/);
+  assert.match(renderer, /function renderSecondaryWork\(\)/);
+  assert.doesNotMatch(renderer, /project-grid--lab/);
   assert.doesNotMatch(renderer, /Scope note/);
   assert.match(renderer, /function imageAlt\(project\)/);
   assert.match(renderer, /function renderSpecializations\(\)/);
@@ -97,8 +107,8 @@ test('renders the curated technology stack in an accessible left-to-right marque
   const template = await readFile(new URL('../index.template.html', import.meta.url), 'utf8');
   const components = await readFile(new URL('../src/styles/components.css', import.meta.url), 'utf8');
   const motion = await readFile(new URL('../src/styles/motion.css', import.meta.url), 'utf8');
-  assert.match(template, /aria-label="Technology stack and tools"/);
-  assert.match(template, /class="tech-marquee__track"/);
+  assert.match(template, /TECH_STACK_MARQUEE/);
+  assert.match(renderer, /aria-label="Technology stack and tools"/);
   assert.match(renderer, /function renderTechMarquee\(\)/);
   assert.match(components, /\.tech-marquee__track \{ display: flex; width: max-content; animation: marquee 34s linear infinite;(?: will-change: transform;)? \}/);
   assert.match(motion, /@keyframes marquee/);

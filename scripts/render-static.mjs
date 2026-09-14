@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { publicProfile } from '../src/data/portfolio-profile.js';
-import { excludedProjectNames, projects } from '../src/data/projects.js';
+import { excludedProjectNames, professionalProjectSlugs, projects, secondaryProjectGroups, secondaryProjectSlugs, showcaseProjectSlugs } from '../src/data/projects.js';
 
 const root = resolve(import.meta.dirname, '..');
 const templatePath = resolve(root, 'index.template.html');
@@ -21,6 +21,9 @@ function assertProjectInventory() {
   if (primaryFeatureSlugs.length !== requiredPrimaryFeatures.length || requiredPrimaryFeatures.some((slug) => !primaryFeatureSlugs.includes(slug))) throw new Error('Selected work must contain the three approved client projects.');
   const attachedClientProjects = ['sentineliq', 'topolite', 'adaptiq', 'evershine', 'ai-lead-generation', 'ai-restaurant-chatbot', 'netflix'];
   if (attachedClientProjects.some((slug) => !projects.find((project) => project.slug === slug && project.clientProject))) throw new Error('Attached client projects must remain visibly labeled as client work.');
+  if (showcaseProjectSlugs.length !== 6 || showcaseProjectSlugs.some((slug) => !projects.find((project) => project.slug === slug && project.showcase))) throw new Error('Public showcase must contain the six approved case studies.');
+  if (secondaryProjectSlugs.length !== 8 || new Set(secondaryProjectSlugs).size !== secondaryProjectSlugs.length || secondaryProjectSlugs.some((slug) => !projects.find((project) => project.slug === slug && project.tier !== 'lab'))) throw new Error('Additional work must contain eight non-lab projects.');
+  if (new Set(professionalProjectSlugs).size !== professionalProjectSlugs.length || professionalProjectSlugs.some((slug) => !projects.some((project) => project.slug === slug))) throw new Error('Professional project slugs must be unique and resolvable.');
 }
 
 function assertSpecializations() {
@@ -72,27 +75,29 @@ function projectCard(project, index) {
   const clientBadge = project.clientProject && !isPrivateClient ? '<span class="client-label">CLIENT PROJECT</span>' : '';
   const actions = [projectOpenButton(project), project.live && externalLink(project.live, isPrivateClient ? 'VISIT LIVE WEBSITE' : 'VISIT LIVE', 'live'), project.showSourceLink && project.github && externalLink(project.github, 'VIEW SOURCE', 'source')].filter(Boolean).join('');
   const videoBadge = project.video ? '<span class="project-video-badge">PLAY</span>' : '';
-  return `<article class="project-card project-card--${escapeHtml(project.tier)} project-card--${escapeHtml(project.slug)}" data-project-card data-category="${escapeHtml(project.category)}" data-tier="${escapeHtml(project.tier)}">
+  return `<article id="project-${escapeHtml(project.slug)}" class="project-card project-card--${escapeHtml(project.tier)} project-card--${escapeHtml(project.slug)}" data-project-card data-category="${escapeHtml(project.category)}" data-tier="${escapeHtml(project.tier)}">
     <figure class="media-frame"><div class="media-frame__inner" data-media-inner><img src="${escapeHtml(project.image)}" alt="${escapeHtml(imageAlt(project))}" width="1600" height="1000" loading="lazy" decoding="async"></div>${videoBadge}<figcaption class="media-fallback" aria-hidden="true">${escapeHtml(project.category)}</figcaption></figure>
-    <div class="project-card__body"><div class="project-meta"><span>${String(index + 1).padStart(2, '0')}</span><span class="project-meta__badges"><span class="status-label">${isPrivateClient ? 'PRIVATE CLIENT PROJECT' : escapeHtml(project.status)}</span>${clientBadge}</span></div><h3 data-card-title>${escapeHtml(project.title)}</h3><p class="project-metric">${escapeHtml(project.metric)}</p><p class="project-hook">${escapeHtml(project.hook)}</p><ul class="tag-list">${project.stack.slice(0, 4).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul><div class="project-actions">${actions}</div></div>
+    <div class="project-card__body"><div class="project-meta"><span>${String(index + 1).padStart(2, '0')}</span><span class="project-meta__badges"><span class="status-label">${isPrivateClient ? 'PRIVATE CLIENT PROJECT' : escapeHtml(project.status)}</span>${clientBadge}</span></div><h3 data-card-title>${escapeHtml(project.title)}</h3><p class="project-metric">${escapeHtml(project.metric)}</p><p class="project-result">RESULT — ${escapeHtml(project.result ?? 'Scope and delivery details are available in the case study.')}</p><p class="project-hook">${escapeHtml(project.hook)}</p><ul class="tag-list">${project.stack.slice(0, 4).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul><div class="project-actions">${actions}</div></div>
   </article>`;
 }
 
 function renderFeatured() {
-  const featuredOrder = ['evershine', 'adaptiq', 'ai-lead-generation'];
-  const featured = featuredOrder.map((slug) => projects.find((project) => project.slug === slug)).filter(Boolean);
+  const featured = showcaseProjectSlugs.map((slug) => projects.find((project) => project.slug === slug)).filter(Boolean);
   return `<div class="project-grid project-grid--featured" data-project-rail-section>${featured.map((project, index) => projectCard(project, index)).join('\n')}</div>`;
 }
 
-function renderAtlas() {
-  const selected = projects.filter((project) => !project.primaryFeature && project.tier !== 'lab');
-  const labs = projects.filter(({ tier }) => tier === 'lab');
-  return `<div class="atlas-group"><h2 class="atlas-group__title" data-split>MORE SYSTEMS &amp; CASE STUDIES</h2><div class="project-grid project-grid--selected">${selected.map((project, index) => projectCard(project, index + 3)).join('\n')}</div></div><div class="atlas-group atlas-group--labs"><h2 class="atlas-group__title" data-split>EXPERIMENTS &amp; ANALYSIS</h2><p class="atlas-group__note">Focused studies and smaller tools, with their scope clearly described.</p><div class="project-grid project-grid--lab">${labs.map((project, index) => projectCard(project, index + 3 + selected.length)).join('\n')}</div></div>`;
+function renderSecondaryWork() {
+  let index = showcaseProjectSlugs.length;
+  return secondaryProjectGroups.map((group) => {
+    const groupProjects = group.slugs.map((slug) => projects.find((project) => project.slug === slug)).filter(Boolean);
+    const cards = groupProjects.map((project) => projectCard(project, index++)).join('\n');
+    return `<div class="secondary-work__group" data-reveal><div class="secondary-work__group-heading"><h3>${escapeHtml(group.label)}</h3><p>${escapeHtml(group.description)}</p></div><div class="project-grid project-grid--secondary">${cards}</div></div>`;
+  }).join('\n');
 }
 
-function renderFilters() {
-  const categories = [...new Set(projects.filter((project) => !project.primaryFeature).map(({ category }) => category))];
-  return `<div class="filter-bar"><button class="filter-button is-selected" type="button" aria-pressed="true" data-filter="all">All work</button>${categories.map((category) => `<button class="filter-button" type="button" aria-pressed="false" data-filter="${escapeHtml(category)}">${escapeHtml(category)}</button>`).join('')}</div>`;
+function renderAtlas() {
+  const professionalProjects = professionalProjectSlugs.map((slug) => projects.find((project) => project.slug === slug)).filter(Boolean);
+  return `<div class="case-study-index">${professionalProjects.map((project, index) => `<article class="case-study-index__item" data-reveal><span>${String(index + 1).padStart(2, '0')}</span><div><p>${escapeHtml(project.status)}</p><h3>${escapeHtml(project.title)}</h3></div><button class="text-link project-card__open" type="button" data-project-open="${escapeHtml(project.slug)}">OPEN CASE STUDY <span aria-hidden="true">↗</span></button></article>`).join('')}</div><p class="atlas-archive-note">The five foundational classifier and exercise labs remain preserved in the source archive, but are intentionally excluded from this client-facing work index.</p>`;
 }
 
 function renderExperience() {
@@ -125,8 +130,8 @@ function renderSpecializations() {
     <details>
       <summary>Show broader toolkit</summary>
       <div class="stack-map__block stack-map__block--industry">
-        <p class="stack-map__label">INDUSTRY-STANDARD ROLE TOOLKIT</p>
-        <p class="stack-map__note">Role-readiness map — not a claim of project use.</p>
+        <p class="stack-map__label">BROADER TOOL FAMILIARITY</p>
+        <p class="stack-map__note">Familiar from coursework and independent study — not yet deployed in production projects.</p>
         <dl class="stack-map stack-map--industry">${specialization.industryGroups.map((group) => `<div><dt>${escapeHtml(group.label)}</dt><dd><ul class="stack-tools">${group.tools.map((tool) => `<li>${escapeHtml(tool)}</li>`).join('')}</ul></dd></div>`).join('')}</dl>
       </div>
     </details>
@@ -134,7 +139,7 @@ function renderSpecializations() {
 }
 
 function renderTechMarquee() {
-  const technologies = ['Python', 'PyTorch', 'XGBoost', 'Scikit-learn', 'FastAPI', 'Next.js 15', 'n8n', 'MCP', 'Claude API', 'Gemini API', 'PostgreSQL', 'Docker'];
+  const technologies = ['Demand forecasting', 'AI automation', 'Client-ready APIs', 'Predictive maintenance', 'RAG pipelines', 'Full-stack delivery'];
   const items = technologies.map((technology) => `<span class="tech-marquee__item">${escapeHtml(technology)}</span>`).join('');
   const accessibleList = technologies.map(escapeHtml).join(', ');
   return `<section class="tech-marquee" aria-label="Technology stack and tools" data-tech-marquee>
@@ -154,8 +159,8 @@ assertSpecializations();
 const template = await readFile(templatePath, 'utf8');
 const replacements = new Map([
   ['<!-- TECH_STACK_MARQUEE -->', renderTechMarquee()],
-  ['<!-- PROJECT_FILTERS -->', renderFilters()],
   ['<!-- FEATURED_PROJECTS -->', renderFeatured()],
+  ['<!-- SECONDARY_PROJECTS -->', renderSecondaryWork()],
   ['<!-- EXPERIENCE_TIMELINE -->', renderExperience()],
   ['<!-- CERTIFICATIONS -->', renderCertifications()],
   ['<!-- SPECIALIZATION_STACKS -->', renderSpecializations()],

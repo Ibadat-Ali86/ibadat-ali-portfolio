@@ -1,10 +1,10 @@
 export const publicProfile = {
   name: 'Ibadat Ali',
-  headline: 'Data Scientist & AI Systems Builder creating predictive ML, agentic workflows, and client-ready products that turn raw data into useful decisions.',
+  headline: 'AI Automation & Workflow Engineer building predictive models, agent systems, and client-ready software that turns manual processes into useful decisions.',
   summary: [
     'Ibadat maps real business workflows to reliable, documented automations — integrating Claude, Gemini 2.0 Flash, and MCP tool-calling with explicit fallbacks, validation layers, and model-boundary annotations.',
     'Delivered verified production systems to real clients: an offline-first retail POS (React + Electron + SQLite) and an enterprise multi-campus LMS (Next.js + PostgreSQL).',
-    'The portfolio presents seven featured systems, seven selected case studies, and five focused labs, backed by verified telemetry, client delivery artifacts, workflow evidence, and evaluation hooks.'
+    'The public showcase focuses on six high-signal case studies, backed by client delivery artifacts, workflow evidence, live demos, and evaluation hooks. The broader learning catalog remains preserved in the source portfolio data.'
   ],
   capabilities: [
     {
@@ -26,7 +26,7 @@ export const publicProfile = {
   ],
   experience: [
     {
-      period: '2025 — Present',
+      period: '2025 — Present (paused Dec 2025 – Mar 2026 for full-time role)',
       role: 'Independent Data Scientist / AI Consultant',
       organization: 'Fiverr · Remote',
       duration: 'Ongoing freelance delivery',

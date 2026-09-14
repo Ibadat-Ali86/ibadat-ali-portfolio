@@ -8,7 +8,7 @@ export const projects = [
     problem: 'Autonomous coding agents make conflicting or hallucinated changes without structured repository context.',
     solution: 'A local-first Model Context Protocol (MCP) server combines Tree-sitter parsing and Chroma vector retrieval to ground agent reasoning before code generation.',
     stack: ['Python', 'MCP', 'Tree-sitter', 'sentence-transformers', 'Chroma', 'CLI'], github: 'https://github.com/Ibadat-Ali86/codescope-mcp-preflight', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('codescope'),
-    editorialSafeguard: 'Repository figures are intentionally omitted until the current suite is reproduced.'
+    showcase: true, result: 'Open-source MCP tooling for structured repository context before agent actions.', editorialSafeguard: 'Repository figures are intentionally omitted until the current suite is reproduced.'
   },
   {
     slug: 'carevision', title: 'CareVision', tier: 'featured', category: 'AI Health & Applied ML', status: 'LIVE',
@@ -17,7 +17,7 @@ export const projects = [
     problem: 'Assisted review requires dependable, explainable workflows with explicit confidence gates rather than opaque generative outputs.',
     solution: 'A multimodal PWA combining Gemini 2.0 Flash structured outputs, step-level audit logging, PostgreSQL persistence, and offline-capable inference fallback.',
     stack: ['React 18', 'TypeScript', 'Vite', 'Tailwind', 'Radix UI', 'Zustand', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'Gemini 2.0 Flash'], github: 'https://github.com/Ibadat-Ali86/carevision', live: 'https://carevision-chw.vercel.app/', sourceAccess: 'public', showSourceLink: true, image: projectArt('carevision'),
-    editorialSafeguard: 'Research and decision-support context only; no diagnostic, treatment, or clinical-outcome claims.'
+    showcase: true, result: 'Gemma hackathon submission with multimodal inputs, audit logging, and offline fallback.', editorialSafeguard: 'Research and decision-support context only; no diagnostic, treatment, or clinical-outcome claims.'
   },
   {
     slug: 'sentineliq', title: 'SentinelIQ', tier: 'featured', category: 'Predictive Maintenance', status: 'LIVE',
@@ -26,7 +26,7 @@ export const projects = [
     problem: 'Maintenance planning benefits from forecast, anomaly, and explanation signals in one operational flow.',
     solution: 'An automated pipeline connecting sequence models, dual anomaly detection (Isolation Forest + Autoencoder), SHAP attribution, and PuLP intervention scheduling.',
     stack: ['PyTorch', 'TCN', 'LSTM', 'Isolation Forest', 'Autoencoder', 'SHAP', 'PuLP', 'FastAPI', 'Next.js 15', 'PostgreSQL', 'Docker'], github: 'https://github.com/Ibadat-Ali86/sentinel-iq-cmpass-nasa-rul-prediction', live: 'https://sentinel-iq-nasa.vercel.app', sourceAccess: 'public', showSourceLink: true, clientProject: true, image: projectArt('sentineliq'), hasVideo: true,
-    editorialSafeguard: 'No winning-model or RMSE claim is shown while repository experiment tables remain contradictory.'
+    showcase: true, result: 'NASA CMAPSS RUL study with anomaly detection, SHAP attribution, and scheduling.', editorialSafeguard: 'No winning-model or RMSE claim is shown while repository experiment tables remain contradictory.'
   },
   {
     slug: 'topolite', title: 'TopoLite-KD', tier: 'featured', category: 'AI Health & Research', status: 'RESEARCH',
@@ -35,7 +35,7 @@ export const projects = [
     problem: 'Research into compact imaging models needs transparent framing of methods and limitations.',
     solution: 'A topology-aware knowledge-distillation approach explores lightweight architectures, attention, and explainability methods.',
     stack: ['PyTorch', 'depthwise-separable CNN', 'Coordinate Attention', 'persistent homology', 'GUDHI', 'EfficientNet-B0', 'Grad-CAM'], github: 'https://github.com/Ibadat-Ali86/TopoLite-KD-Efficient-Topology-Aware-Knowledge-Distillation-for-COVID-19-CT-Slice-Classification', live: null, sourceAccess: 'public', showSourceLink: true, clientProject: true, image: projectArt('topolite'),
-    editorialSafeguard: 'Academic research context only; no clinical deployment or validation claim is made.'
+    result: 'Research prototype exploring topology-aware knowledge distillation for compact CT classification.', editorialSafeguard: 'Academic research context only; no clinical deployment or validation claim is made.'
   },
   {
     slug: 'adaptiq', title: 'AdaptIQ / ForecastAI', tier: 'featured', category: 'Forecasting & Decision Systems', status: 'LIVE',
@@ -44,7 +44,7 @@ export const projects = [
     problem: 'Forecasting is only useful when teams can move from raw transaction data to automated, interpretable planning outputs.',
     solution: 'An automated forecasting workflow pairing Prophet, XGBoost, SARIMA, and LSTM with regime selection, monitoring hooks, and PDF/CSV report generation.',
     stack: ['Prophet', 'XGBoost', 'SARIMA', 'LSTM', 'FastAPI', 'React', 'Vite', 'Chart.js', 'Docker', 'Hugging Face'], github: 'https://github.com/Ibadat-Ali86/Demand-Sales-Walmart-Forecasting', live: 'https://huggingface.co/spaces/ibadatali/walmart-sales-forecasting-saas', sourceAccess: 'public', showSourceLink: true, clientProject: true, primaryFeature: true, canonicalWalmart: true, image: projectArt('adaptiq'),
-    editorialSafeguard: 'This is the sole Walmart forecasting card; unsupported accuracy language is omitted.'
+    showcase: true, result: 'Four-model comparison with live inference and downloadable planning reports.', editorialSafeguard: 'This is the sole Walmart forecasting card; unsupported accuracy language is omitted.'
   },
   {
     slug: 'vital-link', title: 'VITAL-LINK', tier: 'featured', category: 'AI Health & Applied ML', status: 'PROTOTYPE',
@@ -53,7 +53,7 @@ export const projects = [
     problem: 'Multimodal health prototypes require careful assisted-review framing and useful consolidation of diverse inputs.',
     solution: 'A prototype brings image, audio, and vital-sign inputs into one review-oriented workflow with explicit model boundaries.',
     stack: ['Python', 'Flask', 'Gemini 2.0 Flash', 'Chart.js', 'jsPDF'], github: 'https://github.com/Ibadat-Ali86/data-science-portfolio/tree/main/projects/02-multimodal-medical-diagnosis-ai-gemini', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('vital-link'),
-    editorialSafeguard: 'Prototype and assisted-review language only; no diagnosis or clinical validation claim is made.'
+    result: 'Assisted-review prototype combining image, audio, and vital-sign inputs in one bounded workflow.', editorialSafeguard: 'Prototype and assisted-review language only; no diagnosis or clinical validation claim is made.'
   },
   {
     slug: 'evershine', title: 'Evershine Academy LMS', tier: 'featured', category: 'Full-Stack & Client Platforms', status: 'PRIVATE CLIENT',
@@ -62,7 +62,7 @@ export const projects = [
     problem: 'Multi-campus institutions need reliable integration across admissions, academic portals, role-based dashboards, and LMS access.',
     solution: 'A production client platform built with Next.js 15, Prisma, and PostgreSQL, accompanied by detailed technical documentation for independent client operation.',
     stack: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Prisma', 'PostgreSQL', 'role-based dashboards'], github: null, live: 'https://evershineacadmey.com/', sourceAccess: 'private', showSourceLink: false, image: projectArt('evershine'),
-    primaryFeature: true, clientProject: true, editorialSafeguard: 'Private client project with a live-site action only.'
+    showcase: true, result: 'Production client platform with documented handoff and a live website.', primaryFeature: true, clientProject: true, editorialSafeguard: 'Private client project with a live-site action only.'
   },
   {
     slug: 'ai-lead-generation', title: 'AI-Powered Lead Generation Workflow', tier: 'selected', category: 'AI Automation & Lead Generation', status: 'WORKFLOW PROOF',
@@ -71,7 +71,7 @@ export const projects = [
     problem: 'Lead operations become inconsistent when submissions, qualification, outreach, and tracking live in separate manual steps.',
     solution: 'The workflow captures form submissions, scrapes Google Maps, filters duplicates, classifies promising leads, checks website availability, uses a Gemini-powered agent to prepare outreach, sends Gmail messages, and records lead state in Google Sheets.',
     stack: ['n8n', 'Google Gemini', 'Google Maps', 'Gmail', 'Google Sheets', 'AI agent', 'web scraping'], github: null, live: null, sourceAccess: 'private', showSourceLink: false, workflow: true, image: '/assets/workflows/ai-lead-generation-workflow.png',
-    primaryFeature: true, clientProject: true, editorialSafeguard: 'Client workflow evidence; no conversion, lead-volume, or production claims are made.'
+    showcase: true, result: 'Client workflow proof spanning capture, enrichment, outreach, and reporting.', primaryFeature: true, clientProject: true, editorialSafeguard: 'Client workflow evidence; no conversion, lead-volume, or production claims are made.'
   },
   {
     slug: 'ai-restaurant-chatbot', title: 'AI-Powered WhatsApp Restaurant Chatbot', tier: 'selected', category: 'AI Automation & Conversational Systems', status: 'WORKFLOW PROOF',
@@ -80,7 +80,7 @@ export const projects = [
     problem: 'Restaurant conversations need quick, consistent answers across FAQs, ordering, and inventory without losing context.',
     solution: 'A WhatsApp trigger routes messages to a Gemini-powered AI agent with simple memory and Google Sheets tools for FAQs, orders, and inventory before sending a reply back to the customer.',
     stack: ['n8n', 'WhatsApp Business', 'Google Gemini', 'Simple memory', 'Google Sheets', 'AI agent', 'FAQ + orders + inventory'], github: null, live: null, sourceAccess: 'private', showSourceLink: false, workflow: true, image: '/assets/workflows/ai-restaurant-chatbot.png',
-    clientProject: true, editorialSafeguard: 'Client workflow evidence; no order-volume or production claims are made.'
+    clientProject: true, result: 'Client workflow proof connecting WhatsApp intake, memory, FAQ, order capture, and inventory tools.', editorialSafeguard: 'Client workflow evidence; no order-volume or production claims are made.'
   },
   {
     slug: 'resume-builder', title: 'AI Resume Builder', tier: 'selected', category: 'Full-Stack & Client Platforms', status: 'LIVE',
@@ -88,7 +88,7 @@ export const projects = [
     metric: 'Live resume product workflow',
     problem: 'Resume creation needs an approachable workflow without losing control of structured information and export.',
     solution: 'A guided application connects form state, authentication, and PDF generation in a focused experience.',
-    stack: ['React 18', 'TypeScript', 'Tailwind', 'Supabase', 'Zustand', 'React Hook Form', 'Zod', 'Radix UI', 'html2canvas', 'jsPDF', 'Vite'], github: 'https://github.com/Ibadat-Ali86/Interactive-Resume-Builder', live: 'https://snap-resume-p8lzooqtt-ibadcodes-6074s-projects.vercel.app', sourceAccess: 'public', showSourceLink: true, image: projectArt('resume-builder'), editorialSafeguard: 'Live deployment link is retained; no unsupported outcome claims are shown.'
+    stack: ['React 18', 'TypeScript', 'Tailwind', 'Supabase', 'Zustand', 'React Hook Form', 'Zod', 'Radix UI', 'html2canvas', 'jsPDF', 'Vite'], github: 'https://github.com/Ibadat-Ali86/Interactive-Resume-Builder', live: 'https://snap-resume-p8lzooqtt-ibadcodes-6074s-projects.vercel.app', sourceAccess: 'public', showSourceLink: true, image: projectArt('resume-builder'), result: 'Live product workflow for structured resume creation, authenticated state, and PDF export.', editorialSafeguard: 'Live deployment link is retained; no unsupported outcome claims are shown.'
   },
   {
     slug: 'learning-dashboard', title: 'Personalized AI Learning Dashboard', tier: 'selected', category: 'Full-Stack & Client Platforms', status: 'CASE STUDY',
@@ -96,7 +96,7 @@ export const projects = [
     metric: 'AI-assisted learning workspace',
     problem: 'Learners need a connected place to coordinate goals, resources, reminders, reports, and support.',
     solution: 'A full-stack workspace brings scheduled tasks, structured resources, analytics, and AI assistance together.',
-    stack: ['Flask', 'SQLAlchemy', 'Alembic', 'JWT', 'APScheduler', 'Gemini', 'PyPDF2', 'Pillow', 'pytesseract', 'moviepy', 'JavaScript'], github: 'https://github.com/Ibadat-Ali86/new', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('learning-dashboard'), editorialSafeguard: 'The public title describes the work rather than mirroring the repository name.'
+    stack: ['Flask', 'SQLAlchemy', 'Alembic', 'JWT', 'APScheduler', 'Gemini', 'PyPDF2', 'Pillow', 'pytesseract', 'moviepy', 'JavaScript'], github: 'https://github.com/Ibadat-Ali86/new', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('learning-dashboard'), result: 'Full-stack learning workspace with goals, resources, reminders, analytics, and AI-assisted study.', editorialSafeguard: 'The public title describes the work rather than mirroring the repository name.'
   },
   {
     slug: 'covid-analytics', title: 'COVID-19 Global Analytics Platform', tier: 'selected', category: 'Analytics & BI', status: 'CASE STUDY',
@@ -104,7 +104,7 @@ export const projects = [
     metric: 'Automated ETL · global analytics',
     problem: 'Analytics systems need dependable movement from source data through services to interpretable views.',
     solution: 'An automated ETL and database-backed API layer feeds an interactive analytical interface.',
-    stack: ['Python', 'MySQL', 'FastAPI', 'React', 'TypeScript', 'Tailwind', 'Vite', 'Docker'], github: 'https://github.com/Ibadat-Ali86/Data_Analysis_Projects/tree/main/COVID19-Data-Analytics-Platform', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('covid-analytics'), editorialSafeguard: 'Presented as an analytics case study without medical or public-health outcome claims.'
+    stack: ['Python', 'MySQL', 'FastAPI', 'React', 'TypeScript', 'Tailwind', 'Vite', 'Docker'], github: 'https://github.com/Ibadat-Ali86/Data_Analysis_Projects/tree/main/COVID19-Data-Analytics-Platform', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('covid-analytics'), result: 'Database-backed analytics platform connecting automated ETL, APIs, and an interactive dashboard.', editorialSafeguard: 'Presented as an analytics case study without medical or public-health outcome claims.'
   },
   {
     slug: 'pakistan-ecommerce', title: 'Pakistan E-commerce Price Prediction', tier: 'selected', category: 'Data Science & Forecasting', status: 'ML CASE STUDY',
@@ -112,7 +112,7 @@ export const projects = [
     metric: 'Deployable price-prediction workflow',
     problem: 'Price-prediction work needs a disciplined path from transaction data to reproducible inference.',
     solution: 'A data-science workflow evaluates tree-based approaches and packages an inference-oriented application.',
-    stack: ['Python', 'pandas', 'scikit-learn', 'Random Forest', 'Gradient Boosting', 'Flask', 'Jupyter'], github: 'https://github.com/Ibadat-Ali86/data-science-portfolio/tree/main/projects/01-pakistan-ecommerce-price-prediction', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('pakistan-ecommerce'), editorialSafeguard: 'Unverified R² and row-count figures are omitted.'
+    stack: ['Python', 'pandas', 'scikit-learn', 'Random Forest', 'Gradient Boosting', 'Flask', 'Jupyter'], github: 'https://github.com/Ibadat-Ali86/data-science-portfolio/tree/main/projects/01-pakistan-ecommerce-price-prediction', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('pakistan-ecommerce'), result: 'Deployable inference workflow translating e-commerce transaction data into price estimates.', editorialSafeguard: 'Unverified R² and row-count figures are omitted.'
   },
   {
     slug: 'vendor-analysis', title: 'Vendor Performance Analysis', tier: 'selected', category: 'Analytics & BI', status: 'ANALYTICS',
@@ -120,7 +120,7 @@ export const projects = [
     metric: 'Procurement analytics workflow',
     problem: 'Procurement decisions become difficult when sales, purchasing, pricing, and invoices remain disconnected.',
     solution: 'An analytical workflow connects those datasets to make vendor performance and inventory questions inspectable.',
-    stack: ['Python', 'pandas', 'SQL', 'SQLite', 'Jupyter', 'data visualization'], github: 'https://github.com/Ibadat-Ali86/Data_Analysis_Projects/tree/main/Vendor_Performance_Analysis_Project', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('vendor-analysis'), editorialSafeguard: 'Dataset-volume figures are omitted until independently checked.'
+    stack: ['Python', 'pandas', 'SQL', 'SQLite', 'Jupyter', 'data visualization'], github: 'https://github.com/Ibadat-Ali86/Data_Analysis_Projects/tree/main/Vendor_Performance_Analysis_Project', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('vendor-analysis'), result: 'Procurement analysis workflow connecting sales, purchases, pricing, invoices, and vendor performance.', editorialSafeguard: 'Dataset-volume figures are omitted until independently checked.'
   },
   {
     slug: 'mnist', title: 'MNIST Logistic Regression', tier: 'lab', category: 'ML & Data Labs', status: 'ML LAB',
@@ -167,6 +167,24 @@ export const projects = [
 export const excludedProjectNames = [
   'Data_Analysis_Projects', 'ML_Projects', 'R_Shiny-Web_Apps', 'portfolio', 'Learning_Dasboard', 'My_Python_Projects', 'claw-code', 'everything-claude-code', 'data-science-portfolio'
 ];
+
+export const showcaseProjectSlugs = ['evershine', 'adaptiq', 'sentineliq', 'carevision', 'ai-lead-generation', 'codescope'];
+
+export const secondaryProjectGroups = [
+  {
+    label: 'PRODUCTS & AUTOMATION',
+    description: 'Additional product and workflow work that shows how the same delivery mindset travels from an interface to the operating logic behind it.',
+    slugs: ['ai-restaurant-chatbot', 'resume-builder', 'learning-dashboard', 'covid-analytics']
+  },
+  {
+    label: 'RESEARCH & ANALYTICS',
+    description: 'Applied research and decision-support studies with the methods, boundaries, and implementation context kept visible.',
+    slugs: ['topolite', 'vital-link', 'pakistan-ecommerce', 'vendor-analysis']
+  }
+];
+
+export const secondaryProjectSlugs = secondaryProjectGroups.flatMap(({ slugs }) => slugs);
+export const professionalProjectSlugs = [...showcaseProjectSlugs, ...secondaryProjectSlugs];
 
 export function projectPlan(project) {
   if (project.workflow) return 'Map the business trigger to deterministic qualification, agent reasoning, tool calls, and traceable output.';

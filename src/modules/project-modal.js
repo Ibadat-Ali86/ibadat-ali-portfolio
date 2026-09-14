@@ -28,6 +28,7 @@ function openProject(project, opener) {
   const privateClient = project.sourceAccess === 'private';
   setText('[data-modal-status]', privateClient ? 'PRIVATE CLIENT PROJECT' : project.clientProject ? `CLIENT PROJECT · ${project.status}` : project.status);
   setText('[data-modal-metric]', project.metric);
+  setText('[data-modal-result]', `RESULT — ${project.result ?? 'Scope and delivery details are available in the case study.'}`);
   setText('[data-modal-title]', project.title);
   setText('[data-modal-hook]', project.hook);
   setText('[data-modal-problem]', project.problem ?? `The ${project.category.toLowerCase()} work needed an inspectable, focused path from input to useful output.`);

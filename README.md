@@ -10,13 +10,14 @@ A responsive, static Vite portfolio for Ibadat Ali: AI systems, research enginee
 - One canonical project source: `src/data/projects.js`
 - A serverless `/api/chat` route using `meta/llama-3.1-8b-instruct` through NVIDIA's hosted API
 
-The build-time renderer writes all project cards into `index.html`, so project content remains available before JavaScript loads.
+The build-time renderer writes six primary showcase cards, eight additional professional project cards, and a fourteen-item work index into `index.html`, so client-facing content remains available before JavaScript loads. The complete nineteen-project catalog remains in the canonical data source; five foundational lab exercises are intentionally excluded from the public page.
 
 ## Project hierarchy
 
-- 7 featured systems
-- 7 selected case studies, including two workflow-proof automations supplied as portfolio evidence
-- 5 labs and compact tools
+- 6 curated public case studies, ordered for client due diligence
+- 8 additional professional projects grouped into Products & Automation and Research & Analytics
+- 5 foundational classifier and exercise labs preserved in `src/data/projects.js` but excluded from the client-facing page
+- Client and workflow evidence is labeled explicitly, with private work protected from source links
 
 Parent collections and duplicate/upstream repositories are intentionally excluded. The private-client card presents its required public live-site action only.
 
@@ -47,7 +48,7 @@ npm run test:links
 - Generated abstract artwork lives in `public/assets/generated/`; provenance is documented there.
 - The profile image is user-supplied and optimized locally; no generated likeness is used.
 - The interview section is intentionally absent from the public page until a video, poster, and captions are supplied.
-- No form endpoint or analytics provider has been configured.
+- The contact form uses a local `mailto:` fallback; no external form endpoint or analytics provider has been configured.
 
 ## Deployment
 
