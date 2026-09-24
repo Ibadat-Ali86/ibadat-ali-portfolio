@@ -46,7 +46,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .availability-dot, .signal-dot { width: .45rem; height: .45rem; background: var(--color-accent); box-shadow: none; }
 .hero .eyebrow { margin-bottom: 1.4rem; color: var(--color-structure); font-size: .6875rem; font-weight: 500; letter-spacing: .08em; }
 .eyebrow__focus { display: inline-block; padding: .2rem .35rem; border-bottom: 1px solid var(--color-accent); background: var(--color-highlight); color: var(--color-accent-text); font-weight: 600; letter-spacing: .06em; }
-.hero h1 { margin-bottom: .9rem; color: var(--color-ink); font-size: clamp(3rem, 6vw, 3.5rem); }
+.hero h1 { max-width: 18ch; margin-bottom: .9rem; color: var(--color-ink); font-size: clamp(2.8rem, 5.6vw, 4.35rem); line-height: 1.04; text-wrap: balance; }
 .hero h1 em { display: block; color: var(--color-ink); font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: -.02em; }
 .brush-underline { display: block; width: min(17.5rem, 75%); height: .75rem; margin: -.1rem 0 1.55rem; overflow: visible; }
 .brush-underline path { stroke: var(--color-accent); stroke-dasharray: 1; stroke-dashoffset: 1; animation: drawLine var(--duration-crawl) var(--ease-organic) .7s forwards; }
@@ -199,7 +199,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .case-study-index__item h3 { color: var(--color-ink); font-size: 1.5rem; }
 .catalog-group__heading { border-color: var(--color-rule); }
 .catalog-group__heading p { color: var(--color-structure); }
-.catalog-group__heading .section-index { color: var(--color-accent-text); }
+.catalog-group__heading .section-index { color: var(--color-accent-text); font-size: .72rem; }
 .catalog-card { border-color: var(--color-rule); border-radius: 4px; background: var(--color-surface-1); box-shadow: none; }
 .catalog-card:hover, .catalog-card:focus-within { border-color: var(--color-accent); box-shadow: var(--shadow-hover); }
 .catalog-card__media { background: var(--color-surface-2); }
@@ -266,7 +266,7 @@ html.js .hero .button-row { animation: headingReveal 400ms var(--ease-organic) 1
   .hero { padding-top: 3.5rem; }
   .hero__grid, .section-heading--split, .research__grid, .about__grid, .contact__grid { grid-template-columns: 1fr; gap: 2rem; }
   .hero__visual { max-width: 31rem; width: 100%; margin: 0 auto; }
-  .hero h1 { max-width: 12ch; font-size: clamp(2.8rem, 12vw, 3.5rem); }
+  .hero h1 { max-width: 18ch; font-size: clamp(2.65rem, 9.5vw, 3.65rem); line-height: 1.02; }
   .proof-strip { grid-template-columns: 1fr; gap: 1rem; margin-top: 2.5rem; }
   .proof-strip p { justify-self: start; padding-top: 1rem; border-top: 1px solid var(--color-rule); }
   .metrics-strip { width: calc(100% - 36px); grid-template-columns: repeat(2, 1fr); }

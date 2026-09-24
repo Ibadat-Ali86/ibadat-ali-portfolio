@@ -107,15 +107,20 @@ function projectCatalogCard(project, index) {
 
 function renderAtlas() {
   const labSlugs = projects.filter(({ tier }) => tier === 'lab').map(({ slug }) => slug);
-  const catalogGroups = [
-    { label: 'FEATURED SYSTEMS', note: 'Highest-signal client, delivery, and systems work.', slugs: showcaseProjectSlugs },
-    { label: 'SELECTED BUILDS & STUDIES', note: 'Additional products, workflows, research, and analytics projects.', slugs: secondaryProjectSlugs },
-    { label: 'LABS & COMPACT TOOLS', note: 'Focused exercises and utilities retained for technical breadth.', slugs: labSlugs }
+  const orderedSlugs = [...showcaseProjectSlugs, ...secondaryProjectSlugs, ...labSlugs];
+  const catalogRows = [
+    { note: 'Priority client work and featured systems.' },
+    { note: 'More featured work and selected builds.' },
+    { note: 'Research, analytics, and selected products.' },
+    { label: 'LABS & COMPACT TOOLS', note: 'Focused exercises and utilities retained for technical breadth.' }
   ];
-  let index = 0;
-  const groups = catalogGroups.map((group) => {
-    const cards = group.slugs.map((slug) => projects.find((project) => project.slug === slug)).filter(Boolean).map((project) => projectCatalogCard(project, index++)).join('\n');
-    return `<section class="catalog-group" data-catalog-group><div class="catalog-group__heading"><p class="section-index">${escapeHtml(group.label)}</p><p>${escapeHtml(group.note)}</p></div><div class="project-catalog__grid">${cards}</div></section>`;
+  const groups = catalogRows.map((row, rowIndex) => {
+    const start = rowIndex * 5;
+    const slugs = orderedSlugs.slice(start, start + 5);
+    const cards = slugs.map((slug) => projects.find((project) => project.slug === slug)).filter(Boolean).map((project, index) => projectCatalogCard(project, start + index)).join('\n');
+    const end = start + slugs.length;
+    const label = row.label ?? `PROJECTS ${String(start + 1).padStart(2, '0')}–${String(end).padStart(2, '0')}`;
+    return `<section class="catalog-group" data-catalog-group><div class="catalog-group__heading"><p class="section-index">${escapeHtml(label)}</p><p>${escapeHtml(row.note)}</p></div><div class="project-catalog__grid">${cards}</div></section>`;
   }).join('\n');
   return `<div class="filter-bar" role="group" aria-label="Filter project catalog"><button class="filter-button is-selected" type="button" data-filter="all" aria-pressed="true">ALL PROJECTS</button><button class="filter-button" type="button" data-filter="featured" aria-pressed="false">FEATURED SYSTEMS</button><button class="filter-button" type="button" data-filter="selected" aria-pressed="false">SELECTED BUILDS</button><button class="filter-button" type="button" data-filter="lab" aria-pressed="false">LABS &amp; TOOLS</button></div><div class="project-catalog" data-project-catalog>${groups}</div>`;
 }

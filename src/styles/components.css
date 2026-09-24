@@ -107,7 +107,7 @@
 .catalog-group__heading { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding-bottom: .75rem; border-bottom: 1px solid var(--line); }
 .catalog-group__heading p { margin: 0; color: var(--ink-soft); font-size: .82rem; }
 .catalog-group__heading .section-index { color: var(--accent-deep); font-size: .64rem; font-weight: 700; letter-spacing: .1em; }
-.project-catalog__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.project-catalog__grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(.65rem, 1.25vw, 1rem); }
 .catalog-card { display: flex; min-width: 0; flex-direction: column; overflow: hidden; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: rgba(17, 29, 43, .72); transition: transform .32s ease, border-color .32s ease, box-shadow .32s ease; }
 .catalog-card:hover, .catalog-card:focus-within { transform: translateY(-5px); border-color: var(--accent); box-shadow: var(--shadow-hover); }
 .catalog-card__media { aspect-ratio: 16 / 8; overflow: hidden; background: var(--paper-deep); }
@@ -115,7 +115,7 @@
 .catalog-card:hover .catalog-card__media img, .catalog-card:focus-within .catalog-card__media img { transform: scale(1.04); }
 .catalog-card__body { display: flex; flex: 1; flex-direction: column; gap: .65rem; padding: 1rem; }
 .catalog-card__meta { display: flex; align-items: flex-start; justify-content: space-between; gap: .5rem; color: var(--muted); font-size: .6rem; font-weight: 700; letter-spacing: .08em; }
-.catalog-card__body h3 { margin: 0; font-size: 1.25rem; }
+.catalog-card__body h3 { margin: 0; font-size: clamp(1rem, 1.15vw, 1.2rem); line-height: 1.2; }
 .catalog-card__body p { margin: 0; color: var(--ink-soft); font-size: .78rem; line-height: 1.45; }
 .catalog-card__body .catalog-card__category { color: var(--accent-deep); font-size: .62rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
 .catalog-card__body .project-card__open { margin-top: auto; padding-top: .35rem; align-self: flex-start; }

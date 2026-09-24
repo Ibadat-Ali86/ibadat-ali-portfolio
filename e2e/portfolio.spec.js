@@ -7,7 +7,7 @@ test('renders the focused portfolio and professional project sections', async ({
 
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle('Ibadat Ali — AI Automation & Workflow Engineer');
-  await expect(page.getByRole('heading', { name: 'Business problems into working systems.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'AI systems for real business challenges.' })).toBeVisible();
   await expect(page.getByText('I build AI-powered workflows that replace manual processes')).toBeVisible();
   await expect(page.locator('[data-project-card]')).toHaveCount(15);
   await expect(page.locator('.project-grid--featured [data-project-card]')).toHaveCount(7);
