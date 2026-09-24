@@ -138,6 +138,18 @@ test('applies the requested dark-and-amber brand system and readable theme metad
   assert.match(template, /family=DM\+Sans:wght@400;500;600/);
 });
 
+test('animates portfolio metrics only when visible and keeps static accessible values', async () => {
+  const template = await readFile(new URL('../index.template.html', import.meta.url), 'utf8');
+  const module = await readFile(new URL('../src/modules/metric-counters.js', import.meta.url), 'utf8');
+  const main = await readFile(new URL('../src/main.js', import.meta.url), 'utf8');
+  assert.equal((template.match(/data-count-up="\d+"/g) ?? []).length, 4);
+  assert.equal((template.match(/class="sr-only">0[347] /g) ?? []).length, 3);
+  assert.match(module, /prefersReducedMotion\(\)/);
+  assert.match(module, /IntersectionObserver/);
+  assert.match(module, /requestAnimationFrame/);
+  assert.match(main, /initMetricCounters\(\)/);
+});
+
 test('renders the curated technology stack in an accessible left-to-right marquee', async () => {
   const renderer = await readFile(new URL('../scripts/render-static.mjs', import.meta.url), 'utf8');
   const template = await readFile(new URL('../index.template.html', import.meta.url), 'utf8');

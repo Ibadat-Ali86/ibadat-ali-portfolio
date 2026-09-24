@@ -13,6 +13,7 @@ import { prefersReducedMotion } from './modules/reduced-motion.js';
 import { initPortfolioAssistant } from './modules/portfolio-assistant.js';
 import { initContactForm } from './modules/contact-form.js';
 import { initProjectModal } from './modules/project-modal.js';
+import { initMetricCounters } from './modules/metric-counters.js';
 
 document.documentElement.classList.add('js');
 document.querySelector('[data-current-year]').textContent = String(new Date().getFullYear());
@@ -22,4 +23,5 @@ initProjectFilter();
 initPortfolioAssistant();
 initContactForm();
 initProjectModal();
+initMetricCounters();
 if (!prefersReducedMotion()) initRevealMotion();
