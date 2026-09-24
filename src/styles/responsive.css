@@ -2,6 +2,7 @@
   .container { width: min(var(--content), calc(100% - 52px)); }
   .hero__grid { grid-template-columns: minmax(0, 1fr) minmax(300px, .78fr); gap: 2rem; }
   .hero__visual { min-height: 460px; }
+  .project-catalog__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .nav-links { gap: 1rem; }
   .nav-links a { font-size: .6rem; }
 }
@@ -29,6 +30,7 @@
   .section-heading--split, .research__grid, .about__grid, .contact__grid { grid-template-columns: 1fr; gap: 2rem; }
   .section-heading--split > p { max-width: 45ch; }
   .project-grid--featured, .project-grid--selected, .project-grid--lab { grid-template-columns: 1fr; }
+  .project-catalog__grid { grid-template-columns: 1fr; }
   .project-card--evershine { grid-column: auto; }
   .project-modal { width: calc(100% - 1rem); max-height: calc(100dvh - 1rem); }
   .project-modal__panel { grid-template-columns: 1fr; max-height: calc(100dvh - 1rem); }

@@ -2,6 +2,25 @@ const projectArt = (slug) => `/assets/generated/project-${slug}.webp`;
 
 export const projects = [
   {
+    slug: 'payguard-ai', title: 'WhatsApp Transaction Verification AI Agent', tier: 'featured', category: 'AI Automation & Payment Verification', status: 'CLIENT DELIVERY',
+    hook: 'A controlled WhatsApp workflow that turns payment screenshots into OCR-backed, Stripe-authoritative review outcomes.',
+    metric: 'WhatsApp intake · OCR · duplicate detection · Stripe verification',
+    problem: 'Manual payment screenshot review is slow and vulnerable to ambiguous OCR, repeated submissions, fake or unclear evidence, and transient integration failures.',
+    solution: 'A Baileys Node.js bot receives images from an allowlisted WhatsApp group, persists work through a fair queue, uses FastAPI/Tesseract with a bounded Groq fallback, orchestrates n8n, verifies eligible evidence against Stripe, detects duplicates, and fails closed when proof remains ambiguous.',
+    stack: ['WhatsApp / Baileys', 'Node.js', 'Python', 'FastAPI', 'Tesseract OCR', 'Groq Vision', 'n8n', 'Stripe API', 'Docker', 'DigitalOcean'], github: 'https://github.com/Ibadat-Ali86/whatsapp-transaction-ai-agent', live: null, sourceAccess: 'public', showSourceLink: true, clientProject: true, primaryFeature: true, showcase: true, image: '/assets/projects/payguard-ai-thumbnail.png',
+    result: 'Repository-backed payment-verification workflow with queueing, OCR fallback, Stripe reconciliation, duplicate handling, and deployment documentation.',
+    evidence: {
+      summary: 'Verification evidence: 100 Node.js tests and 153 Python tests passed in the repository on 2026-09-24. The project documentation still marks live WhatsApp/Stripe acceptance and DigitalOcean approval as controlled follow-ups; the supplied droplet screenshot is not an uptime guarantee.',
+      links: [
+        { href: 'https://github.com/Ibadat-Ali86/whatsapp-transaction-ai-agent/blob/main/docs/SYSTEM_ARCHITECTURE.md', label: 'ARCHITECTURE SPEC' },
+        { href: 'https://github.com/Ibadat-Ali86/whatsapp-transaction-ai-agent/blob/main/docs/TESTING_STRATEGY.md', label: 'TESTING STRATEGY' },
+        { href: 'https://github.com/Ibadat-Ali86/whatsapp-transaction-ai-agent/blob/main/docs/SECURITY.md', label: 'SECURITY & PRIVACY' },
+        { href: '/assets/projects/payguard-digitalocean-proof.png', label: 'SUPPLIED DROPLET SCREENSHOT' }
+      ]
+    },
+    editorialSafeguard: 'The thumbnail is a supplied presentation visual; dashboard figures and uptime language inside the artwork are not treated as independently verified telemetry. No public payment-volume or accuracy claim is made.'
+  },
+  {
     slug: 'codescope', title: 'CodeScope MCP Preflight', tier: 'featured', category: 'AI Agents & Developer Tools', status: 'LOCAL TOOL',
     hook: 'Local-first MCP server serving Tree-sitter AST intelligence and vector retrieval as tool context for AI agents.',
     metric: 'Agent tool-calling · MCP & RAG',
@@ -168,7 +187,7 @@ export const excludedProjectNames = [
   'Data_Analysis_Projects', 'ML_Projects', 'R_Shiny-Web_Apps', 'portfolio', 'Learning_Dasboard', 'My_Python_Projects', 'claw-code', 'everything-claude-code', 'data-science-portfolio'
 ];
 
-export const showcaseProjectSlugs = ['evershine', 'adaptiq', 'sentineliq', 'carevision', 'ai-lead-generation', 'codescope'];
+export const showcaseProjectSlugs = ['payguard-ai', 'evershine', 'adaptiq', 'sentineliq', 'carevision', 'ai-lead-generation', 'codescope'];
 
 export const secondaryProjectGroups = [
   {
@@ -188,6 +207,7 @@ export const professionalProjectSlugs = [...showcaseProjectSlugs, ...secondaryPr
 
 export function projectPlan(project) {
   if (project.workflow) return 'Map the business trigger to deterministic qualification, agent reasoning, tool calls, and traceable output.';
+  if (project.category.includes('Payment Verification')) return 'Keep payment evidence bounded and auditable: receive the screenshot safely, extract deterministic fields, reconcile against Stripe, detect repeats, and require review when the evidence is not unique.';
   if (project.category.includes('Forecasting')) return 'Define the data horizon, establish a repeatable forecasting baseline, compare model families, and design a decision-ready delivery surface.';
   if (project.category.includes('Predictive Maintenance')) return 'Connect sensor history to a monitored prediction path, add anomaly and explanation signals, then route the result into an operational decision.';
   if (project.category.includes('Analytics')) return 'Move from raw tables to a clean analytical model, expose the important patterns, and turn them into a clear decision surface.';

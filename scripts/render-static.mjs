@@ -10,18 +10,18 @@ const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, (character) => (
 
 function assertProjectInventory() {
   const counts = projects.reduce((result, project) => ({ ...result, [project.tier]: (result[project.tier] ?? 0) + 1 }), {});
-  if (projects.length !== 19 || counts.featured !== 7 || counts.selected !== 7 || counts.lab !== 5) throw new Error('Project inventory must remain 7 featured, 7 selected, and 5 labs.');
+  if (projects.length !== 20 || counts.featured !== 8 || counts.selected !== 7 || counts.lab !== 5) throw new Error('Project inventory must remain 8 featured, 7 selected, and 5 labs.');
   if (new Set(projects.map(({ slug }) => slug)).size !== projects.length) throw new Error('Project slugs must be unique.');
   const privateClient = projects.find(({ slug }) => slug === 'evershine');
   if (!privateClient || privateClient.github !== null || privateClient.showSourceLink !== false || privateClient.sourceAccess !== 'private') throw new Error('Private client guard failed.');
   if (projects.some(({ title }) => excludedProjectNames.includes(title))) throw new Error('An excluded collection cannot render as a project.');
   if (projects.filter(({ canonicalWalmart }) => canonicalWalmart).length !== 1 || !projects.find(({ slug }) => slug === 'adaptiq').canonicalWalmart) throw new Error('Only AdaptIQ may be the Walmart forecasting card.');
   const primaryFeatureSlugs = projects.filter(({ primaryFeature }) => primaryFeature).map(({ slug }) => slug);
-  const requiredPrimaryFeatures = ['evershine', 'adaptiq', 'ai-lead-generation'];
+  const requiredPrimaryFeatures = ['payguard-ai', 'evershine', 'adaptiq', 'ai-lead-generation'];
   if (primaryFeatureSlugs.length !== requiredPrimaryFeatures.length || requiredPrimaryFeatures.some((slug) => !primaryFeatureSlugs.includes(slug))) throw new Error('Selected work must contain the three approved client projects.');
-  const attachedClientProjects = ['sentineliq', 'topolite', 'adaptiq', 'evershine', 'ai-lead-generation', 'ai-restaurant-chatbot', 'netflix'];
+  const attachedClientProjects = ['payguard-ai', 'sentineliq', 'topolite', 'adaptiq', 'evershine', 'ai-lead-generation', 'ai-restaurant-chatbot', 'netflix'];
   if (attachedClientProjects.some((slug) => !projects.find((project) => project.slug === slug && project.clientProject))) throw new Error('Attached client projects must remain visibly labeled as client work.');
-  if (showcaseProjectSlugs.length !== 6 || showcaseProjectSlugs.some((slug) => !projects.find((project) => project.slug === slug && project.showcase))) throw new Error('Public showcase must contain the six approved case studies.');
+  if (showcaseProjectSlugs.length !== 7 || showcaseProjectSlugs.some((slug) => !projects.find((project) => project.slug === slug && project.showcase))) throw new Error('Public showcase must contain the seven approved case studies.');
   if (secondaryProjectSlugs.length !== 8 || new Set(secondaryProjectSlugs).size !== secondaryProjectSlugs.length || secondaryProjectSlugs.some((slug) => !projects.find((project) => project.slug === slug && project.tier !== 'lab'))) throw new Error('Additional work must contain eight non-lab projects.');
   if (new Set(professionalProjectSlugs).size !== professionalProjectSlugs.length || professionalProjectSlugs.some((slug) => !projects.some((project) => project.slug === slug))) throw new Error('Professional project slugs must be unique and resolvable.');
 }
@@ -53,6 +53,7 @@ function imageAlt(project) {
     topolite: 'abstract topology-aware medical imaging research diagram',
     adaptiq: 'abstract retail forecasting and decision-support system diagram',
     'vital-link': 'abstract multimodal health prototype workflow diagram',
+    'payguard-ai': 'WhatsApp payment verification and OCR workflow presentation',
     evershine: 'abstract education platform and learning management system diagram',
     'ai-lead-generation': 'AI-powered lead generation n8n workflow diagram',
     'ai-restaurant-chatbot': 'AI-powered WhatsApp restaurant chatbot n8n workflow diagram',
@@ -95,9 +96,28 @@ function renderSecondaryWork() {
   }).join('\n');
 }
 
+function projectCatalogCard(project, index) {
+  const isPrivateClient = project.sourceAccess === 'private';
+  const clientBadge = project.clientProject && !isPrivateClient ? '<span class="client-label">CLIENT PROJECT</span>' : '';
+  return `<article class="catalog-card catalog-card--${escapeHtml(project.tier)}" data-project-catalog-card data-tier="${escapeHtml(project.tier)}" data-category="${escapeHtml(project.category)}" data-reveal>
+    <figure class="catalog-card__media"><img src="${escapeHtml(project.image)}" alt="${escapeHtml(imageAlt(project))}" width="1600" height="1000" loading="lazy" decoding="async"></figure>
+    <div class="catalog-card__body"><div class="catalog-card__meta"><span>${String(index + 1).padStart(2, '0')}</span><span class="project-meta__badges"><span class="status-label">${isPrivateClient ? 'PRIVATE CLIENT PROJECT' : escapeHtml(project.status)}</span>${clientBadge}</span></div><h3>${escapeHtml(project.title)}</h3><p class="catalog-card__category">${escapeHtml(project.category)}</p><p>${escapeHtml(project.metric)}</p><button class="text-link project-card__open" type="button" data-project-open="${escapeHtml(project.slug)}" aria-label="Open case study: ${escapeHtml(project.title)}">OPEN CASE STUDY <span aria-hidden="true">↗</span></button></div>
+  </article>`;
+}
+
 function renderAtlas() {
-  const professionalProjects = professionalProjectSlugs.map((slug) => projects.find((project) => project.slug === slug)).filter(Boolean);
-  return `<div class="case-study-index">${professionalProjects.map((project, index) => `<article class="case-study-index__item" data-reveal><span>${String(index + 1).padStart(2, '0')}</span><div><p>${escapeHtml(project.status)}</p><h3>${escapeHtml(project.title)}</h3></div><button class="text-link project-card__open" type="button" data-project-open="${escapeHtml(project.slug)}">OPEN CASE STUDY <span aria-hidden="true">↗</span></button></article>`).join('')}</div><p class="atlas-archive-note">The five foundational classifier and exercise labs remain preserved in the source archive, but are intentionally excluded from this client-facing work index.</p>`;
+  const labSlugs = projects.filter(({ tier }) => tier === 'lab').map(({ slug }) => slug);
+  const catalogGroups = [
+    { label: 'FEATURED SYSTEMS', note: 'Highest-signal client, delivery, and systems work.', slugs: showcaseProjectSlugs },
+    { label: 'SELECTED BUILDS & STUDIES', note: 'Additional products, workflows, research, and analytics projects.', slugs: secondaryProjectSlugs },
+    { label: 'LABS & COMPACT TOOLS', note: 'Focused exercises and utilities retained for technical breadth.', slugs: labSlugs }
+  ];
+  let index = 0;
+  const groups = catalogGroups.map((group) => {
+    const cards = group.slugs.map((slug) => projects.find((project) => project.slug === slug)).filter(Boolean).map((project) => projectCatalogCard(project, index++)).join('\n');
+    return `<section class="catalog-group" data-catalog-group><div class="catalog-group__heading"><p class="section-index">${escapeHtml(group.label)}</p><p>${escapeHtml(group.note)}</p></div><div class="project-catalog__grid">${cards}</div></section>`;
+  }).join('\n');
+  return `<div class="filter-bar" role="group" aria-label="Filter project catalog"><button class="filter-button is-selected" type="button" data-filter="all" aria-pressed="true">ALL PROJECTS</button><button class="filter-button" type="button" data-filter="featured" aria-pressed="false">FEATURED SYSTEMS</button><button class="filter-button" type="button" data-filter="selected" aria-pressed="false">SELECTED BUILDS</button><button class="filter-button" type="button" data-filter="lab" aria-pressed="false">LABS &amp; TOOLS</button></div><div class="project-catalog" data-project-catalog>${groups}</div>`;
 }
 
 function renderExperience() {

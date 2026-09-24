@@ -197,6 +197,18 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .case-study-index__item > span { color: var(--color-accent-text); font-family: var(--font-serif); font-size: 1.8rem; }
 .case-study-index__item p { color: var(--color-mid-text); font-family: var(--font-sans); }
 .case-study-index__item h3 { color: var(--color-ink); font-size: 1.5rem; }
+.catalog-group__heading { border-color: var(--color-rule); }
+.catalog-group__heading p { color: var(--color-structure); }
+.catalog-group__heading .section-index { color: var(--color-accent-text); }
+.catalog-card { border-color: var(--color-rule); border-radius: 4px; background: var(--color-surface-1); box-shadow: none; }
+.catalog-card:hover, .catalog-card:focus-within { border-color: var(--color-accent); box-shadow: var(--shadow-hover); }
+.catalog-card__media { background: var(--color-surface-2); }
+.catalog-card__body h3 { color: var(--color-ink); font-family: var(--font-serif); font-size: 1.35rem; font-weight: 400; }
+.catalog-card__meta > span:first-child { color: var(--color-structure); }
+.catalog-card__body p { color: var(--color-structure); }
+.catalog-card__body .catalog-card__category { color: var(--color-accent-text); }
+.project-modal__evidence { border-color: var(--color-rule); border-radius: 4px; background: var(--color-surface-1); }
+.project-modal__evidence > p { color: var(--color-structure); }
 
 .contact { padding-bottom: var(--section); }
 .contact__grid { align-items: start; gap: clamp(2rem, 8vw, 8rem); }

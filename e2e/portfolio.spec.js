@@ -9,8 +9,8 @@ test('renders the focused portfolio and professional project sections', async ({
   await expect(page).toHaveTitle('Ibadat Ali — AI Automation & Workflow Engineer');
   await expect(page.getByRole('heading', { name: 'Business problems into working systems.' })).toBeVisible();
   await expect(page.getByText('I build AI-powered workflows that replace manual processes')).toBeVisible();
-  await expect(page.locator('[data-project-card]')).toHaveCount(14);
-  await expect(page.locator('.project-grid--featured [data-project-card]')).toHaveCount(6);
+  await expect(page.locator('[data-project-card]')).toHaveCount(15);
+  await expect(page.locator('.project-grid--featured [data-project-card]')).toHaveCount(7);
   await expect(page.locator('.project-grid--secondary [data-project-card]')).toHaveCount(8);
   const secondaryResults = await page.locator('.project-grid--secondary .project-result').allTextContents();
   expect(secondaryResults.every((result) => !result.includes('Scope and delivery details are available'))).toBe(true);
@@ -18,14 +18,18 @@ test('renders the focused portfolio and professional project sections', async ({
   await expect(page.locator('[data-project-card][data-tier="lab"]')).toHaveCount(0);
   await expect(page.getByRole('heading', { name: 'A few systems I’m proud to have built.' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'More systems worth exploring.' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'All professional work.' })).toBeVisible();
-  await expect(page.locator('.case-study-index__item')).toHaveCount(14);
+  await expect(page.getByRole('heading', { name: 'Every project, in sequence.' })).toBeVisible();
+  await expect(page.locator('[data-project-catalog-card]')).toHaveCount(20);
+  await expect(page.locator('[data-project-catalog-card][data-tier="featured"]')).toHaveCount(8);
+  await expect(page.locator('[data-project-catalog-card][data-tier="selected"]')).toHaveCount(7);
+  await expect(page.locator('[data-project-catalog-card][data-tier="lab"]')).toHaveCount(5);
+  await expect(page.locator('.project-card--payguard-ai h3')).toBeVisible();
   await expect(page.locator('.project-card--ai-lead-generation h3')).toBeVisible();
   await expect(page.locator('.project-card--ai-restaurant-chatbot h3')).toBeVisible();
   await expect(page.locator('.project-card--evershine h3')).toBeVisible();
   await expect(page.locator('.project-card--evershine [data-link-type="live"]')).toHaveText(/visit live website/i);
   await expect(page.locator('.project-card--evershine [data-link-type="source"]')).toHaveCount(0);
-  for (const slug of ['sentineliq', 'adaptiq', 'ai-lead-generation']) {
+  for (const slug of ['payguard-ai', 'sentineliq', 'adaptiq', 'ai-lead-generation']) {
     await expect(page.locator(`.project-card--${slug} .client-label`)).toHaveText('CLIENT PROJECT');
   }
   await expect(page.locator('.social-link[href*="instagram.com"]')).toHaveCount(1);
@@ -46,8 +50,8 @@ test('renders the focused portfolio and professional project sections', async ({
   await expect(page.locator('.contact-form__grid')).toHaveCSS('display', 'grid');
   await expect(page.locator('.contact-form__grid label')).toHaveCount(4);
   await expect(page.locator('a[href="/Ibadat_Ali_Resume.pdf"]')).toHaveCount(3);
-  await expect(page.locator('[data-project-card] img[alt]:not([alt=""])')).toHaveCount(14);
-  await expect(page.getByText('The five foundational classifier and exercise labs remain preserved in the source archive')).toBeVisible();
+  await expect(page.locator('[data-project-card] img[alt]:not([alt=""])')).toHaveCount(15);
+  await expect(page.getByText('LABS & COMPACT TOOLS')).toBeVisible();
   await expect(page.locator('#interview')).toHaveCount(0);
   await expect(page.locator('[data-portfolio-assistant]')).toHaveCount(0);
 
@@ -92,6 +96,13 @@ test('opens consistent case studies and preserves private-client boundaries', as
   await expect(modal.locator('[data-modal-plan]')).not.toBeEmpty();
   await expect(modal.locator('[data-modal-solution]')).not.toBeEmpty();
   await expect(modal.locator('[data-modal-stack] li')).toHaveCount(6);
+  await modal.locator('.project-modal__close').click();
+
+  await page.locator('.project-card--payguard-ai [data-project-open]').click();
+  await expect(modal.locator('[data-modal-title]')).toHaveText('WhatsApp Transaction Verification AI Agent');
+  await expect(modal.locator('[data-modal-evidence-block]')).toBeVisible();
+  await expect(modal.locator('[data-modal-evidence]')).toContainText('100 Node.js tests and 153 Python tests');
+  await expect(modal.locator('[data-modal-evidence-links] a[href*="payguard-digitalocean-proof.png"]')).toHaveCount(1);
   await modal.locator('.project-modal__close').click();
   await expect(modal).not.toBeVisible();
 
@@ -153,7 +164,7 @@ test('keeps content and thumbnails readable across mobile and desktop widths', a
     const subtitle = await page.locator('.featured .section-heading > p').boundingBox();
     expect(heading.y + heading.height <= subtitle.y || heading.x + heading.width <= subtitle.x).toBe(true);
   }
-  for (const image of await page.locator('[data-project-card] img').all()) {
+  for (const image of await page.locator('[data-project-card] img, [data-project-catalog-card] img').all()) {
     await image.scrollIntoViewIfNeeded();
     await expect.poll(() => image.evaluate((element) => element.complete && element.naturalWidth > 0)).toBe(true);
   }
@@ -174,7 +185,7 @@ test('keeps the page content available without JavaScript', async ({ browser }) 
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto('/', { waitUntil: 'domcontentloaded' });
-  await expect(page.locator('[data-project-card]')).toHaveCount(14);
+  await expect(page.locator('[data-project-card]')).toHaveCount(15);
   for (const selector of ['#expertise h2', '#research h2', '#about h2', '#experience h2', '#atlas h2', '#contact h2']) {
     await expect(page.locator(selector)).toBeVisible();
   }

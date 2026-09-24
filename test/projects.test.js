@@ -6,21 +6,21 @@ import { excludedProjectNames, professionalProjectSlugs, projects, secondaryProj
 
 const externalUrls = (project) => [project.github, project.live].filter(Boolean);
 
-test('keeps the canonical 7 / 7 / 5 project inventory', () => {
-  assert.equal(projects.length, 19);
-  assert.equal(projects.filter(({ tier }) => tier === 'featured').length, 7);
+test('keeps the canonical 8 / 7 / 5 project inventory', () => {
+  assert.equal(projects.length, 20);
+  assert.equal(projects.filter(({ tier }) => tier === 'featured').length, 8);
   assert.equal(projects.filter(({ tier }) => tier === 'selected').length, 7);
   assert.equal(projects.filter(({ tier }) => tier === 'lab').length, 5);
-  assert.deepEqual(projects.slice(0, 7).map(({ title }) => title), ['CodeScope MCP Preflight', 'CareVision', 'SentinelIQ', 'TopoLite-KD', 'AdaptIQ / ForecastAI', 'VITAL-LINK', 'Evershine Academy LMS']);
-  assert.deepEqual(projects.filter(({ primaryFeature }) => primaryFeature).map(({ slug }) => slug), ['adaptiq', 'evershine', 'ai-lead-generation']);
+  assert.deepEqual(projects.slice(0, 8).map(({ title }) => title), ['WhatsApp Transaction Verification AI Agent', 'CodeScope MCP Preflight', 'CareVision', 'SentinelIQ', 'TopoLite-KD', 'AdaptIQ / ForecastAI', 'VITAL-LINK', 'Evershine Academy LMS']);
+  assert.deepEqual(projects.filter(({ primaryFeature }) => primaryFeature).map(({ slug }) => slug), ['payguard-ai', 'adaptiq', 'evershine', 'ai-lead-generation']);
   assert.deepEqual(projects.filter(({ workflow }) => workflow).map(({ slug }) => slug), ['ai-lead-generation', 'ai-restaurant-chatbot']);
 });
 
 test('keeps a focused public portfolio plus a complete professional secondary set', () => {
-  assert.deepEqual(showcaseProjectSlugs, ['evershine', 'adaptiq', 'sentineliq', 'carevision', 'ai-lead-generation', 'codescope']);
+  assert.deepEqual(showcaseProjectSlugs, ['payguard-ai', 'evershine', 'adaptiq', 'sentineliq', 'carevision', 'ai-lead-generation', 'codescope']);
   assert.equal(secondaryProjectGroups.length, 2);
   assert.deepEqual(secondaryProjectSlugs, ['ai-restaurant-chatbot', 'resume-builder', 'learning-dashboard', 'covid-analytics', 'topolite', 'vital-link', 'pakistan-ecommerce', 'vendor-analysis']);
-  assert.equal(professionalProjectSlugs.length, 14);
+  assert.equal(professionalProjectSlugs.length, 15);
   assert.equal(projects.filter(({ slug, tier }) => professionalProjectSlugs.includes(slug) && tier === 'lab').length, 0);
 });
 
@@ -71,6 +71,17 @@ test('keeps workflow proof grounded and source-free', () => {
   });
 });
 
+test('keeps payment-agent evidence explicit and privacy-safe', () => {
+  const payguard = projects.find(({ slug }) => slug === 'payguard-ai');
+  assert.ok(payguard);
+  assert.equal(payguard.github, 'https://github.com/Ibadat-Ali86/whatsapp-transaction-ai-agent');
+  assert.match(payguard.image, /payguard-ai-thumbnail\.png$/);
+  assert.match(payguard.evidence.summary, /100 Node\.js tests and 153 Python tests/);
+  assert.ok(payguard.evidence.links.some(({ href }) => href.endsWith('docs/SECURITY.md')));
+  assert.ok(payguard.evidence.links.some(({ href }) => href.endsWith('payguard-digitalocean-proof.png')));
+  assert.doesNotMatch(JSON.stringify(payguard), /(?:sk_live|sk_test|api[_ -]?key|secret[_ -]?key|password\s*[:=]|token\s*[:=])/i);
+});
+
 test('excludes collection-only repositories and retains one canonical forecast card', () => {
   assert.equal(projects.some(({ title }) => excludedProjectNames.includes(title)), false);
   assert.equal(projects.filter(({ canonicalWalmart }) => canonicalWalmart).length, 1);
@@ -89,10 +100,11 @@ test('renderer uses explicit links and never derives a source URL from a slug', 
   assert.match(renderer, /project\.showSourceLink/);
 });
 
-test('renders a focused case-study index and descriptive project media text', async () => {
+test('renders a complete catalog and descriptive project media text', async () => {
   const renderer = await readFile(new URL('../scripts/render-static.mjs', import.meta.url), 'utf8');
   const linkChecker = await readFile(new URL('../scripts/check-links.mjs', import.meta.url), 'utf8');
-  assert.match(renderer, /case-study-index/);
+  assert.match(renderer, /project-catalog/);
+  assert.match(renderer, /projectCatalogCard/);
   assert.match(renderer, /showcaseProjectSlugs/);
   assert.match(renderer, /function renderSecondaryWork\(\)/);
   assert.doesNotMatch(renderer, /project-grid--lab/);

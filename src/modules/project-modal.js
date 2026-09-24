@@ -23,6 +23,8 @@ function openProject(project, opener) {
   const stack = modal.querySelector('[data-modal-stack]');
   const actions = modal.querySelector('[data-modal-actions]');
   const note = modal.querySelector('[data-modal-note]');
+  const evidenceBlock = modal.querySelector('[data-modal-evidence-block]');
+  const evidenceLinks = modal.querySelector('[data-modal-evidence-links]');
   image.src = project.image;
   image.alt = `${project.title} — case study visual`;
   const privateClient = project.sourceAccess === 'private';
@@ -39,6 +41,15 @@ function openProject(project, opener) {
     listItem.textContent = item;
     return listItem;
   }));
+  evidenceLinks.replaceChildren();
+  if (project.evidence) {
+    evidenceBlock.hidden = false;
+    setText('[data-modal-evidence]', project.evidence.summary);
+    project.evidence.links?.forEach(({ href, label }) => evidenceLinks.append(createAction(href, label)));
+  } else {
+    evidenceBlock.hidden = true;
+    setText('[data-modal-evidence]', '');
+  }
   actions.replaceChildren();
   if (project.live) actions.append(createAction(project.live, project.slug === 'evershine' ? 'VISIT LIVE WEBSITE' : 'VISIT LIVE'));
   if (project.showSourceLink && project.github) actions.append(createAction(project.github, 'VIEW SOURCE'));
