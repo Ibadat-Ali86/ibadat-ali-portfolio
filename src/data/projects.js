@@ -7,14 +7,11 @@ export const projects = [
     metric: 'WhatsApp intake · OCR · duplicate detection · Stripe verification',
     problem: 'Manual payment screenshot review is slow and vulnerable to ambiguous OCR, repeated submissions, fake or unclear evidence, and transient integration failures.',
     solution: 'A Baileys Node.js bot receives images from an allowlisted WhatsApp group, persists work through a fair queue, uses FastAPI/Tesseract with a bounded Groq fallback, orchestrates n8n, verifies eligible evidence against Stripe, detects duplicates, and fails closed when proof remains ambiguous.',
-    stack: ['WhatsApp / Baileys', 'Node.js', 'Python', 'FastAPI', 'Tesseract OCR', 'Groq Vision', 'n8n', 'Stripe API', 'Docker', 'DigitalOcean'], github: 'https://github.com/Ibadat-Ali86/whatsapp-transaction-ai-agent', live: null, sourceAccess: 'public', showSourceLink: true, clientProject: true, primaryFeature: true, showcase: true, image: '/assets/projects/payguard-ai-thumbnail.png',
-    result: 'Repository-backed payment-verification workflow with queueing, OCR fallback, Stripe reconciliation, duplicate handling, and deployment documentation.',
+    stack: ['WhatsApp / Baileys', 'Node.js', 'Python', 'FastAPI', 'Tesseract OCR', 'Groq Vision', 'n8n', 'Stripe API', 'Docker', 'DigitalOcean'], github: null, live: null, sourceAccess: 'private', showSourceLink: false, clientProject: true, primaryFeature: true, showcase: true, image: '/assets/projects/payguard-ai-thumbnail.png',
+    result: 'Delivered payment-verification workflow with queueing, OCR fallback, Stripe reconciliation, duplicate handling, and handoff documentation.',
     evidence: {
-      summary: 'Verification evidence: 100 Node.js tests and 153 Python tests passed in the repository on 2026-09-24. The project documentation still marks live WhatsApp/Stripe acceptance and DigitalOcean approval as controlled follow-ups; the supplied droplet screenshot is not an uptime guarantee.',
+      summary: 'Private client delivery. Internal validation recorded 100 Node.js tests and 153 Python tests passing on 2026-09-24. The supplied deployment visual is not an uptime guarantee.',
       links: [
-        { href: 'https://github.com/Ibadat-Ali86/whatsapp-transaction-ai-agent/blob/main/docs/SYSTEM_ARCHITECTURE.md', label: 'Architecture spec' },
-        { href: 'https://github.com/Ibadat-Ali86/whatsapp-transaction-ai-agent/blob/main/docs/TESTING_STRATEGY.md', label: 'Testing strategy' },
-        { href: 'https://github.com/Ibadat-Ali86/whatsapp-transaction-ai-agent/blob/main/docs/SECURITY.md', label: 'Security and privacy' },
         { href: '/assets/projects/payguard-digitalocean-proof.png', label: 'Supplied deployment screenshot' }
       ]
     },
@@ -189,21 +186,8 @@ export const excludedProjectNames = [
 
 export const showcaseProjectSlugs = ['payguard-ai', 'evershine', 'adaptiq', 'sentineliq', 'carevision', 'ai-lead-generation', 'codescope'];
 
-export const secondaryProjectGroups = [
-  {
-    label: 'PRODUCTS & AUTOMATION',
-    description: 'Additional product and workflow work that shows how the same delivery mindset travels from an interface to the operating logic behind it.',
-    slugs: ['ai-restaurant-chatbot', 'resume-builder', 'learning-dashboard', 'covid-analytics']
-  },
-  {
-    label: 'RESEARCH & ANALYTICS',
-    description: 'Applied research and decision-support studies with the methods, boundaries, and implementation context kept visible.',
-    slugs: ['topolite', 'vital-link', 'pakistan-ecommerce', 'vendor-analysis']
-  }
-];
-
-export const secondaryProjectSlugs = secondaryProjectGroups.flatMap(({ slugs }) => slugs);
-export const professionalProjectSlugs = [...showcaseProjectSlugs, ...secondaryProjectSlugs];
+export const secondaryProjectSlugs = ['ai-restaurant-chatbot', 'resume-builder', 'learning-dashboard', 'covid-analytics', 'topolite', 'vital-link', 'pakistan-ecommerce', 'vendor-analysis'];
+export const professionalProjectSlugs = [...showcaseProjectSlugs, ...secondaryProjectSlugs, 'netflix'];
 
 export function projectPlan(project) {
   if (project.workflow) return 'Map the business trigger to deterministic qualification, agent reasoning, tool calls, and traceable output.';

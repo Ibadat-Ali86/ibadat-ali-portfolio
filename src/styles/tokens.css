@@ -14,8 +14,8 @@
   --color-ink-light: #8B8FA8;
   --color-mid-text: #8B8FA8;
 
-  --font-serif: 'Syne', system-ui, sans-serif;
-  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-serif: 'Manrope', system-ui, sans-serif;
+  --font-sans: 'Manrope', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);

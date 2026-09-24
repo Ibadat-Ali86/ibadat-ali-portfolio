@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFile } from 'node:fs/promises';
 import { publicProfile } from '../src/data/portfolio-profile.js';
-import { excludedProjectNames, professionalProjectSlugs, projects, secondaryProjectGroups, secondaryProjectSlugs, showcaseProjectSlugs } from '../src/data/projects.js';
+import { excludedProjectNames, professionalProjectSlugs, projects, secondaryProjectSlugs, showcaseProjectSlugs } from '../src/data/projects.js';
 
 const externalUrls = (project) => [project.github, project.live].filter(Boolean);
 
@@ -16,12 +16,12 @@ test('keeps the canonical 8 / 7 / 5 project inventory', () => {
   assert.deepEqual(projects.filter(({ workflow }) => workflow).map(({ slug }) => slug), ['ai-lead-generation', 'ai-restaurant-chatbot']);
 });
 
-test('keeps a focused public portfolio plus a complete professional secondary set', () => {
+test('keeps one curated catalog and includes Netflix as its only lab project', () => {
   assert.deepEqual(showcaseProjectSlugs, ['payguard-ai', 'evershine', 'adaptiq', 'sentineliq', 'carevision', 'ai-lead-generation', 'codescope']);
-  assert.equal(secondaryProjectGroups.length, 2);
   assert.deepEqual(secondaryProjectSlugs, ['ai-restaurant-chatbot', 'resume-builder', 'learning-dashboard', 'covid-analytics', 'topolite', 'vital-link', 'pakistan-ecommerce', 'vendor-analysis']);
-  assert.equal(professionalProjectSlugs.length, 15);
-  assert.equal(projects.filter(({ slug, tier }) => professionalProjectSlugs.includes(slug) && tier === 'lab').length, 0);
+  assert.equal(professionalProjectSlugs.length, 16);
+  assert.equal(professionalProjectSlugs.at(-1), 'netflix');
+  assert.deepEqual(projects.filter(({ slug, tier }) => professionalProjectSlugs.includes(slug) && tier === 'lab').map(({ slug }) => slug), ['netflix']);
 });
 
 test('keeps a complete, role-ready professional stack map without conflating proof and industry tools', () => {
@@ -74,10 +74,12 @@ test('keeps workflow proof grounded and source-free', () => {
 test('keeps payment-agent evidence explicit and privacy-safe', () => {
   const payguard = projects.find(({ slug }) => slug === 'payguard-ai');
   assert.ok(payguard);
-  assert.equal(payguard.github, 'https://github.com/Ibadat-Ali86/whatsapp-transaction-ai-agent');
+  assert.equal(payguard.github, null);
+  assert.equal(payguard.sourceAccess, 'private');
+  assert.equal(payguard.showSourceLink, false);
   assert.match(payguard.image, /payguard-ai-thumbnail\.png$/);
   assert.match(payguard.evidence.summary, /100 Node\.js tests and 153 Python tests/);
-  assert.ok(payguard.evidence.links.some(({ href }) => href.endsWith('docs/SECURITY.md')));
+  assert.equal(payguard.evidence.links.some(({ href }) => href.includes('github.com')), false);
   assert.ok(payguard.evidence.links.some(({ href }) => href.endsWith('payguard-digitalocean-proof.png')));
   assert.doesNotMatch(JSON.stringify(payguard), /(?:sk_live|sk_test|api[_ -]?key|secret[_ -]?key|password\s*[:=]|token\s*[:=])/i);
 });
@@ -101,14 +103,15 @@ test('renderer uses explicit links and never derives a source URL from a slug', 
   assert.match(module, /project\.showSourceLink/);
 });
 
-test('renders one complete five-project-row catalog with descriptive media and detail controls', async () => {
+test('renders one flat ordered project catalog with descriptive media and detail controls', async () => {
   const renderer = await readFile(new URL('../scripts/render-static.mjs', import.meta.url), 'utf8');
   const template = await readFile(new URL('../index.template.html', import.meta.url), 'utf8');
   const linkChecker = await readFile(new URL('../scripts/check-links.mjs', import.meta.url), 'utf8');
   assert.match(renderer, /project-catalog/);
   assert.match(renderer, /projectCatalogCard/);
-  assert.match(renderer, /showcaseProjectSlugs/);
-  assert.match(renderer, /const start = rowIndex \* 5/);
+  assert.match(renderer, /professionalProjectSlugs\.map/);
+  assert.doesNotMatch(renderer, /data-catalog-group|data-filter|filter-bar/);
+  assert.doesNotMatch(renderer, /data-category=/);
   assert.match(renderer, /data-project-open=/);
   assert.match(renderer, /catalog-card__result/);
   assert.doesNotMatch(renderer, /function renderSecondaryWork\(\)/);
@@ -127,6 +130,25 @@ test('renders one complete five-project-row catalog with descriptive media and d
   assert.doesNotMatch(linkChecker, /publicProjects/);
 });
 
+test('keeps social branding, profile branding, and private PayGuard boundaries in the public render', async () => {
+  const renderer = await readFile(new URL('../scripts/render-static.mjs', import.meta.url), 'utf8');
+  const template = await readFile(new URL('../index.template.html', import.meta.url), 'utf8');
+  const projectModule = await readFile(new URL('../src/modules/project-modal.js', import.meta.url), 'utf8');
+  const brandIcons = await readFile(new URL('../src/data/stack-icons.js', import.meta.url), 'utf8');
+  assert.match(template, /og:image" content="https:\/\/ibadat-ali-portfolio\.vercel\.app\/assets\/profile\/ibadat-profile\.webp/);
+  assert.match(template, /twitter:image" content="https:\/\/ibadat-ali-portfolio\.vercel\.app\/assets\/profile\/ibadat-profile\.webp/);
+  assert.match(template, /rel="icon" href="\/assets\/profile\/ibadat-profile\.webp"/);
+  assert.match(template, /class="brand__mark"><img src="\/assets\/profile\/ibadat-profile\.webp"/);
+  assert.match(template, /Manrope:wght@400;500;600;700;800/);
+  assert.doesNotMatch(template, /Syne|DM\+Sans/);
+  assert.match(renderer, /siN8n|stackBrandFor/);
+  assert.match(brandIcons, /siN8n/);
+  assert.match(brandIcons, /siZapier/);
+  assert.match(brandIcons, /siLangchain/);
+  assert.match(projectModule, /stackBrandFor\(item\)/);
+  assert.match(renderer, /PayGuard private-client guard/);
+});
+
 test('applies the requested dark-and-amber brand system and readable theme metadata', async () => {
   const tokens = await readFile(new URL('../src/styles/tokens.css', import.meta.url), 'utf8');
   const template = await readFile(new URL('../index.template.html', import.meta.url), 'utf8');
@@ -134,8 +156,8 @@ test('applies the requested dark-and-amber brand system and readable theme metad
   assert.match(tokens, /--color-accent: #F5A623/);
   assert.match(tokens, /--color-success: #00C896/);
   assert.match(template, /name="theme-color" content="#07080D"/);
-  assert.match(template, /family=Syne:wght@600;700;800/);
-  assert.match(template, /family=DM\+Sans:wght@400;500;600/);
+  assert.match(template, /family=Manrope:wght@400;500;600;700;800/);
+  assert.doesNotMatch(template, /family=Syne|family=DM\+Sans/);
 });
 
 test('animates portfolio metrics only when visible and keeps static accessible values', async () => {
@@ -143,7 +165,7 @@ test('animates portfolio metrics only when visible and keeps static accessible v
   const module = await readFile(new URL('../src/modules/metric-counters.js', import.meta.url), 'utf8');
   const main = await readFile(new URL('../src/main.js', import.meta.url), 'utf8');
   assert.equal((template.match(/data-count-up="\d+"/g) ?? []).length, 4);
-  assert.equal((template.match(/class="sr-only">0[347] /g) ?? []).length, 3);
+  assert.equal((template.match(/class="sr-only">(?:16|01|04|03) /g) ?? []).length, 4);
   assert.match(module, /prefersReducedMotion\(\)/);
   assert.match(module, /IntersectionObserver/);
   assert.match(module, /requestAnimationFrame/);

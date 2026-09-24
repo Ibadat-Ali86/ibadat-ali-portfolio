@@ -2,6 +2,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { publicProfile } from '../src/data/portfolio-profile.js';
 import { excludedProjectNames, professionalProjectSlugs, projects, secondaryProjectSlugs, showcaseProjectSlugs } from '../src/data/projects.js';
+import { stackBrandFor } from '../src/data/stack-icons.js';
 
 const root = resolve(import.meta.dirname, '..');
 const templatePath = resolve(root, 'index.template.html');
@@ -14,6 +15,8 @@ function assertProjectInventory() {
   if (new Set(projects.map(({ slug }) => slug)).size !== projects.length) throw new Error('Project slugs must be unique.');
   const privateClient = projects.find(({ slug }) => slug === 'evershine');
   if (!privateClient || privateClient.github !== null || privateClient.showSourceLink !== false || privateClient.sourceAccess !== 'private') throw new Error('Private client guard failed.');
+  const payguard = projects.find(({ slug }) => slug === 'payguard-ai');
+  if (!payguard || payguard.github !== null || payguard.showSourceLink !== false || payguard.sourceAccess !== 'private' || payguard.evidence.links.some(({ href }) => href.includes('github.com'))) throw new Error('PayGuard private-client guard failed.');
   if (projects.some(({ title }) => excludedProjectNames.includes(title))) throw new Error('An excluded collection cannot render as a project.');
   if (projects.filter(({ canonicalWalmart }) => canonicalWalmart).length !== 1 || !projects.find(({ slug }) => slug === 'adaptiq').canonicalWalmart) throw new Error('Only AdaptIQ may be the Walmart forecasting card.');
   const primaryFeatureSlugs = projects.filter(({ primaryFeature }) => primaryFeature).map(({ slug }) => slug);
@@ -23,6 +26,7 @@ function assertProjectInventory() {
   if (attachedClientProjects.some((slug) => !projects.find((project) => project.slug === slug && project.clientProject))) throw new Error('Attached client projects must remain visibly labeled as client work.');
   if (showcaseProjectSlugs.length !== 7 || showcaseProjectSlugs.some((slug) => !projects.find((project) => project.slug === slug && project.showcase))) throw new Error('Public showcase must contain the seven approved case studies.');
   if (secondaryProjectSlugs.length !== 8 || new Set(secondaryProjectSlugs).size !== secondaryProjectSlugs.length || secondaryProjectSlugs.some((slug) => !projects.find((project) => project.slug === slug && project.tier !== 'lab'))) throw new Error('Additional work must contain eight non-lab projects.');
+  if (professionalProjectSlugs.length !== 16 || professionalProjectSlugs.filter((slug) => projects.find((project) => project.slug === slug)?.tier === 'lab').join(',') !== 'netflix') throw new Error('The public catalog must contain the 15 priority projects and Netflix Data Analysis only.');
   if (new Set(professionalProjectSlugs).size !== professionalProjectSlugs.length || professionalProjectSlugs.some((slug) => !projects.some((project) => project.slug === slug))) throw new Error('Professional project slugs must be unique and resolvable.');
 }
 
@@ -63,34 +67,26 @@ function imageAlt(project) {
   return `${project.title} — ${descriptions[project.slug] ?? 'abstract technical systems illustration'}`;
 }
 
+function renderTechChip(label) {
+  const icon = stackBrandFor(label);
+  const mark = icon ? `<svg class="tech-chip__icon" viewBox="0 0 24 24" aria-hidden="true" style="--stack-brand:#${icon.hex}"><path d="${icon.path}"/></svg>` : '';
+  return `<li class="tech-chip">${mark}<span>${escapeHtml(label)}</span></li>`;
+}
+
 function projectCatalogCard(project, index) {
   const isPrivateClient = project.sourceAccess === 'private';
   const clientBadge = project.clientProject && !isPrivateClient ? '<span class="client-label">CLIENT PROJECT</span>' : '';
   const statusClass = project.status.includes('LIVE') ? 'status-label status-label--live' : 'status-label';
-  return `<article class="catalog-card catalog-card--${escapeHtml(project.tier)}" data-project-catalog-card data-tier="${escapeHtml(project.tier)}" data-category="${escapeHtml(project.category)}" data-reveal>
+  const technologies = project.stack.slice(0, 3).map(renderTechChip).join('');
+  return `<article class="catalog-card catalog-card--${escapeHtml(project.slug)}" data-project-catalog-card data-project-slug="${escapeHtml(project.slug)}" data-reveal>
     <figure class="catalog-card__media"><img src="${escapeHtml(project.image)}" alt="${escapeHtml(imageAlt(project))}" width="1600" height="1000" loading="lazy" decoding="async"></figure>
-    <div class="catalog-card__body"><div class="catalog-card__meta"><span>${String(index + 1).padStart(2, '0')}</span><span class="project-meta__badges"><span class="${statusClass}">${isPrivateClient ? 'PRIVATE CLIENT' : escapeHtml(project.status)}</span>${clientBadge}</span></div><h3>${escapeHtml(project.title)}</h3><p class="catalog-card__category">${escapeHtml(project.category)}</p><p>${escapeHtml(project.metric)}</p>${project.result ? `<p class="catalog-card__result">Result — ${escapeHtml(project.result)}</p>` : ''}<button class="button button--outline catalog-card__open" type="button" data-project-open="${escapeHtml(project.slug)}" aria-label="View project details: ${escapeHtml(project.title)}">View details</button></div>
+    <div class="catalog-card__body"><div class="catalog-card__meta"><span>${String(index + 1).padStart(2, '0')}</span><span class="project-meta__badges"><span class="${statusClass}">${isPrivateClient ? 'PRIVATE CLIENT' : escapeHtml(project.status)}</span>${clientBadge}</span></div><h3>${escapeHtml(project.title)}</h3><p>${escapeHtml(project.metric)}</p><ul class="catalog-card__technologies" aria-label="Selected technologies">${technologies}</ul>${project.result ? `<p class="catalog-card__result">Result — ${escapeHtml(project.result)}</p>` : ''}<button class="button button--outline catalog-card__open" type="button" data-project-open="${escapeHtml(project.slug)}" aria-label="View project details: ${escapeHtml(project.title)}">View details</button></div>
   </article>`;
 }
 
 function renderAtlas() {
-  const labSlugs = projects.filter(({ tier }) => tier === 'lab').map(({ slug }) => slug);
-  const orderedSlugs = [...showcaseProjectSlugs, ...secondaryProjectSlugs, ...labSlugs];
-  const catalogRows = [
-    { note: 'Priority client work and featured systems.' },
-    { note: 'More featured projects and selected builds.' },
-    { note: 'Research, analytics, and applied products.' },
-    { label: 'Labs and focused tools', note: 'Smaller exercises and utilities, kept distinct from client systems.' }
-  ];
-  const groups = catalogRows.map((row, rowIndex) => {
-    const start = rowIndex * 5;
-    const slugs = orderedSlugs.slice(start, start + 5);
-    const cards = slugs.map((slug) => projects.find((project) => project.slug === slug)).filter(Boolean).map((project, index) => projectCatalogCard(project, start + index)).join('\n');
-    const end = start + slugs.length;
-    const label = row.label ?? `Projects ${String(start + 1).padStart(2, '0')}–${String(end).padStart(2, '0')}`;
-    return `<section class="catalog-group" data-catalog-group><div class="catalog-group__heading"><p class="section-index">${escapeHtml(label)}</p><p>${escapeHtml(row.note)}</p></div><div class="project-catalog__grid">${cards}</div></section>`;
-  }).join('\n');
-  return `<div class="filter-bar" role="group" aria-label="Filter project catalog"><button class="filter-button is-selected" type="button" data-filter="all" aria-pressed="true">All projects</button><button class="filter-button" type="button" data-filter="featured" aria-pressed="false">Featured systems</button><button class="filter-button" type="button" data-filter="selected" aria-pressed="false">Selected builds</button><button class="filter-button" type="button" data-filter="lab" aria-pressed="false">Labs and tools</button></div><div class="project-catalog" data-project-catalog>${groups}</div>`;
+  const cards = professionalProjectSlugs.map((slug) => projects.find((project) => project.slug === slug)).map((project, index) => projectCatalogCard(project, index)).join('\n');
+  return `<div class="project-catalog" data-project-catalog><div class="project-catalog__grid">${cards}</div></div>`;
 }
 
 function renderExperience() {
@@ -118,7 +114,7 @@ function renderSpecializations() {
     <button class="text-link project-card__open" type="button" data-project-open="${proof[specialization.slug]}">View related project</button>
     <details><summary>Technologies used</summary><div class="stack-map__block">
       <p class="stack-map__label">Tools and methods</p>
-      <dl class="stack-map">${specialization.groups.map((group) => `<div><dt>${escapeHtml(group.label)}</dt><dd><ul class="stack-tools">${group.tools.map((tool) => `<li>${escapeHtml(tool)}</li>`).join('')}</ul></dd></div>`).join('')}</dl>
+      <dl class="stack-map">${specialization.groups.map((group) => `<div><dt>${escapeHtml(group.label)}</dt><dd><ul class="stack-tools">${group.tools.map(renderTechChip).join('')}</ul></dd></div>`).join('')}</dl>
     </div></details>
   </article>`).join('\n');
 }

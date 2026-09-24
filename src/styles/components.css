@@ -98,15 +98,7 @@
 .atlas-group + .atlas-group { margin-top: clamp(4rem, 8vw, 7rem); }
 .atlas-group__title { margin-bottom: 1.3rem; font-size: clamp(1.8rem, 3.5vw, 3.4rem); }
 .atlas-group__note { margin: -.6rem 0 1.5rem; color: var(--ink-soft); font-size: .92rem; }
-.filter-bar { display: flex; flex-wrap: wrap; gap: .55rem; margin-bottom: 2rem; }
-.filter-button { padding: .65rem .8rem; border: 1px solid var(--line-strong); border-radius: 999px; background: transparent; color: var(--ink-soft); font-size: .64rem; font-weight: 600; cursor: pointer; }
-.filter-button:hover, .filter-button:focus-visible, .filter-button.is-selected { border-color: var(--accent); background: var(--accent); color: #07111b; }
-.project-catalog { display: grid; gap: clamp(2.5rem, 5vw, 4.5rem); }
-.catalog-group { display: grid; gap: 1.2rem; }
-.catalog-group + .catalog-group { margin-top: 1rem; }
-.catalog-group__heading { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding-bottom: .75rem; border-bottom: 1px solid var(--line); }
-.catalog-group__heading p { margin: 0; color: var(--ink-soft); font-size: .82rem; }
-.catalog-group__heading .section-index { color: var(--accent-deep); font-size: .64rem; font-weight: 700; letter-spacing: .1em; }
+.project-catalog { display: block; }
 .project-catalog__grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(.65rem, 1.25vw, 1rem); }
 .catalog-card { display: flex; min-width: 0; flex-direction: column; overflow: hidden; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: rgba(17, 29, 43, .72); transition: transform .32s ease, border-color .32s ease, box-shadow .32s ease; }
 .catalog-card:hover, .catalog-card:focus-within { transform: translateY(-5px); border-color: var(--accent); box-shadow: var(--shadow-hover); }

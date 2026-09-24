@@ -48,11 +48,20 @@ test('uses the selected Meta Llama model and a public-only knowledge boundary', 
   assert.match(ASSISTANT_SYSTEM_PROMPT, /representative examples/);
   assert.match(ASSISTANT_SYSTEM_PROMPT, /Never guarantee hiring fit/);
   assert.match(ASSISTANT_SYSTEM_PROMPT, /Evershine Academy LMS/);
+  assert.match(ASSISTANT_SYSTEM_PROMPT, /WhatsApp Transaction Verification AI Agent/);
   assert.match(ASSISTANT_SYSTEM_PROMPT, /ibadcodes@gmail\.com/);
   assert.doesNotMatch(ASSISTANT_SYSTEM_PROMPT, /sourceAccess|editorialSafeguard|canonicalWalmart/);
   const privateClient = PUBLIC_PORTFOLIO_CONTEXT.projects.find(({ title }) => title === 'Evershine Academy LMS');
   assert.equal(Object.hasOwn(privateClient, 'publicCodeUrl'), false);
   assert.equal(privateClient.live, 'https://evershineacadmey.com/');
+  const projectTitles = PUBLIC_PORTFOLIO_CONTEXT.projects.map(({ title }) => title);
+  assert.equal(projectTitles.length, 16);
+  assert.ok(projectTitles.includes('Netflix Data Analysis'));
+  ['MNIST Logistic Regression', 'Email / SMS Spam Classifier', 'Employee Information Form', 'CSV Data Cleaner'].forEach((title) => assert.equal(projectTitles.includes(title), false));
+  const payguard = PUBLIC_PORTFOLIO_CONTEXT.projects.find(({ title }) => title === 'WhatsApp Transaction Verification AI Agent');
+  assert.ok(payguard);
+  assert.equal(Object.hasOwn(payguard, 'publicCodeUrl'), false);
+  assert.ok(payguard.stack.includes('n8n'));
 });
 
 test('returns controlled validation and missing-configuration errors', async () => {

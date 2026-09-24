@@ -29,8 +29,6 @@
   .proof-strip p { grid-column: 1 / -1; justify-self: start; padding-top: .65rem; border-top: 1px solid var(--line); }
   .section-heading--split, .research__grid, .about__grid, .contact__grid { grid-template-columns: 1fr; gap: 2rem; }
   .section-heading--split > p { max-width: 45ch; }
-  .catalog-group__heading { align-items: flex-start; flex-direction: column; gap: .35rem; }
-  .catalog-group__heading .section-index { white-space: nowrap; }
   .project-grid--featured, .project-grid--selected, .project-grid--lab { grid-template-columns: 1fr; }
   .project-catalog__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .project-card--evershine { grid-column: auto; }

@@ -4,7 +4,7 @@ export const publicProfile = {
   summary: [
     'Ibadat maps real business workflows to reliable, documented automations — integrating Claude, Gemini 2.0 Flash, and MCP tool-calling with explicit fallbacks, validation layers, and model-boundary annotations.',
     'Delivered verified production systems to real clients: an offline-first retail POS (React + Electron + SQLite) and an enterprise multi-campus LMS (Next.js + PostgreSQL).',
-    'The public portfolio leads with seven selected case studies, then presents the complete 20-project catalog in priority-ordered rows.'
+    'The public portfolio presents 16 carefully selected projects in one priority-ordered catalog, including Netflix Data Analysis as the only compact lab.'
   ],
   capabilities: [
     {

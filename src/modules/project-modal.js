@@ -1,4 +1,5 @@
 import { projectPlan, projects } from '../data/projects.js';
+import { stackBrandFor } from '../data/stack-icons.js';
 
 const modal = document.querySelector('[data-project-modal]');
 const openers = document.querySelectorAll('[data-project-open]');
@@ -38,7 +39,22 @@ function openProject(project, opener) {
   setText('[data-modal-solution]', project.solution ?? project.hook);
   stack.replaceChildren(...project.stack.map((item) => {
     const listItem = document.createElement('li');
-    listItem.textContent = item;
+    listItem.className = 'tech-chip';
+    const icon = stackBrandFor(item);
+    if (icon) {
+      const mark = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      mark.classList.add('tech-chip__icon');
+      mark.setAttribute('viewBox', '0 0 24 24');
+      mark.setAttribute('aria-hidden', 'true');
+      mark.style.setProperty('--stack-brand', `#${icon.hex}`);
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', icon.path);
+      mark.append(path);
+      listItem.append(mark);
+    }
+    const label = document.createElement('span');
+    label.textContent = item;
+    listItem.append(label);
     return listItem;
   }));
   evidenceLinks.replaceChildren();
