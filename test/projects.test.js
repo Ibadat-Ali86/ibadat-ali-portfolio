@@ -95,23 +95,47 @@ test('omits prohibited metric and healthcare overclaims from public project copy
 
 test('renderer uses explicit links and never derives a source URL from a slug', async () => {
   const renderer = await readFile(new URL('../scripts/render-static.mjs', import.meta.url), 'utf8');
-  assert.match(renderer, /project\.github/);
+  const module = await readFile(new URL('../src/modules/project-modal.js', import.meta.url), 'utf8');
+  assert.match(module, /project\.github/);
   assert.doesNotMatch(renderer, /github\.com[^\n]*project\.slug/);
-  assert.match(renderer, /project\.showSourceLink/);
+  assert.match(module, /project\.showSourceLink/);
 });
 
-test('renders a complete catalog and descriptive project media text', async () => {
+test('renders one complete five-project-row catalog with descriptive media and detail controls', async () => {
   const renderer = await readFile(new URL('../scripts/render-static.mjs', import.meta.url), 'utf8');
+  const template = await readFile(new URL('../index.template.html', import.meta.url), 'utf8');
   const linkChecker = await readFile(new URL('../scripts/check-links.mjs', import.meta.url), 'utf8');
   assert.match(renderer, /project-catalog/);
   assert.match(renderer, /projectCatalogCard/);
   assert.match(renderer, /showcaseProjectSlugs/);
-  assert.match(renderer, /function renderSecondaryWork\(\)/);
+  assert.match(renderer, /const start = rowIndex \* 5/);
+  assert.match(renderer, /data-project-open=/);
+  assert.match(renderer, /catalog-card__result/);
+  assert.doesNotMatch(renderer, /function renderSecondaryWork\(\)/);
   assert.doesNotMatch(renderer, /project-grid--lab/);
   assert.doesNotMatch(renderer, /Scope note/);
   assert.match(renderer, /function imageAlt\(project\)/);
   assert.match(renderer, /function renderSpecializations\(\)/);
+  assert.equal((template.match(/data-atlas-projects/g) ?? []).length, 1);
+  assert.doesNotMatch(template, /FEATURED_PROJECTS|SECONDARY_PROJECTS|id="other-work"|id="research"/);
+  assert.match(template, /Proof you can inspect\./);
+  assert.match(template, /focused 30-minute conversation about the problem, constraints, and fit/);
+  assert.match(template, /data-copy-email="ibadcodes@gmail\.com"/);
+  assert.match(template, /data-copy-status role="status" aria-live="polite"/);
+  assert.match(await readFile(new URL('../src/modules/contact-form.js', import.meta.url), 'utf8'), /Email address copied to the clipboard/);
+  assert.doesNotMatch(template, /What Clients Say|cut our manual process from 4 hours/);
   assert.doesNotMatch(linkChecker, /publicProjects/);
+});
+
+test('applies the requested dark-and-amber brand system and readable theme metadata', async () => {
+  const tokens = await readFile(new URL('../src/styles/tokens.css', import.meta.url), 'utf8');
+  const template = await readFile(new URL('../index.template.html', import.meta.url), 'utf8');
+  assert.match(tokens, /--color-base: #07080D/);
+  assert.match(tokens, /--color-accent: #F5A623/);
+  assert.match(tokens, /--color-success: #00C896/);
+  assert.match(template, /name="theme-color" content="#07080D"/);
+  assert.match(template, /family=Syne:wght@600;700;800/);
+  assert.match(template, /family=DM\+Sans:wght@400;500;600/);
 });
 
 test('renders the curated technology stack in an accessible left-to-right marquee', async () => {
@@ -132,9 +156,9 @@ test('renders a reusable privacy-safe case-study modal entry point', async () =>
   const module = await readFile(new URL('../src/modules/project-modal.js', import.meta.url), 'utf8');
   assert.match(renderer, /data-project-open/);
   assert.match(template, /data-project-modal/);
-  assert.match(template, /THE PROBLEM/);
-  assert.match(template, /THE PLAN/);
-  assert.match(template, /HOW IT WAS SOLVED/);
+  assert.match(template, />Problem</);
+  assert.match(template, />Plan</);
+  assert.match(template, />Solution</);
   assert.match(module, /private client project and its implementation details are confidential/);
   assert.match(module, /projectPlan\(project\)/);
 });

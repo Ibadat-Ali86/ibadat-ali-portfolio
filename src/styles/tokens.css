@@ -1,18 +1,20 @@
 :root {
-  --color-base: #F5F2EC;
-  --color-ink: #1E1C1A;
-  --color-structure: #3D4A58;
-  --color-mid: #8C7B6B;
-  --color-accent: #B5773A;
-  --color-accent-text: #80501F;
-  --color-surface-1: #EDE8DF;
-  --color-surface-2: #DDE4DB;
-  --color-rule: #D5CFC5;
-  --color-highlight: #F3E4C8;
-  --color-ink-light: #B0A99E;
-  --color-mid-text: #66594E;
+  --color-base: #07080D;
+  --color-ink: #F0EDE8;
+  --color-structure: #8B8FA8;
+  --color-mid: #7E829A;
+  --color-accent: #F5A623;
+  --color-accent-text: #F5A623;
+  --color-success: #00C896;
+  --color-secondary: #1E90FF;
+  --color-surface-1: #0F1119;
+  --color-surface-2: #161824;
+  --color-rule: #1E2032;
+  --color-highlight: rgba(245, 166, 35, .1);
+  --color-ink-light: #8B8FA8;
+  --color-mid-text: #8B8FA8;
 
-  --font-serif: 'DM Serif Display', Georgia, serif;
+  --font-serif: 'Syne', system-ui, sans-serif;
   --font-sans: 'DM Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
@@ -43,6 +45,6 @@
   --section: clamp(4.5rem, 9vw, 8.5rem);
   --radius: 4px;
   --radius-sm: 3px;
-  --shadow: 0 8px 24px rgba(30, 28, 26, 0.04);
-  --shadow-hover: 0 10px 40px rgba(30, 28, 26, 0.08);
+  --shadow: 0 12px 34px rgba(0, 0, 0, .28);
+  --shadow-hover: 0 14px 36px rgba(0, 0, 0, .36), 0 0 0 1px rgba(245, 166, 35, .12), 0 0 26px rgba(245, 166, 35, .1);
 }

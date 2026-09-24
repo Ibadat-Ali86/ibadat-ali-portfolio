@@ -12,10 +12,10 @@ export const projects = [
     evidence: {
       summary: 'Verification evidence: 100 Node.js tests and 153 Python tests passed in the repository on 2026-09-24. The project documentation still marks live WhatsApp/Stripe acceptance and DigitalOcean approval as controlled follow-ups; the supplied droplet screenshot is not an uptime guarantee.',
       links: [
-        { href: 'https://github.com/Ibadat-Ali86/whatsapp-transaction-ai-agent/blob/main/docs/SYSTEM_ARCHITECTURE.md', label: 'ARCHITECTURE SPEC' },
-        { href: 'https://github.com/Ibadat-Ali86/whatsapp-transaction-ai-agent/blob/main/docs/TESTING_STRATEGY.md', label: 'TESTING STRATEGY' },
-        { href: 'https://github.com/Ibadat-Ali86/whatsapp-transaction-ai-agent/blob/main/docs/SECURITY.md', label: 'SECURITY & PRIVACY' },
-        { href: '/assets/projects/payguard-digitalocean-proof.png', label: 'SUPPLIED DROPLET SCREENSHOT' }
+        { href: 'https://github.com/Ibadat-Ali86/whatsapp-transaction-ai-agent/blob/main/docs/SYSTEM_ARCHITECTURE.md', label: 'Architecture spec' },
+        { href: 'https://github.com/Ibadat-Ali86/whatsapp-transaction-ai-agent/blob/main/docs/TESTING_STRATEGY.md', label: 'Testing strategy' },
+        { href: 'https://github.com/Ibadat-Ali86/whatsapp-transaction-ai-agent/blob/main/docs/SECURITY.md', label: 'Security and privacy' },
+        { href: '/assets/projects/payguard-digitalocean-proof.png', label: 'Supplied deployment screenshot' }
       ]
     },
     editorialSafeguard: 'The thumbnail is a supplied presentation visual; dashboard figures and uptime language inside the artwork are not treated as independently verified telemetry. No public payment-volume or accuracy claim is made.'

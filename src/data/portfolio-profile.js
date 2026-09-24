@@ -66,7 +66,7 @@ export const publicProfile = {
   specializations: [
     {
       slug: 'data-analysis',
-      index: '01 / DATA ANALYSIS',
+      index: '01 / Data analysis',
       title: 'Data Analysis & BI',
       description: 'From raw operational data to decision-ready analysis: query, clean, explore, visualise, and communicate the signal.',
       groups: [
@@ -84,7 +84,7 @@ export const publicProfile = {
     },
     {
       slug: 'data-science',
-      index: '02 / DATA SCIENCE',
+      index: '02 / Data science',
       title: 'Data Science & Forecasting',
       description: 'Structured predictive work with interpretable features, robust baselines, time-series forecasting, and clear model evaluation.',
       groups: [
@@ -102,7 +102,7 @@ export const publicProfile = {
     },
     {
       slug: 'ml-engineering',
-      index: '03 / ML ENGINEERING',
+      index: '03 / ML engineering',
       title: 'ML Engineering & Applied Research',
       description: 'Deep-learning, anomaly-detection, and agent retrieval systems built around repeatable experimentation, explainability, and operational use cases.',
       groups: [
@@ -120,7 +120,7 @@ export const publicProfile = {
     },
     {
       slug: 'ai-products',
-      index: '04 / AI AUTOMATION & DELIVERY',
+      index: '04 / AI automation and delivery',
       title: 'AI Automation & Product Systems',
       description: 'Production LLM workflows, agent tool-calling, APIs, and client-delivered platforms built with deterministic validation and operational telemetry.',
       groups: [

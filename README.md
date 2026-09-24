@@ -10,13 +10,14 @@ A responsive, static Vite portfolio for Ibadat Ali: AI systems, research enginee
 - One canonical project source: `src/data/projects.js`
 - A serverless `/api/chat` route using `meta/llama-3.1-8b-instruct` through NVIDIA's hosted API
 
-The build-time renderer writes seven selected case studies, eight additional professional project cards, and five focused labs into `index.html`, so all twenty catalog entries remain available before JavaScript loads.
+The build-time renderer writes all twenty projects into one priority-ordered catalog: seven selected case studies, eight additional professional builds, and five focused labs. Projects are grouped five at a time on desktop and remain available before JavaScript loads.
 
 ## Project hierarchy
 
 - 7 selected public case studies, ordered for client due diligence
-- 8 additional professional projects grouped into Products & Automation and Research & Analytics
+- 8 additional professional builds, presented after the selected case studies
 - 5 focused classifier and exercise labs included at the end of the public catalog
+- Every project opens a case-study detail view with scope, approach, result, technology, and available evidence
 - Client and workflow evidence is labeled explicitly, with private work protected from source links
 
 Parent collections and duplicate/upstream repositories are intentionally excluded. The private-client card presents its required public live-site action only.

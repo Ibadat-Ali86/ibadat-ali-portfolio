@@ -71,7 +71,7 @@ export function initPortfolioAssistant() {
     input.disabled = busy;
     submitButton.disabled = busy;
     suggestionsElement.querySelectorAll('button').forEach((button) => { button.disabled = busy; });
-    submitButton.textContent = busy ? 'THINKING…' : 'ASK IA ↗';
+    submitButton.textContent = busy ? 'Thinking…' : 'Ask me a question';
     if (busy) status.textContent = 'Ibadat’s assistant is preparing an answer.';
   }
 

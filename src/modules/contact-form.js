@@ -10,16 +10,20 @@ function initEmailCopy() {
   document.querySelectorAll('[data-copy-email]').forEach((button) => {
     button.addEventListener('click', async () => {
       const value = button.dataset.copyEmail || contactEmail;
+      const originalLabel = button.textContent;
+      const status = button.parentElement.querySelector('[data-copy-status]');
       try {
         await navigator.clipboard.writeText(value);
         button.classList.add('is-copied');
-        const action = button.querySelector('.contact-method__action');
-        if (action) action.textContent = '✓';
+        button.textContent = 'Email copied';
+        if (status) status.textContent = 'Email address copied to the clipboard.';
         window.setTimeout(() => {
           button.classList.remove('is-copied');
-          if (action) action.textContent = '⧉';
+          button.textContent = originalLabel;
+          if (status) status.textContent = '';
         }, 2000);
       } catch {
+        if (status) status.textContent = 'Opening your email app.';
         window.location.href = `mailto:${value}`;
       }
     });

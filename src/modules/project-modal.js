@@ -14,7 +14,7 @@ function createAction(href, label) {
   link.href = href;
   link.target = '_blank';
   link.rel = 'noopener noreferrer';
-  link.textContent = `${label} ↗`;
+  link.textContent = label;
   return link;
 }
 
@@ -30,7 +30,7 @@ function openProject(project, opener) {
   const privateClient = project.sourceAccess === 'private';
   setText('[data-modal-status]', privateClient ? 'PRIVATE CLIENT PROJECT' : project.clientProject ? `CLIENT PROJECT · ${project.status}` : project.status);
   setText('[data-modal-metric]', project.metric);
-  setText('[data-modal-result]', `RESULT — ${project.result ?? 'Scope and delivery details are available in the case study.'}`);
+  setText('[data-modal-result]', `Result — ${project.result ?? 'Scope and delivery details are available in the case study.'}`);
   setText('[data-modal-title]', project.title);
   setText('[data-modal-hook]', project.hook);
   setText('[data-modal-problem]', project.problem ?? `The ${project.category.toLowerCase()} work needed an inspectable, focused path from input to useful output.`);
@@ -51,8 +51,8 @@ function openProject(project, opener) {
     setText('[data-modal-evidence]', '');
   }
   actions.replaceChildren();
-  if (project.live) actions.append(createAction(project.live, project.slug === 'evershine' ? 'VISIT LIVE WEBSITE' : 'VISIT LIVE'));
-  if (project.showSourceLink && project.github) actions.append(createAction(project.github, 'VIEW SOURCE'));
+  if (project.live) actions.append(createAction(project.live, project.slug === 'evershine' ? 'Visit live website' : 'Visit live project'));
+  if (project.showSourceLink && project.github) actions.append(createAction(project.github, 'View source'));
   if (privateClient) {
     note.textContent = 'Source code is not linked because this is a private client project and its implementation details are confidential.';
   } else if (!project.live && !project.github) {
