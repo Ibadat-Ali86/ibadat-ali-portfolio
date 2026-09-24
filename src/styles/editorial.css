@@ -81,10 +81,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .proof-strip a, .text-link { color: var(--color-accent-text); }
 
 .metrics-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); width: min(var(--content), calc(100% - 96px)); margin: 0 auto; border-top: 1px solid var(--color-rule); border-bottom: 1px solid var(--color-rule); background: transparent; }
-.metric { display: grid; min-width: 0; min-height: 7rem; align-content: center; gap: .35rem; padding: 1.1rem 1.2rem; background: transparent; }
+.metric { display: grid; min-width: 0; min-height: 7rem; align-content: center; gap: .5rem; padding: 1.1rem 1.2rem; background: transparent; }
 .metric + .metric { border-left: 1px solid var(--color-rule); }
-.metric-number { color: var(--color-ink); font-family: var(--font-serif); font-size: clamp(1.9rem, 3vw, 2.7rem); font-weight: 400; }
-.metric-label { color: var(--color-mid-text); font-family: var(--font-sans); font-size: .75rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; }
+.metric-number { color: var(--color-ink); font-family: var(--font-serif); font-size: clamp(1.9rem, 3vw, 2.7rem); font-weight: 400; line-height: 1.1; }
+.metric-label { color: var(--color-mid-text); font-family: var(--font-sans); font-size: .8125rem; font-weight: 400; letter-spacing: .01em; line-height: 1.45; }
 .tech-marquee { border-color: var(--color-rule); background: var(--color-surface-1); color: var(--color-structure); font-size: .8125rem; letter-spacing: .06em; }
 .tech-marquee__header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .7rem clamp(1rem, 3vw, 2.5rem) .2rem; color: var(--color-structure); font-size: .6875rem; font-weight: 600; letter-spacing: .06em; line-height: 1.4; }
 .tech-marquee__header span:first-child { min-width: 0; padding-left: .7rem; border-left: 2px solid var(--color-accent); }

@@ -149,14 +149,14 @@ function renderSpecializations() {
     <p>${escapeHtml(specialization.description)}</p>
     <button class="text-link project-card__open" type="button" data-project-open="${proof[specialization.slug]}">Explore a related project ↗</button>
     <details><summary>Explore the technologies</summary><div class="stack-map__block">
-      <p class="stack-map__label">PORTFOLIO-PROVEN FOUNDATION</p>
+      <p class="stack-map__label">SELECTED TOOLS &amp; METHODS</p>
       <dl class="stack-map">${specialization.groups.map((group) => `<div><dt>${escapeHtml(group.label)}</dt><dd><ul class="stack-tools">${group.tools.map((tool) => `<li>${escapeHtml(tool)}</li>`).join('')}</ul></dd></div>`).join('')}</dl>
     </div></details>
     <details>
-      <summary>Show broader toolkit</summary>
+      <summary>Additional tool familiarity</summary>
       <div class="stack-map__block stack-map__block--industry">
-        <p class="stack-map__label">BROADER TOOL FAMILIARITY</p>
-        <p class="stack-map__note">Familiar from coursework and independent study — not yet deployed in production projects.</p>
+        <p class="stack-map__label">BROADER TOOLKIT</p>
+        <p class="stack-map__note">These tools reflect broader familiarity; the case studies above show the project work and scope presented publicly.</p>
         <dl class="stack-map stack-map--industry">${specialization.industryGroups.map((group) => `<div><dt>${escapeHtml(group.label)}</dt><dd><ul class="stack-tools">${group.tools.map((tool) => `<li>${escapeHtml(tool)}</li>`).join('')}</ul></dd></div>`).join('')}</dl>
       </div>
     </details>
