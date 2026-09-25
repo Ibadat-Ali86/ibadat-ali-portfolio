@@ -178,24 +178,29 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .working-steps b { color: var(--color-accent-text); font-family: var(--font-sans); font-size: .875rem; font-weight: 500; }
 .working-steps span { color: var(--color-structure); font-size: .9375rem; }
 
-.experience-timeline { border-color: var(--color-rule); }
-.experience-timeline::before { background: var(--color-rule); }
-.experience-card { border-color: var(--color-rule); }
-.experience-card__index { color: var(--color-accent-text); background: var(--color-base); font-family: var(--font-serif); font-size: 1.25rem; font-weight: 400; }
-.experience-card__period, .experience-card__duration { color: var(--color-mid-text); font-family: var(--font-sans); font-size: .8125rem; }
-.experience-card__organization { color: var(--color-accent-text); font-family: var(--font-sans); font-size: .875rem; font-weight: 500; }
-.experience-card__content > p:last-child { color: var(--color-structure); font-size: .9375rem; }
-.experience-card__duration { padding: .35rem .6rem; border: 1px solid var(--color-accent); border-radius: 3px; color: var(--color-ink); background: var(--color-highlight); }
+.experience-catalog { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.8rem, 1.5vw, 1.2rem); }
+.experience-card { display: flex; min-width: 0; flex-direction: column; gap: .85rem; padding: clamp(1.1rem, 2vw, 1.5rem); border: 1px solid var(--color-rule); border-radius: 8px; background: var(--color-surface-1); transition: transform var(--duration-fast) ease, border-color var(--duration-fast) ease, box-shadow var(--duration-fast) ease; }
+.experience-card:hover, .experience-card:focus-within { transform: translateY(-3px); border-color: var(--color-accent); box-shadow: var(--shadow-hover); }
+.experience-card__meta, .certification-card__meta { display: flex; align-items: center; justify-content: space-between; gap: .7rem; }
+.experience-card__index, .certification-card__meta > span { color: var(--color-accent-text); font-family: var(--font-sans); font-size: .68rem; font-weight: 700; letter-spacing: .1em; }
+.experience-card__period, .experience-card__duration { color: var(--color-mid-text); font-family: var(--font-sans); font-size: .78rem; }
+.experience-card__period { margin: 0; }
+.experience-card__content h3 { margin: 0 0 .35rem; font-size: clamp(1.15rem, 1.5vw, 1.4rem); line-height: 1.2; }
+.experience-card__organization { margin: 0 0 .75rem; color: var(--color-accent-text); font-family: var(--font-sans); font-size: .85rem; font-weight: 600; }
+.experience-card__content > p:last-child { margin: 0; color: var(--color-structure); font-size: .9rem; }
+.experience-card__duration { padding: .32rem .55rem; border: 1px solid var(--color-rule); border-radius: 999px; white-space: nowrap; }
 .formation-note { border-color: var(--color-rule); }
 .formation-note p:last-child { color: var(--color-structure); }
-.certifications { border-color: var(--color-rule); }
+.certifications { display: block; margin-top: clamp(3rem, 6vw, 5rem); padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--color-rule); }
 .certifications__heading h3 { font-size: clamp(1.7rem, 2.5vw, 2.5rem); }
-.certification-card { border: 1px solid var(--color-rule); border-radius: 4px; background: var(--color-surface-1); }
+.certification-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(.8rem, 1.5vw, 1.2rem); margin-top: 1.5rem; }
+.certification-card { overflow: hidden; border: 1px solid var(--color-rule); border-radius: 8px; background: var(--color-surface-1); transition: border-color var(--duration-fast) ease, box-shadow var(--duration-fast) ease, transform var(--duration-fast) ease; }
 .certification-card:hover, .certification-card:focus-within { border-color: var(--color-accent); box-shadow: var(--shadow-hover); transform: translateY(-3px); }
 .certification-card__preview { background: var(--color-surface-2); }
 .certification-card__preview span { border: 1px solid var(--color-ink); border-radius: 3px; background: var(--color-ink); color: var(--color-base); font-family: var(--font-sans); font-size: .75rem; }
-.certification-card__body { padding: 1rem; }
+.certification-card__body { display: grid; align-content: start; gap: .7rem; padding: 1rem 1.15rem 1.2rem; }
 .certification-card__body .section-index { color: var(--color-mid-text); }
+.certification-card__body .section-index { margin: 0; }
 .certification-card h4 { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 400; }
 
 .atlas { padding-top: var(--section); }
@@ -302,14 +307,7 @@ html.js .hero .button-row { animation: headingReveal 400ms var(--ease-organic) 1
   .engagement-model ol { grid-template-columns: 1fr; }
   .engagement-model__note { grid-column: auto; }
   .working-steps { grid-template-columns: 1fr; }
-  .experience-card { grid-template-columns: 3rem minmax(0, 1fr); gap: .7rem 1rem; }
-  .experience-timeline::before { left: 1.45rem; }
-  .experience-card__index { width: 3rem; }
-  .experience-card__period { grid-column: 2; grid-row: 1; }
-  .experience-card__content, .experience-card__duration { grid-column: 2; }
-  .experience-card__duration { justify-self: start; }
-  .certifications { grid-template-columns: 1fr; gap: 1.5rem; margin-top: 3.5rem; }
-  .certification-grid { grid-template-columns: 1fr; }
+  .experience-catalog, .certification-grid { grid-template-columns: 1fr; }
   .case-study-index__item { grid-template-columns: 2.4rem minmax(0, 1fr); }
   .case-study-index__item button { grid-column: 2; justify-self: start; }
   .work-note { grid-template-columns: 1fr; gap: .6rem; }

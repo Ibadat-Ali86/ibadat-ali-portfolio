@@ -18,6 +18,14 @@ test('presents a single priority-ordered catalog with only Netflix as a lab', as
     'vital-link', 'pakistan-ecommerce', 'vendor-analysis', 'netflix'
   ]);
   await expect(page.locator('.project-catalog__grid')).toHaveCount(1);
+  const experienceCards = page.locator('[data-experience-card]');
+  await expect(experienceCards).toHaveCount(3);
+  await expect(experienceCards.nth(0)).toContainText('Independent Data Scientist / AI Consultant');
+  await expect(experienceCards.nth(1)).toContainText('ML / AI Engineer');
+  const certificateCards = page.locator('[data-certification-card]');
+  await expect(certificateCards).toHaveCount(2);
+  await expect(certificateCards.nth(0)).toContainText('AI Fluency: Framework & Foundations');
+  await expect(certificateCards.nth(0).locator('.certification-card__body a[href$=".pdf"]')).toHaveAttribute('target', '_blank');
   await expect(page.locator('.catalog-group, [data-catalog-group], [data-filter], .filter-bar')).toHaveCount(0);
   for (const hiddenLab of ['mnist', 'spam-classifier', 'employee-form', 'csv-cleaner']) {
     await expect(page.locator(`[data-project-slug="${hiddenLab}"]`)).toHaveCount(0);
@@ -86,6 +94,7 @@ test('supports keyboard navigation, contact form behavior, and responsive catalo
   await agentCard.locator('details summary').click();
   const langChain = agentCard.locator('.stack-tools li').filter({ hasText: 'LangChain' });
   await expect(langChain.locator('svg')).toHaveCount(1);
+  const experienceCards = page.locator('[data-experience-card]');
 
   const form = page.locator('[data-contact-form]');
   await form.evaluate((element) => { element.dataset.noNavigate = 'true'; });
@@ -105,6 +114,8 @@ test('supports keyboard navigation, contact form behavior, and responsive catalo
     if (width === 1440) {
       const firstFiveRows = await page.locator('[data-project-catalog-card]').evaluateAll((cards) => cards.slice(0, 5).map((card) => Math.round(card.getBoundingClientRect().top)));
       expect(new Set(firstFiveRows).size).toBe(1);
+      const experienceRow = await experienceCards.evaluateAll((cards) => cards.map((card) => Math.round(card.getBoundingClientRect().top)));
+      expect(new Set(experienceRow).size).toBe(1);
     }
   }
 });

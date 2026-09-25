@@ -90,18 +90,17 @@ function renderAtlas() {
 }
 
 function renderExperience() {
-  return `<div class="experience-timeline">${publicProfile.experience.map((item, index) => `<article class="experience-card" data-reveal>
-    <div class="experience-card__index">${String(index + 1).padStart(2, '0')}</div>
-    <div class="experience-card__period">${escapeHtml(item.period)}</div>
+  return `<div class="experience-catalog" data-experience-catalog>${publicProfile.experience.map((item, index) => `<article class="experience-card" data-experience-card data-reveal>
+    <div class="experience-card__meta"><span class="experience-card__index">${String(index + 1).padStart(2, '0')}</span><span class="experience-card__duration">${escapeHtml(item.duration)}</span></div>
+    <p class="experience-card__period">${escapeHtml(item.period)}</p>
     <div class="experience-card__content"><h3>${escapeHtml(item.role)}</h3><p class="experience-card__organization">${escapeHtml(item.organization)}</p><p>${escapeHtml(item.description)}</p></div>
-    <p class="experience-card__duration">${escapeHtml(item.duration)}</p>
   </article>`).join('\n')}</div>`;
 }
 
 function renderCertifications() {
-  return `<div class="certification-grid">${publicProfile.certifications.map((certificate) => `<article class="certification-card" data-reveal>
+  return `<div class="certification-grid" data-certification-catalog>${publicProfile.certifications.map((certificate, index) => `<article class="certification-card" data-certification-card data-reveal>
     <a class="certification-card__preview" href="${escapeHtml(certificate.pdf)}" target="_blank" rel="noopener noreferrer"><img src="${escapeHtml(certificate.image)}" alt="${escapeHtml(certificate.title)} certificate issued by ${escapeHtml(certificate.issuer)}" width="1200" height="928" loading="lazy" decoding="async"><span>Open certificate</span></a>
-    <div class="certification-card__body"><p class="section-index">${escapeHtml(certificate.issuer)} · ${escapeHtml(certificate.year)}</p><h4>${escapeHtml(certificate.title)}</h4><a class="text-link" href="${escapeHtml(certificate.pdf)}" target="_blank" rel="noopener noreferrer">View PDF</a></div>
+    <div class="certification-card__body"><div class="certification-card__meta"><p class="section-index">${escapeHtml(certificate.issuer)} · ${escapeHtml(certificate.year)}</p><span>${String(index + 1).padStart(2, '0')}</span></div><h4>${escapeHtml(certificate.title)}</h4><a class="text-link" href="${escapeHtml(certificate.pdf)}" target="_blank" rel="noopener noreferrer">View certificate PDF</a></div>
   </article>`).join('\n')}</div>`;
 }
 
