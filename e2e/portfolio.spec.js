@@ -26,6 +26,15 @@ test('presents a single priority-ordered catalog with only Netflix as a lab', as
   await expect(certificateCards).toHaveCount(2);
   await expect(certificateCards.nth(0)).toContainText('AI Fluency: Framework & Foundations');
   await expect(certificateCards.nth(0).locator('.certification-card__body a[href$=".pdf"]')).toHaveAttribute('target', '_blank');
+  await certificateCards.first().scrollIntoViewIfNeeded();
+  const certificateImages = certificateCards.locator('.certification-card__preview img');
+  await expect.poll(() => certificateImages.evaluateAll((images) => images.length === 2 && images.every((image) => image.complete && image.naturalWidth > 0))).toBe(true);
+  const imageRatios = await certificateImages.evaluateAll((images) => images.map((image) => ({
+    natural: image.naturalWidth / image.naturalHeight,
+    rendered: image.getBoundingClientRect().width / image.getBoundingClientRect().height,
+    objectFit: getComputedStyle(image).objectFit
+  })));
+  expect(imageRatios.every(({ natural, rendered, objectFit }) => Math.abs(natural - rendered) < 0.02 && objectFit === 'contain')).toBe(true);
   await expect(page.locator('.catalog-group, [data-catalog-group], [data-filter], .filter-bar')).toHaveCount(0);
   for (const hiddenLab of ['mnist', 'spam-classifier', 'employee-form', 'csv-cleaner']) {
     await expect(page.locator(`[data-project-slug="${hiddenLab}"]`)).toHaveCount(0);

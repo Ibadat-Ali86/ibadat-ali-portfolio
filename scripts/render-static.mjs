@@ -99,7 +99,7 @@ function renderExperience() {
 
 function renderCertifications() {
   return `<div class="certification-grid" data-certification-catalog>${publicProfile.certifications.map((certificate, index) => `<article class="certification-card" data-certification-card data-reveal>
-    <a class="certification-card__preview" href="${escapeHtml(certificate.pdf)}" target="_blank" rel="noopener noreferrer"><img src="${escapeHtml(certificate.image)}" alt="${escapeHtml(certificate.title)} certificate issued by ${escapeHtml(certificate.issuer)}" width="1200" height="928" loading="lazy" decoding="async"><span>Open certificate</span></a>
+    <a class="certification-card__preview" href="${escapeHtml(certificate.pdf)}" target="_blank" rel="noopener noreferrer"><img src="${escapeHtml(certificate.image)}" alt="${escapeHtml(certificate.title)} certificate issued by ${escapeHtml(certificate.issuer)}" width="1430" height="1105" loading="lazy" decoding="async"><span>Open certificate</span></a>
     <div class="certification-card__body"><div class="certification-card__meta"><p class="section-index">${escapeHtml(certificate.issuer)} · ${escapeHtml(certificate.year)}</p><span>${String(index + 1).padStart(2, '0')}</span></div><h4>${escapeHtml(certificate.title)}</h4><a class="text-link" href="${escapeHtml(certificate.pdf)}" target="_blank" rel="noopener noreferrer">View certificate PDF</a></div>
   </article>`).join('\n')}</div>`;
 }
