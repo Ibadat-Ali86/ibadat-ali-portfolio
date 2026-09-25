@@ -121,8 +121,9 @@ test('supports keyboard navigation, contact form behavior, and responsive catalo
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await expect(page.locator('[data-project-catalog-card]')).toHaveCount(16);
     if (width === 1440) {
-      const firstFiveRows = await page.locator('[data-project-catalog-card]').evaluateAll((cards) => cards.slice(0, 5).map((card) => Math.round(card.getBoundingClientRect().top)));
-      expect(new Set(firstFiveRows).size).toBe(1);
+      const firstFourRows = await page.locator('[data-project-catalog-card]').evaluateAll((cards) => cards.slice(0, 4).map((card) => Math.round(card.getBoundingClientRect().top)));
+      expect(new Set(firstFourRows).size).toBe(1);
+      expect(Math.round(await page.locator('[data-project-catalog-card]').nth(4).evaluate((card) => card.getBoundingClientRect().top))).toBeGreaterThan(firstFourRows[0]);
       const experienceRow = await experienceCards.evaluateAll((cards) => cards.map((card) => Math.round(card.getBoundingClientRect().top)));
       expect(new Set(experienceRow).size).toBe(1);
     }

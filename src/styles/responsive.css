@@ -2,7 +2,7 @@
   .container { width: min(var(--content), calc(100% - 52px)); }
   .hero__grid { grid-template-columns: minmax(0, 1fr) minmax(300px, .78fr); gap: 2rem; }
   .hero__visual { min-height: 460px; }
-  .project-catalog__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .project-catalog__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .experience-catalog { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .nav-links { gap: 1rem; }
   .nav-links a { font-size: .6rem; }
@@ -48,10 +48,10 @@
 }
 
 @media (max-width: 1199px) and (min-width: 981px) {
-  .project-catalog__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .project-catalog__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 640px) {
   .project-catalog__grid { grid-template-columns: 1fr; }
 }
 

@@ -99,10 +99,10 @@
 .atlas-group__title { margin-bottom: 1.3rem; font-size: clamp(1.8rem, 3.5vw, 3.4rem); }
 .atlas-group__note { margin: -.6rem 0 1.5rem; color: var(--ink-soft); font-size: .92rem; }
 .project-catalog { display: block; }
-.project-catalog__grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(.65rem, 1.25vw, 1rem); }
+.project-catalog__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(.85rem, 1.5vw, 1.25rem); }
 .catalog-card { display: flex; min-width: 0; flex-direction: column; overflow: hidden; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: rgba(17, 29, 43, .72); transition: transform .32s ease, border-color .32s ease, box-shadow .32s ease; }
 .catalog-card:hover, .catalog-card:focus-within { transform: translateY(-5px); border-color: var(--accent); box-shadow: var(--shadow-hover); }
-.catalog-card__media { aspect-ratio: 16 / 8; overflow: hidden; background: var(--paper-deep); }
+.catalog-card__media { aspect-ratio: 16 / 10; overflow: hidden; background: var(--paper-deep); }
 .catalog-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
 .catalog-card:hover .catalog-card__media img, .catalog-card:focus-within .catalog-card__media img { transform: scale(1.04); }
 .catalog-card__body { display: flex; flex: 1; flex-direction: column; gap: .65rem; padding: 1rem; }
