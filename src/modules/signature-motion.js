@@ -5,6 +5,11 @@ export function initSignatureMotion() {
   if (!signature) return;
 
   const activate = () => signature.classList.add('is-active');
+  const isVisible = () => {
+    const { top, bottom } = signature.getBoundingClientRect();
+    return top < window.innerHeight && bottom > 0;
+  };
+
   if (prefersReducedMotion() || !('IntersectionObserver' in window)) {
     activate();
     return;
@@ -18,4 +23,8 @@ export function initSignatureMotion() {
   }, { threshold: 0.35 });
 
   observer.observe(signature);
+
+  if (isVisible()) {
+    requestAnimationFrame(activate);
+  }
 }
