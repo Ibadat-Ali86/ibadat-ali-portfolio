@@ -274,7 +274,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .signature__quote { max-width: 13ch; margin: 0; color: var(--color-ink); font-size: clamp(3rem, 7.2vw, 8.2rem); font-weight: 800; line-height: .94; letter-spacing: -.065em; text-wrap: balance; }
 .signature__word { display: inline-block; }
 .signature__word:nth-child(2n) { color: var(--color-accent-text); }
-.signature.is-active .signature__word { animation: signature-word-in .72s var(--ease-organic) both; animation-delay: calc(var(--signature-index) * 70ms); }
+.signature__inner.is-active .signature__word { animation: signature-word-in .72s var(--ease-organic) both; animation-delay: calc(var(--signature-index) * 70ms); }
 .signature__attribution { margin: clamp(2rem, 4vw, 3.5rem) 0 0; color: var(--color-structure); font-family: var(--font-mono); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; }
 
 .project-modal { border: 1px solid var(--color-rule); border-radius: 8px; background: var(--color-base); color: var(--color-ink); box-shadow: 0 30px 90px rgba(0, 0, 0, .65); }
