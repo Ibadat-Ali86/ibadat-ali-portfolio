@@ -9,6 +9,7 @@ test('presents a single priority-ordered catalog with only Netflix as a lab', as
   await expect(page).toHaveTitle('Ibadat Ali — AI Automation & Workflow Engineer');
   await expect(page.getByRole('heading', { name: 'Business problems into working systems.' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'A clear view of the work.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'My work is done when you no longer need me!' })).toBeVisible();
   const cards = page.locator('[data-project-catalog-card]');
   await expect(cards).toHaveCount(16);
   const order = await cards.evaluateAll((elements) => elements.map((element) => element.dataset.projectSlug));
@@ -141,12 +142,12 @@ test('respects reduced motion and passes accessibility checks', async ({ page })
 
 test('keeps anchored sections visible and static content available without JavaScript', async ({ page, browser }) => {
   await page.goto('/#contact', { waitUntil: 'domcontentloaded' });
-  for (const selector of ['#expertise', '#proof', '#about', '#experience', '#contact']) await expect(page.locator(selector)).toBeVisible();
+  for (const selector of ['#expertise', '#proof', '#about', '#experience', '#contact', '#signature']) await expect(page.locator(selector)).toBeVisible();
 
   const context = await browser.newContext({ javaScriptEnabled: false });
   const staticPage = await context.newPage();
   await staticPage.goto('/', { waitUntil: 'domcontentloaded' });
   await expect(staticPage.locator('[data-project-catalog-card]')).toHaveCount(16);
-  for (const selector of ['#expertise h2', '#proof h2', '#about h2', '#experience h2', '#contact h2']) await expect(staticPage.locator(selector)).toBeVisible();
+  for (const selector of ['#expertise h2', '#proof h2', '#about h2', '#experience h2', '#contact h2', '#signature h2']) await expect(staticPage.locator(selector)).toBeVisible();
   await context.close();
 });

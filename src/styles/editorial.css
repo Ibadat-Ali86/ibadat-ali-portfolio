@@ -267,6 +267,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .site-footer { border-color: var(--color-rule); color: var(--color-mid-text); font-size: .8125rem; }
 .site-footer a { color: var(--color-ink); }
 .site-footer a:hover, .site-footer a:focus-visible { color: var(--color-accent); }
+.signature { position: relative; overflow: hidden; border-top: 1px solid var(--color-rule); background: linear-gradient(135deg, var(--color-surface-1), var(--color-base) 70%); }
+.signature::after { position: absolute; top: 0; right: 9%; width: min(34rem, 48vw); height: 100%; background: radial-gradient(circle, rgba(245, 166, 35, .14), transparent 68%); content: ''; pointer-events: none; }
+.signature__inner { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(8rem, .25fr) minmax(0, 1fr); gap: clamp(2rem, 7vw, 8rem); align-items: start; padding-block: clamp(5.5rem, 12vw, 11rem); }
+.signature__label { margin: .45rem 0 0; color: var(--color-accent-text); font-family: var(--font-mono); font-size: .68rem; letter-spacing: .11em; }
+.signature__quote { max-width: 13ch; margin: 0; color: var(--color-ink); font-size: clamp(3rem, 7.2vw, 8.2rem); font-weight: 800; line-height: .94; letter-spacing: -.065em; text-wrap: balance; }
+.signature__word { display: inline-block; }
+.signature__word:nth-child(2n) { color: var(--color-accent-text); }
+.signature.is-active .signature__word { animation: signature-word-in .72s var(--ease-organic) both; animation-delay: calc(var(--signature-index) * 70ms); }
+.signature__attribution { margin: clamp(2rem, 4vw, 3.5rem) 0 0; color: var(--color-structure); font-family: var(--font-mono); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; }
 
 .project-modal { border: 1px solid var(--color-rule); border-radius: 8px; background: var(--color-base); color: var(--color-ink); box-shadow: 0 30px 90px rgba(0, 0, 0, .65); }
 .project-modal::backdrop { background: rgba(0, 0, 0, .78); backdrop-filter: blur(6px); }
@@ -288,6 +297,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 @keyframes bodyFadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes drawLine { to { stroke-dashoffset: 0; } }
 @keyframes editorial-marquee { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@keyframes signature-word-in { from { opacity: 0; transform: translateY(.45em); } to { opacity: 1; transform: translateY(0); } }
 html.js .hero__content { animation: headingReveal var(--duration-slow) var(--ease-organic) .3s both; }
 html.js .hero__visual { animation: headingReveal var(--duration-slow) var(--ease-organic) .45s both; }
 html.js .hero__lede { animation: bodyFadeIn 600ms ease-out .9s both; }
@@ -331,6 +341,9 @@ html.js .hero .button-row { animation: headingReveal 400ms var(--ease-organic) 1
   .work-note { grid-template-columns: 1fr; gap: .6rem; }
   .work-note a { grid-column: auto; }
   .contact-form__grid { grid-template-columns: 1fr; }
+  .signature__inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .signature__label { margin-top: 0; }
+  .signature__quote { max-width: 10ch; font-size: clamp(3.1rem, 13vw, 5.2rem); }
 }
 @media (max-width: 460px) {
   .brand__name { display: none; }

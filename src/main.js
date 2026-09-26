@@ -14,6 +14,7 @@ import { initContactForm } from './modules/contact-form.js';
 import { initProjectModal } from './modules/project-modal.js';
 import { initMetricCounters } from './modules/metric-counters.js';
 import { initIntroVideo } from './modules/intro-video.js';
+import { initSignatureMotion } from './modules/signature-motion.js';
 
 document.documentElement.classList.add('js');
 document.querySelector('[data-current-year]').textContent = String(new Date().getFullYear());
@@ -24,4 +25,5 @@ initContactForm();
 initProjectModal();
 initMetricCounters();
 initIntroVideo();
+initSignatureMotion();
 if (!prefersReducedMotion()) initRevealMotion();
