@@ -75,6 +75,12 @@ test('preserves accessible detail dialogs and marks the client agent private wit
   await expect(modal.locator('[data-modal-note]')).toContainText('private client project');
   await expect(modal.locator('[data-modal-stack] li')).toHaveCount(10);
   await expect(modal.locator('[data-modal-stack] li:has-text("n8n") svg')).toHaveCount(1);
+  await expect(modal.locator('[data-modal-architecture] .project-modal__architecture-step')).toHaveCount(3);
+  await expect(modal.locator('[data-modal-context]')).not.toBeEmpty();
+  await expect(modal.locator('[data-modal-delivery] li')).toHaveCount(2);
+  await expect(modal.locator('[data-modal-portfolio-stack] li')).toHaveCount(5);
+  await expect(modal.locator('[data-modal-image]')).toHaveCSS('object-fit', 'contain');
+  await expect(modal.locator('[data-modal-image]')).toBeVisible();
   await expect(modal.locator('[data-modal-actions] a[href*="github.com"]')).toHaveCount(0);
   await expect(modal.locator('[data-modal-evidence-links] a[href*="github.com"]')).toHaveCount(0);
   await expect(modal.locator('[data-modal-evidence-links] a[href*="payguard-digitalocean-proof.png"]')).toHaveCount(1);
@@ -88,6 +94,8 @@ test('preserves accessible detail dialogs and marks the client agent private wit
   await page.locator('.catalog-card--codescope [data-project-open]').click();
   await expect(modal.locator('[data-modal-title]')).toHaveText('CodeScope MCP Preflight');
   await expect(modal.locator('[data-modal-stack] li')).toHaveCount(6);
+  await expect(modal.locator('[data-modal-architecture] .project-modal__architecture-step')).toHaveCount(3);
+  await expect(modal.locator('[data-modal-stack-summary]')).toContainText('6 technologies');
 });
 
 test('supports keyboard navigation, contact form behavior, and responsive catalog rows', async ({ page }) => {

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFile } from 'node:fs/promises';
 import { publicProfile } from '../src/data/portfolio-profile.js';
-import { excludedProjectNames, professionalProjectSlugs, projects, secondaryProjectSlugs, showcaseProjectSlugs } from '../src/data/projects.js';
+import { catalogStackUsage, excludedProjectNames, professionalProjectSlugs, projects, secondaryProjectSlugs, showcaseProjectSlugs } from '../src/data/projects.js';
 
 const externalUrls = (project) => [project.github, project.live].filter(Boolean);
 
@@ -50,6 +50,18 @@ test('has unique slugs and required render fields', () => {
     ['slug', 'title', 'tier', 'category', 'status', 'hook', 'metric', 'problem', 'solution', 'image', 'sourceAccess'].forEach((field) => assert.ok(project[field], `${project.slug} needs ${field}`));
     assert.ok(Array.isArray(project.stack) && project.stack.length > 0, `${project.slug} needs a stack`);
   });
+});
+
+test('keeps every public catalog project backed by a complete case-study architecture', () => {
+  professionalProjectSlugs.forEach((slug) => {
+    const project = projects.find(({ slug: projectSlug }) => projectSlug === slug);
+    assert.ok(project.caseStudy, `${slug} needs case-study details`);
+    assert.ok(project.caseStudy.context && project.caseStudy.delivery.length >= 2, `${slug} needs context and delivery notes`);
+    assert.ok(project.caseStudy.architecture.length >= 2, `${slug} needs architecture stages`);
+    const architectureTools = project.caseStudy.architecture.flatMap(({ tools }) => tools);
+    project.stack.forEach((tool) => assert.ok(architectureTools.includes(tool), `${slug} must place ${tool} in the architecture`));
+  });
+  assert.ok(catalogStackUsage().some(([label, count]) => label === 'Python' && count >= 5));
 });
 
 test('uses valid external project URLs and exact Evershine live URL', () => {
@@ -145,7 +157,7 @@ test('keeps social branding, profile branding, and private PayGuard boundaries i
   assert.match(brandIcons, /siN8n/);
   assert.match(brandIcons, /siZapier/);
   assert.match(brandIcons, /siLangchain/);
-  assert.match(projectModule, /stackBrandFor\(item\)/);
+  assert.match(projectModule, /stackBrandFor\(label\)/);
   assert.match(renderer, /PayGuard private-client guard/);
 });
 
@@ -190,9 +202,11 @@ test('renders a reusable privacy-safe case-study modal entry point', async () =>
   const module = await readFile(new URL('../src/modules/project-modal.js', import.meta.url), 'utf8');
   assert.match(renderer, /data-project-open/);
   assert.match(template, /data-project-modal/);
-  assert.match(template, />Problem</);
-  assert.match(template, />Plan</);
-  assert.match(template, />Solution</);
+  assert.match(template, />Why it mattered</);
+  assert.match(template, />Delivery plan</);
+  assert.match(template, />How it was solved</);
+  assert.match(template, /Architecture in practice/);
+  assert.match(template, /Most used across this catalog/);
   assert.match(module, /private client project and its implementation details are confidential/);
   assert.match(module, /projectPlan\(project\)/);
 });

@@ -189,6 +189,185 @@ export const showcaseProjectSlugs = ['payguard-ai', 'evershine', 'adaptiq', 'sen
 export const secondaryProjectSlugs = ['ai-restaurant-chatbot', 'resume-builder', 'learning-dashboard', 'covid-analytics', 'topolite', 'vital-link', 'pakistan-ecommerce', 'vendor-analysis'];
 export const professionalProjectSlugs = [...showcaseProjectSlugs, ...secondaryProjectSlugs, 'netflix'];
 
+const caseStudyDetails = {
+  'payguard-ai': {
+    context: 'Payment proof arrived as an image inside a WhatsApp group. The workflow had to coordinate media intake, OCR, Stripe truth, duplicate handling, and manual review without treating OCR as final authority.',
+    architecture: [
+      { label: 'Intake and queue', detail: 'Allowlisted WhatsApp media is accepted, identified, and persisted through a fair queue so bursts do not reorder payment work.', tools: ['WhatsApp / Baileys', 'Node.js', 'n8n'] },
+      { label: 'Evidence extraction', detail: 'OCR and a bounded vision fallback turn screenshots into candidate fields while keeping weak or incomplete evidence explicit.', tools: ['Python', 'FastAPI', 'Tesseract OCR', 'Groq Vision'] },
+      { label: 'Authoritative verification', detail: 'Eligible evidence is reconciled against Stripe, duplicate submissions are detected, and ambiguous cases stay fail-closed for review.', tools: ['Stripe API', 'Docker', 'DigitalOcean'] }
+    ],
+    delivery: ['Designed the evidence path around bounded retries and explicit review states.', 'Documented the handoff so the client can operate the workflow without relying on the builder.']
+  },
+  codescope: {
+    context: 'Coding agents need repository context before they decide whether to reuse, extend, or create code. The product boundary is local-first intelligence, not an autonomous code-writing platform.',
+    architecture: [
+      { label: 'Repository scan', detail: 'The CLI establishes a deterministic repository view before an agent asks for context.', tools: ['Python', 'CLI'] },
+      { label: 'Structural analysis', detail: 'Tree-sitter exposes syntax-aware structure so retrieval can work with code relationships rather than filenames alone.', tools: ['Tree-sitter'] },
+      { label: 'Context retrieval', detail: 'Embeddings and a local vector store return relevant repository evidence through MCP tool boundaries.', tools: ['sentence-transformers', 'Chroma', 'MCP'] }
+    ],
+    delivery: ['Kept the tool local-first to reduce unnecessary source movement.', 'Made the preflight decision inspectable before any downstream agent action.']
+  },
+  carevision: {
+    context: 'Assisted review across multimodal inputs needs a clear boundary between model output and human judgment. The interface therefore emphasizes structured responses, auditability, and bounded fallback behavior.',
+    architecture: [
+      { label: 'Client workflow', detail: 'A typed React PWA presents the review flow and keeps state transitions visible to the operator.', tools: ['React 18', 'TypeScript', 'Vite', 'Tailwind', 'Radix UI', 'Zustand'] },
+      { label: 'Inference boundary', detail: 'FastAPI coordinates structured multimodal inference and preserves a review-oriented response contract.', tools: ['FastAPI', 'Gemini 2.0 Flash'] },
+      { label: 'Persistence and continuity', detail: 'PostgreSQL and SQLAlchemy support durable records while the offline-capable path keeps the workflow useful when connectivity is limited.', tools: ['PostgreSQL', 'SQLAlchemy'] }
+    ],
+    delivery: ['Presented the system as decision support, never as diagnosis or treatment.', 'Kept audit logging and fallback behavior visible as part of the product story.']
+  },
+  sentineliq: {
+    context: 'Maintenance planning benefits from one operational path that combines remaining-useful-life signals, anomaly detection, explanations, and scheduling instead of leaving each result in a separate notebook.',
+    architecture: [
+      { label: 'Sequence prediction', detail: 'Sensor histories move through TCN/LSTM sequence models for remaining-useful-life estimation.', tools: ['PyTorch', 'TCN', 'LSTM'] },
+      { label: 'Anomaly and explanation layer', detail: 'Two anomaly approaches and SHAP attribution expose unusual behavior and the signals behind a prediction.', tools: ['Isolation Forest', 'Autoencoder', 'SHAP'] },
+      { label: 'Decision surface', detail: 'PuLP turns model and anomaly outputs into a planning step, with FastAPI and the web application providing the delivery surface.', tools: ['PuLP', 'FastAPI', 'Next.js 15', 'PostgreSQL', 'Docker'] }
+    ],
+    delivery: ['Separated prediction, anomaly, explainability, and scheduling responsibilities.', 'Avoided unsupported winning-model or RMSE claims while experiment tables remain unresolved.']
+  },
+  topolite: {
+    context: 'Compact medical-imaging research needs a transparent account of representation, topology, distillation, and explainability without implying clinical deployment.',
+    architecture: [
+      { label: 'Compact representation', detail: 'A lightweight convolutional path is used as the student-side foundation for experimentation.', tools: ['PyTorch', 'depthwise-separable CNN', 'EfficientNet-B0'] },
+      { label: 'Topology-aware learning', detail: 'Coordinate attention and persistent-homology signals are explored as structural guidance during distillation.', tools: ['Coordinate Attention', 'persistent homology', 'GUDHI'] },
+      { label: 'Interpretability', detail: 'Grad-CAM provides a visual explanation surface for research inspection rather than a clinical guarantee.', tools: ['Grad-CAM'] }
+    ],
+    delivery: ['Framed the work as an academic research prototype with explicit limitations.', 'Kept the public story focused on method and reproducibility rather than medical outcome claims.']
+  },
+  adaptiq: {
+    context: 'Forecasting becomes useful when a team can move from uploaded sales data to model comparison, interpretable planning outputs, and a report they can carry into a decision meeting.',
+    architecture: [
+      { label: 'Forecasting ensemble', detail: 'Classical, boosted, and recurrent model families are compared within one forecasting workflow.', tools: ['Prophet', 'XGBoost', 'SARIMA', 'LSTM'] },
+      { label: 'Inference service', detail: 'FastAPI exposes the model path while the React/Vite client gives the operator a usable planning surface.', tools: ['FastAPI', 'React', 'Vite'] },
+      { label: 'Decision and delivery', detail: 'Chart.js visualizes the comparison and Docker/Hugging Face provide the practical delivery boundary.', tools: ['Chart.js', 'Docker', 'Hugging Face'] }
+    ],
+    delivery: ['Made model comparison and downloadable planning reports part of the product, not an afterthought.', 'Kept unsupported accuracy language out of the public case study.']
+  },
+  'vital-link': {
+    context: 'The prototype explores how image, audio, and vital-sign inputs can be brought into one bounded assisted-review workflow without turning a multimodal model into an unqualified clinical authority.',
+    architecture: [
+      { label: 'Multimodal intake', detail: 'The prototype collects the three input types into one review context rather than isolated demonstrations.', tools: ['Python', 'Flask'] },
+      { label: 'Model-assisted review', detail: 'Gemini 2.0 Flash supports the synthesis step while the interface keeps the workflow explicitly assistive.', tools: ['Gemini 2.0 Flash'] },
+      { label: 'Operator output', detail: 'Charts and a generated document provide a review artifact for the prototype flow.', tools: ['Chart.js', 'jsPDF'] }
+    ],
+    delivery: ['Kept the scope at prototype and assisted review.', 'Avoided diagnosis, clinical validation, or treatment claims.']
+  },
+  evershine: {
+    context: 'A private education client needed a public-facing platform that could connect admissions, academic information, LMS access, and role-based experiences without exposing implementation details.',
+    architecture: [
+      { label: 'Web experience', detail: 'Next.js and TypeScript provide the structured application surface for public and authenticated journeys.', tools: ['Next.js 15', 'TypeScript', 'Tailwind CSS'] },
+      { label: 'Data and access', detail: 'Prisma and PostgreSQL support durable application data while role-based dashboards separate user responsibilities.', tools: ['Prisma', 'PostgreSQL', 'role-based dashboards'] },
+      { label: 'Handoff', detail: 'The delivery includes documentation so the client can operate and extend the system independently.', tools: ['Next.js 15', 'TypeScript'] }
+    ],
+    delivery: ['Show only the approved live-site action for this private client project.', 'Do not publish source links, repository names, or confidential administration details.']
+  },
+  'ai-lead-generation': {
+    context: 'Lead operations become inconsistent when capture, qualification, enrichment, outreach, and reporting live in separate manual steps.',
+    architecture: [
+      { label: 'Capture and enrichment', detail: 'Submissions and map data enter the workflow, where duplicates and basic qualification signals are handled before outreach.', tools: ['n8n', 'Google Maps', 'web scraping'] },
+      { label: 'Agent-assisted preparation', detail: 'Gemini prepares context-aware outreach while the workflow retains deterministic tool boundaries around the agent.', tools: ['Google Gemini', 'AI agent'] },
+      { label: 'Send and record', detail: 'Gmail sends the message and Google Sheets preserves the visible lead state for reporting and follow-up.', tools: ['Gmail', 'Google Sheets'] }
+    ],
+    delivery: ['Presented this as workflow proof, not a conversion or lead-volume claim.', 'Kept the process understandable from trigger to recorded outcome.']
+  },
+  'ai-restaurant-chatbot': {
+    context: 'Restaurant conversations need fast answers across menus, FAQs, orders, and inventory while preserving enough context to avoid repeating the same questions.',
+    architecture: [
+      { label: 'Conversation trigger', detail: 'WhatsApp messages enter an n8n workflow that owns routing and response delivery.', tools: ['WhatsApp Business', 'n8n'] },
+      { label: 'Agent and memory', detail: 'Gemini handles language understanding while simple memory keeps the immediate conversation coherent.', tools: ['Google Gemini', 'AI agent', 'Simple memory'] },
+      { label: 'Business tools', detail: 'Google Sheets provides the bounded FAQ, order, and inventory lookups used by the workflow.', tools: ['Google Sheets', 'FAQ + orders + inventory'] }
+    ],
+    delivery: ['Kept the workflow proof focused on tool use and state movement.', 'Made no order-volume or production-scale claim.']
+  },
+  'resume-builder': {
+    context: 'Resume creation needs a guided flow that keeps structured information reliable while still giving the user immediate feedback and a usable PDF output.',
+    architecture: [
+      { label: 'Structured interface', detail: 'React, TypeScript, Tailwind, Radix UI, and React Hook Form provide the typed, accessible form experience.', tools: ['React 18', 'TypeScript', 'Tailwind', 'Radix UI', 'React Hook Form'] },
+      { label: 'State and validation', detail: 'Zustand and Zod coordinate local application state and keep form data explicit before export.', tools: ['Zustand', 'Zod', 'Supabase'] },
+      { label: 'Document output', detail: 'The browser converts the resume surface into a downloadable document through canvas capture and PDF generation.', tools: ['html2canvas', 'jsPDF', 'Vite'] }
+    ],
+    delivery: ['Kept the live product link visible as the primary proof surface.', 'Focused the case study on workflow clarity rather than unsupported user-outcome claims.']
+  },
+  'learning-dashboard': {
+    context: 'Learners need one workspace for goals, resources, reminders, reports, analytics, and study support instead of a collection of disconnected notes and scheduled tasks.',
+    architecture: [
+      { label: 'Application and data', detail: 'Flask exposes the application boundary while SQLAlchemy and Alembic keep persistence and schema changes explicit.', tools: ['Flask', 'SQLAlchemy', 'Alembic', 'JavaScript'] },
+      { label: 'Identity and scheduling', detail: 'JWT protects sessions and APScheduler coordinates time-based reminders and background activity.', tools: ['JWT', 'APScheduler'] },
+      { label: 'Assisted study tools', detail: 'Gemini, PDF parsing, image handling, OCR, and media processing support the study workflow.', tools: ['Gemini', 'PyPDF2', 'Pillow', 'pytesseract', 'moviepy'] }
+    ],
+    delivery: ['Use the professional product title rather than mirroring the repository name.', 'Describe the workspace as AI-assisted study support, not an autonomous tutor.']
+  },
+  'covid-analytics': {
+    context: 'Analytics work is only useful when data can move consistently from source files through storage and APIs into an interface that makes patterns inspectable.',
+    architecture: [
+      { label: 'Data foundation', detail: 'Python and MySQL provide the ingestion and persistence layer for the analytical dataset.', tools: ['Python', 'MySQL'] },
+      { label: 'Service boundary', detail: 'FastAPI exposes the processed data through a clear API contract for the client application.', tools: ['FastAPI'] },
+      { label: 'Analytical interface', detail: 'React, TypeScript, Tailwind, and Vite form the interactive dashboard surface, with Docker keeping the environment repeatable.', tools: ['React', 'TypeScript', 'Tailwind', 'Vite', 'Docker'] }
+    ],
+    delivery: ['Presented the work as an analytics case study, not a public-health outcome claim.', 'Kept the child project visible while excluding the parent collection from the catalog.']
+  },
+  'pakistan-ecommerce': {
+    context: 'Price-prediction work needs a disciplined path from transaction records to features, model comparison, and a repeatable inference surface.',
+    architecture: [
+      { label: 'Data preparation', detail: 'Python and pandas shape the transaction data into a reproducible modeling input.', tools: ['Python', 'pandas', 'Jupyter'] },
+      { label: 'Model comparison', detail: 'Scikit-learn supports tree-based experiments with Random Forest and Gradient Boosting as inspectable approaches.', tools: ['scikit-learn', 'Random Forest', 'Gradient Boosting'] },
+      { label: 'Inference surface', detail: 'Flask packages the selected path into a small application boundary for prediction-oriented use.', tools: ['Flask'] }
+    ],
+    delivery: ['Kept the result framed as deployable inference rather than a verified business forecast.', 'Omitted unverified R² and row-count figures.']
+  },
+  'vendor-analysis': {
+    context: 'Procurement questions become difficult when sales, purchasing, pricing, invoices, and vendor information remain disconnected across separate tables.',
+    architecture: [
+      { label: 'Data assembly', detail: 'Python and pandas establish a repeatable cleaning and joining path for the operational tables.', tools: ['Python', 'pandas'] },
+      { label: 'Query layer', detail: 'SQL and SQLite make the analytical questions explicit and keep the working dataset inspectable.', tools: ['SQL', 'SQLite', 'Jupyter'] },
+      { label: 'Decision views', detail: 'Data visualization turns the joined data into vendor and inventory observations that can be discussed.', tools: ['data visualization'] }
+    ],
+    delivery: ['Focused on the analysis workflow and its questions rather than unsupported dataset-volume claims.', 'Kept the output compact enough to inspect as a portfolio case study.']
+  },
+  netflix: {
+    context: 'The lab explores how a streaming catalog can be profiled through metadata, genres, release patterns, popularity, and feature relationships.',
+    architecture: [
+      { label: 'Dataset preparation', detail: 'Python and pandas provide the notebook-friendly loading, cleaning, and reshaping path.', tools: ['Python', 'pandas', 'Jupyter'] },
+      { label: 'Exploration', detail: 'Matplotlib and seaborn turn catalog fields into distributions, comparisons, and relationship views.', tools: ['Matplotlib', 'seaborn'] },
+      { label: 'Interpretation', detail: 'The final output remains exploratory analysis: a compact lab for asking better questions of metadata, not a prediction product.', tools: ['Python', 'Jupyter'] }
+    ],
+    delivery: ['Kept Netflix as the single compact data-analysis lab in the public catalog.', 'Presented it as exploratory analysis rather than predictive modeling.']
+  }
+};
+
+for (const project of projects) {
+  if (caseStudyDetails[project.slug]) project.caseStudy = caseStudyDetails[project.slug];
+}
+
+const stackAliases = [
+  ['Python', /^python$/i], ['React', /^react(?:\s|$)/i], ['TypeScript', /^typescript$/i], ['JavaScript', /^javascript$/i],
+  ['FastAPI', /^fastapi$/i], ['Flask', /^flask$/i], ['PostgreSQL', /^postgres(?:ql)?$/i], ['Docker', /^docker$/i],
+  ['Google Gemini', /gemini/i], ['Google Sheets', /google sheets/i], ['n8n', /^n8n$/i], ['Jupyter', /^jupyter$/i],
+  ['pandas', /^pandas$/i], ['PyTorch', /^pytorch$/i], ['scikit-learn', /scikit-learn/i], ['Shiny', /^shiny$/i]
+];
+
+export function canonicalStackLabel(label) {
+  return stackAliases.find(([, pattern]) => pattern.test(label))?.[0] ?? label;
+}
+
+export function catalogStackUsage() {
+  const counts = new Map();
+  for (const slug of professionalProjectSlugs) {
+    const project = projects.find(({ slug: projectSlug }) => projectSlug === slug);
+    project?.stack.forEach((label) => {
+      const key = canonicalStackLabel(label);
+      counts.set(key, (counts.get(key) ?? 0) + 1);
+    });
+  }
+  return [...counts.entries()].sort(([, first], [, second]) => second - first);
+}
+
+export function projectStackUsage(project) {
+  const usage = new Map(catalogStackUsage());
+  return project.stack.map((label) => ({ label, count: usage.get(canonicalStackLabel(label)) ?? 1 }));
+}
+
 export function projectPlan(project) {
   if (project.workflow) return 'Map the business trigger to deterministic qualification, agent reasoning, tool calls, and traceable output.';
   if (project.category.includes('Payment Verification')) return 'Keep payment evidence bounded and auditable: receive the screenshot safely, extract deterministic fields, reconcile against Stripe, detect repeats, and require review when the evidence is not unique.';

@@ -48,7 +48,7 @@
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="ambient-field" aria-hidden="true"><span class="ambient-field__glow ambient-field__glow--teal"></span><span class="ambient-field__glow ambient-field__glow--blue"></span><span class="ambient-field__glow ambient-field__glow--gold"></span></div>
-    <header class="site-header" data-site-header>
+    <header class="site-header" data-site-header aria-label="Site header">
       <nav class="site-nav container" aria-label="Primary navigation">
         <a class="brand" href="#top" aria-label="Ibadat Ali home"><span class="brand__mark"><img src="/assets/profile/ibadat-profile.webp" alt="" width="96" height="96" decoding="async"></span><span class="brand__name">Ibadat Ali</span></a>
         <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-menu" data-menu-button><span class="sr-only">Toggle navigation</span><span aria-hidden="true">Menu</span></button>
@@ -224,19 +224,13 @@
       <div class="project-modal__backdrop" data-modal-close></div>
       <div class="project-modal__panel" role="document">
         <button class="project-modal__close" type="button" data-modal-close aria-label="Close case study">×</button>
-        <div class="project-modal__media"><img data-modal-image alt="" width="1600" height="1000"></div>
+        <div class="project-modal__media"><figure><div class="project-modal__media-frame"><img data-modal-image alt="" width="1600" height="1000"></div><figcaption data-modal-media-caption></figcaption></figure></div>
         <div class="project-modal__content">
-          <p class="section-index" data-modal-status></p>
-          <p class="project-metric" data-modal-metric></p>
-          <p class="project-result" data-modal-result></p>
-          <h2 id="project-modal-title" data-modal-title>Project case study</h2>
-          <p class="project-modal__hook" data-modal-hook></p>
-          <div class="project-modal__grid">
-            <section><p class="project-modal__label">Problem</p><p data-modal-problem></p></section>
-            <section><p class="project-modal__label">Plan</p><p data-modal-plan></p></section>
-            <section><p class="project-modal__label">Solution</p><p data-modal-solution></p></section>
-            <section><p class="project-modal__label">Technology stack</p><ul class="tag-list project-modal__stack" data-modal-stack></ul></section>
-          </div>
+          <header class="project-modal__header" aria-label="Project case study overview"><p class="section-index" data-modal-status></p><p class="project-metric" data-modal-metric></p><p class="project-result" data-modal-result></p><h2 id="project-modal-title" data-modal-title>Project case study</h2><p class="project-modal__hook" data-modal-hook></p></header>
+          <section class="project-modal__brief" aria-labelledby="project-modal-brief-title"><div class="project-modal__section-heading"><p class="project-modal__label">01 / Brief</p><h3 id="project-modal-brief-title">The work behind the interface</h3></div><div class="project-modal__grid"><section><p class="project-modal__label">Why it mattered</p><p data-modal-problem></p></section><section><p class="project-modal__label">Context and constraints</p><p data-modal-context></p></section><section><p class="project-modal__label">Delivery plan</p><p data-modal-plan></p></section><section><p class="project-modal__label">How it was solved</p><p data-modal-solution></p></section></div></section>
+          <section class="project-modal__architecture-section" aria-labelledby="project-modal-architecture-title"><div class="project-modal__section-heading"><p class="project-modal__label">02 / System design</p><h3 id="project-modal-architecture-title">Architecture in practice</h3></div><div class="project-modal__architecture" data-modal-architecture></div></section>
+          <section class="project-modal__stack-section" aria-labelledby="project-modal-stack-title"><div class="project-modal__section-heading"><p class="project-modal__label">03 / Technology</p><h3 id="project-modal-stack-title">Every tool, with its role visible</h3><p class="project-modal__stack-summary" data-modal-stack-summary></p></div><ul class="tag-list project-modal__stack" data-modal-stack aria-label="Complete technology stack"></ul><div class="project-modal__usage-grid"><section><p class="project-modal__label">Most used across this catalog</p><ul class="project-modal__usage-list" data-modal-portfolio-stack></ul></section><section><p class="project-modal__label">Distinctive to this build</p><ul class="project-modal__usage-list" data-modal-distinctive-stack></ul></section></div></section>
+          <section class="project-modal__delivery" aria-labelledby="project-modal-delivery-title"><div class="project-modal__section-heading"><p class="project-modal__label">04 / Delivery</p><h3 id="project-modal-delivery-title">What the work prioritised</h3></div><ul class="project-modal__delivery-list" data-modal-delivery></ul></section>
           <section class="project-modal__evidence" data-modal-evidence-block hidden><p class="project-modal__label">Public proof and limits</p><p data-modal-evidence></p><div class="project-modal__evidence-links" data-modal-evidence-links></div></section>
           <div class="project-modal__actions" data-modal-actions></div>
           <p class="project-modal__note" data-modal-note></p>
