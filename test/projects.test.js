@@ -177,7 +177,7 @@ test('animates portfolio metrics only when visible and keeps static accessible v
   const module = await readFile(new URL('../src/modules/metric-counters.js', import.meta.url), 'utf8');
   const main = await readFile(new URL('../src/main.js', import.meta.url), 'utf8');
   assert.equal((template.match(/data-count-up="\d+"/g) ?? []).length, 4);
-  assert.equal((template.match(/class="sr-only">(?:16|01|04|03) /g) ?? []).length, 4);
+  assert.equal((template.match(/class="sr-only">(?:20|01|04|03) /g) ?? []).length, 4);
   assert.match(module, /prefersReducedMotion\(\)/);
   assert.match(module, /IntersectionObserver/);
   assert.match(module, /requestAnimationFrame/);
