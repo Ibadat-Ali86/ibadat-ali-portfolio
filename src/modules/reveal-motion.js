@@ -1,5 +1,6 @@
 // Content stays visible even when animation or observation is unavailable.
 export function initRevealMotion() {
+  if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
   if (!('IntersectionObserver' in window)) return;
   const revealElements = [...document.querySelectorAll('[data-reveal]')];
   const observer = new IntersectionObserver((entries) => {

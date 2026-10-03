@@ -184,6 +184,17 @@ test('animates portfolio metrics only when visible and keeps static accessible v
   assert.match(main, /initMetricCounters\(\)/);
 });
 
+test('keeps scroll reveals quiet for reduced-motion users and uses one restrained aurora layer', async () => {
+  const reveal = await readFile(new URL('../src/modules/reveal-motion.js', import.meta.url), 'utf8');
+  const editorial = await readFile(new URL('../src/styles/editorial.css', import.meta.url), 'utf8');
+  const reducedMotionGuard = reveal.indexOf("window.matchMedia?.('(prefers-reduced-motion: reduce)').matches");
+  const observerCheck = reveal.indexOf("'IntersectionObserver' in window");
+  assert.ok(reducedMotionGuard >= 0 && reducedMotionGuard < observerCheck);
+  assert.match(editorial, /ambient-drift 46s cubic-bezier/);
+  assert.match(editorial, /\.ambient-field__glow--blue \{ display: none; \}/);
+  assert.match(editorial, /\.ambient-field__glow \{ animation: none; \}/);
+});
+
 test('renders the curated technology stack in an accessible left-to-right marquee', async () => {
   const renderer = await readFile(new URL('../scripts/render-static.mjs', import.meta.url), 'utf8');
   const template = await readFile(new URL('../index.template.html', import.meta.url), 'utf8');
