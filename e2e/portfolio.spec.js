@@ -96,6 +96,14 @@ test('preserves accessible detail dialogs and marks the client agent private wit
   await expect(modal.locator('[data-modal-stack] li')).toHaveCount(6);
   await expect(modal.locator('[data-modal-architecture] .project-modal__architecture-step')).toHaveCount(3);
   await expect(modal.locator('[data-modal-stack-summary]')).toContainText('6 technologies');
+  for (const width of [320, 375, 640, 768, 820]) {
+    await page.setViewportSize({ width, height: 850 });
+    await expect(modal.locator('.project-modal__media-frame')).toBeVisible();
+    expect(await modal.locator('.project-modal__panel').evaluate((panel) => panel.scrollWidth <= panel.clientWidth)).toBe(true);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  }
+  await page.keyboard.press('Escape');
+  await expect(modal).not.toBeVisible();
 });
 
 test('supports keyboard navigation, contact form behavior, and responsive catalog rows', async ({ page }) => {
@@ -125,10 +133,16 @@ test('supports keyboard navigation, contact form behavior, and responsive catalo
   await form.locator('button[type="submit"]').click();
   await expect(form.locator('[data-contact-status]')).toContainText('Opening your email app');
 
-  for (const width of [375, 390, 768, 1440]) {
+  for (const width of [320, 360, 375, 390, 430, 460, 461, 640, 641, 760, 761, 768, 820, 840, 841, 980, 981, 1024, 1199, 1200, 1280, 1440, 1920]) {
     await page.setViewportSize({ width, height: 900 });
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await expect(page.locator('[data-project-catalog-card]')).toHaveCount(16);
+    const catalogColumns = await page.locator('.project-catalog__grid').evaluate((grid) => getComputedStyle(grid).gridTemplateColumns.split(' ').length);
+    expect(catalogColumns).toBe(width <= 640 ? 1 : width <= 980 ? 2 : width <= 1199 ? 3 : 4);
+    const metricColumns = await page.locator('.metrics-strip').evaluate((grid) => getComputedStyle(grid).gridTemplateColumns.split(' ').length);
+    expect(metricColumns).toBe(width <= 460 ? 1 : width <= 980 ? 2 : 4);
+    const proofColumns = await page.locator('.trust-proof__grid').evaluate((grid) => getComputedStyle(grid).gridTemplateColumns.split(' ').length);
+    expect(proofColumns).toBe(width <= 760 ? 1 : width <= 980 ? 2 : 3);
     if (width === 1440) {
       const firstFourRows = await page.locator('[data-project-catalog-card]').evaluateAll((cards) => cards.slice(0, 4).map((card) => Math.round(card.getBoundingClientRect().top)));
       expect(new Set(firstFourRows).size).toBe(1);
