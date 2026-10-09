@@ -1,11 +1,10 @@
 import { prefersReducedMotion } from './reduced-motion.js';
 
 const roles = [
-  'AI automation · n8n, Gemini & Claude workflows',
-  'Agent systems · MCP tool-calling & RAG retrieval',
-  'Client delivery · Next.js 15, Electron & PostgreSQL',
-  'Predictive ML · PyTorch, XGBoost & Time-Series',
-  'Content creator · sharing useful systems in public'
+  'AI agent development · MCP, tool-calling & retrieval',
+  'AI engineering · model integration, APIs & evaluation',
+  'Agent workflows · n8n, RAG & structured automation',
+  'Applied AI systems · PyTorch, forecasting & explainability'
 ];
 
 function formatMetric(value, { prefix = '', suffix = '', decimals = 0 }) {

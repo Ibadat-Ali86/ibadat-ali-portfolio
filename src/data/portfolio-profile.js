@@ -1,27 +1,27 @@
 export const publicProfile = {
   name: 'Ibadat Ali',
-  headline: 'AI Automation & Workflow Engineer building predictive models, agent systems, and client-ready software that turns manual processes into useful decisions.',
+  headline: 'AI Engineer & AI Agent Developer building tool-using agents, model-backed products, and dependable AI systems.',
   summary: [
-    'Ibadat maps real business workflows to reliable, documented automations — integrating Claude, Gemini 2.0 Flash, and MCP tool-calling with explicit fallbacks, validation layers, and model-boundary annotations.',
-    'Delivered verified production systems to real clients: an offline-first retail POS (React + Electron + SQLite) and an enterprise multi-campus LMS (Next.js + PostgreSQL).',
-    'The public portfolio presents 16 carefully selected projects in one priority-ordered catalog, including Netflix Data Analysis as the only compact lab.'
+    'Ibadat develops AI agent workflows using n8n, Model Context Protocol (MCP), retrieval, and tool-calling patterns, with explicit validation and fallback boundaries.',
+    'His AI engineering work connects model integration to APIs, product interfaces, applied machine learning, evaluation, and documented handoff.',
+    'The portfolio distinguishes client work, live products, research prototypes, and compact labs, and labels the evidence available for each project.'
   ],
   capabilities: [
     {
-      name: 'AI Automation & LLM Workflows',
-      description: 'Designs multi-stage n8n pipelines, tool-calling agents, and structured prompt flows with deterministic validation and automated error fallback routing.'
+      name: 'AI Agent Development',
+      description: 'Designs tool-using agents, MCP integrations, retrieval flows, and multi-stage n8n workflows with validation and explicit fallback boundaries.'
     },
     {
-      name: 'Agent Architecture & MCP',
-      description: 'Builds local-first Model Context Protocol (MCP) servers, AST-aware retrieval pipelines, and vector-backed RAG systems that ground agent reasoning.'
+      name: 'AI Engineering & Retrieval',
+      description: 'Builds local-first MCP tools, syntax-aware code retrieval, and vector-backed context systems that give agent workflows relevant evidence.'
     },
     {
-      name: 'Client Delivery & Offline-First Apps',
-      description: 'Ships end-to-end client applications: offline-first retail POS (React + Electron + SQLite) and enterprise multi-campus school management platforms (Next.js + PostgreSQL).'
+      name: 'AI Product Engineering',
+      description: 'Connects model and agent capabilities to APIs, application interfaces, persistence, and documented handoffs for usable systems.'
     },
     {
-      name: 'Predictive ML & Decision Systems',
-      description: 'Builds time-series demand forecasting (Prophet, XGBoost, LSTM) and industrial predictive maintenance (PyTorch, TCN, PuLP) with SHAP attribution.'
+      name: 'Applied AI & Model Systems',
+      description: 'Develops forecasting, predictive-maintenance, and applied research workflows with model comparison, explainability, and clear limitations.'
     }
   ],
   experience: [
@@ -66,9 +66,9 @@ export const publicProfile = {
   specializations: [
     {
       slug: 'data-analysis',
-      index: '01 / Data analysis',
-      title: 'Data Analysis & BI',
-      description: 'From raw operational data to decision-ready analysis: query, clean, explore, visualise, and communicate the signal.',
+      index: '04 / Data foundations',
+      title: 'Data Foundations for AI',
+      description: 'Prepare, query, and inspect structured data so AI and machine-learning workflows start from clear, usable evidence.',
       groups: [
         { label: 'Query & storage', tools: ['SQL', 'PostgreSQL', 'MySQL', 'SQLite'] },
         { label: 'Analysis & notebooks', tools: ['Python', 'Pandas', 'NumPy', 'Jupyter'] },
@@ -84,9 +84,9 @@ export const publicProfile = {
     },
     {
       slug: 'data-science',
-      index: '02 / Data science',
-      title: 'Data Science & Forecasting',
-      description: 'Structured predictive work with interpretable features, robust baselines, time-series forecasting, and clear model evaluation.',
+      index: '03 / Modeling and evaluation',
+      title: 'Modeling & Evaluation',
+      description: 'Build and compare predictive approaches with interpretable features, forecasting methods, and clear evaluation boundaries.',
       groups: [
         { label: 'Classical ML', tools: ['Scikit-learn', 'Random Forest', 'Gradient Boosting', 'Logistic Regression'] },
         { label: 'Forecasting', tools: ['Prophet', 'SARIMA', 'XGBoost', 'LSTM'] },
@@ -102,9 +102,9 @@ export const publicProfile = {
     },
     {
       slug: 'ml-engineering',
-      index: '03 / ML engineering',
-      title: 'ML Engineering & Applied Research',
-      description: 'Deep-learning, anomaly-detection, and agent retrieval systems built around repeatable experimentation, explainability, and operational use cases.',
+      index: '02 / AI engineering',
+      title: 'AI Engineering & Applied Research',
+      description: 'Engineer deep-learning, anomaly-detection, and retrieval systems around repeatable experiments, explainability, and practical use cases.',
       groups: [
         { label: 'Deep learning', tools: ['PyTorch', 'TCN', 'LSTM', 'Autoencoder'] },
         { label: 'Agent context & retrieval', tools: ['Tree-sitter AST', 'sentence-transformers', 'Chroma', 'Semantic search'] },
@@ -120,9 +120,9 @@ export const publicProfile = {
     },
     {
       slug: 'ai-products',
-      index: '04 / AI automation and delivery',
-      title: 'AI Automation & Product Systems',
-      description: 'Production LLM workflows, agent tool-calling, APIs, and client-delivered platforms built with deterministic validation and operational telemetry.',
+      index: '01 / Agent development',
+      title: 'AI Agent Development & Automation',
+      description: 'Build tool-calling agents, MCP integrations, retrieval workflows, and AI automations with clear boundaries and dependable validation.',
       groups: [
         { label: 'LLM & Agent Workflows', tools: ['n8n', 'MCP (Model Context Protocol)', 'Claude API', 'Gemini 2.0 Flash', 'LangChain'] },
         { label: 'Backend APIs & Validation', tools: ['FastAPI', 'Flask', 'SQLAlchemy', 'Alembic', 'Zod'] },
@@ -151,8 +151,8 @@ export const publicProfile = {
 };
 
 export const assistantSuggestions = [
-  'Why should a client work with Ibadat?',
-  'Which project best matches my needs?',
-  'What can Ibadat build end to end?',
+  'What kind of AI agents does Ibadat build?',
+  'How does Ibadat engineer AI systems safely?',
+  'Which project shows Ibadat’s agent-development work?',
   'How can we start a conversation?'
 ];

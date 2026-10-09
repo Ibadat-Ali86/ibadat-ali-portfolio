@@ -1,25 +1,26 @@
-# Ibadat Ali — AI Automation & Systems Engineering
+# Ibadat Ali — AI Engineer & AI Agent Developer
 
-I build practical AI, data, and automation systems, from problem framing and model evaluation through usable software and a documented handoff.
+I engineer AI agents and model-backed products, connecting models, tools, retrieval, APIs, evaluation, and clear human handoffs.
 
 [Portfolio website](https://ibadat-ali-portfolio.vercel.app/) · [GitHub profile](https://github.com/Ibadat-Ali86) · [Email](mailto:ibadcodes@gmail.com)
 
-My work sits across applied machine learning, LLM workflows, developer tools, and full-stack delivery. I’ve worked as an ML / AI Engineer and Data Scientist Intern, alongside independent project delivery. The portfolio focuses on what each system does, how it is put together, and the evidence available to inspect it.
+My focus is AI engineering and agent development: tool-using workflows, MCP integrations, retrieval systems, and applied ML products. My experience includes an ML / AI Engineer role, a Data Scientist internship, and independent delivery. The portfolio distinguishes live products, client work, research prototypes, and the evidence available to inspect each project.
 
 ## Selected work
 
-- **[CodeScope MCP Preflight](https://github.com/Ibadat-Ali86/codescope-mcp-preflight)** — Local-first repository analysis and context retrieval for coding agents.
-- **[CareVision](https://github.com/Ibadat-Ali86/carevision)** — Multimodal, human-reviewed decision-support prototype; not a diagnostic system.
-- **[SentinelIQ](https://github.com/Ibadat-Ali86/sentinel-iq-cmpass-nasa-rul-prediction)** — Predictive-maintenance workflow combining sequence modeling, anomaly signals, explanations, and planning.
+- **WhatsApp Transaction Verification AI Agent** — Private client workflow with bounded evidence extraction and payment reconciliation; see the [portfolio case study](https://ibadat-ali-portfolio.vercel.app/#featured), with no source repository exposed.
+- **[CodeScope MCP Preflight](https://github.com/Ibadat-Ali86/codescope-mcp-preflight)** — Local-first repository context and retrieval for coding-agent workflows.
+- **[AI-Powered WhatsApp Restaurant Chatbot](https://ibadat-ali-portfolio.vercel.app/#featured)** — Workflow connecting WhatsApp conversations, FAQs, orders, and inventory tools.
+- **[CareVision](https://github.com/Ibadat-Ali86/carevision)** — Multimodal, human-reviewed prototype; not a diagnostic system.
+- **[SentinelIQ](https://github.com/Ibadat-Ali86/sentinel-iq-cmpass-nasa-rul-prediction)** — Predictive-maintenance system combining sequence models, anomaly signals, explanations, and planning.
+- **[AdaptIQ / ForecastAI](https://github.com/Ibadat-Ali86/Demand-Sales-Walmart-Forecasting)** — Retail forecasting workflow with model comparison and a planning interface.
 - **[TopoLite-KD](https://github.com/Ibadat-Ali86/TopoLite-KD-Efficient-Topology-Aware-Knowledge-Distillation-for-COVID-19-CT-Slice-Classification)** — Research prototype exploring topology-aware knowledge distillation.
-- **[AdaptIQ / ForecastAI](https://github.com/Ibadat-Ali86/Demand-Sales-Walmart-Forecasting)** — Demand-forecasting workflow with model comparison and a planning interface.
-- **WhatsApp Transaction Verification AI Agent** — Private client workflow; the [portfolio case study](https://ibadat-ali-portfolio.vercel.app/) describes the work without exposing its source repository.
 
 Project claims are kept deliberately narrow: metrics are shown only when their definitions and results can be verified, and private client source code is not linked.
 
 ## About this repository
 
-This repository contains the responsive, single-page portfolio website for Ibadat Ali. It presents AI systems, research engineering, data products, and full-stack delivery through case studies, project details, experience, and contact information.
+This repository contains the responsive, single-page portfolio website for Ibadat Ali. It presents AI agent workflows, applied AI engineering, project evidence, experience, and contact information.
 
 ## Architecture
 

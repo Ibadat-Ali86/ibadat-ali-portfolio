@@ -6,9 +6,9 @@ test('presents a single priority-ordered catalog with only Netflix as a lab', as
   page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
   await page.goto('/', { waitUntil: 'domcontentloaded' });
 
-  await expect(page).toHaveTitle('Ibadat Ali — AI Automation & Workflow Engineer');
-  await expect(page.getByRole('heading', { name: 'Business problems into working systems.' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'A clear view of the work.' })).toBeVisible();
+  await expect(page).toHaveTitle('Ibadat Ali — AI Engineer & AI Agent Developer');
+  await expect(page.getByRole('heading', { name: 'AI agents into working systems.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'AI systems, agents, and applied engineering.' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'My work is done when you no longer need me!' })).toBeVisible();
   const cards = page.locator('[data-project-catalog-card]');
   await expect(cards).toHaveCount(16);
@@ -114,6 +114,7 @@ test('supports keyboard navigation, contact form behavior, and responsive catalo
   await expect(page.locator('main')).toBeFocused();
 
   const toolkit = page.locator('#expertise details').first();
+  await expect(page.locator('.capability-card').first()).toHaveClass(/capability-card--ai-products/);
   await toolkit.locator('summary').click();
   await expect(toolkit).toHaveAttribute('open', '');
   const agentCard = page.locator('.capability-card--ai-products');

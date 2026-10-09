@@ -111,7 +111,9 @@ function renderCertifications() {
 
 function renderSpecializations() {
   const proof = { 'data-analysis': 'vendor-analysis', 'data-science': 'adaptiq', 'ml-engineering': 'sentineliq', 'ai-products': 'ai-lead-generation' };
-  return publicProfile.specializations.map((specialization) => `<article class="capability-card capability-card--${escapeHtml(specialization.slug)}" data-reveal>
+  const focusOrder = ['ai-products', 'ml-engineering', 'data-science', 'data-analysis'];
+  const orderedSpecializations = [...publicProfile.specializations].sort((a, b) => focusOrder.indexOf(a.slug) - focusOrder.indexOf(b.slug));
+  return orderedSpecializations.map((specialization) => `<article class="capability-card capability-card--${escapeHtml(specialization.slug)}" data-reveal>
     <p class="capability-kicker">${escapeHtml(specialization.index)}</p>
     <h3>${escapeHtml(specialization.title)}</h3>
     <p>${escapeHtml(specialization.description)}</p>

@@ -27,6 +27,8 @@ test('keeps one curated catalog and includes Netflix as its only lab project', (
 test('keeps a complete, role-ready professional stack map without conflating proof and industry tools', () => {
   const specializations = publicProfile.specializations;
   assert.deepEqual(specializations.map(({ slug }) => slug), ['data-analysis', 'data-science', 'ml-engineering', 'ai-products']);
+  assert.equal(publicProfile.headline, 'AI Engineer & AI Agent Developer building tool-using agents, model-backed products, and dependable AI systems.');
+  assert.deepEqual(publicProfile.capabilities.map(({ name }) => name), ['AI Agent Development', 'AI Engineering & Retrieval', 'AI Product Engineering', 'Applied AI & Model Systems']);
   specializations.forEach(({ title, description, groups, industryGroups }) => {
     assert.ok(title && description);
     assert.equal(groups.length, 4);
@@ -40,8 +42,10 @@ test('keeps a complete, role-ready professional stack map without conflating pro
       assert.ok(Array.isArray(tools) && tools.length >= 3);
     });
   });
-  assert.deepEqual(specializations[0].industryGroups[0].tools.slice(0, 4), ['Power BI', 'Tableau', 'Looker', 'Looker Studio']);
-  assert.ok(specializations[3].industryGroups.flatMap(({ tools }) => tools).includes('Google Vertex AI'));
+  const analysis = specializations.find(({ slug }) => slug === 'data-analysis');
+  const agents = specializations.find(({ slug }) => slug === 'ai-products');
+  assert.deepEqual(analysis.industryGroups[0].tools.slice(0, 4), ['Power BI', 'Tableau', 'Looker', 'Looker Studio']);
+  assert.ok(agents.industryGroups.flatMap(({ tools }) => tools).includes('Google Vertex AI'));
 });
 
 test('has unique slugs and required render fields', () => {
@@ -131,6 +135,9 @@ test('renders one flat ordered project catalog with descriptive media and detail
   assert.doesNotMatch(renderer, /Scope note/);
   assert.match(renderer, /function imageAlt\(project\)/);
   assert.match(renderer, /function renderSpecializations\(\)/);
+  assert.match(renderer, /focusOrder = \['ai-products', 'ml-engineering', 'data-science', 'data-analysis'\]/);
+  assert.match(template, /AI Engineer &amp; AI Agent Developer/);
+  assert.match(template, /AI agents into <em>working systems\.<\/em>/);
   assert.equal((template.match(/data-atlas-projects/g) ?? []).length, 1);
   assert.doesNotMatch(template, /FEATURED_PROJECTS|SECONDARY_PROJECTS|id="other-work"|id="research"/);
   assert.match(template, /Proof you can inspect\./);
