@@ -205,12 +205,24 @@ test('keeps scroll reveals quiet for reduced-motion users and uses one restraine
 test('renders the curated technology stack in an accessible left-to-right marquee', async () => {
   const renderer = await readFile(new URL('../scripts/render-static.mjs', import.meta.url), 'utf8');
   const template = await readFile(new URL('../index.template.html', import.meta.url), 'utf8');
-  const components = await readFile(new URL('../src/styles/components.css', import.meta.url), 'utf8');
+  const editorial = await readFile(new URL('../src/styles/editorial.css', import.meta.url), 'utf8');
   const motion = await readFile(new URL('../src/styles/motion.css', import.meta.url), 'utf8');
+  const icons = await readFile(new URL('../src/data/stack-icons.js', import.meta.url), 'utf8');
   assert.match(template, /TECH_STACK_MARQUEE/);
   assert.match(renderer, /aria-label="Technology stack and tools"/);
   assert.match(renderer, /function renderTechMarquee\(\)/);
-  assert.match(components, /\.tech-marquee__track \{ display: flex; width: max-content; animation: marquee 34s linear infinite;(?: will-change: transform;)? \}/);
+  assert.match(renderer, /professionalProjectSlugs\.flatMap\(\(slug\) => projects\.find/);
+  assert.match(renderer, /stackBrandFor\(technology\)/);
+  assert.match(renderer, /tech-marquee__symbols/);
+  assert.match(renderer, /<use href="#tech-stack-/);
+  assert.match(renderer, /tech-marquee__mark/);
+  assert.match(renderer, /aria-hidden="true"/);
+  assert.match(renderer, /tech-marquee__group--clone/);
+  assert.match(editorial, /animation: editorial-marquee var\(--tech-marquee-duration, 32s\) linear infinite/);
+  assert.match(editorial, /\.tech-marquee__item \{ display: inline-flex/);
+  assert.match(editorial, /\.tech-marquee__group \{ display: flex; width: 100%; flex-wrap: wrap/);
+  assert.match(icons, /siNextdotjs/);
+  assert.match(icons, /siChartdotjs/);
   assert.match(motion, /@keyframes marquee/);
 });
 

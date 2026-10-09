@@ -29,7 +29,7 @@
 .tech-marquee__viewport::after { right: 1.1rem; bottom: .45rem; border-right: 1px solid; border-bottom: 1px solid; box-shadow: 4px 2px 14px rgba(79,220,255,.3); animation-delay: -2.4s; }
 .tech-marquee__track { display: flex; width: max-content; animation: marquee 34s linear infinite; will-change: transform; }
 .tech-marquee__group { display: flex; align-items: center; gap: 2.6rem; padding-inline: 1.3rem; white-space: nowrap; }
-.tech-marquee__group span::after { display: inline-block; margin-left: 2.6rem; color: var(--accent); content: '✦'; }
+.tech-marquee__group .tech-marquee__item::after { display: inline-block; margin-left: 2.6rem; color: var(--accent); content: '✦'; }
 
 .media-frame { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--paper-deep); }
 .media-frame__inner { position: absolute; inset: 0; overflow: hidden; }

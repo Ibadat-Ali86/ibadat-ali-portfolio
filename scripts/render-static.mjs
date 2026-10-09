@@ -126,18 +126,28 @@ function renderSpecializations() {
 }
 
 function renderTechMarquee() {
-  const technologies = ['Demand forecasting', 'AI automation', 'Client-ready APIs', 'Predictive maintenance', 'RAG pipelines', 'Full-stack delivery'];
-  const items = technologies.map((technology) => `<span class="tech-marquee__item">${escapeHtml(technology)}</span>`).join('');
+  const technologies = [...new Set(professionalProjectSlugs.flatMap((slug) => projects.find((project) => project.slug === slug)?.stack ?? []))];
+  const icons = [...new Map(technologies.map((technology) => stackBrandFor(technology)).filter(Boolean).map((icon) => [icon.slug, icon])).values()];
+  const iconFor = (technology) => {
+    const icon = stackBrandFor(technology);
+    return icon
+      ? `<svg class="tech-marquee__icon" viewBox="0 0 24 24" aria-hidden="true" style="--stack-brand:#${icon.hex}"><use href="#tech-stack-${escapeHtml(icon.slug)}"/></svg>`
+      : `<span class="tech-marquee__mark" aria-hidden="true">${escapeHtml(technology.split(/[^a-z0-9]+/i).filter(Boolean).map((part) => part[0]).join('').slice(0, 2).toUpperCase() || 'AI')}</span>`;
+  };
+  const items = technologies.map((technology) => `<span class="tech-marquee__item">${iconFor(technology)}<span class="tech-marquee__label">${escapeHtml(technology)}</span></span>`).join('');
+  const symbols = icons.map((icon) => `<symbol id="tech-stack-${escapeHtml(icon.slug)}" viewBox="0 0 24 24"><path d="${icon.path}"/></symbol>`).join('');
   const accessibleList = technologies.map(escapeHtml).join(', ');
+  const duration = Math.max(42, Math.round(technologies.length * 0.82));
   return `<section class="tech-marquee" aria-label="Technology stack and tools" data-tech-marquee>
-    <div class="tech-marquee__header"><span>Selected areas of work</span><span>${technologies.length} practice areas</span></div>
+    <div class="tech-marquee__header"><span>AI engineering stack</span><span>${technologies.length} technologies &amp; tools</span></div>
+    <svg class="tech-marquee__symbols" aria-hidden="true" focusable="false"><defs>${symbols}</defs></svg>
     <div class="tech-marquee__viewport">
-      <div class="tech-marquee__track">
+      <div class="tech-marquee__track" style="--tech-marquee-duration:${duration}s">
         <div class="tech-marquee__group" aria-hidden="true">${items}</div>
         <div class="tech-marquee__group tech-marquee__group--clone" aria-hidden="true">${items}</div>
       </div>
     </div>
-    <p class="sr-only">Technologies and tools used across this portfolio: ${accessibleList}.</p>
+    <p class="sr-only">Technologies and tools shown across the selected project catalog: ${accessibleList}.</p>
   </section>`;
 }
 
