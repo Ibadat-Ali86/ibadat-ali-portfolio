@@ -96,7 +96,11 @@ test('keeps payment-agent evidence explicit and privacy-safe', () => {
   assert.equal(payguard.showSourceLink, false);
   assert.match(payguard.image, /payguard-ai-thumbnail\.png$/);
   assert.match(payguard.evidence.summary, /100 Node\.js tests and 153 Python tests/);
+  assert.equal(payguard.evidence.image.src, '/assets/projects/payguard-n8n-workflow.png');
+  assert.match(payguard.evidence.image.alt, /n8n editor/i);
+  assert.match(payguard.evidence.image.caption, /Supplied n8n workflow editor capture/);
   assert.equal(payguard.evidence.links.some(({ href }) => href.includes('github.com')), false);
+  assert.ok(payguard.evidence.links.some(({ href }) => href.endsWith('payguard-n8n-workflow.png')));
   assert.ok(payguard.evidence.links.some(({ href }) => href.endsWith('payguard-digitalocean-proof.png')));
   assert.doesNotMatch(JSON.stringify(payguard), /(?:sk_live|sk_test|api[_ -]?key|secret[_ -]?key|password\s*[:=]|token\s*[:=])/i);
 });
@@ -238,6 +242,8 @@ test('renders a reusable privacy-safe case-study modal entry point', async () =>
   assert.match(template, />How it was solved</);
   assert.match(template, /Architecture in practice/);
   assert.match(template, /Most used across this catalog/);
+  assert.match(template, /data-modal-evidence-visual/);
+  assert.match(module, /project\.evidence\.image/);
   assert.match(module, /private client project and its implementation details are confidential/);
   assert.match(module, /projectPlan\(project\)/);
 });

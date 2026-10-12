@@ -111,6 +111,8 @@ function openProject(project, opener) {
   const actions = modal.querySelector('[data-modal-actions]');
   const note = modal.querySelector('[data-modal-note]');
   const evidenceBlock = modal.querySelector('[data-modal-evidence-block]');
+  const evidenceVisual = modal.querySelector('[data-modal-evidence-visual]');
+  const evidenceImage = modal.querySelector('[data-modal-evidence-image]');
   const evidenceLinks = modal.querySelector('[data-modal-evidence-links]');
   const detail = project.caseStudy ?? {
     context: project.problem,
@@ -142,10 +144,25 @@ function openProject(project, opener) {
   if (project.evidence) {
     evidenceBlock.hidden = false;
     setText('[data-modal-evidence]', project.evidence.summary);
+    if (project.evidence.image) {
+      evidenceVisual.hidden = false;
+      evidenceImage.src = project.evidence.image.src;
+      evidenceImage.alt = project.evidence.image.alt;
+      setText('[data-modal-evidence-caption]', project.evidence.image.caption);
+    } else {
+      evidenceVisual.hidden = true;
+      evidenceImage.removeAttribute('src');
+      evidenceImage.alt = '';
+      setText('[data-modal-evidence-caption]', '');
+    }
     project.evidence.links?.forEach(({ href, label }) => evidenceLinks.append(createAction(href, label)));
   } else {
     evidenceBlock.hidden = true;
     setText('[data-modal-evidence]', '');
+    evidenceVisual.hidden = true;
+    evidenceImage.removeAttribute('src');
+    evidenceImage.alt = '';
+    setText('[data-modal-evidence-caption]', '');
   }
   actions.replaceChildren();
   if (project.live) actions.append(createAction(project.live, project.slug === 'evershine' ? 'Visit live website' : 'Visit live project'));

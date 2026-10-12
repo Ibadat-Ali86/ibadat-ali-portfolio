@@ -10,8 +10,14 @@ export const projects = [
     stack: ['WhatsApp / Baileys', 'Node.js', 'Python', 'FastAPI', 'Tesseract OCR', 'Groq Vision', 'n8n', 'Stripe API', 'Docker', 'DigitalOcean'], github: null, live: null, sourceAccess: 'private', showSourceLink: false, clientProject: true, primaryFeature: true, showcase: true, image: '/assets/projects/payguard-ai-thumbnail.png',
     result: 'Delivered payment-verification workflow with queueing, OCR fallback, Stripe reconciliation, duplicate handling, and handoff documentation.',
     evidence: {
-      summary: 'Private client delivery. Internal validation recorded 100 Node.js tests and 153 Python tests passing on 2026-09-24. The supplied deployment visual is not an uptime guarantee.',
+      summary: 'Private client delivery. Internal validation recorded 100 Node.js tests and 153 Python tests passing on 2026-09-24. The supplied editor capture documents the n8n workflow structure; it is not an uptime, transaction-volume, or production-health guarantee.',
+      image: {
+        src: '/assets/projects/payguard-n8n-workflow.png',
+        alt: 'n8n editor showing the WhatsApp Screenshot Processor v2 workflow with webhook validation, idempotency, duplicate detection, OCR, optional Stripe test verification, and response nodes.',
+        caption: 'Supplied n8n workflow editor capture · active workflow shown at capture time'
+      },
       links: [
+        { href: '/assets/projects/payguard-n8n-workflow.png', label: 'Open workflow editor capture' },
         { href: '/assets/projects/payguard-digitalocean-proof.png', label: 'Supplied deployment screenshot' }
       ]
     },
