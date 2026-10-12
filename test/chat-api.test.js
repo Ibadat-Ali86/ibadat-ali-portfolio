@@ -55,9 +55,9 @@ test('uses the selected Meta Llama model and a public-only knowledge boundary', 
   assert.equal(Object.hasOwn(privateClient, 'publicCodeUrl'), false);
   assert.equal(privateClient.live, 'https://evershineacadmey.com/');
   const projectTitles = PUBLIC_PORTFOLIO_CONTEXT.projects.map(({ title }) => title);
-  assert.equal(projectTitles.length, 16);
+  assert.equal(projectTitles.length, 14);
   assert.ok(projectTitles.includes('Netflix Data Analysis'));
-  ['MNIST Logistic Regression', 'Email / SMS Spam Classifier', 'Employee Information Form', 'CSV Data Cleaner'].forEach((title) => assert.equal(projectTitles.includes(title), false));
+  ['CSV Data Cleaner', 'Personalized AI Learning Dashboard', 'MNIST Logistic Regression', 'AI Resume Builder', 'Email / SMS Spam Classifier', 'Employee Information Form'].forEach((title) => assert.equal(projectTitles.includes(title), false));
   const payguard = PUBLIC_PORTFOLIO_CONTEXT.projects.find(({ title }) => title === 'WhatsApp Transaction Verification AI Agent');
   assert.ok(payguard);
   assert.equal(Object.hasOwn(payguard, 'publicCodeUrl'), false);

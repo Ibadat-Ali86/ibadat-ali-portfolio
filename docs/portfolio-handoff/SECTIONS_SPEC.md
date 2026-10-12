@@ -25,39 +25,19 @@ Each card starts with an outcome statement, then a compact stack list.
 ## 04 / Featured Systems
 
 Seven large cards in this order:
-1. CodeScope MCP Preflight
-2. CareVision
-3. SentinelIQ
-4. TopoLite-KD
+1. WhatsApp Transaction Verification AI Agent
+2. CodeScope MCP Preflight
+3. CareVision
+4. SentinelIQ
 5. AdaptIQ / ForecastAI
-6. VITAL-LINK
-7. Evershine Academy LMS
+6. Evershine Academy LMS
+7. AI-Powered Lead Generation Workflow
 
 Use an alternating two-column editorial layout. Let the seventh card span both columns. Evershine shows only `VISIT LIVE WEBSITE`.
 
 ## 05 / Complete Project Atlas
 
-Include the remaining ten projects grouped by category. Provide accessible category filters as progressive enhancement; the default DOM order must remain meaningful.
-
-### Full-Stack & Client Platforms
-- AI Resume Builder
-- Personalized AI Learning Dashboard
-
-### Analytics & BI
-- COVID-19 Global Analytics Platform
-- Vendor Performance Analysis
-- Netflix Data Analysis
-
-### Data Science & Forecasting
-- Pakistan E-commerce Price Prediction
-
-### ML & Data Labs
-- MNIST Logistic Regression
-- Email / SMS Spam Classifier
-- Employee Information Form
-- CSV Data Cleaner
-
-Selected cards use a two-column grid; labs use a three-column compact grid above 1100px.
+Render the remaining seven approved projects in the single catalog, preserving this order: AI-Powered WhatsApp Restaurant Chatbot, COVID-19 Global Analytics Platform, TopoLite-KD, VITAL-LINK, Pakistan E-commerce Price Prediction, Vendor Performance Analysis, and Netflix Data Analysis. Do not render projects outside the approved catalog.
 
 ## 06 / Interview
 

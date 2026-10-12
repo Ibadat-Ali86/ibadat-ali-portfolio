@@ -32,4 +32,4 @@ The current desktop concept establishes the visual language. The implementation 
 
 ## Final visible inventory
 
-17 project entries: 7 featured systems, 5 selected case studies, and 5 compact labs/tools.
+The current public catalog contains 14 approved projects: 7 featured systems, 6 additional case studies, and Netflix Data Analysis.

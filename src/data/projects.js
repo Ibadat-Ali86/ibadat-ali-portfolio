@@ -99,22 +99,6 @@ export const projects = [
     clientProject: true, result: 'Client workflow proof connecting WhatsApp intake, memory, FAQ, order capture, and inventory tools.', editorialSafeguard: 'Client workflow evidence; no order-volume or production claims are made.'
   },
   {
-    slug: 'resume-builder', title: 'AI Resume Builder', tier: 'selected', category: 'Full-Stack & Client Platforms', status: 'LIVE',
-    hook: 'A guided resume-building application with structured forms, live state, authentication, and PDF export.',
-    metric: 'Live resume product workflow',
-    problem: 'Resume creation needs an approachable workflow without losing control of structured information and export.',
-    solution: 'A guided application connects form state, authentication, and PDF generation in a focused experience.',
-    stack: ['React 18', 'TypeScript', 'Tailwind', 'Supabase', 'Zustand', 'React Hook Form', 'Zod', 'Radix UI', 'html2canvas', 'jsPDF', 'Vite'], github: 'https://github.com/Ibadat-Ali86/Interactive-Resume-Builder', live: 'https://snap-resume-p8lzooqtt-ibadcodes-6074s-projects.vercel.app', sourceAccess: 'public', showSourceLink: true, image: projectArt('resume-builder'), result: 'Live product workflow for structured resume creation, authenticated state, and PDF export.', editorialSafeguard: 'Live deployment link is retained; no unsupported outcome claims are shown.'
-  },
-  {
-    slug: 'learning-dashboard', title: 'Personalized AI Learning Dashboard', tier: 'selected', category: 'Full-Stack & Client Platforms', status: 'CASE STUDY',
-    hook: 'A learning-management workspace for goals, resources, reminders, reports, analytics, and AI-assisted study support.',
-    metric: 'AI-assisted learning workspace',
-    problem: 'Learners need a connected place to coordinate goals, resources, reminders, reports, and support.',
-    solution: 'A full-stack workspace brings scheduled tasks, structured resources, analytics, and AI assistance together.',
-    stack: ['Flask', 'SQLAlchemy', 'Alembic', 'JWT', 'APScheduler', 'Gemini', 'PyPDF2', 'Pillow', 'pytesseract', 'moviepy', 'JavaScript'], github: 'https://github.com/Ibadat-Ali86/new', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('learning-dashboard'), result: 'Full-stack learning workspace with goals, resources, reminders, analytics, and AI-assisted study.', editorialSafeguard: 'The public title describes the work rather than mirroring the repository name.'
-  },
-  {
     slug: 'covid-analytics', title: 'COVID-19 Global Analytics Platform', tier: 'selected', category: 'Analytics & BI', status: 'CASE STUDY',
     hook: 'A full-stack pandemic analytics platform with automated ETL, database-backed APIs, and an interactive dashboard.',
     metric: 'Automated ETL · global analytics',
@@ -139,22 +123,6 @@ export const projects = [
     stack: ['Python', 'pandas', 'SQL', 'SQLite', 'Jupyter', 'data visualization'], github: 'https://github.com/Ibadat-Ali86/Data_Analysis_Projects/tree/main/Vendor_Performance_Analysis_Project', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('vendor-analysis'), result: 'Procurement analysis workflow connecting sales, purchases, pricing, invoices, and vendor performance.', editorialSafeguard: 'Dataset-volume figures are omitted until independently checked.'
   },
   {
-    slug: 'mnist', title: 'MNIST Logistic Regression', tier: 'lab', category: 'ML & Data Labs', status: 'ML LAB',
-    hook: 'A compact handwritten-digit classification pipeline with custom IDX loading, preprocessing, training, evaluation, persistence, and CLI prediction.',
-    metric: 'Foundational ML lab',
-    problem: 'A foundational ML workflow is easy to hide behind a single score unless loading, preprocessing, training, and prediction remain inspectable.',
-    solution: 'The lab keeps the full path visible with custom IDX loading, preprocessing, logistic-regression training, evaluation, persistence, and CLI prediction.',
-    stack: ['Python', 'NumPy', 'scikit-learn', 'Logistic Regression', 'SGD', 'PCA', 'CLI'], github: 'https://github.com/Ibadat-Ali86/ML_Projects/tree/main/data/MNIST', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('mnist'), editorialSafeguard: 'Accuracy figures are omitted until reproduced.'
-  },
-  {
-    slug: 'spam-classifier', title: 'Email / SMS Spam Classifier', tier: 'lab', category: 'ML & Data Labs', status: 'ML LAB',
-    hook: 'A Streamlit text-classification app using normalized text, TF-IDF features, and logistic regression.',
-    metric: 'TF-IDF text classifier',
-    problem: 'Text classification needs explicit preprocessing and feature construction so the model behavior can be inspected and maintained.',
-    solution: 'A compact Streamlit lab makes normalization, TF-IDF feature extraction, and logistic regression part of one readable workflow.',
-    stack: ['Python', 'NLTK', 'TF-IDF', 'Logistic Regression', 'Streamlit'], github: 'https://github.com/Ibadat-Ali86/ML_Projects/tree/main/data/Spam%20Email%20Classifier/TASK%201/sms-spam-classifier-main', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('spam-classifier'), editorialSafeguard: 'Local-path limitations are retained as a maintenance consideration.'
-  },
-  {
     slug: 'netflix', title: 'Netflix Data Analysis', tier: 'lab', category: 'Analytics & BI', status: 'DATA LAB',
     hook: 'Exploratory analysis of movie metadata, genres, release patterns, popularity, and feature relationships.',
     metric: 'Exploratory data analysis',
@@ -170,14 +138,6 @@ export const projects = [
     solution: 'An R Shiny exercise combines reactive inputs, dates, file upload, validation, and structured output in one focused interface.',
     stack: ['R', 'Shiny', 'reactive programming', 'form validation'], github: 'https://github.com/Ibadat-Ali86/R_Shiny-Web_Apps/blob/main/Scenario1.R', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('employee-form'), editorialSafeguard: 'Displayed as a focused child lab, not as the parent collection.'
   },
-  {
-    slug: 'csv-cleaner', title: 'CSV Data Cleaner', tier: 'lab', category: 'ML & Data Labs', status: 'R SHINY TOOL',
-    hook: 'A small R Shiny utility for uploading, previewing, cleaning, and downloading tabular data.',
-    metric: 'R Shiny utility',
-    problem: 'Small data-cleaning tasks still need transparent upload, inspection, transformation, and download steps.',
-    solution: 'An R Shiny utility keeps tabular-data cleaning concise while preserving preview and export as first-class steps.',
-    stack: ['R', 'Shiny', 'CSV parsing', 'reactive data cleaning'], github: 'https://github.com/Ibadat-Ali86/R_Shiny-Web_Apps/blob/main/Scenario2.R', live: null, sourceAccess: 'public', showSourceLink: true, image: projectArt('csv-cleaner'), editorialSafeguard: 'Displayed as a focused child tool, not as the parent collection.'
-  }
 ];
 
 export const excludedProjectNames = [
@@ -186,7 +146,7 @@ export const excludedProjectNames = [
 
 export const showcaseProjectSlugs = ['payguard-ai', 'evershine', 'adaptiq', 'sentineliq', 'carevision', 'ai-lead-generation', 'codescope'];
 
-export const secondaryProjectSlugs = ['ai-restaurant-chatbot', 'resume-builder', 'learning-dashboard', 'covid-analytics', 'topolite', 'vital-link', 'pakistan-ecommerce', 'vendor-analysis'];
+export const secondaryProjectSlugs = ['ai-restaurant-chatbot', 'covid-analytics', 'topolite', 'vital-link', 'pakistan-ecommerce', 'vendor-analysis'];
 export const professionalProjectSlugs = [...showcaseProjectSlugs, ...secondaryProjectSlugs, 'netflix'];
 
 const caseStudyDetails = {
@@ -279,24 +239,6 @@ const caseStudyDetails = {
       { label: 'Business tools', detail: 'Google Sheets provides the bounded FAQ, order, and inventory lookups used by the workflow.', tools: ['Google Sheets', 'FAQ + orders + inventory'] }
     ],
     delivery: ['Kept the workflow proof focused on tool use and state movement.', 'Made no order-volume or production-scale claim.']
-  },
-  'resume-builder': {
-    context: 'Resume creation needs a guided flow that keeps structured information reliable while still giving the user immediate feedback and a usable PDF output.',
-    architecture: [
-      { label: 'Structured interface', detail: 'React, TypeScript, Tailwind, Radix UI, and React Hook Form provide the typed, accessible form experience.', tools: ['React 18', 'TypeScript', 'Tailwind', 'Radix UI', 'React Hook Form'] },
-      { label: 'State and validation', detail: 'Zustand and Zod coordinate local application state and keep form data explicit before export.', tools: ['Zustand', 'Zod', 'Supabase'] },
-      { label: 'Document output', detail: 'The browser converts the resume surface into a downloadable document through canvas capture and PDF generation.', tools: ['html2canvas', 'jsPDF', 'Vite'] }
-    ],
-    delivery: ['Kept the live product link visible as the primary proof surface.', 'Focused the case study on workflow clarity rather than unsupported user-outcome claims.']
-  },
-  'learning-dashboard': {
-    context: 'Learners need one workspace for goals, resources, reminders, reports, analytics, and study support instead of a collection of disconnected notes and scheduled tasks.',
-    architecture: [
-      { label: 'Application and data', detail: 'Flask exposes the application boundary while SQLAlchemy and Alembic keep persistence and schema changes explicit.', tools: ['Flask', 'SQLAlchemy', 'Alembic', 'JavaScript'] },
-      { label: 'Identity and scheduling', detail: 'JWT protects sessions and APScheduler coordinates time-based reminders and background activity.', tools: ['JWT', 'APScheduler'] },
-      { label: 'Assisted study tools', detail: 'Gemini, PDF parsing, image handling, OCR, and media processing support the study workflow.', tools: ['Gemini', 'PyPDF2', 'Pillow', 'pytesseract', 'moviepy'] }
-    ],
-    delivery: ['Use the professional product title rather than mirroring the repository name.', 'Describe the workspace as AI-assisted study support, not an autonomous tutor.']
   },
   'covid-analytics': {
     context: 'Analytics work is only useful when data can move consistently from source files through storage and APIs into an interface that makes patterns inspectable.',

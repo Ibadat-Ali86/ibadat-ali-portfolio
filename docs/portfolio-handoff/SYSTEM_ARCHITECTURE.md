@@ -90,7 +90,7 @@ Use GSAP + ScrollTrigger for staged reveals and tiny media parallax. Use CSS for
 
 ## Rendering strategy
 
-All 17 entries should exist in initial HTML or be rendered synchronously from local data before enhancement. Search engines and assistive technology must not depend on scrolling or animation to discover projects.
+All 14 approved catalog entries should exist in initial HTML or be rendered synchronously from local data before enhancement. Search engines and assistive technology must not depend on scrolling or animation to discover projects.
 
 ## Performance budget
 

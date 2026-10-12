@@ -21,30 +21,31 @@ The visual language is controlled digital Brutalism: warm paper, near-black ink,
 9. Never expose source information for Evershine Academy LMS.
 10. Do not show excluded parent collections as projects.
 
-## Final hierarchy
+## Approved public catalog
+
+The public catalog contains 14 projects. Keep project content in `src/data/projects.js` and render only the approved catalog slugs.
 
 ### Featured systems
-1. CodeScope MCP Preflight
-2. CareVision
-3. SentinelIQ
-4. TopoLite-KD
+1. WhatsApp Transaction Verification AI Agent
+2. CodeScope MCP Preflight
+3. CareVision
+4. SentinelIQ
 5. AdaptIQ / ForecastAI
-6. VITAL-LINK
-7. Evershine Academy LMS
+6. Evershine Academy LMS
+7. AI-Powered Lead Generation Workflow
 
-### Selected case studies
-8. AI Resume Builder
-9. Personalized AI Learning Dashboard
-10. COVID-19 Global Analytics Platform
-11. Pakistan E-commerce Price Prediction
-12. Vendor Performance Analysis
+### Additional case studies
+8. AI-Powered WhatsApp Restaurant Chatbot
+9. COVID-19 Global Analytics Platform
+10. TopoLite-KD
+11. VITAL-LINK
+12. Pakistan E-commerce Price Prediction
+13. Vendor Performance Analysis
+14. Netflix Data Analysis
 
-### Labs and compact tools
-13. MNIST Logistic Regression
-14. Email / SMS Spam Classifier
-15. Netflix Data Analysis
-16. Employee Information Form
-17. CSV Data Cleaner
+## Explicit project exclusions
+
+Do not add these projects to the public catalog, portfolio assistant context, or RAG corpus: `csv-cleaner`, `learning-dashboard`, `mnist`, `resume-builder`, and `spam-classifier`.
 
 ## Explicit exclusions
 
@@ -73,7 +74,7 @@ The visual language is controlled digital Brutalism: warm paper, near-black ink,
 1. Read every handoff document.
 2. Initialize the Vite structure from `SYSTEM_ARCHITECTURE.md`.
 3. Implement tokens and primitives before sections.
-4. Create the project data model and add all 17 entries.
+4. Keep the source data and the 14-project public catalog aligned with the approved list above.
 5. Generate artwork from `IMAGEGEN_PROMPTS.md`.
 6. Implement the page in the section order defined by `SECTIONS_SPEC.md`.
 7. Validate every link and privacy rule.
@@ -81,4 +82,4 @@ The visual language is controlled digital Brutalism: warm paper, near-black ink,
 
 ## Completion definition
 
-The site is complete only when all 17 project entries render correctly, excluded repositories are absent, Evershine has no source link, contradictory metrics are omitted, media fallbacks work, and accessibility/performance checks pass.
+The site is complete only when the 14 approved catalog entries render correctly, explicit project exclusions are absent from public output and assistant context, Evershine has no source link, contradictory metrics are omitted, media fallbacks work, and accessibility/performance checks pass.

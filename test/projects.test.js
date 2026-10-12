@@ -6,11 +6,12 @@ import { catalogStackUsage, excludedProjectNames, professionalProjectSlugs, proj
 
 const externalUrls = (project) => [project.github, project.live].filter(Boolean);
 
-test('keeps the canonical 8 / 7 / 5 project inventory', () => {
-  assert.equal(projects.length, 20);
+test('keeps the curated 8 / 5 / 2 source inventory and excludes ordinary projects', () => {
+  assert.equal(projects.length, 15);
   assert.equal(projects.filter(({ tier }) => tier === 'featured').length, 8);
-  assert.equal(projects.filter(({ tier }) => tier === 'selected').length, 7);
-  assert.equal(projects.filter(({ tier }) => tier === 'lab').length, 5);
+  assert.equal(projects.filter(({ tier }) => tier === 'selected').length, 5);
+  assert.equal(projects.filter(({ tier }) => tier === 'lab').length, 2);
+  assert.equal(projects.some(({ slug }) => ['csv-cleaner', 'learning-dashboard', 'mnist', 'resume-builder', 'spam-classifier'].includes(slug)), false);
   assert.deepEqual(projects.slice(0, 8).map(({ title }) => title), ['WhatsApp Transaction Verification AI Agent', 'CodeScope MCP Preflight', 'CareVision', 'SentinelIQ', 'TopoLite-KD', 'AdaptIQ / ForecastAI', 'VITAL-LINK', 'Evershine Academy LMS']);
   assert.deepEqual(projects.filter(({ primaryFeature }) => primaryFeature).map(({ slug }) => slug), ['payguard-ai', 'adaptiq', 'evershine', 'ai-lead-generation']);
   assert.deepEqual(projects.filter(({ workflow }) => workflow).map(({ slug }) => slug), ['ai-lead-generation', 'ai-restaurant-chatbot']);
@@ -18,8 +19,8 @@ test('keeps the canonical 8 / 7 / 5 project inventory', () => {
 
 test('keeps one curated catalog and includes Netflix as its only lab project', () => {
   assert.deepEqual(showcaseProjectSlugs, ['payguard-ai', 'evershine', 'adaptiq', 'sentineliq', 'carevision', 'ai-lead-generation', 'codescope']);
-  assert.deepEqual(secondaryProjectSlugs, ['ai-restaurant-chatbot', 'resume-builder', 'learning-dashboard', 'covid-analytics', 'topolite', 'vital-link', 'pakistan-ecommerce', 'vendor-analysis']);
-  assert.equal(professionalProjectSlugs.length, 16);
+  assert.deepEqual(secondaryProjectSlugs, ['ai-restaurant-chatbot', 'covid-analytics', 'topolite', 'vital-link', 'pakistan-ecommerce', 'vendor-analysis']);
+  assert.equal(professionalProjectSlugs.length, 14);
   assert.equal(professionalProjectSlugs.at(-1), 'netflix');
   assert.deepEqual(projects.filter(({ slug, tier }) => professionalProjectSlugs.includes(slug) && tier === 'lab').map(({ slug }) => slug), ['netflix']);
 });

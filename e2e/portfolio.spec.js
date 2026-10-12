@@ -18,11 +18,11 @@ test('presents a single priority-ordered catalog with only Netflix as a lab', as
   expect(await page.locator('.tech-marquee__icon').count()).toBeGreaterThan(30);
   await expect(page.getByRole('heading', { name: 'My work is done when you no longer need me!' })).toBeVisible();
   const cards = page.locator('[data-project-catalog-card]');
-  await expect(cards).toHaveCount(16);
+  await expect(cards).toHaveCount(14);
   const order = await cards.evaluateAll((elements) => elements.map((element) => element.dataset.projectSlug));
   expect(order).toEqual([
     'payguard-ai', 'evershine', 'adaptiq', 'sentineliq', 'carevision', 'ai-lead-generation', 'codescope',
-    'ai-restaurant-chatbot', 'resume-builder', 'learning-dashboard', 'covid-analytics', 'topolite',
+    'ai-restaurant-chatbot', 'covid-analytics', 'topolite',
     'vital-link', 'pakistan-ecommerce', 'vendor-analysis', 'netflix'
   ]);
   await expect(page.locator('.project-catalog__grid')).toHaveCount(1);
@@ -44,8 +44,8 @@ test('presents a single priority-ordered catalog with only Netflix as a lab', as
   })));
   expect(imageRatios.every(({ natural, rendered, objectFit }) => Math.abs(natural - rendered) < 0.02 && objectFit === 'contain')).toBe(true);
   await expect(page.locator('.catalog-group, [data-catalog-group], [data-filter], .filter-bar')).toHaveCount(0);
-  for (const hiddenLab of ['mnist', 'spam-classifier', 'employee-form', 'csv-cleaner']) {
-    await expect(page.locator(`[data-project-slug="${hiddenLab}"]`)).toHaveCount(0);
+  for (const excludedProject of ['csv-cleaner', 'learning-dashboard', 'mnist', 'resume-builder', 'spam-classifier', 'employee-form']) {
+    await expect(page.locator(`[data-project-slug="${excludedProject}"]`)).toHaveCount(0);
   }
   await expect(page.locator('.catalog-card--netflix')).toContainText('Netflix Data Analysis');
   await expect(page.locator('.catalog-card--payguard-ai .status-label')).toHaveText('PRIVATE CLIENT');
@@ -144,7 +144,7 @@ test('supports keyboard navigation, contact form behavior, and responsive catalo
   for (const width of [320, 360, 375, 390, 430, 460, 461, 640, 641, 760, 761, 768, 820, 840, 841, 980, 981, 1024, 1199, 1200, 1280, 1440, 1920]) {
     await page.setViewportSize({ width, height: 900 });
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await expect(page.locator('[data-project-catalog-card]')).toHaveCount(16);
+    await expect(page.locator('[data-project-catalog-card]')).toHaveCount(14);
     const catalogColumns = await page.locator('.project-catalog__grid').evaluate((grid) => getComputedStyle(grid).gridTemplateColumns.split(' ').length);
     expect(catalogColumns).toBe(width <= 640 ? 1 : width <= 980 ? 2 : width <= 1199 ? 3 : 4);
     const metricColumns = await page.locator('.metrics-strip').evaluate((grid) => getComputedStyle(grid).gridTemplateColumns.split(' ').length);
@@ -177,7 +177,7 @@ test('keeps anchored sections visible and static content available without JavaS
   const context = await browser.newContext({ javaScriptEnabled: false });
   const staticPage = await context.newPage();
   await staticPage.goto('/', { waitUntil: 'domcontentloaded' });
-  await expect(staticPage.locator('[data-project-catalog-card]')).toHaveCount(16);
+  await expect(staticPage.locator('[data-project-catalog-card]')).toHaveCount(14);
   for (const selector of ['#expertise h2', '#proof h2', '#about h2', '#experience h2', '#contact h2', '#signature h2']) await expect(staticPage.locator(selector)).toBeVisible();
   await context.close();
 });

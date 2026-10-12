@@ -11,7 +11,9 @@ const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, (character) => (
 
 function assertProjectInventory() {
   const counts = projects.reduce((result, project) => ({ ...result, [project.tier]: (result[project.tier] ?? 0) + 1 }), {});
-  if (projects.length !== 20 || counts.featured !== 8 || counts.selected !== 7 || counts.lab !== 5) throw new Error('Project inventory must remain 8 featured, 7 selected, and 5 labs.');
+  if (projects.length !== 15 || counts.featured !== 8 || counts.selected !== 5 || counts.lab !== 2) throw new Error('Curated source inventory must remain 8 featured, 5 selected, and 2 retained labs.');
+  const excludedSlugs = ['csv-cleaner', 'learning-dashboard', 'mnist', 'resume-builder', 'spam-classifier'];
+  if (projects.some(({ slug }) => excludedSlugs.includes(slug))) throw new Error('Explicitly excluded projects cannot enter the portfolio source catalog.');
   if (new Set(projects.map(({ slug }) => slug)).size !== projects.length) throw new Error('Project slugs must be unique.');
   const privateClient = projects.find(({ slug }) => slug === 'evershine');
   if (!privateClient || privateClient.github !== null || privateClient.showSourceLink !== false || privateClient.sourceAccess !== 'private') throw new Error('Private client guard failed.');
@@ -25,8 +27,8 @@ function assertProjectInventory() {
   const attachedClientProjects = ['payguard-ai', 'sentineliq', 'topolite', 'adaptiq', 'evershine', 'ai-lead-generation', 'ai-restaurant-chatbot', 'netflix'];
   if (attachedClientProjects.some((slug) => !projects.find((project) => project.slug === slug && project.clientProject))) throw new Error('Attached client projects must remain visibly labeled as client work.');
   if (showcaseProjectSlugs.length !== 7 || showcaseProjectSlugs.some((slug) => !projects.find((project) => project.slug === slug && project.showcase))) throw new Error('Public showcase must contain the seven approved case studies.');
-  if (secondaryProjectSlugs.length !== 8 || new Set(secondaryProjectSlugs).size !== secondaryProjectSlugs.length || secondaryProjectSlugs.some((slug) => !projects.find((project) => project.slug === slug && project.tier !== 'lab'))) throw new Error('Additional work must contain eight non-lab projects.');
-  if (professionalProjectSlugs.length !== 16 || professionalProjectSlugs.filter((slug) => projects.find((project) => project.slug === slug)?.tier === 'lab').join(',') !== 'netflix') throw new Error('The public catalog must contain the 15 priority projects and Netflix Data Analysis only.');
+  if (secondaryProjectSlugs.length !== 6 || new Set(secondaryProjectSlugs).size !== secondaryProjectSlugs.length || secondaryProjectSlugs.some((slug) => !projects.find((project) => project.slug === slug && project.tier !== 'lab'))) throw new Error('Additional work must contain six non-lab projects.');
+  if (professionalProjectSlugs.length !== 14 || professionalProjectSlugs.filter((slug) => projects.find((project) => project.slug === slug)?.tier === 'lab').join(',') !== 'netflix') throw new Error('The public catalog must contain 13 priority projects and Netflix Data Analysis only.');
   if (new Set(professionalProjectSlugs).size !== professionalProjectSlugs.length || professionalProjectSlugs.some((slug) => !projects.some((project) => project.slug === slug))) throw new Error('Professional project slugs must be unique and resolvable.');
 }
 
@@ -53,16 +55,11 @@ function imageAlt(project) {
     evershine: 'abstract education platform and learning management system diagram',
     'ai-lead-generation': 'AI-powered lead generation n8n workflow diagram',
     'ai-restaurant-chatbot': 'AI-powered WhatsApp restaurant chatbot n8n workflow diagram',
-    'resume-builder': 'abstract AI resume builder workflow diagram',
-    'learning-dashboard': 'abstract personalized learning analytics dashboard diagram',
     'covid-analytics': 'abstract pandemic analytics and ETL platform diagram',
     'pakistan-ecommerce': 'abstract e-commerce price prediction workflow diagram',
     'vendor-analysis': 'abstract procurement and vendor performance analytics diagram',
-    mnist: 'abstract handwritten digit classification pipeline diagram',
-    'spam-classifier': 'abstract email and SMS text classification workflow diagram',
     netflix: 'abstract streaming catalog exploratory data analysis diagram',
-    'employee-form': 'abstract reactive employee information form workflow diagram',
-    'csv-cleaner': 'abstract tabular data cleaning utility workflow diagram'
+    'employee-form': 'abstract reactive employee information form workflow diagram'
   };
   return `${project.title} — ${descriptions[project.slug] ?? 'abstract technical systems illustration'}`;
 }
