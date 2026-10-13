@@ -1,0 +1,154 @@
+{
+  "version": "2026-10-13",
+  "lastUpdated": "2026-10-13",
+  "entityType": "project-catalog-manifest",
+  "purpose": "Retrieval-friendly index for approved portfolio project records. Detailed architecture, evidence, allowed claims, and restricted claims remain canonical in each referenced file; do not duplicate them here.",
+  "catalogScope": "15 approved project records for the portfolio RAG corpus.",
+  "items": [
+    {
+      "id": "payguard-ai",
+      "title": "WhatsApp Transaction Verification AI Agent",
+      "status": "private-client",
+      "category": ["AI Automation", "Payment Verification"],
+      "summary": "A controlled WhatsApp workflow that turns payment screenshots into OCR-backed, Stripe-authoritative review outcomes.",
+      "recordFile": "projects/payguard-ai.json",
+      "bestFor": ["WhatsApp automation", "OCR", "payment evidence review", "n8n", "human review", "fail-closed workflows"]
+    },
+    {
+      "id": "evershine",
+      "title": "Evershine Academy LMS",
+      "status": "live-client",
+      "category": ["Full-Stack", "Client Platforms"],
+      "summary": "A school management platform connecting admissions, academic portals, and role-based dashboards, with documentation for client handoff.",
+      "recordFile": "projects/evershine.json",
+      "bestFor": ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "role-based dashboards", "client handoff"]
+    },
+    {
+      "id": "adaptiq",
+      "title": "AdaptIQ / ForecastAI",
+      "status": "live",
+      "category": ["Forecasting", "Decision Systems"],
+      "summary": "A forecasting application connecting sales data, model comparison, and downloadable planning reports.",
+      "recordFile": "projects/adaptiq.json",
+      "bestFor": ["forecasting", "Prophet", "XGBoost", "SARIMA", "LSTM", "FastAPI", "decision support"]
+    },
+    {
+      "id": "sentineliq",
+      "title": "SentinelIQ",
+      "status": "live",
+      "category": ["Predictive Maintenance"],
+      "summary": "Predictive maintenance automation combining TCN-LSTM forecasting, dual anomaly detection, SHAP attribution, and PuLP scheduling.",
+      "recordFile": "projects/sentineliq.json",
+      "bestFor": ["predictive maintenance", "remaining useful life", "anomaly detection", "SHAP", "operations research"]
+    },
+    {
+      "id": "carevision",
+      "title": "CareVision",
+      "status": "live",
+      "category": ["AI Health", "Applied ML"],
+      "summary": "Multimodal clinical AI workflow integrating Gemini 2.0 Flash with explainability-first human review gates and offline-capable fallback.",
+      "recordFile": "projects/carevision.json",
+      "bestFor": ["multimodal AI", "human review", "Gemini", "audit logging", "offline fallback"]
+    },
+    {
+      "id": "ai-lead-generation",
+      "title": "AI-Powered Lead Generation Workflow",
+      "status": "private-client",
+      "category": ["AI Automation", "Lead Generation"],
+      "summary": "An n8n workflow that captures, filters, enriches, summarizes, and routes qualified leads into outreach and reporting.",
+      "recordFile": "projects/ai-lead-generation.json",
+      "bestFor": ["n8n", "lead capture", "enrichment", "qualification", "Gemini", "Gmail", "Google Sheets"]
+    },
+    {
+      "id": "codescope",
+      "title": "CodeScope MCP Preflight",
+      "status": "local-tool",
+      "category": ["AI Agents", "Developer Tools"],
+      "summary": "Local-first MCP server serving Tree-sitter AST intelligence and vector retrieval as tool context for AI agents.",
+      "recordFile": "projects/codescope.json",
+      "bestFor": ["MCP", "RAG", "developer tools", "Tree-sitter", "Chroma", "local-first retrieval"]
+    },
+    {
+      "id": "ai-restaurant-chatbot",
+      "title": "AI-Powered WhatsApp Restaurant Chatbot",
+      "status": "private-client",
+      "category": ["AI Automation", "Conversational Systems"],
+      "summary": "An n8n-powered WhatsApp assistant for menu questions, order capture, inventory lookups, and contextual replies.",
+      "recordFile": "projects/ai-restaurant-chatbot.json",
+      "bestFor": ["WhatsApp Business", "n8n", "AI agents", "memory", "FAQ", "orders", "inventory"]
+    },
+    {
+      "id": "covid-analytics",
+      "title": "COVID-19 Global Analytics Platform",
+      "status": "case-study",
+      "category": ["Analytics", "BI"],
+      "summary": "A full-stack pandemic analytics platform with automated ETL, database-backed APIs, and an interactive dashboard.",
+      "recordFile": "projects/covid-analytics.json",
+      "bestFor": ["ETL", "FastAPI", "MySQL", "analytics APIs", "dashboards"]
+    },
+    {
+      "id": "topolite",
+      "title": "TopoLite-KD",
+      "status": "research",
+      "category": ["AI Health", "Research"],
+      "summary": "Lightweight topology-aware knowledge distillation for COVID-19 CT-slice classification.",
+      "recordFile": "projects/topolite.json",
+      "bestFor": ["deep learning research", "knowledge distillation", "persistent homology", "GUDHI", "Grad-CAM"]
+    },
+    {
+      "id": "vital-link",
+      "title": "VITAL-LINK",
+      "status": "prototype",
+      "category": ["AI Health", "Applied ML"],
+      "summary": "Multimodal LLM clinical workflow fusing chest X-ray, lung audio, and vital-sign telemetry via Gemini 2.0 Flash into an assisted-review interface.",
+      "recordFile": "projects/vital-link.json",
+      "bestFor": ["multimodal prototype", "Gemini 2.0 Flash", "Flask", "assisted review", "document generation"]
+    },
+    {
+      "id": "pakistan-ecommerce",
+      "title": "Pakistan E-commerce Price Prediction",
+      "status": "case-study",
+      "category": ["Data Science", "Forecasting"],
+      "summary": "A price-prediction workflow built around Pakistani e-commerce transaction data and deployable inference.",
+      "recordFile": "projects/pakistan-ecommerce.json",
+      "bestFor": ["price prediction", "scikit-learn", "deployable inference", "e-commerce data"]
+    },
+    {
+      "id": "vendor-analysis",
+      "title": "Vendor Performance Analysis",
+      "status": "analytics",
+      "category": ["Analytics", "BI"],
+      "summary": "A procurement and inventory analysis workflow connecting sales, purchases, pricing, invoices, and vendor performance.",
+      "recordFile": "projects/vendor-analysis.json",
+      "bestFor": ["procurement analytics", "pandas", "SQL", "SQLite", "inventory", "vendor performance"]
+    },
+    {
+      "id": "netflix",
+      "title": "Netflix Data Analysis",
+      "status": "data-lab",
+      "category": ["Analytics", "BI"],
+      "summary": "Exploratory analysis of movie metadata, genres, release patterns, popularity, and feature relationships.",
+      "recordFile": "projects/netflix.json",
+      "bestFor": ["exploratory analysis", "pandas", "Matplotlib", "Seaborn", "data visualization"]
+    },
+    {
+      "id": "employee-form",
+      "title": "Employee Information Form",
+      "status": "data-lab",
+      "category": ["ML", "Data Labs"],
+      "summary": "A reactive R Shiny form with validation, dates, file upload, and structured output.",
+      "recordFile": "projects/employee-form.json",
+      "bestFor": ["R Shiny", "form validation", "reactive applications", "structured data capture"]
+    }
+  ],
+  "retrievalRules": [
+    "Load the referenced project record before making an architecture, technology, evidence, outcome, or claim-specific answer.",
+    "Use status as an answer qualifier: private-client, live-client, live, case-study, research, prototype, analytics, data-lab, and local-tool are not interchangeable.",
+    "For private-client records, expose only information allowed by that record and never infer confidential details.",
+    "Never convert catalog copy or source-attributed claims into independently verified metrics."
+  ],
+  "evidence": [
+    "Approved detailed records in ./projects, audited alongside the public portfolio on 2026-10-13.",
+    "Public catalog reference: https://ibadat-ali-portfolio.vercel.app/#featured"
+  ]
+}

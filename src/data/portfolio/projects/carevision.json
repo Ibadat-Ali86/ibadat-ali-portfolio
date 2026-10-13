@@ -1,0 +1,89 @@
+{
+  "id": "carevision",
+  "title": "CareVision",
+  "status": "live",
+  "category": [
+    "AI Health",
+    "Applied ML"
+  ],
+  "summary": "Multimodal clinical AI workflow integrating Gemini 2.0 Flash with explainability-first human review gates and offline-capable fallback.",
+  "problem": "Assisted review requires dependable, explainable workflows with explicit confidence gates rather than opaque generative outputs.",
+  "solution": "A multimodal PWA combining Gemini 2.0 Flash structured outputs, step-level audit logging, PostgreSQL persistence, and offline-capable inference fallback.",
+  "architecture": [
+    "Case-study context: Assisted review across multimodal inputs needs a clear boundary between model output and human judgment. The interface therefore emphasizes structured responses, auditability, and bounded fallback behavior.",
+    "Client workflow: A typed React PWA presents the review flow and keeps state transitions visible to the operator. Components: React 18, TypeScript, Vite, Tailwind, Radix UI, Zustand.",
+    "Inference boundary: FastAPI coordinates structured multimodal inference and preserves a review-oriented response contract. Components: FastAPI, Gemini 2.0 Flash.",
+    "Persistence and continuity: PostgreSQL and SQLAlchemy support durable records while the offline-capable path keeps the workflow useful when connectivity is limited. Components: PostgreSQL, SQLAlchemy.",
+    "The README describes a React 18 and TypeScript progressive web application using Vite, Tailwind, Radix UI, and Zustand.",
+    "FastAPI coordinates structured multimodal inference through Gemini 2.0 Flash; the portfolio frames output for human review.",
+    "PostgreSQL and SQLAlchemy support persistent records; the portfolio case study describes audit logging and an offline-capable fallback."
+  ],
+  "technologies": [
+    "React 18",
+    "TypeScript",
+    "Vite",
+    "Tailwind",
+    "Radix UI",
+    "Zustand",
+    "FastAPI",
+    "PostgreSQL",
+    "SQLAlchemy",
+    "Gemini 2.0 Flash"
+  ],
+  "keywords": [
+    "ai",
+    "health",
+    "applied",
+    "ml",
+    "react 18",
+    "typescript",
+    "vite",
+    "tailwind",
+    "radix ui",
+    "zustand",
+    "fastapi",
+    "postgresql",
+    "sqlalchemy",
+    "gemini 2.0 flash",
+    "carevision",
+    "pwa",
+    "structured output",
+    "step-level audit logging",
+    "offline fallback",
+    "human review",
+    "clinical decision support"
+  ],
+  "aliases": [
+    "CareVision",
+    "carevision",
+    "CareVision PWA",
+    "CareVision clinical decision-support prototype",
+    "multimodal review PWA"
+  ],
+  "outcomes": [
+    "Gemma hackathon submission with multimodal inputs, audit logging, and offline fallback.",
+    "Presented the system as decision support, never as diagnosis or treatment.",
+    "Kept audit logging and fallback behavior visible as part of the product story.",
+    "The portfolio presents this as a Gemma hackathon submission with multimodal inputs, audit logging, and offline fallback."
+  ],
+  "evidence": [
+    "Canonical portfolio record: https://github.com/Ibadat-Ali86/ibadat-ali-portfolio/blob/main/src/data/projects.js (reviewed 2026-10-12; owner-maintained portfolio source, not independent verification).",
+    "Portfolio card and approved public case-study content: https://ibadat-ali-portfolio.vercel.app/ (reviewed 2026-10-12).",
+    "Public source path listed by the portfolio: https://github.com/Ibadat-Ali86/carevision.",
+    "Public repository README and/or source material was reviewed on 2026-10-12; repository statements remain attributed to their source.",
+    "Live link listed by the portfolio: https://carevision-chw.vercel.app/.",
+    "Live page inspected; conflicting metrics or compliance claims are excluded by the portfolio publication safeguard.",
+    "Public repository README and live page were inspected. The live page includes claims that are excluded by the portfolio's approved safeguard.",
+    "Portfolio catalog metadata from current source: tier=featured; source status=LIVE; source access=public; portfolio metric label=Multimodal clinical workflow · Gemma 4 Hackathon; flags=showcase=true, showSourceLink=true. Metric labels are catalog copy, not independent performance evidence."
+  ],
+  "sourceUrl": "https://github.com/Ibadat-Ali86/carevision",
+  "publicDetailsAllowed": true,
+  "allowedClaims": [
+    "Multimodal clinical AI workflow integrating Gemini 2.0 Flash with explainability-first human review gates and offline-capable fallback.",
+    "Describe CareVision as a multimodal clinical decision-support workflow with structured model output, auditability, human review, and an offline-capable fallback."
+  ],
+  "restrictedClaims": [
+    "Research and decision-support context only; no diagnostic, treatment, or clinical-outcome claims.",
+    "Do not claim diagnosis, treatment advice, clinical validation, patient outcomes, or HIPAA compliance; do not treat the live UI's 99.8% indicator as measured diagnostic accuracy. These live-page claims were not independently verified and conflict with the portfolio publication safeguard."
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "id": "ai-restaurant-chatbot",
+  "title": "AI-Powered WhatsApp Restaurant Chatbot",
+  "status": "private-client",
+  "category": [
+    "AI Automation",
+    "Conversational Systems"
+  ],
+  "summary": "An n8n-powered WhatsApp assistant for menu questions, order capture, inventory lookups, and contextual replies.",
+  "problem": "Restaurant conversations need quick, consistent answers across FAQs, ordering, and inventory without losing context.",
+  "solution": "A WhatsApp trigger routes messages to a Gemini-powered AI agent with simple memory and Google Sheets tools for FAQs, orders, and inventory before sending a reply back to the customer.",
+  "architecture": [
+    "Case-study context: Restaurant conversations need fast answers across menus, FAQs, orders, and inventory while preserving enough context to avoid repeating the same questions.",
+    "Conversation trigger: WhatsApp messages enter an n8n workflow that owns routing and response delivery. Components: WhatsApp Business, n8n.",
+    "Agent and memory: Gemini handles language understanding while simple memory keeps the immediate conversation coherent. Components: Google Gemini, AI agent, Simple memory.",
+    "Business tools: Google Sheets provides the bounded FAQ, order, and inventory lookups used by the workflow. Components: Google Sheets, FAQ + orders + inventory.",
+    "WhatsApp Business messages trigger an n8n workflow and the workflow sends the response back to the customer.",
+    "A Gemini-powered agent interprets menu and FAQ questions, with simple memory for immediate conversational context.",
+    "Google Sheets provides bounded FAQ, order-capture, and inventory lookups."
+  ],
+  "technologies": [
+    "n8n",
+    "WhatsApp Business",
+    "Google Gemini",
+    "Simple memory",
+    "Google Sheets",
+    "AI agent",
+    "FAQ + orders + inventory"
+  ],
+  "keywords": [
+    "ai",
+    "automation",
+    "conversational",
+    "systems",
+    "n8n",
+    "whatsapp business",
+    "google gemini",
+    "simple memory",
+    "google sheets",
+    "ai agent",
+    "faq + orders + inventory",
+    "restaurant",
+    "chatbot",
+    "gemini",
+    "menu faq",
+    "order capture",
+    "inventory lookup"
+  ],
+  "aliases": [
+    "AI-Powered WhatsApp Restaurant Chatbot",
+    "ai restaurant chatbot",
+    "WhatsApp restaurant chatbot",
+    "restaurant ordering assistant",
+    "menu and inventory WhatsApp assistant"
+  ],
+  "outcomes": [
+    "Client workflow proof connecting WhatsApp intake, memory, FAQ, order capture, and inventory tools.",
+    "Kept the workflow proof focused on tool use and state movement.",
+    "Made no order-volume or production-scale claim.",
+    "The portfolio presents this as client workflow proof connecting WhatsApp intake, memory, FAQ, order capture, and inventory tools."
+  ],
+  "evidence": [
+    "Canonical portfolio record: https://github.com/Ibadat-Ali86/ibadat-ali-portfolio/blob/main/src/data/projects.js (reviewed 2026-10-12; owner-maintained portfolio source, not independent verification).",
+    "Portfolio card and approved public case-study content: https://ibadat-ali-portfolio.vercel.app/ (reviewed 2026-10-12).",
+    "The portfolio does not publish a source repository for this project; only approved public case-study information was collected.",
+    "No source repository is linked by the portfolio; details are limited to the public workflow case study.",
+    "Portfolio catalog metadata from current source: tier=selected; source status=WORKFLOW PROOF; source access=private; portfolio metric label=WhatsApp trigger · memory · tool use; flags=clientProject=true, workflow=true, showSourceLink=false. Metric labels are catalog copy, not independent performance evidence."
+  ],
+  "sourceUrl": null,
+  "publicDetailsAllowed": true,
+  "allowedClaims": [
+    "An n8n-powered WhatsApp assistant for menu questions, order capture, inventory lookups, and contextual replies.",
+    "Describe the workflow components and listed integrations from the public portfolio case study."
+  ],
+  "restrictedClaims": [
+    "Client workflow evidence; no order-volume or production claims are made.",
+    "No source repository is published. Do not claim order volume, production scale, customer outcomes, client identity, credentials, or private workflow implementation."
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "id": "codescope",
+  "title": "CodeScope MCP Preflight",
+  "status": "local-tool",
+  "category": [
+    "AI Agents",
+    "Developer Tools"
+  ],
+  "summary": "Local-first MCP server serving Tree-sitter AST intelligence and vector retrieval as tool context for AI agents.",
+  "problem": "Autonomous coding agents make conflicting or hallucinated changes without structured repository context.",
+  "solution": "A local-first Model Context Protocol (MCP) server combines Tree-sitter parsing and Chroma vector retrieval to ground agent reasoning before code generation.",
+  "architecture": [
+    "Case-study context: Coding agents need repository context before they decide whether to reuse, extend, or create code. The product boundary is local-first intelligence, not an autonomous code-writing platform.",
+    "Repository scan: The CLI establishes a deterministic repository view before an agent asks for context. Components: Python, CLI.",
+    "Structural analysis: Tree-sitter exposes syntax-aware structure so retrieval can work with code relationships rather than filenames alone. Components: Tree-sitter.",
+    "Context retrieval: Embeddings and a local vector store return relevant repository evidence through MCP tool boundaries. Components: sentence-transformers, Chroma, MCP.",
+    "The repository README describes deterministic discovery of Python .py and .pyi files with configured exclusions and root .gitignore handling.",
+    "Tree-sitter extracts Python syntax and symbols; symbol-aware chunks are bounded to the embedding model token budget.",
+    "Local Sentence Transformers embeddings are stored in telemetry-disabled local Chroma; no cloud embedding API is used.",
+    "The read-only query layer supports semantic search, exact/partial symbol lookup, similar-code evidence, and index status.",
+    "A CLI and local stdio MCP server expose four read-only tools: search_code, find_symbol, find_similar, and list_indexed_files.",
+    "Retrieved snippets are bounded source evidence, treated as untrusted content; indexed source is not executed. Reuse/extend/create remains a developer decision."
+  ],
+  "technologies": [
+    "Python",
+    "MCP",
+    "Tree-sitter",
+    "sentence-transformers",
+    "Chroma",
+    "CLI"
+  ],
+  "keywords": [
+    "ai",
+    "agents",
+    "developer",
+    "tools",
+    "python",
+    "mcp",
+    "tree-sitter",
+    "sentence-transformers",
+    "chroma",
+    "cli",
+    "codescope",
+    "python repositories",
+    ".py",
+    ".pyi",
+    "ast",
+    "symbol lookup",
+    "local embeddings",
+    "stdio mcp",
+    "read-only tools",
+    "reuse",
+    "extend",
+    "create",
+    "path guards",
+    "untrusted source"
+  ],
+  "aliases": [
+    "CodeScope MCP Preflight",
+    "codescope",
+    "CodeScope",
+    "CodeScope MCP",
+    "repository preflight",
+    "MCP code intelligence"
+  ],
+  "outcomes": [
+    "Open-source MCP tooling for structured repository context before agent actions.",
+    "Kept the tool local-first to reduce unnecessary source movement.",
+    "Made the preflight decision inspectable before any downstream agent action.",
+    "The repository README describes an inspect-before-edit workflow and a deterministic email-validator fixture recommending REUSE; the fixture is explicitly small and not a scale benchmark."
+  ],
+  "evidence": [
+    "Canonical portfolio record: https://github.com/Ibadat-Ali86/ibadat-ali-portfolio/blob/main/src/data/projects.js (reviewed 2026-10-12; owner-maintained portfolio source, not independent verification).",
+    "Portfolio card and approved public case-study content: https://ibadat-ali-portfolio.vercel.app/ (reviewed 2026-10-12).",
+    "Public source path listed by the portfolio: https://github.com/Ibadat-Ali86/codescope-mcp-preflight.",
+    "Public repository README and/or source material was reviewed on 2026-10-12; repository statements remain attributed to their source.",
+    "Repository README was reviewed. Its small-fixture and environment-specific numbers are attributed to that README and are not treated as verified scale claims.",
+    "Portfolio catalog metadata from current source: tier=featured; source status=LOCAL TOOL; source access=public; portfolio metric label=Agent tool-calling · MCP & RAG; flags=showcase=true, showSourceLink=true. Metric labels are catalog copy, not independent performance evidence."
+  ],
+  "sourceUrl": "https://github.com/Ibadat-Ali86/codescope-mcp-preflight",
+  "publicDetailsAllowed": true,
+  "allowedClaims": [
+    "Local-first MCP server serving Tree-sitter AST intelligence and vector retrieval as tool context for AI agents.",
+    "CodeScope is a local-first Python repository preflight that returns structured code evidence through CLI and read-only MCP tools before an agent proposes a code change."
+  ],
+  "restrictedClaims": [
+    "Repository figures are intentionally omitted until the current suite is reproduced.",
+    "Do not generalize the README's 4-file, 11-symbol, 16-chunk fixture or environment-specific benchmark/test numbers into large-repository performance claims.",
+    "The portfolio says repository figures are withheld until the current suite is reproduced; do not call the demo a large-scale benchmark."
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "id": "evershine",
+  "title": "Evershine Academy LMS",
+  "status": "live-client",
+  "category": [
+    "Full-Stack",
+    "Client Platforms"
+  ],
+  "summary": "A school management platform connecting admissions, academic portals, and role-based dashboards, with documentation for client handoff.",
+  "problem": "Multi-campus institutions need reliable integration across admissions, academic portals, role-based dashboards, and LMS access.",
+  "solution": "A production client platform built with Next.js 15, Prisma, and PostgreSQL, accompanied by detailed technical documentation for independent client operation.",
+  "architecture": [
+    "Case-study context: A private education client needed a public-facing platform that could connect admissions, academic information, LMS access, and role-based experiences without exposing implementation details.",
+    "Web experience: Next.js and TypeScript provide the structured application surface for public and authenticated journeys. Components: Next.js 15, TypeScript, Tailwind CSS.",
+    "Data and access: Prisma and PostgreSQL support durable application data while role-based dashboards separate user responsibilities. Components: Prisma, PostgreSQL, role-based dashboards.",
+    "Handoff: The delivery includes documentation so the client can operate and extend the system independently. Components: Next.js 15, TypeScript.",
+    "The portfolio describes a Next.js 15, TypeScript, and Tailwind web experience for admissions and academic journeys.",
+    "Prisma and PostgreSQL support the platform data layer; role-based dashboards separate user experiences.",
+    "Technical handoff documentation is part of the stated client delivery."
+  ],
+  "technologies": [
+    "Next.js 15",
+    "TypeScript",
+    "Tailwind CSS",
+    "Prisma",
+    "PostgreSQL",
+    "role-based dashboards"
+  ],
+  "keywords": [
+    "full-stack",
+    "client",
+    "platforms",
+    "next.js 15",
+    "typescript",
+    "tailwind css",
+    "prisma",
+    "postgresql",
+    "role-based dashboards",
+    "evershine",
+    "admissions",
+    "academic portal",
+    "lms access",
+    "education platform",
+    "client handoff"
+  ],
+  "aliases": [
+    "Evershine Academy LMS",
+    "evershine",
+    "Evershine LMS",
+    "Evershine Academy platform",
+    "school management platform"
+  ],
+  "outcomes": [
+    "Production client platform with documented handoff and a live website.",
+    "Show only the approved live-site action for this private client project.",
+    "Do not publish source links, repository names, or confidential administration details.",
+    "The portfolio describes a live production client platform and documented handoff."
+  ],
+  "evidence": [
+    "Canonical portfolio record: https://github.com/Ibadat-Ali86/ibadat-ali-portfolio/blob/main/src/data/projects.js (reviewed 2026-10-12; owner-maintained portfolio source, not independent verification).",
+    "Portfolio card and approved public case-study content: https://ibadat-ali-portfolio.vercel.app/ (reviewed 2026-10-12).",
+    "The portfolio does not publish a source repository for this project; only approved public case-study information was collected.",
+    "Live link listed by the portfolio: https://evershineacadmey.com/.",
+    "Live page availability/content was not independently verified during this collection.",
+    "No source repository is linked by the portfolio; the public website link is listed there. Website access/content was not verified during this collection.",
+    "Portfolio catalog metadata from current source: tier=featured; source status=PRIVATE CLIENT; source access=private; portfolio metric label=Education · Client platform; flags=showcase=true, primaryFeature=true, clientProject=true, showSourceLink=false. Metric labels are catalog copy, not independent performance evidence."
+  ],
+  "sourceUrl": null,
+  "publicDetailsAllowed": true,
+  "allowedClaims": [
+    "A school management platform connecting admissions, academic portals, and role-based dashboards, with documentation for client handoff.",
+    "Use only the public portfolio summary and the public live-site link."
+  ],
+  "restrictedClaims": [
+    "Private client project with a live-site action only.",
+    "Private-client project: do not expose or infer source code, repository locations, administrative details, user records, credentials, or confidential implementation specifics."
+  ]
+}

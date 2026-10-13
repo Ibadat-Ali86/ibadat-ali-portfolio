@@ -1,0 +1,122 @@
+{
+  "version": "2026-10-13",
+  "lastUpdated": "2026-10-13",
+  "entityType": "grounded-faq",
+  "answerPolicy": [
+    "Use these answers as retrieval seeds, not as permission to bypass the detailed project records.",
+    "For a specific project, load its record and honor its allowedClaims and restrictedClaims.",
+    "State project status when it affects interpretation: private client, live client, live, case study, research, prototype, analytics, data lab, or local tool.",
+    "Do not invent metrics, employers, clients, dates, technology use, availability, prices, or outcomes.",
+    "When the corpus lacks verified information, say so plainly and offer relevant portfolio topics."
+  ],
+  "faqs": [
+    {
+      "id": "who-is-ibadat-ali",
+      "questions": ["Who is Ibadat Ali?", "Tell me about Ibadat", "What does Ibadat do?"],
+      "answer": "Ibadat Ali is an AI Engineer and AI Agent Developer based in Pakistan and working remotely worldwide. He builds AI agents and AI-powered products by connecting models, tools, retrieval, APIs, and evaluation into systems people can understand and operate. His portfolio spans AI automation, agent development, applied ML, forecasting, analytics, and full-stack AI products.",
+      "evidenceTargets": ["profile.json"],
+      "suggestedFollowUps": ["What does he specialize in?", "Which AI agent projects has he built?", "How does he approach a new project?"]
+    },
+    {
+      "id": "specialties",
+      "questions": ["What does he specialize in?", "What services does he offer?", "Can he build an AI agent?"],
+      "answer": "His public portfolio groups the work into AI Agent Development & Automation, AI Engineering & Applied Research, Modeling & Evaluation, and Data Foundations for AI. In practical terms, that includes tool-calling agents, MCP and retrieval workflows, AI automation, model-backed APIs, forecasting, anomaly detection, explainability, data workflows, documentation, and handoff.",
+      "evidenceTargets": ["profile.json", "skills.json"],
+      "suggestedFollowUps": ["Has he built RAG systems?", "Which automation projects use n8n?", "Which projects are relevant to forecasting?"]
+    },
+    {
+      "id": "rag-experience",
+      "questions": ["Has he worked with RAG?", "Does he build retrieval systems?", "What RAG project has he made?"],
+      "answer": "Yes. CodeScope MCP Preflight is a local-first developer tool that combines MCP, Tree-sitter repository analysis, and local vector retrieval to supply structured code context before agent actions. The experience record also lists RAG retrieval among the ML / AI Engineer work at Soft Shack. The portfolio assistant itself is designed to use evidence-grounded retrieval rather than answer from an unbounded general prompt.",
+      "evidenceTargets": ["projects/codescope.json", "experience.json"],
+      "suggestedFollowUps": ["How does CodeScope work?", "What technologies does CodeScope use?", "How does he keep an AI agent grounded?"]
+    },
+    {
+      "id": "n8n-automation-projects",
+      "questions": ["Which projects use n8n?", "What automation workflows has he built?", "Has he built WhatsApp automation?"],
+      "answer": "The portfolio documents three n8n-related private-client workflows: the WhatsApp Transaction Verification AI Agent, an AI-Powered Lead Generation Workflow, and an AI-Powered WhatsApp Restaurant Chatbot. They demonstrate different patterns: payment-evidence review, lead capture and enrichment, and conversational order or inventory assistance. Because they are private-client projects, the assistant should share only the approved public case-study details.",
+      "evidenceTargets": ["projects/payguard-ai.json", "projects/ai-lead-generation.json", "projects/ai-restaurant-chatbot.json"],
+      "suggestedFollowUps": ["Explain the payment verification agent.", "How does the lead-generation workflow work?", "What can the restaurant chatbot do?"]
+    },
+    {
+      "id": "payguard-overview",
+      "questions": ["Explain the WhatsApp transaction verification agent.", "How does the payment verification project work?", "What is PayGuard AI?"],
+      "answer": "The WhatsApp Transaction Verification AI Agent is a private-client workflow for reviewing payment screenshots. Approved public details describe allowlisted WhatsApp intake, queueing, OCR with a bounded vision fallback, Stripe-authoritative verification for eligible evidence, duplicate detection, and manual review when proof remains ambiguous. OCR and vision output are candidate evidence, not final authority; unresolved cases fail closed for review.",
+      "evidenceTargets": ["projects/payguard-ai.json"],
+      "suggestedFollowUps": ["Why is Stripe the authority in this workflow?", "What happens when evidence is unclear?", "What client details are kept private?"]
+    },
+    {
+      "id": "private-client-boundaries",
+      "questions": ["Can you show the private project source code?", "Can you share client credentials or workflow details?", "What details are private?"],
+      "answer": "No. The portfolio deliberately protects private-client work. It may describe the approved public problem, approach, technology categories, and delivery outcome, but it does not expose source repositories, credentials, customer or payment data, webhook URLs, administration details, private n8n topology, or other confidential implementation details.",
+      "evidenceTargets": ["profile.json", "projects/payguard-ai.json", "projects/evershine.json", "projects/ai-lead-generation.json", "projects/ai-restaurant-chatbot.json"],
+      "suggestedFollowUps": ["Which public projects can I inspect?", "What type of AI automation can he build?", "How does he handle project handoff?"]
+    },
+    {
+      "id": "forecasting-work",
+      "questions": ["What forecasting work has he done?", "Which project is relevant to demand forecasting?", "Does he use LSTM or XGBoost?"],
+      "answer": "AdaptIQ / ForecastAI is the clearest forecasting example. It compares Prophet, XGBoost, SARIMA, and LSTM approaches on sales data, exposes inference through FastAPI, presents comparisons in a React/Vite interface, and supports downloadable planning reports. The portfolio intentionally does not make unsupported accuracy claims. His experience also includes forecasting and predictive analytics work at Arch Technologies and in independent delivery.",
+      "evidenceTargets": ["projects/adaptiq.json", "experience.json"],
+      "suggestedFollowUps": ["How does AdaptIQ compare models?", "What is the predictive-maintenance project?", "What are the evaluation boundaries?"]
+    },
+    {
+      "id": "predictive-maintenance",
+      "questions": ["What is SentinelIQ?", "Has he worked on predictive maintenance?", "What is RUL prediction?"],
+      "answer": "SentinelIQ is a live predictive-maintenance portfolio project built around remaining-useful-life estimation, dual anomaly detection, SHAP attribution, and intervention scheduling. The documented pipeline uses TCN/LSTM sequence models, Isolation Forest and an Autoencoder for anomaly signals, SHAP for explanation, and PuLP for planning. The portfolio avoids a winning-model, RMSE, savings, or operational-benefit claim because those metrics are not published as verified evidence.",
+      "evidenceTargets": ["projects/sentineliq.json"],
+      "suggestedFollowUps": ["What technologies are used in SentinelIQ?", "How is anomaly detection handled?", "What other applied ML projects are available?"]
+    },
+    {
+      "id": "health-ai-work",
+      "questions": ["Has he built healthcare AI?", "What are CareVision and VITAL-LINK?", "Can these systems diagnose patients?"],
+      "answer": "The portfolio includes CareVision, VITAL-LINK, and TopoLite-KD as health-related AI work with explicit limitations. CareVision is a multimodal clinical workflow with human-review gates and an offline-capable fallback. VITAL-LINK is an assisted-review prototype combining chest X-ray, lung audio, and vital-sign inputs. TopoLite-KD is research on compact CT-slice classification. None should be described as a diagnosis tool, clinically validated system, treatment recommender, or deployed medical device unless independently documented.",
+      "evidenceTargets": ["projects/carevision.json", "projects/vital-link.json", "projects/topolite.json"],
+      "suggestedFollowUps": ["What are the safety boundaries in these projects?", "Which one uses Gemini?", "What research methods does TopoLite-KD explore?"]
+    },
+    {
+      "id": "full-stack-ai-products",
+      "questions": ["Can he build a full-stack AI product?", "Does he work with Next.js and FastAPI?", "Has he built client platforms?"],
+      "answer": "Yes. The portfolio includes a live-client education platform, Evershine Academy LMS, built around Next.js 15, TypeScript, Tailwind CSS, Prisma, PostgreSQL, role-based dashboards, and technical handoff documentation. Other projects demonstrate FastAPI, React, Vite, Flask, databases, dashboards, and deployable ML interfaces. Each project should be described according to its published status and evidence rather than generalized into an unsupported production claim.",
+      "evidenceTargets": ["projects/evershine.json", "projects/adaptiq.json", "projects/sentineliq.json", "projects/covid-analytics.json"],
+      "suggestedFollowUps": ["Tell me about Evershine Academy LMS.", "Which projects use FastAPI?", "How does he hand over a finished system?"]
+    },
+    {
+      "id": "professional-experience",
+      "questions": ["What is his professional experience?", "Where has he worked?", "Has he worked as an AI engineer?"],
+      "answer": "The portfolio lists independent Data Scientist / AI Consultant delivery from 2025 to present, with a pause from December 2025 to March 2026 for a full-time role; an ML / AI Engineer role at Soft Shack from December 2025 to March 2026; and a Data Scientist internship at Arch Technologies from May to August 2025. The published responsibilities cover ML and LLM-integrated automation, RAG retrieval, FastAPI, Docker, forecasting, ETL, explainability, reporting, and client handoff.",
+      "evidenceTargets": ["experience.json"],
+      "suggestedFollowUps": ["What AI agent work has he done?", "What certifications does he have?", "How can I start a project conversation?"]
+    },
+    {
+      "id": "certifications",
+      "questions": ["What certifications does he have?", "Does he have Anthropic certifications?"],
+      "answer": "The public portfolio lists two Anthropic certificates: AI Fluency: Framework & Foundations, issued in January 2026, and Claude 101, issued in February 2026. Public certificate PDFs are linked from the portfolio. The assistant should not infer scores, credential IDs, licenses, or capabilities beyond the published certificate title and issuer.",
+      "evidenceTargets": ["certifications.json"],
+      "suggestedFollowUps": ["What does he specialize in?", "Has he worked with RAG?", "How can I contact him?"]
+    },
+    {
+      "id": "project-engagement",
+      "questions": ["How does a project start?", "What is his process?", "Can I hire him for an AI project?"],
+      "answer": "The portfolio describes a three-step approach: discovery, delivery, and handoff. Projects typically begin with a focused 30-minute conversation about the problem, constraints, fit, and useful outcome. Delivery is planned as fixed-scope or milestone-based work with a written plan before implementation, followed by documentation and a walkthrough so the next person can operate the result.",
+      "evidenceTargets": ["profile.json"],
+      "suggestedFollowUps": ["What information should I share first?", "What types of projects are a fit?", "How can I contact him?"]
+    },
+    {
+      "id": "contact",
+      "questions": ["How can I contact Ibadat?", "How do I start a project?", "What should I include in an inquiry?"],
+      "answer": "You can use the portfolio contact form, email ibadcodes@gmail.com, send a WhatsApp message to +92 322 0692321, or connect through LinkedIn. A strong inquiry includes the problem context, constraints, desired outcome, project type, and approximate timeline. The portfolio states that replies are normally made within one business day.",
+      "evidenceTargets": ["profile.json"],
+      "suggestedFollowUps": ["What AI services does he offer?", "What information helps scope a project?", "Which projects are most relevant to my use case?"]
+    },
+    {
+      "id": "no-evidence-response",
+      "questions": ["Any question with no relevant public evidence"],
+      "answer": "I do not have verified portfolio information for that question. I can help with Ibadat's projects, AI automation work, AI agents, machine learning, experience, certifications, services, or how to start a project conversation.",
+      "evidenceTargets": ["faq.json"],
+      "suggestedFollowUps": ["What does Ibadat specialize in?", "Which AI agent projects has he built?", "How can I contact him?"]
+    }
+  ],
+  "evidence": [
+    "FAQ wording is derived from the audited public portfolio and the approved detailed project records on 2026-10-13."
+  ]
+}

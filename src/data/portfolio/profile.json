@@ -1,0 +1,115 @@
+{
+  "version": "2026-10-13",
+  "lastUpdated": "2026-10-13",
+  "entityType": "professional-profile",
+  "name": "Ibadat Ali",
+  "preferredIdentity": [
+    "AI Engineer",
+    "AI Agent Developer"
+  ],
+  "headline": "AI Engineer & AI Agent Developer",
+  "location": {
+    "base": "Pakistan",
+    "availability": "Remote worldwide"
+  },
+  "professionalSummary": "Ibadat Ali engineers AI agents and AI-powered products by connecting models, tools, retrieval, APIs, and evaluation into systems people can understand and operate. His work spans AI automation, retrieval workflows, model-backed APIs, applied machine learning, forecasting, deep learning, computer vision, and data foundations for AI.",
+  "positioning": {
+    "primary": "Broad, cross-industry AI engineering and AI agent development.",
+    "strengths": [
+      "Tool-using agents, MCP integrations, and retrieval workflows",
+      "AI automation workflows with clear boundaries and dependable validation",
+      "Model-backed APIs and usable full-stack AI products",
+      "Applied ML, forecasting, anomaly detection, and explainability",
+      "Discovery, written delivery plans, documentation, and handoff"
+    ],
+    "workingPrinciples": [
+      "Useful systems begin with the real problem and its constraints.",
+      "Model decisions, tool permissions, output checks, and human responsibilities should be explicit.",
+      "A delivery is not complete until the client can understand, operate, and maintain it.",
+      "Project status and evidence are stated clearly; private implementation details remain private."
+    ]
+  },
+  "services": [
+    {
+      "name": "AI Agent Development & Automation",
+      "description": "Build tool-calling agents, MCP integrations, retrieval workflows, and AI automations with clear boundaries and dependable validation.",
+      "representativeProjects": [
+        "codescope",
+        "payguard-ai",
+        "ai-lead-generation",
+        "ai-restaurant-chatbot"
+      ]
+    },
+    {
+      "name": "AI Engineering & Applied Research",
+      "description": "Engineer deep-learning, anomaly-detection, and retrieval systems around repeatable experiments, explainability, and practical use cases.",
+      "representativeProjects": [
+        "sentineliq",
+        "carevision",
+        "topolite",
+        "vital-link"
+      ]
+    },
+    {
+      "name": "Modeling & Evaluation",
+      "description": "Build and compare predictive approaches with interpretable features, forecasting methods, and clear evaluation boundaries.",
+      "representativeProjects": [
+        "adaptiq",
+        "sentineliq",
+        "pakistan-ecommerce"
+      ]
+    },
+    {
+      "name": "Data Foundations for AI",
+      "description": "Prepare, query, and inspect structured data so AI and machine-learning workflows start from clear, usable evidence.",
+      "representativeProjects": [
+        "vendor-analysis",
+        "covid-analytics",
+        "netflix"
+      ]
+    }
+  ],
+  "deliveryApproach": [
+    {
+      "step": 1,
+      "name": "Discovery",
+      "description": "A focused 30-minute conversation to understand the problem, constraints, and useful outcome."
+    },
+    {
+      "step": 2,
+      "name": "Delivery",
+      "description": "Fixed-scope or milestone-based work with a written plan before implementation."
+    },
+    {
+      "step": 3,
+      "name": "Handoff",
+      "description": "Documentation, README material, and a walkthrough so the next person can operate the system."
+    }
+  ],
+  "contact": {
+    "email": "ibadcodes@gmail.com",
+    "whatsapp": "+92 322 0692321",
+    "portfolioUrl": "https://ibadat-ali-portfolio.vercel.app/",
+    "linkedinUrl": "https://www.linkedin.com/in/mirzaibadatali",
+    "githubUrl": "https://github.com/Ibadat-Ali86",
+    "kaggleUrl": "https://www.kaggle.com/ibadatali",
+    "resumeUrl": "https://ibadat-ali-portfolio.vercel.app/Ibadat_Ali_Resume.pdf",
+    "projectInquiryGuidance": "Share the context, constraints, and what a useful outcome would look like. The portfolio states that most projects begin with a focused 30-minute fit conversation and that replies are normally made within one business day."
+  },
+  "approvedClaims": [
+    "Ibadat Ali is an AI Engineer and AI Agent Developer based in Pakistan and working remotely worldwide.",
+    "He builds tool-using agents, retrieval workflows, model-backed APIs, and applied ML products.",
+    "His public portfolio presents work across AI automation, agent development, applied ML, forecasting, data engineering, analytics, and full-stack AI products.",
+    "He emphasizes clear system boundaries, validation, documentation, and handoff."
+  ],
+  "restrictedClaims": [
+    "Do not describe Ibadat as a CEO, founder, or holder of any role not present in the experience record.",
+    "Do not promise business outcomes, timelines, availability, rates, or production performance that are not documented in the portfolio evidence.",
+    "Do not disclose private-client repositories, credentials, customer data, webhook URLs, payment data, internal dashboards, or undisclosed implementation details.",
+    "Do not treat a project demo, research build, prototype, or case study as a production client deployment unless its project status explicitly says so."
+  ],
+  "evidence": [
+    "Public portfolio homepage, About, Capabilities, Contact, and Experience sections reviewed on 2026-10-13: https://ibadat-ali-portfolio.vercel.app/",
+    "Detailed project records in this corpus are the canonical source for project-specific claims."
+  ]
+}

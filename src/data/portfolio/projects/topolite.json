@@ -1,0 +1,78 @@
+{
+  "id": "topolite",
+  "title": "TopoLite-KD",
+  "status": "research",
+  "category": [
+    "AI Health",
+    "Research"
+  ],
+  "summary": "Lightweight topology-aware knowledge distillation for COVID-19 CT-slice classification.",
+  "problem": "Research into compact imaging models needs transparent framing of methods and limitations.",
+  "solution": "A topology-aware knowledge-distillation approach explores lightweight architectures, attention, and explainability methods.",
+  "architecture": [
+    "Case-study context: Compact medical-imaging research needs a transparent account of representation, topology, distillation, and explainability without implying clinical deployment.",
+    "Compact representation: A lightweight convolutional path is used as the student-side foundation for experimentation. Components: PyTorch, depthwise-separable CNN, EfficientNet-B0.",
+    "Topology-aware learning: Coordinate attention and persistent-homology signals are explored as structural guidance during distillation. Components: Coordinate Attention, persistent homology, GUDHI.",
+    "Interpretability: Grad-CAM provides a visual explanation surface for research inspection rather than a clinical guarantee. Components: Grad-CAM.",
+    "The README describes a lightweight student path using depthwise-separable convolution and EfficientNet-B0 components.",
+    "Coordinate Attention and persistent-homology signals implemented with GUDHI are explored as structural guidance for knowledge distillation.",
+    "Grad-CAM provides a research visualization; the project also links to a Kaggle experiment notebook."
+  ],
+  "technologies": [
+    "PyTorch",
+    "depthwise-separable CNN",
+    "Coordinate Attention",
+    "persistent homology",
+    "GUDHI",
+    "EfficientNet-B0",
+    "Grad-CAM"
+  ],
+  "keywords": [
+    "ai",
+    "health",
+    "research",
+    "pytorch",
+    "depthwise-separable cnn",
+    "coordinate attention",
+    "persistent homology",
+    "gudhi",
+    "efficientnet-b0",
+    "grad-cam",
+    "topolite",
+    "student model",
+    "depthwise separable cnn",
+    "kaggle notebook",
+    "ct slices"
+  ],
+  "aliases": [
+    "TopoLite-KD",
+    "topolite",
+    "TopoLite KD",
+    "topology-aware knowledge distillation",
+    "COVID-19 CT slice classification research"
+  ],
+  "outcomes": [
+    "Research prototype exploring topology-aware knowledge distillation for compact CT classification.",
+    "Framed the work as an academic research prototype with explicit limitations.",
+    "Kept the public story focused on method and reproducibility rather than medical outcome claims.",
+    "A research prototype explores topology-aware knowledge distillation for compact COVID-19 CT-slice classification."
+  ],
+  "evidence": [
+    "Canonical portfolio record: https://github.com/Ibadat-Ali86/ibadat-ali-portfolio/blob/main/src/data/projects.js (reviewed 2026-10-12; owner-maintained portfolio source, not independent verification).",
+    "Portfolio card and approved public case-study content: https://ibadat-ali-portfolio.vercel.app/ (reviewed 2026-10-12).",
+    "Public source path listed by the portfolio: https://github.com/Ibadat-Ali86/TopoLite-KD-Efficient-Topology-Aware-Knowledge-Distillation-for-COVID-19-CT-Slice-Classification.",
+    "Public repository README and/or source material was reviewed on 2026-10-12; repository statements remain attributed to their source.",
+    "Public repository README was reviewed and its linked Kaggle notebook URL was recorded; notebook content was not independently verified.",
+    "Portfolio catalog metadata from current source: tier=featured; source status=RESEARCH; source access=public; portfolio metric label=Topology-aware KD research; flags=clientProject=true, showSourceLink=true. Metric labels are catalog copy, not independent performance evidence."
+  ],
+  "sourceUrl": "https://github.com/Ibadat-Ali86/TopoLite-KD-Efficient-Topology-Aware-Knowledge-Distillation-for-COVID-19-CT-Slice-Classification",
+  "publicDetailsAllowed": true,
+  "allowedClaims": [
+    "Lightweight topology-aware knowledge distillation for COVID-19 CT-slice classification.",
+    "Describe the method as academic research on compact CT classification and topology-aware distillation."
+  ],
+  "restrictedClaims": [
+    "Academic research context only; no clinical deployment or validation claim is made.",
+    "Do not claim clinical deployment, diagnostic accuracy, clinical validation, or patient benefit."
+  ]
+}

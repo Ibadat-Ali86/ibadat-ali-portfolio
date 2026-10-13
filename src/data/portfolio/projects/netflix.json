@@ -1,0 +1,75 @@
+{
+  "id": "netflix",
+  "title": "Netflix Data Analysis",
+  "status": "data-lab",
+  "category": [
+    "Analytics",
+    "BI"
+  ],
+  "summary": "Exploratory analysis of movie metadata, genres, release patterns, popularity, and feature relationships.",
+  "problem": "Exploration needs a focused way to inspect distributions and relationships before deciding what is worth modeling.",
+  "solution": "A notebook-based analysis turns catalog metadata into readable views of genres, release patterns, popularity, and feature relationships.",
+  "architecture": [
+    "Case-study context: The lab explores how a streaming catalog can be profiled through metadata, genres, release patterns, popularity, and feature relationships.",
+    "Dataset preparation: Python and pandas provide the notebook-friendly loading, cleaning, and reshaping path. Components: Python, pandas, Jupyter.",
+    "Exploration: Matplotlib and seaborn turn catalog fields into distributions, comparisons, and relationship views. Components: Matplotlib, seaborn.",
+    "Interpretation: The final output remains exploratory analysis: a compact lab for asking better questions of metadata, not a prediction product. Components: Python, Jupyter.",
+    "The README describes a Kaggle-sourced movie catalog explored with Python and pandas.",
+    "The notebook workflow cleans data types, handles missing values/outliers, and explores release dates, genres, popularity, vote counts, and vote averages.",
+    "Matplotlib and seaborn visualize distributions and relationships; the portfolio explicitly frames the work as exploratory rather than predictive."
+  ],
+  "technologies": [
+    "Python",
+    "pandas",
+    "Matplotlib",
+    "seaborn",
+    "Jupyter"
+  ],
+  "keywords": [
+    "analytics",
+    "bi",
+    "python",
+    "pandas",
+    "matplotlib",
+    "seaborn",
+    "jupyter",
+    "netflix",
+    "kaggle dataset",
+    "genre",
+    "release dates",
+    "popularity",
+    "vote counts",
+    "vote averages",
+    "data cleaning",
+    "eda"
+  ],
+  "aliases": [
+    "Netflix Data Analysis",
+    "netflix",
+    "Netflix catalog EDA",
+    "Netflix movies exploratory analysis"
+  ],
+  "outcomes": [
+    "Kept Netflix as the single compact data-analysis lab in the public catalog.",
+    "Presented it as exploratory analysis rather than predictive modeling.",
+    "The portfolio describes an exploratory analysis of movie metadata, genres, release patterns, popularity, and feature relationships."
+  ],
+  "evidence": [
+    "Canonical portfolio record: https://github.com/Ibadat-Ali86/ibadat-ali-portfolio/blob/main/src/data/projects.js (reviewed 2026-10-12; owner-maintained portfolio source, not independent verification).",
+    "Portfolio card and approved public case-study content: https://ibadat-ali-portfolio.vercel.app/ (reviewed 2026-10-12).",
+    "Public source path listed by the portfolio: https://github.com/Ibadat-Ali86/Netflix_DataAnalysis.",
+    "Public repository README and/or source material was reviewed on 2026-10-12; repository statements remain attributed to their source.",
+    "Public repository README and portfolio record were reviewed. The README's dataset-size statement is preserved only as an attributed, unverified claim.",
+    "Portfolio catalog metadata from current source: tier=lab; source status=DATA LAB; source access=public; portfolio metric label=Exploratory data analysis; flags=clientProject=true, showSourceLink=true. Metric labels are catalog copy, not independent performance evidence."
+  ],
+  "sourceUrl": "https://github.com/Ibadat-Ali86/Netflix_DataAnalysis",
+  "publicDetailsAllowed": true,
+  "allowedClaims": [
+    "Exploratory analysis of movie metadata, genres, release patterns, popularity, and feature relationships.",
+    "Describe this as exploratory data analysis and list the fields and visualization tools."
+  ],
+  "restrictedClaims": [
+    "Client analysis presented as exploratory work rather than predictive modeling.",
+    "Do not present the README's 9,827-row/9-column dataset figure as independently verified; do not claim predictive modeling or business impact."
+  ]
+}

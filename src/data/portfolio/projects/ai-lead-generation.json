@@ -1,0 +1,77 @@
+{
+  "id": "ai-lead-generation",
+  "title": "AI-Powered Lead Generation Workflow",
+  "status": "private-client",
+  "category": [
+    "AI Automation",
+    "Lead Generation"
+  ],
+  "summary": "An n8n workflow that captures, filters, enriches, summarizes, and routes qualified leads into outreach and reporting.",
+  "problem": "Lead operations become inconsistent when submissions, qualification, outreach, and tracking live in separate manual steps.",
+  "solution": "The workflow captures form submissions, scrapes Google Maps, filters duplicates, classifies promising leads, checks website availability, uses a Gemini-powered agent to prepare outreach, sends Gmail messages, and records lead state in Google Sheets.",
+  "architecture": [
+    "Case-study context: Lead operations become inconsistent when capture, qualification, enrichment, outreach, and reporting live in separate manual steps.",
+    "Capture and enrichment: Submissions and map data enter the workflow, where duplicates and basic qualification signals are handled before outreach. Components: n8n, Google Maps, web scraping.",
+    "Agent-assisted preparation: Gemini prepares context-aware outreach while the workflow retains deterministic tool boundaries around the agent. Components: Google Gemini, AI agent.",
+    "Send and record: Gmail sends the message and Google Sheets preserves the visible lead state for reporting and follow-up. Components: Gmail, Google Sheets.",
+    "The n8n flow captures form submissions and Google Maps leads, removes duplicates, applies qualification, and checks website availability.",
+    "A Gemini-powered agent prepares outreach context; deterministic workflow steps route messages through Gmail.",
+    "Google Sheets records lead state for reporting and follow-up."
+  ],
+  "technologies": [
+    "n8n",
+    "Google Gemini",
+    "Google Maps",
+    "Gmail",
+    "Google Sheets",
+    "AI agent",
+    "web scraping"
+  ],
+  "keywords": [
+    "ai",
+    "automation",
+    "lead",
+    "generation",
+    "n8n",
+    "google gemini",
+    "google maps",
+    "gmail",
+    "google sheets",
+    "ai agent",
+    "web scraping",
+    "duplicate filtering",
+    "lead qualification",
+    "gemini agent",
+    "website availability"
+  ],
+  "aliases": [
+    "AI-Powered Lead Generation Workflow",
+    "ai lead generation",
+    "AI lead generation workflow",
+    "n8n lead enrichment workflow",
+    "lead capture and outreach automation"
+  ],
+  "outcomes": [
+    "Client workflow proof spanning capture, enrichment, outreach, and reporting.",
+    "Presented this as workflow proof, not a conversion or lead-volume claim.",
+    "Kept the process understandable from trigger to recorded outcome.",
+    "The portfolio presents this as client workflow proof covering capture, enrichment, outreach, and reporting."
+  ],
+  "evidence": [
+    "Canonical portfolio record: https://github.com/Ibadat-Ali86/ibadat-ali-portfolio/blob/main/src/data/projects.js (reviewed 2026-10-12; owner-maintained portfolio source, not independent verification).",
+    "Portfolio card and approved public case-study content: https://ibadat-ali-portfolio.vercel.app/ (reviewed 2026-10-12).",
+    "The portfolio does not publish a source repository for this project; only approved public case-study information was collected.",
+    "No source repository is linked by the portfolio; details are limited to the public workflow case study.",
+    "Portfolio catalog metadata from current source: tier=selected; source status=WORKFLOW PROOF; source access=private; portfolio metric label=Capture · enrich · outreach · report; flags=showcase=true, primaryFeature=true, clientProject=true, workflow=true, showSourceLink=false. Metric labels are catalog copy, not independent performance evidence."
+  ],
+  "sourceUrl": null,
+  "publicDetailsAllowed": true,
+  "allowedClaims": [
+    "An n8n workflow that captures, filters, enriches, summarizes, and routes qualified leads into outreach and reporting.",
+    "Describe the workflow stages and listed integrations from the public portfolio case study."
+  ],
+  "restrictedClaims": [
+    "Client workflow evidence; no conversion, lead-volume, or production claims are made.",
+    "No source repository is published. Do not claim lead counts, conversion rates, production scale, revenue impact, client identity, credentials, or private workflow details."
+  ]
+}

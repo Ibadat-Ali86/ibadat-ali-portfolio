@@ -1,0 +1,90 @@
+{
+  "id": "adaptiq",
+  "title": "AdaptIQ / ForecastAI",
+  "status": "live",
+  "category": [
+    "Forecasting",
+    "Decision Systems"
+  ],
+  "summary": "A forecasting application connecting sales data, model comparison, and downloadable planning reports.",
+  "problem": "Forecasting is only useful when teams can move from raw transaction data to automated, interpretable planning outputs.",
+  "solution": "An automated forecasting workflow pairing Prophet, XGBoost, SARIMA, and LSTM with regime selection, monitoring hooks, and PDF/CSV report generation.",
+  "architecture": [
+    "Case-study context: Forecasting becomes useful when a team can move from uploaded sales data to model comparison, interpretable planning outputs, and a report they can carry into a decision meeting.",
+    "Forecasting ensemble: Classical, boosted, and recurrent model families are compared within one forecasting workflow. Components: Prophet, XGBoost, SARIMA, LSTM.",
+    "Inference service: FastAPI exposes the model path while the React/Vite client gives the operator a usable planning surface. Components: FastAPI, React, Vite.",
+    "Decision and delivery: Chart.js visualizes the comparison and Docker/Hugging Face provide the practical delivery boundary. Components: Chart.js, Docker, Hugging Face.",
+    "The workflow compares Prophet, XGBoost, SARIMA, and LSTM forecasting approaches on sales data.",
+    "FastAPI exposes inference while a React/Vite interface presents forecast comparisons and Chart.js visualizations.",
+    "The portfolio describes regime selection, monitoring hooks, and downloadable PDF/CSV planning reports; Docker and Hugging Face provide the delivery path."
+  ],
+  "technologies": [
+    "Prophet",
+    "XGBoost",
+    "SARIMA",
+    "LSTM",
+    "FastAPI",
+    "React",
+    "Vite",
+    "Chart.js",
+    "Docker",
+    "Hugging Face"
+  ],
+  "keywords": [
+    "forecasting",
+    "decision",
+    "systems",
+    "prophet",
+    "xgboost",
+    "sarima",
+    "lstm",
+    "fastapi",
+    "react",
+    "vite",
+    "chart.js",
+    "docker",
+    "hugging face",
+    "adaptiq",
+    "walmart sales",
+    "retail demand",
+    "regime selection",
+    "model comparison",
+    "pdf report",
+    "csv report",
+    "hugging face spaces"
+  ],
+  "aliases": [
+    "AdaptIQ / ForecastAI",
+    "adaptiq",
+    "AdaptIQ",
+    "ForecastAI",
+    "Walmart sales forecasting",
+    "retail demand forecasting app"
+  ],
+  "outcomes": [
+    "Four-model comparison with live inference and downloadable planning reports.",
+    "Made model comparison and downloadable planning reports part of the product, not an afterthought.",
+    "Kept unsupported accuracy language out of the public case study.",
+    "The portfolio describes a four-model comparison with live inference and downloadable planning reports."
+  ],
+  "evidence": [
+    "Canonical portfolio record: https://github.com/Ibadat-Ali86/ibadat-ali-portfolio/blob/main/src/data/projects.js (reviewed 2026-10-12; owner-maintained portfolio source, not independent verification).",
+    "Portfolio card and approved public case-study content: https://ibadat-ali-portfolio.vercel.app/ (reviewed 2026-10-12).",
+    "Public source path listed by the portfolio: https://github.com/Ibadat-Ali86/Demand-Sales-Walmart-Forecasting.",
+    "Public repository README and/or source material was reviewed on 2026-10-12; repository statements remain attributed to their source.",
+    "Live link listed by the portfolio: https://huggingface.co/spaces/ibadatali/walmart-sales-forecasting-saas.",
+    "Live page availability/content was not independently verified during this collection.",
+    "Public repository README was reviewed; the portfolio-listed Hugging Face Space URL was recorded, but live content and availability were not independently verified.",
+    "Portfolio catalog metadata from current source: tier=featured; source status=LIVE; source access=public; portfolio metric label=Demand forecasting · 4-model ensemble; flags=showcase=true, primaryFeature=true, clientProject=true, canonicalWalmart=true, showSourceLink=true. Metric labels are catalog copy, not independent performance evidence."
+  ],
+  "sourceUrl": "https://github.com/Ibadat-Ali86/Demand-Sales-Walmart-Forecasting",
+  "publicDetailsAllowed": true,
+  "allowedClaims": [
+    "A forecasting application connecting sales data, model comparison, and downloadable planning reports.",
+    "Describe the product workflow, model families, comparison interface, and report exports."
+  ],
+  "restrictedClaims": [
+    "This is the sole Walmart forecasting card; unsupported accuracy language is omitted.",
+    "Do not claim 98.77% accuracy, any MAPE threshold, or a verified forecast-performance result; the portfolio explicitly omits unsupported accuracy language."
+  ]
+}

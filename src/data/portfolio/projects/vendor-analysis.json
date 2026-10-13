@@ -1,0 +1,79 @@
+{
+  "id": "vendor-analysis",
+  "title": "Vendor Performance Analysis",
+  "status": "analytics",
+  "category": [
+    "Analytics",
+    "BI"
+  ],
+  "summary": "A procurement and inventory analysis workflow connecting sales, purchases, pricing, invoices, and vendor performance.",
+  "problem": "Procurement decisions become difficult when sales, purchasing, pricing, and invoices remain disconnected.",
+  "solution": "An analytical workflow connects those datasets to make vendor performance and inventory questions inspectable.",
+  "architecture": [
+    "Case-study context: Procurement questions become difficult when sales, purchasing, pricing, invoices, and vendor information remain disconnected across separate tables.",
+    "Data assembly: Python and pandas establish a repeatable cleaning and joining path for the operational tables. Components: Python, pandas.",
+    "Query layer: SQL and SQLite make the analytical questions explicit and keep the working dataset inspectable. Components: SQL, SQLite, Jupyter.",
+    "Decision views: Data visualization turns the joined data into vendor and inventory observations that can be discussed. Components: data visualization.",
+    "Python and pandas ingest, clean, and join sales, purchase, price, vendor, and invoice data.",
+    "SQL and SQLite make the analytical tables and vendor/inventory questions inspectable; the README describes ingestion and summary-generation scripts.",
+    "Jupyter and data visualizations support analysis of profitability and operational efficiency."
+  ],
+  "technologies": [
+    "Python",
+    "pandas",
+    "SQL",
+    "SQLite",
+    "Jupyter",
+    "data visualization"
+  ],
+  "keywords": [
+    "analytics",
+    "bi",
+    "python",
+    "pandas",
+    "sql",
+    "sqlite",
+    "jupyter",
+    "data visualization",
+    "vendor",
+    "analysis",
+    "liquor retail",
+    "procurement",
+    "inventory",
+    "sales",
+    "purchases",
+    "invoices",
+    "data ingestion",
+    "vendor profitability"
+  ],
+  "aliases": [
+    "Vendor Performance Analysis",
+    "vendor analysis",
+    "Vendor and Inventory Analytics",
+    "procurement performance analysis"
+  ],
+  "outcomes": [
+    "Procurement analysis workflow connecting sales, purchases, pricing, invoices, and vendor performance.",
+    "Focused on the analysis workflow and its questions rather than unsupported dataset-volume claims.",
+    "Kept the output compact enough to inspect as a portfolio case study.",
+    "The portfolio describes a procurement analysis workflow connecting sales, purchasing, pricing, invoices, and vendor performance."
+  ],
+  "evidence": [
+    "Canonical portfolio record: https://github.com/Ibadat-Ali86/ibadat-ali-portfolio/blob/main/src/data/projects.js (reviewed 2026-10-12; owner-maintained portfolio source, not independent verification).",
+    "Portfolio card and approved public case-study content: https://ibadat-ali-portfolio.vercel.app/ (reviewed 2026-10-12).",
+    "Public source path listed by the portfolio: https://github.com/Ibadat-Ali86/Data_Analysis_Projects/tree/main/Vendor_Performance_Analysis_Project.",
+    "Public repository README and/or source material was reviewed on 2026-10-12; repository statements remain attributed to their source.",
+    "Public repository README and portfolio case study were reviewed. Dataset-volume claims are attributed to the README and excluded from verified outcomes.",
+    "Portfolio catalog metadata from current source: tier=selected; source status=ANALYTICS; source access=public; portfolio metric label=Procurement analytics workflow; flags=showSourceLink=true. Metric labels are catalog copy, not independent performance evidence."
+  ],
+  "sourceUrl": "https://github.com/Ibadat-Ali86/Data_Analysis_Projects/tree/main/Vendor_Performance_Analysis_Project",
+  "publicDetailsAllowed": true,
+  "allowedClaims": [
+    "A procurement and inventory analysis workflow connecting sales, purchases, pricing, invoices, and vendor performance.",
+    "Describe the project as a vendor/procurement analysis workflow and name its data domains and tools."
+  ],
+  "restrictedClaims": [
+    "Dataset-volume figures are omitted until independently checked.",
+    "Do not state the README's 12.8M+ transaction or 2.4M+ purchase-record counts as verified; the portfolio omits dataset volumes pending independent checking."
+  ]
+}

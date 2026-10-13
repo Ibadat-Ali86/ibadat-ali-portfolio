@@ -1,0 +1,38 @@
+{
+  "version": "2026-10-13",
+  "lastUpdated": "2026-10-13",
+  "entityType": "certifications",
+  "certifications": [
+    {
+      "id": "anthropic-ai-fluency-framework-foundations",
+      "title": "AI Fluency: Framework & Foundations",
+      "issuer": "Anthropic",
+      "issued": "2026-01",
+      "credentialUrl": "https://ibadat-ali-portfolio.vercel.app/assets/certificates/ai-fluency-framework-foundations.pdf",
+      "verificationStatus": "Public certificate link provided by portfolio",
+      "allowedClaims": [
+        "Ibadat holds the publicly linked Anthropic AI Fluency: Framework & Foundations certificate."
+      ],
+      "restrictedClaims": [
+        "Do not infer a score, credential ID, license, employment relationship, or any capability beyond the certificate title and issuer."
+      ]
+    },
+    {
+      "id": "anthropic-claude-101",
+      "title": "Claude 101",
+      "issuer": "Anthropic",
+      "issued": "2026-02",
+      "credentialUrl": "https://ibadat-ali-portfolio.vercel.app/assets/certificates/claude-101.pdf",
+      "verificationStatus": "Public certificate link provided by portfolio",
+      "allowedClaims": [
+        "Ibadat holds the publicly linked Anthropic Claude 101 certificate."
+      ],
+      "restrictedClaims": [
+        "Do not infer a score, credential ID, license, employment relationship, or any capability beyond the certificate title and issuer."
+      ]
+    }
+  ],
+  "evidence": [
+    "Public portfolio Credentials section reviewed on 2026-10-13: https://ibadat-ali-portfolio.vercel.app/#experience"
+  ]
+}

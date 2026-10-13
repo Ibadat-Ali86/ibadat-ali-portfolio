@@ -1,0 +1,79 @@
+{
+  "id": "vital-link",
+  "title": "VITAL-LINK",
+  "status": "prototype",
+  "category": [
+    "AI Health",
+    "Applied ML"
+  ],
+  "summary": "Multimodal LLM clinical workflow fusing chest X-ray, lung audio, and vital-sign telemetry via Gemini 2.0 Flash into an assisted-review interface.",
+  "problem": "Multimodal health prototypes require careful assisted-review framing and useful consolidation of diverse inputs.",
+  "solution": "A prototype brings image, audio, and vital-sign inputs into one review-oriented workflow with explicit model boundaries.",
+  "architecture": [
+    "Case-study context: The prototype explores how image, audio, and vital-sign inputs can be brought into one bounded assisted-review workflow without turning a multimodal model into an unqualified clinical authority.",
+    "Multimodal intake: The prototype collects the three input types into one review context rather than isolated demonstrations. Components: Python, Flask.",
+    "Model-assisted review: Gemini 2.0 Flash supports the synthesis step while the interface keeps the workflow explicitly assistive. Components: Gemini 2.0 Flash.",
+    "Operator output: Charts and a generated document provide a review artifact for the prototype flow. Components: Chart.js, jsPDF.",
+    "The README describes a Flask application that combines chest X-ray, lung-audio, and vital-sign inputs in one review flow.",
+    "Gemini 2.0 Flash supports the model-assisted synthesis step; Chart.js visualizations and jsPDF reporting present a review artifact.",
+    "The README lists preconfigured sample cases; these are demo fixtures, not clinical validation."
+  ],
+  "technologies": [
+    "Python",
+    "Flask",
+    "Gemini 2.0 Flash",
+    "Chart.js",
+    "jsPDF"
+  ],
+  "keywords": [
+    "ai",
+    "health",
+    "applied",
+    "ml",
+    "python",
+    "flask",
+    "gemini 2.0 flash",
+    "chart.js",
+    "jspdf",
+    "vital",
+    "link",
+    "chest x-ray",
+    "lung audio",
+    "vital signs",
+    "multimodal intake",
+    "sample cases",
+    "risk visualization",
+    "pdf report"
+  ],
+  "aliases": [
+    "VITAL-LINK",
+    "vital link",
+    "VITAL LINK",
+    "VITAL-LINK multimodal review prototype",
+    "Gemini health prototype"
+  ],
+  "outcomes": [
+    "Assisted-review prototype combining image, audio, and vital-sign inputs in one bounded workflow.",
+    "Kept the scope at prototype and assisted review.",
+    "Avoided diagnosis, clinical validation, or treatment claims.",
+    "The portfolio describes an assisted-review prototype combining image, audio, and vital-sign inputs."
+  ],
+  "evidence": [
+    "Canonical portfolio record: https://github.com/Ibadat-Ali86/ibadat-ali-portfolio/blob/main/src/data/projects.js (reviewed 2026-10-12; owner-maintained portfolio source, not independent verification).",
+    "Portfolio card and approved public case-study content: https://ibadat-ali-portfolio.vercel.app/ (reviewed 2026-10-12).",
+    "Public source path listed by the portfolio: https://github.com/Ibadat-Ali86/data-science-portfolio/tree/main/projects/02-multimodal-medical-diagnosis-ai-gemini.",
+    "Public repository README and/or source material was reviewed on 2026-10-12; repository statements remain attributed to their source.",
+    "Public repository README was reviewed. Its diagnostic language is superseded by the portfolio's prototype/assisted-review safeguard.",
+    "Portfolio catalog metadata from current source: tier=featured; source status=PROTOTYPE; source access=public; portfolio metric label=Multimodal assisted-review prototype; flags=showSourceLink=true. Metric labels are catalog copy, not independent performance evidence."
+  ],
+  "sourceUrl": "https://github.com/Ibadat-Ali86/data-science-portfolio/tree/main/projects/02-multimodal-medical-diagnosis-ai-gemini",
+  "publicDetailsAllowed": true,
+  "allowedClaims": [
+    "Multimodal LLM clinical workflow fusing chest X-ray, lung audio, and vital-sign telemetry via Gemini 2.0 Flash into an assisted-review interface.",
+    "Use prototype and assisted-review wording; describe the input modalities and software workflow."
+  ],
+  "restrictedClaims": [
+    "Prototype and assisted-review language only; no diagnosis or clinical validation claim is made.",
+    "Do not claim medical diagnosis, differential-diagnosis accuracy, treatment recommendations, FDA clearance, clinical deployment, or clinical validation."
+  ]
+}

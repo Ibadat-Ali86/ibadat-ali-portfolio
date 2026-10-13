@@ -1,0 +1,88 @@
+{
+  "id": "payguard-ai",
+  "title": "WhatsApp Transaction Verification AI Agent",
+  "status": "private-client",
+  "category": [
+    "AI Automation",
+    "Payment Verification"
+  ],
+  "summary": "A controlled WhatsApp workflow that turns payment screenshots into OCR-backed, Stripe-authoritative review outcomes.",
+  "problem": "Manual payment screenshot review is slow and vulnerable to ambiguous OCR, repeated submissions, fake or unclear evidence, and transient integration failures.",
+  "solution": "A Baileys Node.js bot receives images from an allowlisted WhatsApp group, persists work through a fair queue, uses FastAPI/Tesseract with a bounded Groq fallback, orchestrates n8n, verifies eligible evidence against Stripe, detects duplicates, and fails closed when proof remains ambiguous.",
+  "architecture": [
+    "Case-study context: Payment proof arrived as an image inside a WhatsApp group. The workflow had to coordinate media intake, OCR, Stripe truth, duplicate handling, and manual review without treating OCR as final authority.",
+    "Intake and queue: Allowlisted WhatsApp media is accepted, identified, and persisted through a fair queue so bursts do not reorder payment work. Components: WhatsApp / Baileys, Node.js, n8n.",
+    "Evidence extraction: OCR and a bounded vision fallback turn screenshots into candidate fields while keeping weak or incomplete evidence explicit. Components: Python, FastAPI, Tesseract OCR, Groq Vision.",
+    "Authoritative verification: Eligible evidence is reconciled against Stripe, duplicate submissions are detected, and ambiguous cases stay fail-closed for review. Components: Stripe API, Docker, DigitalOcean.",
+    "OCR and vision output are candidate evidence only; eligible transactions are checked against Stripe as the authoritative source, and unresolved cases remain in review."
+  ],
+  "technologies": [
+    "WhatsApp / Baileys",
+    "Node.js",
+    "Python",
+    "FastAPI",
+    "Tesseract OCR",
+    "Groq Vision",
+    "n8n",
+    "Stripe API",
+    "Docker",
+    "DigitalOcean"
+  ],
+  "keywords": [
+    "ai",
+    "automation",
+    "payment",
+    "verification",
+    "whatsapp / baileys",
+    "node.js",
+    "python",
+    "fastapi",
+    "tesseract ocr",
+    "groq vision",
+    "n8n",
+    "stripe api",
+    "docker",
+    "digitalocean",
+    "payguard",
+    "allowlisted group",
+    "fair queue",
+    "idempotency",
+    "ambiguous evidence",
+    "manual review",
+    "fail closed",
+    "duplicate screenshot"
+  ],
+  "aliases": [
+    "WhatsApp Transaction Verification AI Agent",
+    "payguard ai",
+    "PayGuard AI",
+    "WhatsApp payment verification",
+    "transaction screenshot verification",
+    "payment evidence workflow"
+  ],
+  "outcomes": [
+    "Delivered payment-verification workflow with queueing, OCR fallback, Stripe reconciliation, duplicate handling, and handoff documentation.",
+    "Designed the evidence path around bounded retries and explicit review states.",
+    "Documented the handoff so the client can operate the workflow without relying on the builder.",
+    "The portfolio describes queueing, OCR fallback, Stripe reconciliation, duplicate handling, and documented client handoff."
+  ],
+  "evidence": [
+    "Canonical portfolio record: https://github.com/Ibadat-Ali86/ibadat-ali-portfolio/blob/main/src/data/projects.js (reviewed 2026-10-12; owner-maintained portfolio source, not independent verification).",
+    "Portfolio card and approved public case-study content: https://ibadat-ali-portfolio.vercel.app/ (reviewed 2026-10-12).",
+    "The portfolio does not publish a source repository for this project; only approved public case-study information was collected.",
+    "No source repository is linked by the portfolio; public case-study details only.",
+    "Portfolio catalog metadata from current source: tier=featured; source status=CLIENT DELIVERY; source access=private; portfolio metric label=WhatsApp intake · OCR · duplicate detection · Stripe verification; flags=showcase=true, primaryFeature=true, clientProject=true, showSourceLink=false. Metric labels are catalog copy, not independent performance evidence.",
+    "Portfolio evidence note (owner-maintained): Private client delivery. Internal validation recorded 100 Node.js tests and 153 Python tests passing on 2026-09-24. The supplied deployment visual is not an uptime guarantee.",
+    "Portfolio evidence visual link: https://ibadat-ali-portfolio.vercel.app/assets/projects/payguard-digitalocean-proof.png (Supplied deployment screenshot); presentation image is not independent telemetry."
+  ],
+  "sourceUrl": null,
+  "publicDetailsAllowed": true,
+  "allowedClaims": [
+    "A controlled WhatsApp workflow that turns payment screenshots into OCR-backed, Stripe-authoritative review outcomes.",
+    "Public case-study details describe a WhatsApp payment-evidence workflow with OCR, duplicate detection, Stripe verification, and human review for ambiguous evidence."
+  ],
+  "restrictedClaims": [
+    "The thumbnail is a supplied presentation visual; dashboard figures and uptime language inside the artwork are not treated as independently verified telemetry. No public payment-volume or accuracy claim is made.",
+    "No repository or live workflow is published; do not infer credentials, webhook secrets, customer/payment data, private n8n topology, or additional client implementation details."
+  ]
+}

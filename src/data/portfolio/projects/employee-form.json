@@ -1,0 +1,70 @@
+{
+  "id": "employee-form",
+  "title": "Employee Information Form",
+  "status": "data-lab",
+  "category": [
+    "ML",
+    "Data Labs"
+  ],
+  "summary": "A reactive R Shiny form with validation, dates, file upload, and structured output.",
+  "problem": "Structured input tools need visible validation and predictable state transitions to stay trustworthy.",
+  "solution": "An R Shiny exercise combines reactive inputs, dates, file upload, validation, and structured output in one focused interface.",
+  "architecture": [
+    "Scenario1.R builds a reactive R Shiny form with name, personal story, a password-style 'Secret Info' input, age, experience, contract type, dates, multiselects, hobbies, side-job input, and file upload.",
+    "The source applies an age range check of 18–55 and renders submitted form details as structured output.",
+    "The source contains input controls only; no actual user secret or private employee record was collected into this knowledge file."
+  ],
+  "technologies": [
+    "R",
+    "Shiny",
+    "reactive programming",
+    "form validation"
+  ],
+  "keywords": [
+    "ml",
+    "data",
+    "labs",
+    "r",
+    "shiny",
+    "reactive programming",
+    "form validation",
+    "employee",
+    "form",
+    "reactive form",
+    "age validation",
+    "dates",
+    "multiselect",
+    "hobbies",
+    "side job",
+    "file upload",
+    "structured output"
+  ],
+  "aliases": [
+    "Employee Information Form",
+    "employee form",
+    "R Shiny Employee Form",
+    "employee intake form lab"
+  ],
+  "outcomes": [
+    "The portfolio describes a focused R Shiny lab demonstrating reactive form inputs, validation, dates, file upload, and structured output."
+  ],
+  "evidence": [
+    "Canonical portfolio record: https://github.com/Ibadat-Ali86/ibadat-ali-portfolio/blob/main/src/data/projects.js (reviewed 2026-10-12; owner-maintained portfolio source, not independent verification).",
+    "Portfolio card and approved public case-study content: https://ibadat-ali-portfolio.vercel.app/ (reviewed 2026-10-12).",
+    "Public source path listed by the portfolio: https://github.com/Ibadat-Ali86/R_Shiny-Web_Apps/blob/main/Scenario1.R.",
+    "Public repository README and/or source material was reviewed on 2026-10-12; repository statements remain attributed to their source.",
+    "This record is one of four additional canonical lab entries present in the portfolio source but outside the visible project catalog.",
+    "Public Scenario1.R source was reviewed at the portfolio-listed GitHub path; no submitted form data was accessed.",
+    "Portfolio catalog metadata from current source: tier=lab; source status=R SHINY LAB; source access=public; portfolio metric label=R Shiny exercise; flags=showSourceLink=true. Metric labels are catalog copy, not independent performance evidence."
+  ],
+  "sourceUrl": "https://github.com/Ibadat-Ali86/R_Shiny-Web_Apps/blob/main/Scenario1.R",
+  "publicDetailsAllowed": true,
+  "allowedClaims": [
+    "A reactive R Shiny form with validation, dates, file upload, and structured output.",
+    "Describe the public form controls and age-validation range present in the source file."
+  ],
+  "restrictedClaims": [
+    "Displayed as a focused child lab, not as the parent collection.",
+    "Never expose or collect actual user-submitted personal stories, password-style values, employee records, or uploaded files; only public source-code structure is included."
+  ]
+}

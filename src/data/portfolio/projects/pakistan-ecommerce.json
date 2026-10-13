@@ -1,0 +1,79 @@
+{
+  "id": "pakistan-ecommerce",
+  "title": "Pakistan E-commerce Price Prediction",
+  "status": "case-study",
+  "category": [
+    "Data Science",
+    "Forecasting"
+  ],
+  "summary": "A price-prediction workflow built around Pakistani e-commerce transaction data and deployable inference.",
+  "problem": "Price-prediction work needs a disciplined path from transaction data to reproducible inference.",
+  "solution": "A data-science workflow evaluates tree-based approaches and packages an inference-oriented application.",
+  "architecture": [
+    "Case-study context: Price-prediction work needs a disciplined path from transaction records to features, model comparison, and a repeatable inference surface.",
+    "Data preparation: Python and pandas shape the transaction data into a reproducible modeling input. Components: Python, pandas, Jupyter.",
+    "Model comparison: Scikit-learn supports tree-based experiments with Random Forest and Gradient Boosting as inspectable approaches. Components: scikit-learn, Random Forest, Gradient Boosting.",
+    "Inference surface: Flask packages the selected path into a small application boundary for prediction-oriented use. Components: Flask.",
+    "Python, pandas, and Jupyter prepare transaction data for modeling.",
+    "Scikit-learn supports tree-based experiments including Random Forest and Gradient Boosting.",
+    "A Flask application packages an inference path for price estimates."
+  ],
+  "technologies": [
+    "Python",
+    "pandas",
+    "scikit-learn",
+    "Random Forest",
+    "Gradient Boosting",
+    "Flask",
+    "Jupyter"
+  ],
+  "keywords": [
+    "data",
+    "science",
+    "forecasting",
+    "python",
+    "pandas",
+    "scikit-learn",
+    "random forest",
+    "gradient boosting",
+    "flask",
+    "jupyter",
+    "pakistan",
+    "ecommerce",
+    "transaction data",
+    "unit price",
+    "flask inference",
+    "jupyter notebook",
+    "regression"
+  ],
+  "aliases": [
+    "Pakistan E-commerce Price Prediction",
+    "pakistan ecommerce",
+    "E-commerce Unit Price Prediction",
+    "Pakistani e-commerce price model"
+  ],
+  "outcomes": [
+    "Deployable inference workflow translating e-commerce transaction data into price estimates.",
+    "Kept the result framed as deployable inference rather than a verified business forecast.",
+    "Omitted unverified R² and row-count figures.",
+    "The portfolio describes a deployable inference workflow translating Pakistani e-commerce transaction data into price estimates."
+  ],
+  "evidence": [
+    "Canonical portfolio record: https://github.com/Ibadat-Ali86/ibadat-ali-portfolio/blob/main/src/data/projects.js (reviewed 2026-10-12; owner-maintained portfolio source, not independent verification).",
+    "Portfolio card and approved public case-study content: https://ibadat-ali-portfolio.vercel.app/ (reviewed 2026-10-12).",
+    "Public source path listed by the portfolio: https://github.com/Ibadat-Ali86/data-science-portfolio/tree/main/projects/01-pakistan-ecommerce-price-prediction.",
+    "Public repository README and/or source material was reviewed on 2026-10-12; repository statements remain attributed to their source.",
+    "Public repository README and portfolio case study were reviewed. README metric claims are intentionally excluded from verified outcomes.",
+    "Portfolio catalog metadata from current source: tier=selected; source status=ML CASE STUDY; source access=public; portfolio metric label=Deployable price-prediction workflow; flags=showSourceLink=true. Metric labels are catalog copy, not independent performance evidence."
+  ],
+  "sourceUrl": "https://github.com/Ibadat-Ali86/data-science-portfolio/tree/main/projects/01-pakistan-ecommerce-price-prediction",
+  "publicDetailsAllowed": true,
+  "allowedClaims": [
+    "A price-prediction workflow built around Pakistani e-commerce transaction data and deployable inference.",
+    "Describe the data-preparation, tree-model comparison, and Flask inference workflow."
+  ],
+  "restrictedClaims": [
+    "Unverified R² and row-count figures are omitted.",
+    "Do not state R-squared 0.92, '92% accuracy', RMSE 0.500, dataset size, or business forecast performance as verified; the portfolio omits these unverified figures."
+  ]
+}

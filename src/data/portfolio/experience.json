@@ -1,0 +1,90 @@
+{
+  "version": "2026-10-13",
+  "lastUpdated": "2026-10-13",
+  "entityType": "professional-experience",
+  "summary": "Industry roles and independent delivery across ML engineering, LLM-integrated systems, and AI agent workflows.",
+  "roles": [
+    {
+      "id": "independent-data-scientist-ai-consultant",
+      "title": "Independent Data Scientist / AI Consultant",
+      "organization": "Fiverr",
+      "employmentType": "Independent freelance delivery",
+      "workMode": "Remote",
+      "period": {
+        "start": "2025",
+        "end": "Present",
+        "note": "Paused December 2025 to March 2026 for a full-time role."
+      },
+      "description": "Delivers predictive modeling, forecasting, NLP, RAG, computer vision, and AI automation systems for international clients, with stakeholder-ready reports and structured handoff documentation.",
+      "capabilities": [
+        "Predictive modeling and forecasting",
+        "Natural-language processing and retrieval-augmented generation",
+        "Computer vision and AI automation",
+        "Stakeholder-ready reporting and structured technical handoff"
+      ],
+      "allowedClaims": [
+        "Independent delivery across predictive modeling, forecasting, NLP, RAG, computer vision, and AI automation.",
+        "International client delivery with reports and handoff documentation."
+      ],
+      "restrictedClaims": [
+        "Do not name undisclosed clients, contracts, volumes, revenue, or outcomes."
+      ]
+    },
+    {
+      "id": "soft-shack-ml-ai-engineer",
+      "title": "ML / AI Engineer",
+      "organization": "Soft Shack",
+      "employmentType": "Full-time",
+      "workMode": "On-site",
+      "period": {
+        "start": "2025-12",
+        "end": "2026-03",
+        "duration": "4 months"
+      },
+      "description": "Designed production ML and LLM-integrated automation pipelines with FastAPI and Docker, adding RAG retrieval, confidence gates, audit logging, and client-ready technical handoffs.",
+      "capabilities": [
+        "Production ML and LLM-integrated automation pipelines",
+        "FastAPI and Docker delivery",
+        "RAG retrieval and confidence gates",
+        "Audit logging and technical handoff"
+      ],
+      "allowedClaims": [
+        "Designed ML and LLM-integrated automation pipelines using FastAPI and Docker.",
+        "Added RAG retrieval, confidence gates, audit logging, and client-ready technical handoffs."
+      ],
+      "restrictedClaims": [
+        "Do not infer employer-specific product names, model metrics, customers, or infrastructure details."
+      ]
+    },
+    {
+      "id": "arch-technologies-data-scientist-intern",
+      "title": "Data Scientist Intern",
+      "organization": "Arch Technologies",
+      "employmentType": "Internship",
+      "workMode": "Not publicly specified",
+      "period": {
+        "start": "2025-05",
+        "end": "2025-08",
+        "duration": "4 months"
+      },
+      "description": "Built and evaluated forecasting and predictive-analytics models with Python, Scikit-learn, XGBoost, and pandas; engineered SQL/CSV ETL workflows and delivered SHAP-based reports.",
+      "capabilities": [
+        "Forecasting and predictive analytics",
+        "Python, Scikit-learn, XGBoost, and pandas",
+        "SQL/CSV ETL workflows",
+        "SHAP-based reporting"
+      ],
+      "allowedClaims": [
+        "Built and evaluated forecasting and predictive-analytics models.",
+        "Engineered SQL/CSV ETL workflows and delivered SHAP-based reports."
+      ],
+      "restrictedClaims": [
+        "Do not state benchmark scores, dataset details, or business outcomes not published in the portfolio."
+      ]
+    }
+  ],
+  "educationAndDevelopment": "Self-directed learning in machine learning, AI systems, and software engineering, strengthened through client delivery, applied research, and focused technical certifications.",
+  "evidence": [
+    "Public portfolio Experience section reviewed on 2026-10-13: https://ibadat-ali-portfolio.vercel.app/#experience"
+  ]
+}

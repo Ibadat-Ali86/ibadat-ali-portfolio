@@ -1,0 +1,83 @@
+{
+  "id": "covid-analytics",
+  "title": "COVID-19 Global Analytics Platform",
+  "status": "case-study",
+  "category": [
+    "Analytics",
+    "BI"
+  ],
+  "summary": "A full-stack pandemic analytics platform with automated ETL, database-backed APIs, and an interactive dashboard.",
+  "problem": "Analytics systems need dependable movement from source data through services to interpretable views.",
+  "solution": "An automated ETL and database-backed API layer feeds an interactive analytical interface.",
+  "architecture": [
+    "Case-study context: Analytics work is only useful when data can move consistently from source files through storage and APIs into an interface that makes patterns inspectable.",
+    "Data foundation: Python and MySQL provide the ingestion and persistence layer for the analytical dataset. Components: Python, MySQL.",
+    "Service boundary: FastAPI exposes the processed data through a clear API contract for the client application. Components: FastAPI.",
+    "Analytical interface: React, TypeScript, Tailwind, and Vite form the interactive dashboard surface, with Docker keeping the environment repeatable. Components: React, TypeScript, Tailwind, Vite, Docker.",
+    "Python ETL prepares pandemic datasets for a MySQL analytical store.",
+    "FastAPI exposes database-backed endpoints to the client.",
+    "A React/TypeScript/Tailwind/Vite dashboard presents interactive analytical views; Docker supports a repeatable environment.",
+    "The repository describes analysis across cases, deaths, vaccination, case-fatality, and policy-related metrics."
+  ],
+  "technologies": [
+    "Python",
+    "MySQL",
+    "FastAPI",
+    "React",
+    "TypeScript",
+    "Tailwind",
+    "Vite",
+    "Docker"
+  ],
+  "keywords": [
+    "analytics",
+    "bi",
+    "python",
+    "mysql",
+    "fastapi",
+    "react",
+    "typescript",
+    "tailwind",
+    "vite",
+    "docker",
+    "covid",
+    "etl",
+    "react dashboard",
+    "case counts",
+    "vaccination",
+    "case fatality",
+    "policy data",
+    "global analytics"
+  ],
+  "aliases": [
+    "COVID-19 Global Analytics Platform",
+    "covid analytics",
+    "COVID Analytics Platform",
+    "COVID-19 Global Analytics",
+    "pandemic data dashboard"
+  ],
+  "outcomes": [
+    "Database-backed analytics platform connecting automated ETL, APIs, and an interactive dashboard.",
+    "Presented the work as an analytics case study, not a public-health outcome claim.",
+    "Kept the child project visible while excluding the parent collection from the catalog.",
+    "The portfolio describes a database-backed analytics platform connecting ETL, APIs, and an interactive dashboard."
+  ],
+  "evidence": [
+    "Canonical portfolio record: https://github.com/Ibadat-Ali86/ibadat-ali-portfolio/blob/main/src/data/projects.js (reviewed 2026-10-12; owner-maintained portfolio source, not independent verification).",
+    "Portfolio card and approved public case-study content: https://ibadat-ali-portfolio.vercel.app/ (reviewed 2026-10-12).",
+    "Public source path listed by the portfolio: https://github.com/Ibadat-Ali86/Data_Analysis_Projects/tree/main/COVID19-Data-Analytics-Platform.",
+    "Public repository README and/or source material was reviewed on 2026-10-12; repository statements remain attributed to their source.",
+    "Public repository README was reviewed; its linked project video URL was recorded, but the video content was not independently verified. No public-health outcome claim is made.",
+    "Portfolio catalog metadata from current source: tier=selected; source status=CASE STUDY; source access=public; portfolio metric label=Automated ETL · global analytics; flags=showSourceLink=true. Metric labels are catalog copy, not independent performance evidence."
+  ],
+  "sourceUrl": "https://github.com/Ibadat-Ali86/Data_Analysis_Projects/tree/main/COVID19-Data-Analytics-Platform",
+  "publicDetailsAllowed": true,
+  "allowedClaims": [
+    "A full-stack pandemic analytics platform with automated ETL, database-backed APIs, and an interactive dashboard.",
+    "Describe the project as a technical analytics case study and list the data-to-dashboard architecture."
+  ],
+  "restrictedClaims": [
+    "Presented as an analytics case study without medical or public-health outcome claims.",
+    "Do not claim medical advice, policy impact, epidemiological findings, or public-health outcomes."
+  ]
+}
