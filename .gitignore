@@ -9,3 +9,6 @@ artifacts/
 !.env.example
 .vercel
 ai automation workflows/
+graphify-out/
+.playwright-cli/
+intro video/

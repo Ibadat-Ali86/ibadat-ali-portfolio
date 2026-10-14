@@ -76,13 +76,14 @@ function projectCatalogCard(project, index) {
   const isPrivateClient = project.sourceAccess === 'private';
   const clientBadge = project.clientProject && !isPrivateClient ? '<span class="client-label">CLIENT PROJECT</span>' : '';
   const statusClass = project.status.includes('LIVE') ? 'status-label status-label--live' : 'status-label';
+  const videoBadge = project.hasVideo && project.video ? `<span class="video-label">▶ ${escapeHtml(project.video.duration ?? '01:00')} EXPLAINER</span>` : '';
   const visibleStack = project.stack.slice(0, 3);
   const technologies = visibleStack.map(renderTechChip).join('');
   const remainingStack = project.stack.length - visibleStack.length;
   const stackSummary = remainingStack > 0 ? `<li class="catalog-card__stack-more">+${remainingStack} more in case study</li>` : '';
   return `<article class="catalog-card catalog-card--${escapeHtml(project.slug)}" data-project-catalog-card data-project-slug="${escapeHtml(project.slug)}" data-reveal>
     <figure class="catalog-card__media"><img src="${escapeHtml(project.image)}" alt="${escapeHtml(imageAlt(project))}" width="1600" height="1000" loading="lazy" decoding="async"></figure>
-    <div class="catalog-card__body"><div class="catalog-card__meta"><span>${String(index + 1).padStart(2, '0')}</span><span class="project-meta__badges"><span class="${statusClass}">${isPrivateClient ? 'PRIVATE CLIENT' : escapeHtml(project.status)}</span>${clientBadge}</span></div><h3>${escapeHtml(project.title)}</h3><p>${escapeHtml(project.metric)}</p><ul class="catalog-card__technologies" aria-label="Preview of ${escapeHtml(project.stack.length)} technologies">${technologies}${stackSummary}</ul>${project.result ? `<p class="catalog-card__result">Result — ${escapeHtml(project.result)}</p>` : ''}<button class="button button--outline catalog-card__open" type="button" data-project-open="${escapeHtml(project.slug)}" aria-label="View project details: ${escapeHtml(project.title)}">View details</button></div>
+    <div class="catalog-card__body"><div class="catalog-card__meta"><span>${String(index + 1).padStart(2, '0')}</span><span class="project-meta__badges"><span class="${statusClass}">${isPrivateClient ? 'PRIVATE CLIENT' : escapeHtml(project.status)}</span>${clientBadge}${videoBadge}</span></div><h3>${escapeHtml(project.title)}</h3><p>${escapeHtml(project.metric)}</p><ul class="catalog-card__technologies" aria-label="Preview of ${escapeHtml(project.stack.length)} technologies">${technologies}${stackSummary}</ul>${project.result ? `<p class="catalog-card__result">Result — ${escapeHtml(project.result)}</p>` : ''}<button class="button button--outline catalog-card__open" type="button" data-project-open="${escapeHtml(project.slug)}" aria-label="View project details: ${escapeHtml(project.title)}">View details</button></div>
   </article>`;
 }
 

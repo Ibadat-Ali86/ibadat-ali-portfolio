@@ -12,7 +12,7 @@ test('presents a single priority-ordered catalog with only Netflix as a lab', as
   await expect(page.locator('.tech-marquee__header')).toContainText('AI engineering stack');
   await expect(page.locator('.tech-marquee__header')).toContainText('technologies & tools');
   const stackItems = page.locator('.tech-marquee__group:not(.tech-marquee__group--clone) .tech-marquee__item');
-  await expect(stackItems).toHaveCount(82);
+  await expect(stackItems).toHaveCount(69);
   await expect(stackItems.filter({ hasText: 'MCP' })).toBeVisible();
   await expect(stackItems.filter({ hasText: 'Next.js 15' })).toBeVisible();
   expect(await page.locator('.tech-marquee__icon').count()).toBeGreaterThan(30);

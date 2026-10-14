@@ -7,7 +7,14 @@ export const projects = [
     metric: 'WhatsApp intake · OCR · duplicate detection · Stripe verification',
     problem: 'Manual payment screenshot review is slow and vulnerable to ambiguous OCR, repeated submissions, fake or unclear evidence, and transient integration failures.',
     solution: 'A Baileys Node.js bot receives images from an allowlisted WhatsApp group, persists work through a fair queue, uses FastAPI/Tesseract with a bounded Groq fallback, orchestrates n8n, verifies eligible evidence against Stripe, detects duplicates, and fails closed when proof remains ambiguous.',
-    stack: ['WhatsApp / Baileys', 'Node.js', 'Python', 'FastAPI', 'Tesseract OCR', 'Groq Vision', 'n8n', 'Stripe API', 'Docker', 'DigitalOcean'], github: null, live: null, sourceAccess: 'private', showSourceLink: false, clientProject: true, primaryFeature: true, showcase: true, image: '/assets/projects/payguard-ai-thumbnail.png',
+    stack: ['WhatsApp / Baileys', 'Node.js', 'Python', 'FastAPI', 'Tesseract OCR', 'Groq Vision', 'n8n', 'Stripe API', 'Docker', 'DigitalOcean'], github: null, live: null, sourceAccess: 'private', showSourceLink: false, clientProject: true, primaryFeature: true, showcase: true, hasVideo: true,
+    video: {
+      src: '/assets/video/payguard-ai-walkthrough.mp4',
+      poster: '/assets/video/payguard-ai-walkthrough-poster.webp',
+      duration: '01:01',
+      caption: '1-min walkthrough: Problem formulation, OCR queueing, and Stripe verification flow'
+    },
+    image: '/assets/projects/payguard-ai-thumbnail.png',
     result: 'Delivered payment-verification workflow with queueing, OCR fallback, Stripe reconciliation, duplicate handling, and handoff documentation.',
     evidence: {
       summary: 'Private client delivery. Internal validation recorded 100 Node.js tests and 153 Python tests passing on 2026-09-24. The supplied editor capture documents the n8n workflow structure; it is not an uptime, transaction-volume, or production-health guarantee.',

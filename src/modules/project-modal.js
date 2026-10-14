@@ -107,6 +107,7 @@ function renderUsageList(selector, entries, emptyText) {
 
 function openProject(project, opener) {
   const image = modal.querySelector('[data-modal-image]');
+  const mediaFrame = modal.querySelector('.project-modal__media-frame');
   const stack = modal.querySelector('[data-modal-stack]');
   const actions = modal.querySelector('[data-modal-actions]');
   const note = modal.querySelector('[data-modal-note]');
@@ -114,15 +115,84 @@ function openProject(project, opener) {
   const evidenceVisual = modal.querySelector('[data-modal-evidence-visual]');
   const evidenceImage = modal.querySelector('[data-modal-evidence-image]');
   const evidenceLinks = modal.querySelector('[data-modal-evidence-links]');
+  let videoEl = modal.querySelector('[data-modal-video]');
+  let mediaSwitch = modal.querySelector('[data-modal-media-switch]');
+
+  if (!videoEl && mediaFrame) {
+    videoEl = document.createElement('video');
+    videoEl.dataset.modalVideo = 'true';
+    videoEl.className = 'project-modal__video';
+    videoEl.controls = true;
+    videoEl.playsInline = true;
+    videoEl.preload = 'metadata';
+    mediaFrame.append(videoEl);
+  }
+
+  if (!mediaSwitch && mediaFrame && mediaFrame.parentElement) {
+    mediaSwitch = document.createElement('div');
+    mediaSwitch.dataset.modalMediaSwitch = 'true';
+    mediaSwitch.className = 'project-modal__media-switch';
+    mediaFrame.parentElement.insertBefore(mediaSwitch, mediaFrame.nextSibling);
+  }
+
   const detail = project.caseStudy ?? {
     context: project.problem,
     architecture: [{ label: 'Delivery path', detail: project.solution ?? project.hook, tools: project.stack }],
     delivery: [project.result ?? 'Scope and delivery details are available in the case study.']
   };
   const usage = projectStackUsage(project);
+
+  image.hidden = false;
   image.src = project.image;
   image.alt = `${project.title} — case study visual`;
-  setText('[data-modal-media-caption]', `${project.category} · ${project.status}`);
+
+  if (project.video) {
+    if (videoEl) {
+      videoEl.hidden = true;
+      videoEl.src = project.video.src;
+      videoEl.poster = project.video.poster ?? project.image;
+      videoEl.setAttribute('aria-label', `${project.title} — 1-minute video walkthrough`);
+    }
+
+    if (mediaSwitch) {
+      mediaSwitch.hidden = false;
+      mediaSwitch.innerHTML = `
+        <button type="button" class="media-switch-btn is-active" data-media-view="image">▤ Case Study Diagram</button>
+        <button type="button" class="media-switch-btn" data-media-view="video">▶ 01:00 Video Explainer</button>
+      `;
+      const imageBtn = mediaSwitch.querySelector('[data-media-view="image"]');
+      const videoBtn = mediaSwitch.querySelector('[data-media-view="video"]');
+      videoBtn.onclick = () => {
+        videoBtn.classList.add('is-active');
+        imageBtn.classList.remove('is-active');
+        videoEl.hidden = false;
+        image.hidden = true;
+        videoEl.play().catch(() => {});
+        setText('[data-modal-media-caption]', `${project.video.caption} [${project.video.duration}]`);
+      };
+      imageBtn.onclick = () => {
+        imageBtn.classList.add('is-active');
+        videoBtn.classList.remove('is-active');
+        videoEl.pause();
+        videoEl.hidden = true;
+        image.hidden = false;
+        setText('[data-modal-media-caption]', `${project.category} · ${project.status}`);
+      };
+    }
+    setText('[data-modal-media-caption]', `${project.category} · ${project.status}`);
+  } else {
+    if (videoEl) {
+      videoEl.hidden = true;
+      videoEl.pause();
+      videoEl.removeAttribute('src');
+    }
+    if (mediaSwitch) {
+      mediaSwitch.hidden = true;
+      mediaSwitch.innerHTML = '';
+    }
+    setText('[data-modal-media-caption]', `${project.category} · ${project.status}`);
+  }
+
   const privateClient = project.sourceAccess === 'private';
   setText('[data-modal-status]', privateClient ? 'PRIVATE CLIENT PROJECT' : project.clientProject ? `CLIENT PROJECT · ${project.status}` : project.status);
   setText('[data-modal-metric]', project.metric);
@@ -183,6 +253,10 @@ function openProject(project, opener) {
 
 function closeProject() {
   if (!modal.open) return;
+  const videoEl = modal.querySelector('[data-modal-video]');
+  if (videoEl && !videoEl.paused) {
+    videoEl.pause();
+  }
   modal.close();
   document.body.style.overflow = '';
   const previous = [...openers].find((opener) => opener.dataset.modalReturn === 'true');
