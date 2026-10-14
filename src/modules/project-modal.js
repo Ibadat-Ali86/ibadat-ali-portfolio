@@ -146,6 +146,16 @@ function openProject(project, opener) {
   image.src = project.image;
   image.alt = `${project.title} — case study visual`;
 
+  let explainerBanner = mediaFrame ? mediaFrame.querySelector('[data-explainer-banner]') : null;
+
+  if (!explainerBanner && mediaFrame) {
+    explainerBanner = document.createElement('button');
+    explainerBanner.type = 'button';
+    explainerBanner.dataset.explainerBanner = 'true';
+    explainerBanner.className = 'media-explainer-banner';
+    mediaFrame.append(explainerBanner);
+  }
+
   if (project.video) {
     if (videoEl) {
       videoEl.hidden = true;
@@ -154,17 +164,35 @@ function openProject(project, opener) {
       videoEl.setAttribute('aria-label', `${project.title} — 1-minute video walkthrough`);
     }
 
+    if (explainerBanner) {
+      explainerBanner.hidden = false;
+      explainerBanner.innerHTML = `
+        <span class="media-explainer-banner__beacon" aria-hidden="true"><span class="media-explainer-banner__radar"></span></span>
+        <span class="media-explainer-banner__info">
+          <span class="media-explainer-banner__kicker">▶ 1-MIN VIDEO EXPLAINER</span>
+          <span class="media-explainer-banner__title">Problem formulation to solution demo [16:9]</span>
+        </span>
+        <span class="media-explainer-banner__cta">WATCH DEMO ↗</span>
+      `;
+    }
+
     if (mediaSwitch) {
       mediaSwitch.hidden = false;
       mediaSwitch.innerHTML = `
         <button type="button" class="media-switch-btn is-active" data-media-view="image">▤ Case Study Diagram</button>
-        <button type="button" class="media-switch-btn" data-media-view="video">▶ 01:00 Video Explainer</button>
+        <button type="button" class="media-switch-btn media-switch-btn--video" data-media-view="video">▶ 01:00 Video Explainer</button>
       `;
       const imageBtn = mediaSwitch.querySelector('[data-media-view="image"]');
       const videoBtn = mediaSwitch.querySelector('[data-media-view="video"]');
+      if (explainerBanner) {
+        explainerBanner.onclick = () => {
+          videoBtn.click();
+        };
+      }
       videoBtn.onclick = () => {
         videoBtn.classList.add('is-active');
         imageBtn.classList.remove('is-active');
+        if (explainerBanner) explainerBanner.hidden = true;
         videoEl.hidden = false;
         image.hidden = true;
         videoEl.play().catch(() => {});
@@ -176,11 +204,13 @@ function openProject(project, opener) {
         videoEl.pause();
         videoEl.hidden = true;
         image.hidden = false;
+        if (explainerBanner) explainerBanner.hidden = false;
         setText('[data-modal-media-caption]', `${project.category} · ${project.status}`);
       };
     }
     setText('[data-modal-media-caption]', `${project.category} · ${project.status}`);
   } else {
+    if (explainerBanner) explainerBanner.hidden = true;
     if (videoEl) {
       videoEl.hidden = true;
       videoEl.pause();
