@@ -8,7 +8,7 @@
     {
       "id": "payguard-ai",
       "title": "WhatsApp Transaction Verification AI Agent",
-      "status": "private-client",
+      "status": "private-client Project deployed on Digital Ocean Cloud Platform",
       "category": ["AI Automation", "Payment Verification"],
       "summary": "A controlled WhatsApp workflow that turns payment screenshots into OCR-backed, Stripe-authoritative review outcomes.",
       "recordFile": "projects/payguard-ai.json",
@@ -130,16 +130,8 @@
       "summary": "Exploratory analysis of movie metadata, genres, release patterns, popularity, and feature relationships.",
       "recordFile": "projects/netflix.json",
       "bestFor": ["exploratory analysis", "pandas", "Matplotlib", "Seaborn", "data visualization"]
-    },
-    {
-      "id": "employee-form",
-      "title": "Employee Information Form",
-      "status": "data-lab",
-      "category": ["ML", "Data Labs"],
-      "summary": "A reactive R Shiny form with validation, dates, file upload, and structured output.",
-      "recordFile": "projects/employee-form.json",
-      "bestFor": ["R Shiny", "form validation", "reactive applications", "structured data capture"]
     }
+   
   ],
   "retrievalRules": [
     "Load the referenced project record before making an architecture, technology, evidence, outcome, or claim-specific answer.",

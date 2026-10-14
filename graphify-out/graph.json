@@ -1,0 +1,1891 @@
+{
+  "nodes": [
+    {
+      "id": "app_api_assistant_route",
+      "label": "route.ts",
+      "file_type": "code",
+      "source_file": "app/api/assistant/route.ts",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_layout",
+      "label": "layout.tsx",
+      "file_type": "code",
+      "source_file": "app/layout.tsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_page",
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "app/page.tsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_assistant_chatinput",
+      "label": "ChatInput.tsx",
+      "file_type": "code",
+      "source_file": "components/assistant/ChatInput.tsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_assistant_chatmessage",
+      "label": "ChatMessage.tsx",
+      "file_type": "code",
+      "source_file": "components/assistant/ChatMessage.tsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_assistant_chatwidget",
+      "label": "ChatWidget.tsx",
+      "file_type": "code",
+      "source_file": "components/assistant/ChatWidget.tsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_assistant_chatwindow",
+      "label": "ChatWindow.tsx",
+      "file_type": "code",
+      "source_file": "components/assistant/ChatWindow.tsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_assistant_sourcecard",
+      "label": "SourceCard.tsx",
+      "file_type": "code",
+      "source_file": "components/assistant/SourceCard.tsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_assistant_suggestedquestions",
+      "label": "SuggestedQuestions.tsx",
+      "file_type": "code",
+      "source_file": "components/assistant/SuggestedQuestions.tsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_assistant_typingindicator",
+      "label": "TypingIndicator.tsx",
+      "file_type": "code",
+      "source_file": "components/assistant/TypingIndicator.tsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_agent",
+      "label": "agent.ts",
+      "file_type": "code",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_agent_runportfolioagent",
+      "label": "runPortfolioAgent()",
+      "file_type": "code",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L27",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_followups",
+      "label": "followups.ts",
+      "file_type": "code",
+      "source_file": "lib/agent/followups.ts",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_followups_approved_project_ids",
+      "label": "APPROVED_PROJECT_IDS",
+      "file_type": "code",
+      "source_file": "lib/agent/followups.ts",
+      "source_location": "L9",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_followups_approved_domain_prefixes",
+      "label": "APPROVED_DOMAIN_PREFIXES",
+      "file_type": "code",
+      "source_file": "lib/agent/followups.ts",
+      "source_location": "L27",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_followups_contextual_follow_ups",
+      "label": "CONTEXTUAL_FOLLOW_UPS",
+      "file_type": "code",
+      "source_file": "lib/agent/followups.ts",
+      "source_location": "L34",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_followups_getfallbackfollowups",
+      "label": "getFallbackFollowUps()",
+      "file_type": "code",
+      "source_file": "lib/agent/followups.ts",
+      "source_location": "L80",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_followups_sanitizeaction",
+      "label": "sanitizeAction()",
+      "file_type": "code",
+      "source_file": "lib/agent/followups.ts",
+      "source_location": "L87",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_groq",
+      "label": "groq.ts",
+      "file_type": "code",
+      "source_file": "lib/agent/groq.ts",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_groq_groqapierror",
+      "label": "GroqApiError",
+      "file_type": "code",
+      "source_file": "lib/agent/groq.ts",
+      "source_location": "L14",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_groq_groqapierror_constructor",
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "lib/agent/groq.ts",
+      "source_location": "L18",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_groq_callgroqmodel",
+      "label": "callGroqModel()",
+      "file_type": "code",
+      "source_file": "lib/agent/groq.ts",
+      "source_location": "L29",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_groq_generatecompletion",
+      "label": "generateCompletion()",
+      "file_type": "code",
+      "source_file": "lib/agent/groq.ts",
+      "source_location": "L86",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_knowledge",
+      "label": "knowledge.ts",
+      "file_type": "code",
+      "source_file": "lib/agent/knowledge.ts",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_knowledge_getportfoliodatadir",
+      "label": "getPortfolioDataDir()",
+      "file_type": "code",
+      "source_file": "lib/agent/knowledge.ts",
+      "source_location": "L17",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_knowledge_safereadjson",
+      "label": "safeReadJson()",
+      "file_type": "code",
+      "source_file": "lib/agent/knowledge.ts",
+      "source_location": "L51",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_knowledge_createchunk",
+      "label": "createChunk()",
+      "file_type": "code",
+      "source_file": "lib/agent/knowledge.ts",
+      "source_location": "L62",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_knowledge_loadallchunks",
+      "label": "loadAllChunks()",
+      "file_type": "code",
+      "source_file": "lib/agent/knowledge.ts",
+      "source_location": "L102",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_knowledge_resetknowledgecache",
+      "label": "resetKnowledgeCache()",
+      "file_type": "code",
+      "source_file": "lib/agent/knowledge.ts",
+      "source_location": "L356",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_normalize",
+      "label": "normalize.ts",
+      "file_type": "code",
+      "source_file": "lib/agent/normalize.ts",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_normalize_alias_map",
+      "label": "ALIAS_MAP",
+      "file_type": "code",
+      "source_file": "lib/agent/normalize.ts",
+      "source_location": "L7",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_normalize_injection_patterns",
+      "label": "INJECTION_PATTERNS",
+      "file_type": "code",
+      "source_file": "lib/agent/normalize.ts",
+      "source_location": "L40",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_normalize_sanitizeuserinput",
+      "label": "sanitizeUserInput()",
+      "file_type": "code",
+      "source_file": "lib/agent/normalize.ts",
+      "source_location": "L53",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_normalize_normalizequery",
+      "label": "normalizeQuery()",
+      "file_type": "code",
+      "source_file": "lib/agent/normalize.ts",
+      "source_location": "L70",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_normalize_expandaliases",
+      "label": "expandAliases()",
+      "file_type": "code",
+      "source_file": "lib/agent/normalize.ts",
+      "source_location": "L81",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_normalize_buildretrievalquery",
+      "label": "buildRetrievalQuery()",
+      "file_type": "code",
+      "source_file": "lib/agent/normalize.ts",
+      "source_location": "L98",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_prompt",
+      "label": "prompt.ts",
+      "file_type": "code",
+      "source_file": "lib/agent/prompt.ts",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_prompt_buildprompt",
+      "label": "buildPrompt()",
+      "file_type": "code",
+      "source_file": "lib/agent/prompt.ts",
+      "source_location": "L48",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_relevance",
+      "label": "relevance.ts",
+      "file_type": "code",
+      "source_file": "lib/agent/relevance.ts",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_relevance_detectintent",
+      "label": "detectIntent()",
+      "file_type": "code",
+      "source_file": "lib/agent/relevance.ts",
+      "source_location": "L14",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_relevance_checkevidence",
+      "label": "checkEvidence()",
+      "file_type": "code",
+      "source_file": "lib/agent/relevance.ts",
+      "source_location": "L95",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_relevance_buildnoevidenceresponse",
+      "label": "buildNoEvidenceResponse()",
+      "file_type": "code",
+      "source_file": "lib/agent/relevance.ts",
+      "source_location": "L123",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_retrieve",
+      "label": "retrieve.ts",
+      "file_type": "code",
+      "source_file": "lib/agent/retrieve.ts",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_retrieve_diversifybyentity",
+      "label": "diversifyByEntity()",
+      "file_type": "code",
+      "source_file": "lib/agent/retrieve.ts",
+      "source_location": "L18",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_retrieve_retrieveportfoliocontext",
+      "label": "retrievePortfolioContext()",
+      "file_type": "code",
+      "source_file": "lib/agent/retrieve.ts",
+      "source_location": "L57",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_retrieve_retrieve",
+      "label": "retrieve()",
+      "file_type": "code",
+      "source_file": "lib/agent/retrieve.ts",
+      "source_location": "L87",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_schemas",
+      "label": "schemas.ts",
+      "file_type": "code",
+      "source_file": "lib/agent/schemas.ts",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_schemas_requestschema",
+      "label": "RequestSchema",
+      "file_type": "code",
+      "source_file": "lib/agent/schemas.ts",
+      "source_location": "L10",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_schemas_validatedrequest",
+      "label": "ValidatedRequest",
+      "file_type": "code",
+      "source_file": "lib/agent/schemas.ts",
+      "source_location": "L28",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_schemas_agentactionschema",
+      "label": "AgentActionSchema",
+      "file_type": "code",
+      "source_file": "lib/agent/schemas.ts",
+      "source_location": "L30",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_schemas_agentresponseschema",
+      "label": "AgentResponseSchema",
+      "file_type": "code",
+      "source_file": "lib/agent/schemas.ts",
+      "source_location": "L41",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_schemas_sanitizeandvalidateresponse",
+      "label": "sanitizeAndValidateResponse()",
+      "file_type": "code",
+      "source_file": "lib/agent/schemas.ts",
+      "source_location": "L64",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_search",
+      "label": "search.ts",
+      "file_type": "code",
+      "source_file": "lib/agent/search.ts",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_search_stop_words",
+      "label": "STOP_WORDS",
+      "file_type": "code",
+      "source_file": "lib/agent/search.ts",
+      "source_location": "L10",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_search_getminisearchctor",
+      "label": "getMiniSearchCtor()",
+      "file_type": "code",
+      "source_file": "lib/agent/search.ts",
+      "source_location": "L17",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_search_getsearchindex",
+      "label": "getSearchIndex()",
+      "file_type": "code",
+      "source_file": "lib/agent/search.ts",
+      "source_location": "L39",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_search_searchknowledge",
+      "label": "searchKnowledge()",
+      "file_type": "code",
+      "source_file": "lib/agent/search.ts",
+      "source_location": "L96",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_search_searchindex",
+      "label": "searchIndex",
+      "file_type": "code",
+      "source_file": "lib/agent/search.ts",
+      "source_location": "L129",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_types",
+      "label": "types.ts",
+      "file_type": "code",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_types_entitytype",
+      "label": "EntityType",
+      "file_type": "code",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L7",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_types_intent",
+      "label": "Intent",
+      "file_type": "code",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L15",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_types_agentactiontype",
+      "label": "AgentActionType",
+      "file_type": "code",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L25",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_types_agentaction",
+      "label": "AgentAction",
+      "file_type": "code",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L32",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_types_knowledgechunk",
+      "label": "KnowledgeChunk",
+      "file_type": "code",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L37",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_types_knowledgedocument",
+      "label": "KnowledgeDocument",
+      "file_type": "code",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L56",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_types_searchresult",
+      "label": "SearchResult",
+      "file_type": "code",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L58",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_types_evidencedecision",
+      "label": "EvidenceDecision",
+      "file_type": "code",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L63",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_types_chatmessage",
+      "label": "ChatMessage",
+      "file_type": "code",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L67",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_types_agentresponse",
+      "label": "AgentResponse",
+      "file_type": "code",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L72",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_agent_types_agentexecuteinput",
+      "label": "AgentExecuteInput",
+      "file_type": "code",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L79",
+      "_origin": "ast"
+    },
+    {
+      "id": "prompts_portfolio_assistant",
+      "label": "portfolio-assistant.ts",
+      "file_type": "code",
+      "source_file": "prompts/portfolio-assistant.ts",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "types_chat",
+      "label": "chat.ts",
+      "file_type": "code",
+      "source_file": "types/chat.ts",
+      "source_location": "L1",
+      "_origin": "ast"
+    }
+  ],
+  "edges": [
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_schemas",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_schemas_requestschema",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_schemas_sanitizeandvalidateresponse",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_normalize",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_normalize_sanitizeuserinput",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_normalize_normalizequery",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_normalize_buildretrievalquery",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_retrieve",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_retrieve_retrieveportfoliocontext",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_relevance",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_relevance_detectintent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_relevance_checkevidence",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_relevance_buildnoevidenceresponse",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_prompt",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_prompt_buildprompt",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_groq",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_groq_generatecompletion",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_groq_groqapierror",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_followups",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_followups_getfallbackfollowups",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_followups_sanitizeaction",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_types",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_types_agentexecuteinput",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_types_agentresponse",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent",
+      "target": "lib_agent_agent_runportfolioagent",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_followups",
+      "target": "lib_agent_types",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/followups.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_followups",
+      "target": "lib_agent_types_agentaction",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/followups.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_followups",
+      "target": "lib_agent_types_intent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/followups.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_followups",
+      "target": "lib_agent_followups_approved_project_ids",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/followups.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_followups",
+      "target": "lib_agent_followups_approved_domain_prefixes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/followups.ts",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_followups",
+      "target": "lib_agent_followups_contextual_follow_ups",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/followups.ts",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_followups",
+      "target": "lib_agent_followups_getfallbackfollowups",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/followups.ts",
+      "source_location": "L80",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_followups",
+      "target": "lib_agent_followups_sanitizeaction",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/followups.ts",
+      "source_location": "L87",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_groq",
+      "target": "lib_agent_types",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/groq.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_groq",
+      "target": "lib_agent_types_chatmessage",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/groq.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_groq",
+      "target": "lib_agent_groq_groqapierror",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/groq.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_groq_groqapierror",
+      "target": "lib_agent_groq_groqapierror_constructor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/groq.ts",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_groq",
+      "target": "lib_agent_groq_callgroqmodel",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/groq.ts",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_groq",
+      "target": "lib_agent_groq_generatecompletion",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/groq.ts",
+      "source_location": "L86",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_groq_generatecompletion",
+      "target": "lib_agent_groq_callgroqmodel",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/groq.ts",
+      "source_location": "L100",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_knowledge",
+      "target": "fs",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/knowledge.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_knowledge",
+      "target": "path",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/knowledge.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_knowledge",
+      "target": "lib_agent_types",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/knowledge.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_knowledge",
+      "target": "lib_agent_types_entitytype",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/knowledge.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_knowledge",
+      "target": "lib_agent_types_knowledgechunk",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/knowledge.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_knowledge",
+      "target": "lib_agent_knowledge_getportfoliodatadir",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/knowledge.ts",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_knowledge",
+      "target": "lib_agent_knowledge_safereadjson",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/knowledge.ts",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_knowledge",
+      "target": "lib_agent_knowledge_createchunk",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/knowledge.ts",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_knowledge",
+      "target": "lib_agent_knowledge_loadallchunks",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/knowledge.ts",
+      "source_location": "L102",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_knowledge",
+      "target": "lib_agent_knowledge_resetknowledgecache",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/knowledge.ts",
+      "source_location": "L356",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_knowledge_loadallchunks",
+      "target": "lib_agent_knowledge_getportfoliodatadir",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/knowledge.ts",
+      "source_location": "L107",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_knowledge_loadallchunks",
+      "target": "lib_agent_knowledge_safereadjson",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/knowledge.ts",
+      "source_location": "L111",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_knowledge_loadallchunks",
+      "target": "lib_agent_knowledge_createchunk",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/knowledge.ts",
+      "source_location": "L115",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_normalize",
+      "target": "lib_agent_normalize_alias_map",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/normalize.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_normalize",
+      "target": "lib_agent_normalize_injection_patterns",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/normalize.ts",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_normalize",
+      "target": "lib_agent_normalize_sanitizeuserinput",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/normalize.ts",
+      "source_location": "L53",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_normalize",
+      "target": "lib_agent_normalize_normalizequery",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/normalize.ts",
+      "source_location": "L70",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_normalize",
+      "target": "lib_agent_normalize_expandaliases",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/normalize.ts",
+      "source_location": "L81",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_normalize",
+      "target": "lib_agent_normalize_buildretrievalquery",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/normalize.ts",
+      "source_location": "L98",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_normalize_expandaliases",
+      "target": "lib_agent_normalize_normalizequery",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/normalize.ts",
+      "source_location": "L82",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_normalize_buildretrievalquery",
+      "target": "lib_agent_normalize_sanitizeuserinput",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/normalize.ts",
+      "source_location": "L102",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_normalize_buildretrievalquery",
+      "target": "lib_agent_normalize_expandaliases",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/normalize.ts",
+      "source_location": "L103",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_prompt",
+      "target": "lib_agent_types",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/prompt.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_prompt",
+      "target": "lib_agent_types_chatmessage",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/prompt.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_prompt",
+      "target": "lib_agent_types_searchresult",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/prompt.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_prompt",
+      "target": "lib_agent_prompt_buildprompt",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/prompt.ts",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_relevance",
+      "target": "lib_agent_types",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/relevance.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_relevance",
+      "target": "lib_agent_types_intent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/relevance.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_relevance",
+      "target": "lib_agent_types_searchresult",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/relevance.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_relevance",
+      "target": "lib_agent_types_evidencedecision",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/relevance.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_relevance",
+      "target": "lib_agent_types_agentresponse",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/relevance.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_relevance",
+      "target": "lib_agent_relevance_detectintent",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/relevance.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_relevance",
+      "target": "lib_agent_relevance_checkevidence",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/relevance.ts",
+      "source_location": "L95",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_relevance",
+      "target": "lib_agent_relevance_buildnoevidenceresponse",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/relevance.ts",
+      "source_location": "L123",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_retrieve",
+      "target": "lib_agent_search",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/retrieve.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_retrieve",
+      "target": "lib_agent_search_searchknowledge",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/retrieve.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_retrieve",
+      "target": "lib_agent_normalize",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/retrieve.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_retrieve",
+      "target": "lib_agent_normalize_normalizequery",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/retrieve.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_retrieve",
+      "target": "lib_agent_normalize_expandaliases",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/retrieve.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_retrieve",
+      "target": "lib_agent_types",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/retrieve.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_retrieve",
+      "target": "lib_agent_types_searchresult",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/retrieve.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_retrieve",
+      "target": "lib_agent_retrieve_diversifybyentity",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/retrieve.ts",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_retrieve",
+      "target": "lib_agent_retrieve_retrieveportfoliocontext",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/retrieve.ts",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_retrieve",
+      "target": "lib_agent_retrieve_retrieve",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/retrieve.ts",
+      "source_location": "L87",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_retrieve_retrieveportfoliocontext",
+      "target": "lib_agent_retrieve_diversifybyentity",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/retrieve.ts",
+      "source_location": "L83",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_retrieve_retrieve",
+      "target": "lib_agent_retrieve_retrieveportfoliocontext",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/retrieve.ts",
+      "source_location": "L88",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_schemas",
+      "target": "zod",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/schemas.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_schemas",
+      "target": "lib_agent_types",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/schemas.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_schemas",
+      "target": "lib_agent_types_agentresponse",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/schemas.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_schemas",
+      "target": "lib_agent_schemas_requestschema",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/schemas.ts",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_schemas",
+      "target": "lib_agent_schemas_validatedrequest",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/schemas.ts",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_schemas",
+      "target": "lib_agent_schemas_agentactionschema",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/schemas.ts",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_schemas",
+      "target": "lib_agent_schemas_agentresponseschema",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/schemas.ts",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_schemas",
+      "target": "lib_agent_schemas_sanitizeandvalidateresponse",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/schemas.ts",
+      "source_location": "L64",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_search",
+      "target": "minisearch",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/search.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_search",
+      "target": "lib_agent_knowledge",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/search.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_search",
+      "target": "lib_agent_knowledge_loadallchunks",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/search.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_search",
+      "target": "lib_agent_types",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/search.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_search",
+      "target": "lib_agent_types_knowledgechunk",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/search.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_search",
+      "target": "lib_agent_types_searchresult",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/search.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_search",
+      "target": "lib_agent_search_stop_words",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/search.ts",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_search",
+      "target": "lib_agent_search_getminisearchctor",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/search.ts",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_search",
+      "target": "lib_agent_search_getsearchindex",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/search.ts",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_search",
+      "target": "lib_agent_search_searchknowledge",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/search.ts",
+      "source_location": "L96",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_search",
+      "target": "lib_agent_search_searchindex",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/search.ts",
+      "source_location": "L129",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_search_getsearchindex",
+      "target": "lib_agent_search_getminisearchctor",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/search.ts",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_search_searchknowledge",
+      "target": "lib_agent_search_getsearchindex",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/search.ts",
+      "source_location": "L101",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_types",
+      "target": "lib_agent_types_entitytype",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_types",
+      "target": "lib_agent_types_intent",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_types",
+      "target": "lib_agent_types_agentactiontype",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_types",
+      "target": "lib_agent_types_agentaction",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_types",
+      "target": "lib_agent_types_knowledgechunk",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_types",
+      "target": "lib_agent_types_knowledgedocument",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L56",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_types",
+      "target": "lib_agent_types_searchresult",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_types",
+      "target": "lib_agent_types_evidencedecision",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L63",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_types",
+      "target": "lib_agent_types_chatmessage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_types",
+      "target": "lib_agent_types_agentresponse",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_types",
+      "target": "lib_agent_types_agentexecuteinput",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L79",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_types_searchresult",
+      "target": "lib_agent_types_knowledgechunk",
+      "relation": "inherits",
+      "context": "type",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/agent/types.ts",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent_runportfolioagent",
+      "target": "lib_agent_normalize_sanitizeuserinput",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent_runportfolioagent",
+      "target": "lib_agent_relevance_detectintent",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L71",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent_runportfolioagent",
+      "target": "lib_agent_followups_getfallbackfollowups",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent_runportfolioagent",
+      "target": "lib_agent_normalize_buildretrievalquery",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L75",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent_runportfolioagent",
+      "target": "lib_agent_retrieve_retrieveportfoliocontext",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L76",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent_runportfolioagent",
+      "target": "lib_agent_relevance_checkevidence",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L82",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent_runportfolioagent",
+      "target": "lib_agent_relevance_buildnoevidenceresponse",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L85",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent_runportfolioagent",
+      "target": "lib_agent_prompt_buildprompt",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L89",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent_runportfolioagent",
+      "target": "lib_agent_groq_generatecompletion",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L98",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent_runportfolioagent",
+      "target": "lib_agent_schemas_sanitizeandvalidateresponse",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L140",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_agent_runportfolioagent",
+      "target": "lib_agent_followups_sanitizeaction",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/agent/agent.ts",
+      "source_location": "L143",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_retrieve_retrieveportfoliocontext",
+      "target": "lib_agent_normalize_normalizequery",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/agent/retrieve.ts",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_retrieve_retrieveportfoliocontext",
+      "target": "lib_agent_normalize_expandaliases",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/agent/retrieve.ts",
+      "source_location": "L68",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_retrieve_retrieveportfoliocontext",
+      "target": "lib_agent_search_searchknowledge",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/agent/retrieve.ts",
+      "source_location": "L71",
+      "weight": 1.0
+    },
+    {
+      "source": "lib_agent_search_getsearchindex",
+      "target": "lib_agent_knowledge_loadallchunks",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/agent/search.ts",
+      "source_location": "L44",
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}
