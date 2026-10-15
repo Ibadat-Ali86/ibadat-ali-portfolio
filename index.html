@@ -381,6 +381,70 @@
         </div>
       </div>
     </dialog>
+
+    <aside class="portfolio-assistant" data-portfolio-assistant aria-label="Orbi Portfolio AI Assistant">
+      <button class="assistant-launcher" type="button" aria-expanded="false" aria-controls="portfolio-assistant-panel" data-assistant-launcher aria-label="Open Orbi — Ibadat's AI portfolio assistant">
+        <span class="assistant-launcher__halo" aria-hidden="true"></span>
+        <span class="assistant-launcher__avatar" aria-hidden="true">🛸</span>
+        <span class="assistant-launcher__meta">
+          <span class="assistant-launcher__status"><span class="assistant-launcher__beacon" aria-hidden="true"></span>ORBI · ONLINE</span>
+          <strong class="assistant-launcher__title">Ask AI Assistant</strong>
+        </span>
+        <span class="assistant-launcher__action" aria-hidden="true">💬</span>
+      </button>
+
+      <section class="assistant-panel" id="portfolio-assistant-panel" aria-labelledby="assistant-title" data-assistant-panel hidden>
+        <header class="assistant-panel__header">
+          <div class="assistant-panel__identity">
+            <span class="assistant-panel__avatar" aria-hidden="true">🛸</span>
+            <div>
+              <div class="assistant-panel__title-row">
+                <h2 id="assistant-title">ORBI</h2>
+                <span class="assistant-panel__badge">0-HALLUCINATION RAG</span>
+              </div>
+              <p class="assistant-panel__subtitle">Portfolio AI · Verified Knowledge</p>
+            </div>
+          </div>
+          <div class="assistant-panel__controls">
+            <button class="assistant-panel__btn" type="button" data-assistant-minimize aria-label="Minimize assistant">−</button>
+            <button class="assistant-panel__btn assistant-panel__btn--close" type="button" data-assistant-close aria-label="Close assistant">×</button>
+          </div>
+        </header>
+
+        <div class="assistant-messages" data-assistant-messages role="log" aria-label="Portfolio assistant conversation" aria-live="polite" aria-relevant="additions" tabindex="0">
+          <article class="assistant-message assistant-message--assistant assistant-message--welcome">
+            <div class="assistant-message__head">
+              <span class="assistant-message__avatar" aria-hidden="true">🛸</span>
+              <span class="assistant-message__label">ORBI · AI ASSISTANT</span>
+            </div>
+            <div class="assistant-message__body">
+              <p>Greetings Earthling! 🛸 I’m <strong>Orbi</strong>, Ibadat Ali’s personal AI portfolio assistant.</p>
+              <p>I answer only from verified public portfolio records with zero hallucinations. What would you like to inspect?</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="assistant-suggestions" data-assistant-suggestions role="group" aria-label="Suggested starter questions"></div>
+
+        <form class="assistant-form" data-assistant-form>
+          <label class="sr-only" for="assistant-question">Ask a question about Ibadat Ali</label>
+          <textarea id="assistant-question" rows="1" maxlength="700" placeholder="Ask about projects, architecture, or skills…" autocomplete="off" data-assistant-input aria-label="Your question for Orbi"></textarea>
+          <div class="assistant-form__footer">
+            <span class="assistant-form__counter" data-assistant-counter>0 / 700</span>
+            <button class="assistant-form__submit" type="submit" data-assistant-submit aria-label="Send message">
+              <span>Send</span>
+              <span aria-hidden="true">↗</span>
+            </button>
+          </div>
+        </form>
+
+        <footer class="assistant-disclaimer">
+          <p>Answers strictly grounded in Ibadat's verified portfolio evidence.</p>
+        </footer>
+        <p class="sr-only" data-assistant-status role="status" aria-live="polite"></p>
+      </section>
+    </aside>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

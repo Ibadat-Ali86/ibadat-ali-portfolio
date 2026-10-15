@@ -6,6 +6,7 @@ import './styles/sections.css';
 import './styles/motion.css';
 import './styles/responsive.css';
 import './styles/editorial.css';
+import './styles/assistant.css';
 import { initNavigation } from './modules/navigation.js';
 import { initRevealMotion } from './modules/reveal-motion.js';
 import { prefersReducedMotion } from './modules/reduced-motion.js';

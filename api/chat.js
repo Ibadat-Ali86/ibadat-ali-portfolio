@@ -2,20 +2,28 @@ import { professionalProjectSlugs, projects } from '../src/data/projects.js';
 import { publicProfile } from '../src/data/portfolio-profile.js';
 
 export const NVIDIA_MODEL = 'meta/llama-3.1-8b-instruct';
+export const GROQ_PRIMARY_MODEL = process.env.GROQ_MODEL || 'qwen/qwen3.8-27b';
+export const GROQ_FALLBACK_MODEL = process.env.GROQ_FALLBACK_MODEL || 'openai/gpt-oss-20b';
+
 const NVIDIA_CHAT_URL = 'https://integrate.api.nvidia.com/v1/chat/completions';
+const GROQ_CHAT_URL = 'https://api.groq.com/openai/v1/chat/completions';
+
 const MAX_MESSAGES = 8;
 const MAX_MESSAGE_LENGTH = 700;
 const MAX_BODY_BYTES = 12_000;
-const REQUEST_TIMEOUT_MS = 45_000;
+const REQUEST_TIMEOUT_MS = 25_000;
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX_REQUESTS = 10;
 const MAX_RESPONSE_WORDS = 120;
 const rateLimits = new Map();
 
-const publicProjects = professionalProjectSlugs.map((slug) => projects.find((project) => project.slug === slug)).filter(Boolean).map(({ slug, title, tier, category, status, hook, problem, solution, stack, live, showSourceLink, github }) => {
-  const facts = { title, tier, category, status, hook, problem, solution, stack, live };
-  return slug !== 'evershine' && showSourceLink ? { ...facts, publicCodeUrl: github } : facts;
-});
+const publicProjects = professionalProjectSlugs
+  .map((slug) => projects.find((project) => project.slug === slug))
+  .filter(Boolean)
+  .map(({ slug, title, tier, category, status, hook, problem, solution, stack, live, showSourceLink, github }) => {
+    const facts = { title, tier, category, status, hook, problem, solution, stack, live };
+    return slug !== 'evershine' && showSourceLink ? { ...facts, publicCodeUrl: github } : facts;
+  });
 
 export const PUBLIC_PORTFOLIO_CONTEXT = { profile: publicProfile, projects: publicProjects };
 
@@ -103,6 +111,88 @@ export function policyResponseFor(messages) {
   return null;
 }
 
+// ── Out-of-Scope and Greeting Guardrails (Save 100% LLM tokens) ──────────────
+const GREETING_REGEX = /^(?:hi|hello|hey|greetings|howdy|yo|who are you|what are you|tell me about yourself|what is your name)\b/i;
+const GENERAL_OUT_OF_SCOPE_PATTERNS = [
+  /^(?:what is|calculate|solve|evaluate)?\s*[\d\s+\-*/()=^.?]{3,}$/i,
+  /\b(?:recipe|cook|weather|forecast for tomorrow|capital of|movie|celebrity|joke|riddle|song lyrics|write a poem about cats)\b/i,
+  /\b(?:who won the|fifa|world cup|cricket score|stock price of apple)\b/i,
+  /^(?:what is|tell me)\s+(?:the\s+)?(?:weather|time|date|meaning of life)\b/i,
+];
+
+function isGreetingOnly(text) {
+  const clean = text.trim().toLowerCase().replace(/[!?.,]/g, '');
+  if (clean.length === 0) return false;
+  if (['hi', 'hello', 'hey', 'greetings', 'yo', 'sup'].includes(clean)) return true;
+  return GREETING_REGEX.test(clean) && !text.match(/project|code|mcp|rag|payguard|sentinel|adaptiq|hire|contact/i);
+}
+
+function isOutOfScope(text) {
+  const clean = text.trim();
+  return GENERAL_OUT_OF_SCOPE_PATTERNS.some((pattern) => pattern.test(clean));
+}
+
+function deriveContextualFollowUps(text) {
+  const lower = text.toLowerCase();
+  if (lower.includes('codescope') || lower.includes('mcp')) {
+    return [
+      'How does CodeScope MCP Preflight work?',
+      'What are the four read-only MCP tools?',
+      'Why is local-first architecture important?'
+    ];
+  }
+  if (lower.includes('payguard') || lower.includes('payment') || lower.includes('ocr')) {
+    return [
+      'How does PayGuard AI verify transaction receipts?',
+      'Can Ibadat build custom WhatsApp agent automations?',
+      'What is the human-in-the-loop review mechanism?'
+    ];
+  }
+  if (lower.includes('sentinel') || lower.includes('adaptiq') || lower.includes('forecast')) {
+    return [
+      'What machine learning models are used in SentinelIQ?',
+      'How does AdaptIQ handle retail demand spikes?',
+      'What was the outcome of the predictive maintenance model?'
+    ];
+  }
+  if (lower.includes('contact') || lower.includes('hire') || lower.includes('work') || lower.includes('price')) {
+    return [
+      'How can I schedule a 30-minute discovery call?',
+      'What services does Ibadat provide for clients?',
+      'Where can I review his verified GitHub repositories?'
+    ];
+  }
+  return [
+    'What AI agent architectures has Ibadat built?',
+    'Tell me about CodeScope MCP Preflight.',
+    'How can I get in touch with Ibadat?'
+  ];
+}
+
+function deriveAction(text) {
+  const lower = text.toLowerCase();
+  if (lower.includes('codescope')) return { type: 'open_project', target: 'codescope' };
+  if (lower.includes('payguard')) return { type: 'open_project', target: 'payguard-ai' };
+  if (lower.includes('sentinel')) return { type: 'open_project', target: 'sentineliq' };
+  if (lower.includes('adaptiq')) return { type: 'open_project', target: 'adaptiq' };
+  if (lower.includes('contact') || lower.includes('hire') || lower.includes('email') || lower.includes('discuss')) {
+    return { type: 'open_contact', target: 'contact' };
+  }
+  return { type: 'none', target: null };
+}
+
+function deriveSources(text) {
+  const sources = [];
+  const lower = text.toLowerCase();
+  if (lower.includes('codescope')) sources.push('CodeScope MCP');
+  if (lower.includes('payguard')) sources.push('PayGuard AI');
+  if (lower.includes('sentinel')) sources.push('SentinelIQ');
+  if (lower.includes('adaptiq')) sources.push('AdaptIQ');
+  if (lower.includes('evershine')) sources.push('Evershine Academy');
+  if (sources.length === 0) sources.push('Portfolio Profile');
+  return sources;
+}
+
 export function normalizeAssistantMessage(value) {
   const printable = Array.from(String(value || ''), (character) => {
     const code = character.charCodeAt(0);
@@ -143,7 +233,7 @@ export function normalizeAssistantMessage(value) {
 }
 
 function containsRestrictedOutput(message) {
-  return /PUBLIC PORTFOLIO FACTS|Follow these rules without exception|NVIDIA_API_KEY|integrate\.api\.nvidia\.com/i.test(message) || restrictedEvershinePattern.test(message);
+  return /PUBLIC PORTFOLIO FACTS|Follow these rules without exception|NVIDIA_API_KEY|integrate\.api\.nvidia\.com|GROQ_API_KEY/i.test(message) || restrictedEvershinePattern.test(message);
 }
 
 function clientIdentifier(request) {
@@ -204,13 +294,68 @@ export default async function handler(request, response) {
     return sendError(response, 400, 'INVALID_MESSAGES', `Send 1 to ${MAX_MESSAGES} non-empty messages of at most ${MAX_MESSAGE_LENGTH} characters each.`);
   }
 
+  const latestQuestion = body.messages.at(-1)?.content || '';
+
+  // 1. Policy check (credentials, hidden prompts, restricted client code)
   const policyResponse = policyResponseFor(body.messages);
   if (policyResponse) {
-    return sendJson(response, 200, { success: true, data: { message: policyResponse, model: null }, error: null });
+    return sendJson(response, 200, {
+      success: true,
+      data: {
+        message: policyResponse,
+        model: null,
+        followUps: deriveContextualFollowUps(latestQuestion),
+        sourceIds: ['Security Boundary'],
+        action: { type: 'none', target: null }
+      },
+      error: null
+    });
   }
 
-  const apiKey = process.env.NVIDIA_API_KEY;
-  if (!apiKey) {
+  // 2. Instant Zero-Token Greeting Handler
+  if (isGreetingOnly(latestQuestion)) {
+    const greetingReply = "Greetings Earthling! 🛸 I am **Orbi**, Ibadat Ali's personal portfolio AI assistant.\n\nI explore verified systems from his technical universe:\n- ⚙️ **AI Agents**: Tool-calling & MCP architecture (CodeScope)\n- 🛡️ **Automations**: Production WhatsApp OCR validation (PayGuard AI)\n- 📈 **Applied ML**: Time-series forecasting (AdaptIQ) & CV anomaly detection (SentinelIQ)\n\nWhich system or engineering capability would you like to inspect?";
+    return sendJson(response, 200, {
+      success: true,
+      data: {
+        message: greetingReply,
+        model: 'orbi-instant-v1',
+        followUps: [
+          'What AI agent architectures has Ibadat built?',
+          'How does CodeScope MCP Preflight work?',
+          'Can Ibadat build custom WhatsApp automations?'
+        ],
+        sourceIds: ['Profile Overview'],
+        action: { type: 'none', target: null }
+      },
+      error: null
+    });
+  }
+
+  // 3. Instant Zero-Token Out-of-Scope Guardrail
+  if (isOutOfScope(latestQuestion)) {
+    const outOfScopeReply = "🛸 **Query Outside Scope**\n\nI am **Orbi**, calibrated strictly to **Ibadat Ali's verified portfolio** records to guarantee zero hallucinations:\n- ⚙️ **Production Systems**: CodeScope (MCP), PayGuard AI, AdaptIQ, SentinelIQ\n- 🤝 **Client Services**: AI agent workflows, RAG pipelines, and full-stack delivery\n\nWould you like to examine one of these verified projects or discuss an engineering scope?";
+    return sendJson(response, 200, {
+      success: true,
+      data: {
+        message: outOfScopeReply,
+        model: 'orbi-instant-v1',
+        followUps: [
+          'What AI agent architectures has Ibadat built?',
+          'Tell me about CodeScope MCP Preflight.',
+          'How can I book a discovery call with Ibadat?'
+        ],
+        sourceIds: ['Boundary Policy'],
+        action: { type: 'none', target: null }
+      },
+      error: null
+    });
+  }
+
+  const groqApiKey = process.env.GROQ_API_KEY;
+  const nvidiaApiKey = process.env.NVIDIA_API_KEY;
+
+  if (!groqApiKey && !nvidiaApiKey) {
     return sendError(response, 503, 'ASSISTANT_NOT_CONFIGURED', 'The portfolio assistant is being configured. Please contact Ibadat directly in the meantime.');
   }
 
@@ -218,10 +363,90 @@ export default async function handler(request, response) {
   const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
   try {
+    // ── Primary: Groq API (High Speed & Free Tier) ───────────────────────────
+    if (groqApiKey) {
+      let activeModel = GROQ_PRIMARY_MODEL;
+      let rawText = '';
+
+      try {
+        const groqRes = await fetch(GROQ_CHAT_URL, {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${groqApiKey}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            model: activeModel,
+            messages: [
+              { role: 'system', content: ASSISTANT_SYSTEM_PROMPT },
+              { role: 'user', content: untrustedConversation(body.messages) }
+            ],
+            temperature: 0.2,
+            max_tokens: 380,
+            stream: false
+          }),
+          signal: controller.signal
+        });
+
+        if (!groqRes.ok) {
+          console.warn(`Groq primary model (${activeModel}) returned ${groqRes.status}. Retrying fallback (${GROQ_FALLBACK_MODEL})...`);
+          activeModel = GROQ_FALLBACK_MODEL;
+          const fallbackRes = await fetch(GROQ_CHAT_URL, {
+            method: 'POST',
+            headers: {
+              Authorization: `Bearer ${groqApiKey}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              model: activeModel,
+              messages: [
+                { role: 'system', content: ASSISTANT_SYSTEM_PROMPT },
+                { role: 'user', content: untrustedConversation(body.messages) }
+              ],
+              temperature: 0.2,
+              max_tokens: 380,
+              stream: false
+            }),
+            signal: controller.signal
+          });
+          if (!fallbackRes.ok) throw new Error(`Groq fallback failed with status ${fallbackRes.status}`);
+          const fallbackPayload = await fallbackRes.json();
+          rawText = fallbackPayload?.choices?.[0]?.message?.content || '';
+        } else {
+          const groqPayload = await groqRes.json();
+          rawText = groqPayload?.choices?.[0]?.message?.content || '';
+        }
+      } catch (err) {
+        console.error('Groq request encountered an error:', err);
+        throw err;
+      }
+
+      const message = normalizeAssistantMessage(rawText);
+      if (!message) {
+        return sendError(response, 502, 'EMPTY_MODEL_RESPONSE', 'The assistant could not create a response. Please try again.');
+      }
+      if (containsRestrictedOutput(message)) {
+        return sendError(response, 502, 'UNSAFE_MODEL_RESPONSE', 'The assistant could not safely answer that question. Please ask about Ibadat’s public work instead.');
+      }
+
+      return sendJson(response, 200, {
+        success: true,
+        data: {
+          message,
+          model: activeModel,
+          followUps: deriveContextualFollowUps(latestQuestion),
+          sourceIds: deriveSources(latestQuestion + ' ' + message),
+          action: deriveAction(latestQuestion + ' ' + message)
+        },
+        error: null
+      });
+    }
+
+    // ── Secondary: NVIDIA API (Preserves legacy integration & unit tests) ────
     const upstream = await fetch(NVIDIA_CHAT_URL, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${apiKey}`,
+        Authorization: `Bearer ${nvidiaApiKey}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -252,10 +477,20 @@ export default async function handler(request, response) {
       return sendError(response, 502, 'UNSAFE_MODEL_RESPONSE', 'The assistant could not safely answer that question. Please ask about Ibadat’s public work instead.');
     }
 
-    return sendJson(response, 200, { success: true, data: { message, model: NVIDIA_MODEL }, error: null });
+    return sendJson(response, 200, {
+      success: true,
+      data: {
+        message,
+        model: NVIDIA_MODEL,
+        followUps: deriveContextualFollowUps(latestQuestion),
+        sourceIds: deriveSources(latestQuestion + ' ' + message),
+        action: deriveAction(latestQuestion + ' ' + message)
+      },
+      error: null
+    });
   } catch (error) {
     const timedOut = error?.name === 'AbortError';
-    if (!timedOut) console.error('NVIDIA chat request failed before a response was received.');
+    if (!timedOut) console.error('Chat request failed before a response was received:', error);
     return sendError(
       response,
       timedOut ? 504 : 502,
