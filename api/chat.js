@@ -68,6 +68,8 @@ ${JSON.stringify(PUBLIC_PORTFOLIO_CONTEXT)}`;
 function sendJson(response, status, payload) {
   response.setHeader('Cache-Control', 'no-store');
   response.setHeader('Content-Type', 'application/json; charset=utf-8');
+  response.setHeader('X-Content-Type-Options', 'nosniff');
+  response.setHeader('X-Frame-Options', 'DENY');
   return response.status(status).json(payload);
 }
 
@@ -267,6 +269,17 @@ export default async function handler(request, response) {
   if (request.method !== 'POST') {
     response.setHeader('Allow', 'POST');
     return sendError(response, 405, 'METHOD_NOT_ALLOWED', 'Use POST to ask the portfolio assistant a question.');
+  }
+
+  const origin = request.headers?.origin;
+  const isAllowedOrigin = !origin ||
+    origin === 'https://ibadat-ali-portfolio.vercel.app' ||
+    origin.endsWith('.vercel.app') ||
+    origin.startsWith('http://localhost:') ||
+    origin.startsWith('http://127.0.0.1:');
+
+  if (!isAllowedOrigin) {
+    return sendError(response, 403, 'FORBIDDEN_ORIGIN', 'Cross-origin requests are forbidden.');
   }
 
   const declaredSize = Number(request.headers?.['content-length'] || 0);

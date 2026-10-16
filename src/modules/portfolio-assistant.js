@@ -119,8 +119,24 @@ export function initPortfolioAssistant() {
         }, 500);
       }
       setOpen(false);
-    } else if (action.type === 'open_link' && action.target) {
-      window.open(action.target, '_blank', 'noopener,noreferrer');
+    } else if (action.type === 'open_link' && typeof action.target === 'string') {
+      try {
+        const parsed = new URL(action.target, window.location.origin);
+        const isAllowedDomain = [
+          'github.com',
+          'linkedin.com',
+          'www.linkedin.com',
+          'evershineacadmey.com',
+          'ibadat-ali-portfolio.vercel.app',
+          window.location.hostname
+        ].some((domain) => parsed.hostname === domain || parsed.hostname.endsWith(`.${domain}`));
+
+        if ((parsed.protocol === 'https:' || parsed.protocol === 'http:') && isAllowedDomain) {
+          window.open(parsed.href, '_blank', 'noopener,noreferrer');
+        }
+      } catch {
+        // Silently discard malformed or unsafe URL protocols
+      }
     }
   }
 
