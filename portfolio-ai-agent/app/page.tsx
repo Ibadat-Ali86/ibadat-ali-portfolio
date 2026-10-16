@@ -1,188 +1,295 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import { FormEvent, useEffect, useState } from "react";
+import Image from "next/image"
+import { useEffect, useRef, useState } from "react"
+import { getDynamicQuestions } from "@/lib/agent/questions"
+import type { ConversationMode, UIMessage } from "@/types/chat"
+import { ChatMessage } from "@/components/assistant/ChatMessage"
+import { ChatInput } from "@/components/assistant/ChatInput"
+import { TypingIndicator } from "@/components/assistant/TypingIndicator"
+import { SuggestedQuestions } from "@/components/assistant/SuggestedQuestions"
 
-const quickQuestions = [
-  "What kind of AI agents has Ibadat built?",
-  "Show me work related to RAG and MCP.",
-  "How does a project engagement start?",
-];
-
-const thinkingStates = [
-  "Warming the evidence engine",
-  "Tracing useful portfolio proof",
-  "Checking claim boundaries",
-  "Composing a grounded answer",
-];
-
-function createPreviewAnswer(question: string) {
-  const query = question.toLowerCase();
-
-  if (query.includes("rag") || query.includes("mcp")) {
-    return "A strong RAG example is CodeScope MCP Preflight: a local-first developer tool that combines MCP, Tree-sitter analysis, and local retrieval to give an agent structured repository context before it proposes a change. Ibadat also lists RAG retrieval in his ML / AI Engineer experience at Soft Shack.";
-  }
-
-  if (query.includes("start") || query.includes("engagement")) {
-    return "Projects start with a focused 30-minute discovery conversation around the problem, constraints, and useful outcome. From there, Ibadat works from a written plan, delivers in a fixed scope or milestones, and includes documentation plus a walkthrough for handoff.";
-  }
-
-  return "Ibadat builds tool-using agents and AI automations with clear operational boundaries. Portfolio examples include a local MCP and retrieval tool, WhatsApp-based payment-evidence review, lead-generation automation, and a restaurant assistant with memory and business tools. The production RAG connection will retrieve verified portfolio evidence before generating its answer.";
+const INITIAL_WELCOME: UIMessage = {
+  id: "welcome-msg",
+  role: "assistant",
+  content:
+    "🛸 **Greetings! I am Orbi**, Ibadat Ali's personal AI portfolio assistant.\n\nI explore verified systems from his technical universe:\n- ⚙️ **AI Agents**: Tool-calling & MCP architecture (CodeScope)\n- 🛡️ **Automations**: Production WhatsApp OCR validation (PayGuard AI)\n- 📈 **Applied ML**: Time-series forecasting (AdaptIQ) & CV anomaly detection (SentinelIQ)\n\nWhich system or engineering capability would you like to inspect?",
+  timestamp: 0,
+  followUps: [
+    "What AI agent architectures has Ibadat built?",
+    "How does CodeScope MCP Preflight work?",
+    "Can Ibadat build custom WhatsApp or RAG automations?"
+  ],
+  sourceIds: ["profile", "who-is-ibadat-ali"]
 }
 
 export default function Home() {
-  const [question, setQuestion] = useState("");
-  const [isThinking, setIsThinking] = useState(false);
-  const [thinkingIndex, setThinkingIndex] = useState(0);
-  const [response, setResponse] = useState(
-    "Ask about projects, AI agents, RAG, applied ML, experience, or how Ibadat approaches a client engagement.",
-  );
-  const [visibleResponse, setVisibleResponse] = useState("");
+  const [messages, setMessages] = useState<UIMessage[]>([INITIAL_WELCOME])
+  const [isThinking, setIsThinking] = useState(false)
+  const [mode, setMode] = useState<ConversationMode>("general")
+  const [usedQuestionIds, setUsedQuestionIds] = useState<string[]>([])
+  const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>(() => {
+    return getDynamicQuestions({ mode: "general", count: 3 }).map((q) => q.text)
+  })
+  const [cooldown, setCooldown] = useState<number | null>(null)
+  const [lastLatencyMs, setLastLatencyMs] = useState<number | null>(null)
+
+  const messagesEndRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!isThinking) return;
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }, [messages, isThinking])
 
-    const interval = window.setInterval(() => {
-      setThinkingIndex((current) => (current + 1) % thinkingStates.length);
-    }, 1100);
-
-    return () => window.clearInterval(interval);
-  }, [isThinking]);
-
+  // Cooldown countdown timer
   useEffect(() => {
-    let index = 0;
-    let interval: number | undefined;
-    const start = window.setTimeout(() => {
-      setVisibleResponse("");
-      interval = window.setInterval(() => {
-        index += 1;
-        setVisibleResponse(response.slice(0, index));
-        if (index >= response.length && interval) window.clearInterval(interval);
-      }, 10);
-    }, 0);
+    if (!cooldown) return
+    const timer = setInterval(() => {
+      setCooldown((prev) => {
+        if (!prev || prev <= 1) return null
+        return prev - 1
+      })
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [cooldown])
 
-    return () => {
-      window.clearTimeout(start);
-      if (interval) window.clearInterval(interval);
-    };
-  }, [response]);
-
-  function ask(questionToAsk: string) {
-    const trimmedQuestion = questionToAsk.trim();
-    if (!trimmedQuestion || isThinking) return;
-
-    setQuestion("");
-    setIsThinking(true);
-    setThinkingIndex(0);
-
-    window.setTimeout(() => {
-      setResponse(createPreviewAnswer(trimmedQuestion));
-      setIsThinking(false);
-    }, 2600);
+  function handleModeChange(newMode: ConversationMode) {
+    setMode(newMode)
+    const fresh = getDynamicQuestions({
+      mode: newMode,
+      count: 3,
+      excludeIds: usedQuestionIds
+    })
+    setSuggestedQuestions(fresh.map((q) => q.text))
+    setUsedQuestionIds((prev) => [...prev, ...fresh.map((q) => q.id)])
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    ask(question);
+  async function askQuestion(textToAsk: string) {
+    const trimmed = textToAsk.trim()
+    if (!trimmed || isThinking || cooldown) return
+
+    const userMessage: UIMessage = {
+      id: `user-${Date.now()}`,
+      role: "user",
+      content: trimmed,
+      timestamp: Date.now()
+    }
+
+    setMessages((prev) => [...prev, userMessage])
+    setIsThinking(true)
+
+    // Send bounded history (last 4 turns)
+    const historyPayload = messages.slice(-4).map((m) => ({
+      role: m.role,
+      content: m.content
+    }))
+
+    try {
+      const res = await fetch("/api/assistant", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: trimmed,
+          history: historyPayload,
+          mode
+        })
+      })
+
+      if (res.status === 429) {
+        setCooldown(60)
+        const errorData = await res.json().catch(() => ({}))
+        const errorMessage: UIMessage = {
+          id: `assistant-rate-${Date.now()}`,
+          role: "assistant",
+          content:
+            errorData.answer ||
+            "🛸 **Rate Limit Paused**\n\nCosmic communications array temporary cooldown active. Please wait 60 seconds or reach out to Ibadat directly.",
+          timestamp: Date.now(),
+          action: { type: "open_contact", target: "contact" }
+        }
+        setMessages((prev) => [...prev, errorMessage])
+        return
+      }
+
+      if (!res.ok) {
+        throw new Error(`Server returned status ${res.status}`)
+      }
+
+      const data = await res.json()
+
+      const assistantMessage: UIMessage = {
+        id: `assistant-${Date.now()}`,
+        role: "assistant",
+        content: data.answer,
+        timestamp: Date.now(),
+        followUps: data.followUps,
+        sourceIds: data.sourceIds,
+        action: data.action
+      }
+
+      setMessages((prev) => [...prev, assistantMessage])
+
+      if (typeof data.latencyMs === "number") {
+        setLastLatencyMs(data.latencyMs)
+      }
+
+      // Rotate dynamic questions on each response
+      if (Array.isArray(data.dynamicSuggestions) && data.dynamicSuggestions.length > 0) {
+        setSuggestedQuestions(data.dynamicSuggestions)
+      } else {
+        const rotated = getDynamicQuestions({
+          mode,
+          count: 3,
+          excludeIds: usedQuestionIds
+        })
+        setSuggestedQuestions(rotated.map((q) => q.text))
+        setUsedQuestionIds((prev) => [...prev, ...rotated.map((q) => q.id)])
+      }
+    } catch (err: any) {
+      console.error("Agent query failed:", err)
+      const fallbackMessage: UIMessage = {
+        id: `assistant-fallback-${Date.now()}`,
+        role: "assistant",
+        content:
+          "🌌 **Transmission Glitch**\n\nCould not reach the AI gateway. You can inspect Ibadat's verified systems directly or retry in a moment.",
+        timestamp: Date.now(),
+        followUps: [
+          "Tell me about CodeScope MCP Preflight.",
+          "What is PayGuard AI?",
+          "How can I contact Ibadat directly?"
+        ]
+      }
+      setMessages((prev) => [...prev, fallbackMessage])
+    } finally {
+      setIsThinking(false)
+    }
+  }
+
+  function handleActionClick(type: string, target: string | null) {
+    if (type === "open_contact") {
+      window.location.href = "mailto:ibadcodes@gmail.com?subject=Technical%20Consultation%20via%20Portfolio%20Agent"
+    } else if (type === "open_project" && target) {
+      const el = document.getElementById(target)
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" })
+      } else {
+        window.open(`https://github.com/ibadat-ali/${target}`, "_blank")
+      }
+    } else if (type === "open_resume") {
+      window.open("/resume.pdf", "_blank")
+    }
+  }
+
+  function handleReset() {
+    setMessages([INITIAL_WELCOME])
+    setUsedQuestionIds([])
+    const fresh = getDynamicQuestions({ mode, count: 3 })
+    setSuggestedQuestions(fresh.map((q) => q.text))
+    setLastLatencyMs(null)
   }
 
   return (
-    <main className="agent-shell">
-      <section className="agent-panel" aria-labelledby="agent-title">
-        <div className="panel-noise" aria-hidden="true" />
-
-        <header className="agent-header">
-          <div className="identity-lockup">
-            <div className="mark-wrap" aria-hidden="true">
+    <main className="cosmic-viewport">
+      <section className="stitch-terminal" aria-labelledby="terminal-title">
+        {/* Terminal Header Telemetry Bar */}
+        <header className="stitch-header">
+          <div className="flex items-center gap-3.5">
+            <div className="orbi-avatar-wrap">
               <Image
-                src="/ibadat-agent-orb.png"
-                alt=""
-                width={112}
-                height={112}
+                src="/orbi-mascot.png"
+                alt="Orbi"
+                width={40}
+                height={40}
                 priority
+                className="object-cover"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "/ibadat-agent-orb.png"
+                }}
               />
             </div>
             <div>
-              <p className="eyebrow">Ibadat AI / Portfolio assistant</p>
-              <h1 id="agent-title">Ask the work behind the work.</h1>
+              <div className="flex items-center gap-2">
+                <h1 id="terminal-title" className="text-sm font-semibold text-white tracking-tight">
+                  Orbi
+                </h1>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[var(--amber)]/10 text-[var(--amber)] border border-[var(--amber)]/25">
+                  RAG Agent v1.0
+                </span>
+              </div>
+              <p className="text-[11px] text-[var(--muted)] font-mono">
+                Ibadat Ali · AI Systems Engineer
+              </p>
             </div>
           </div>
-          <div className={`system-status ${isThinking ? "is-thinking" : ""}`} aria-live="polite">
-            <span className="status-orbit" aria-hidden="true"><span /></span>
-            <span>{isThinking ? thinkingStates[thinkingIndex] : "Evidence-ready"}</span>
+
+          {/* Right Status Controls */}
+          <div className="flex items-center gap-3">
+            {lastLatencyMs !== null && (
+              <span className="hidden sm:inline-block text-[11px] font-mono text-[var(--muted-dark)]">
+                {lastLatencyMs}ms
+              </span>
+            )}
+
+            <div className={`status-beacon ${isThinking ? "thinking" : ""}`}>
+              <span className="beacon-pulse" aria-hidden="true" />
+              <span>{isThinking ? "Searching Evidence..." : "Evidence Ready"}</span>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleReset}
+              className="text-xs font-mono text-[var(--muted)] hover:text-white px-2.5 py-1 rounded-lg border border-white/5 hover:border-white/15 hover:bg-white/5 transition-all cursor-pointer"
+              title="Reset session"
+            >
+              Reset
+            </button>
           </div>
         </header>
 
-        <div className="agent-grid">
-          <aside className="context-column">
-            <p className="eyebrow">Built for useful conversations</p>
-            <h2>Clear evidence. No polished guessing.</h2>
-            <p>
-              Explore Ibadat&apos;s AI engineering work without turning private-client details,
-              prototypes, or research into inflated claims.
-            </p>
-            <div className="signal-list" aria-label="Assistant capabilities">
-              <span>Agents &amp; automation</span>
-              <span>RAG &amp; MCP</span>
-              <span>Applied ML</span>
-              <span>Delivery &amp; handoff</span>
-            </div>
-          </aside>
+        {/* Conversation Canvas */}
+        <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-5 space-y-4">
+          {messages.map((msg) => (
+            <ChatMessage
+              key={msg.id}
+              message={msg}
+              onSelectFollowUp={askQuestion}
+              onActionClick={handleActionClick}
+            />
+          ))}
 
-          <section className="conversation-card" aria-label="Portfolio assistant conversation">
-            <div className="conversation-label">
-              <span>Response channel</span>
-              <span className="live-dot">Live preview</span>
-            </div>
+          {isThinking && <TypingIndicator />}
 
-            <div className="answer-space" aria-live="polite">
-              {isThinking ? (
-                <div className="thinking-response">
-                  <div className="loader-dots" aria-hidden="true"><i /><i /><i /></div>
-                  <p>{thinkingStates[thinkingIndex]}<span className="ellipsis">...</span></p>
-                </div>
-              ) : (
-                <p className="emerging-copy">
-                  {visibleResponse}
-                  <span className="text-cursor" aria-hidden="true" />
-                </p>
-              )}
+          {cooldown && (
+            <div className="py-2.5 px-4 text-center text-xs font-mono text-[var(--amber)] bg-[var(--amber)]/10 border border-[var(--amber)]/25 rounded-xl animate-pulse">
+              Cooldown active: {cooldown}s remaining before next transmission
             </div>
+          )}
 
-            <div className="question-bank">
-              <span>Try a starting point</span>
-              <div className="quick-question-list">
-                {quickQuestions.map((item, index) => (
-                  <button key={item} type="button" onClick={() => ask(item)} disabled={isThinking}>
-                    <b>0{index + 1}</b>{item}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <form className="composer" onSubmit={handleSubmit}>
-              <label className="sr-only" htmlFor="portfolio-question">Ask about Ibadat&apos;s work</label>
-              <input
-                id="portfolio-question"
-                value={question}
-                onChange={(event) => setQuestion(event.target.value)}
-                placeholder="Ask about an agent, system, project, or capability..."
-                maxLength={360}
-                disabled={isThinking}
-              />
-              <button type="submit" disabled={!question.trim() || isThinking}>
-                {isThinking ? "Reading" : "Ask"}
-                <span aria-hidden="true">↗</span>
-              </button>
-            </form>
-          </section>
+          <div ref={messagesEndRef} />
         </div>
 
-        <footer className="agent-footer">
-          <span>AI ENGINEERING · AI AGENT DEVELOPMENT · APPLIED ML</span>
-          <span>Designed to retrieve evidence before it responds.</span>
+        {/* Bottom Interactive Deck (Perspective Switcher + Dynamic Questions + Composer) */}
+        <footer className="p-4 sm:p-5 border-t border-white/[0.08] bg-black/40 backdrop-blur-xl space-y-3">
+          <SuggestedQuestions
+            questions={suggestedQuestions}
+            currentMode={mode}
+            onSelectQuestion={askQuestion}
+            onSelectMode={handleModeChange}
+            disabled={isThinking || Boolean(cooldown)}
+          />
+
+          <ChatInput
+            onSendMessage={askQuestion}
+            disabled={isThinking || Boolean(cooldown)}
+            currentMode={mode}
+            onModeChange={handleModeChange}
+          />
+
+          <div className="flex items-center justify-between text-[11px] font-mono text-[var(--muted-dark)] pt-1 px-1">
+            <span>In-Memory MiniSearch + Groq Qwen 27B</span>
+            <span className="hidden sm:inline">Zero-Cost Evidence Gating · Zero Hallucination</span>
+          </div>
         </footer>
       </section>
     </main>
-  );
+  )
 }
