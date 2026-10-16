@@ -141,6 +141,25 @@ export function initPortfolioAssistant() {
     label.textContent = role === 'user' ? 'YOU' : 'ORBI · AI ASSISTANT';
 
     head.append(avatar, label);
+
+    if (role === 'assistant') {
+      const copyBtn = document.createElement('button');
+      copyBtn.type = 'button';
+      copyBtn.className = 'assistant-copy-btn';
+      copyBtn.title = 'Copy response';
+      copyBtn.setAttribute('aria-label', 'Copy response to clipboard');
+      copyBtn.innerHTML = '<span>📋</span>';
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(content).then(() => {
+          copyBtn.innerHTML = '<span style="color:#00C896">✓</span>';
+          setTimeout(() => {
+            copyBtn.innerHTML = '<span>📋</span>';
+          }, 2000);
+        });
+      });
+      head.append(copyBtn);
+    }
+
     article.append(head);
 
     if (role === 'assistant') {

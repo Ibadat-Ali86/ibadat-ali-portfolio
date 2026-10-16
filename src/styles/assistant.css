@@ -329,6 +329,29 @@
   color: var(--color-structure, #8B8FA8);
 }
 
+.assistant-copy-btn {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  color: var(--color-structure, #8B8FA8);
+  font-size: 0.72rem;
+  padding: 0.15rem 0.35rem;
+  cursor: pointer;
+  opacity: 0.65;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.assistant-copy-btn:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-ink, #F0EDE8);
+  border-color: var(--color-accent, #F5A623);
+}
+
 .assistant-message__body p {
   margin: 0 0 0.45rem;
 }
