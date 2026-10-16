@@ -44,7 +44,7 @@ export function getSearchIndex(): MiniSearch<KnowledgeChunk> {
   const chunks = loadAllChunks()
 
   const Ctor = getMiniSearchCtor()
-  indexInstance = new Ctor({
+  const instance = new Ctor({
     fields: [
       "title",
       "text",
@@ -84,10 +84,11 @@ export function getSearchIndex(): MiniSearch<KnowledgeChunk> {
       fuzzy: 0.2,
       prefix: true
     }
-  })
+  }) as MiniSearch<KnowledgeChunk>
 
-  indexInstance.addAll(chunks)
-  return indexInstance
+  instance.addAll(chunks)
+  indexInstance = instance
+  return instance
 }
 
 /**

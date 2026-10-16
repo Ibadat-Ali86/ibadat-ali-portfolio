@@ -1,0 +1,22 @@
+[
+  { "id": "rec-01", "category": "recruiter", "query": "Can you summarize Ibadat's primary engineering strengths and AI stack?", "intent": "skills" },
+  { "id": "rec-02", "category": "recruiter", "query": "What production AI agent architectures has Ibadat designed and deployed?", "intent": "project" },
+  { "id": "rec-03", "category": "recruiter", "query": "Tell me about his ML / AI Engineer experience at Soft Shack.", "intent": "experience" },
+  { "id": "rec-04", "category": "recruiter", "query": "Which certifications from Anthropic and deeplearning.ai does he hold?", "intent": "credentials" },
+  { "id": "rec-05", "category": "recruiter", "query": "How does Ibadat handle error boundaries, rate limits, and LLM fallbacks?", "intent": "skills" },
+  { "id": "rec-06", "category": "recruiter", "query": "What is his proficiency in Python, FastAPI, Docker, and TypeScript?", "intent": "skills" },
+  { "id": "rec-07", "category": "recruiter", "query": "How does CodeScope MCP Preflight demonstrate his tool-calling agent skills?", "intent": "project" },
+  { "id": "rec-08", "category": "recruiter", "query": "Has he built production RAG systems with grounded retrieval pipelines?", "intent": "project" },
+  { "id": "rec-09", "category": "recruiter", "query": "What computer vision and anomaly detection experience does he possess?", "intent": "skills" },
+  { "id": "rec-10", "category": "recruiter", "query": "How does Ibadat ensure zero hallucination in client-facing AI systems?", "intent": "services" },
+  { "id": "cli-01", "category": "client", "query": "I need an automated WhatsApp bot that verifies payment receipts—can Ibadat build this?", "intent": "project" },
+  { "id": "cli-02", "category": "client", "query": "We want an AI customer support agent for our store with memory. How does he design it?", "intent": "project" },
+  { "id": "cli-03", "category": "client", "query": "Our team spends hours on manual lead enrichment. Can he automate it with n8n and AI?", "intent": "project" },
+  { "id": "cli-04", "category": "client", "query": "What does Ibadat's standard project delivery and milestone handoff look like?", "intent": "services" },
+  { "id": "cli-05", "category": "client", "query": "We have internal proprietary documents. Can he build a private RAG pipeline that doesn't leak data?", "intent": "services" },
+  { "id": "arc-01", "category": "architecture", "query": "How does CodeScope MCP Preflight leverage Tree-sitter for AST structural analysis?", "intent": "project" },
+  { "id": "arc-02", "category": "architecture", "query": "Why did you build an in-memory MiniSearch RAG engine instead of using a vector database?", "intent": "project" },
+  { "id": "arc-03", "category": "architecture", "query": "How does the Evidence Gate in this agent eliminate unwanted Groq API calls?", "intent": "skills" },
+  { "id": "arc-04", "category": "architecture", "query": "How does SentinelIQ process video streams and tabular telemetry for anomaly detection?", "intent": "project" },
+  { "id": "arc-05", "category": "architecture", "query": "What neural architecture powers AdaptIQ's multi-horizon sales forecasting?", "intent": "project" }
+]

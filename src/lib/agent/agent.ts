@@ -10,7 +10,8 @@ import {
   checkEvidence,
   buildNoEvidenceResponse,
   isGreeting,
-  buildGreetingResponse
+  buildGreetingResponse,
+  isOutOfScope
 } from "./relevance"
 import { buildPrompt } from "./prompt"
 import { generateCompletion, GroqApiError } from "./groq"
@@ -78,7 +79,12 @@ export async function runPortfolioAgent(input: AgentExecuteInput): Promise<Agent
     return buildGreetingResponse()
   }
 
-  // Step 3: Intent Detection
+  // Step 3: Zero-Cost Out-of-Scope Guardrail (0 Groq tokens)
+  if (isOutOfScope(sanitizedMessage)) {
+    return buildNoEvidenceResponse(sanitizedMessage)
+  }
+
+  // Step 4: Intent Detection
   const intent = detectIntent(sanitizedMessage)
   const fallbackFollowUps = getFallbackFollowUps(intent)
 

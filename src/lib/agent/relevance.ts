@@ -1,12 +1,58 @@
 // WHAT: Intent detection, evidence gating, and deterministic zero-cost out-of-scope handling.
-// WHY : Protects Groq free-tier quotas by short-circuiting unsupported or weak queries in code,
-//       preventing LLM hallucinations on out-of-domain prompts.
-// TRADEOFF: Rule-based intent detection trades continuous semantic classifiers for instantaneous,
-//           zero-latency heuristic matching.
+// WHY : Protects Groq free-tier quotas by short-circuiting unsupported, general trivia,
+//       or non-portfolio queries in code, saving 100% of LLM credits and preventing hallucinations.
+// TRADEOFF: Rule-based intent detection and early out-of-scope filtering provide sub-millisecond,
+//           zero-latency heuristic matching without requiring continuous neural classifier APIs.
 
 import type { Intent, SearchResult, EvidenceDecision, AgentResponse } from "./types"
 
 const WEAK_EVIDENCE_THRESHOLD = 12.0
+
+// Explicit out-of-scope signals (trivia, unrelated world knowledge, general homework, etc.)
+const OUT_OF_SCOPE_PATTERNS: RegExp[] = [
+  /\b(weather|forecast for tomorrow|temperature in)\b/i,
+  /\b(capital of|who is the president|who was president|prime minister of)\b/i,
+  /\b(world cup|fifa|olympics|super bowl|champions league|cricket score)\b/i,
+  /\b(recipe for|how to bake|how to cook|ingredients for)\b/i,
+  /\b(write a poem|write a song|write a story|tell me a joke)\b/i,
+  /\b(bitcoin price|crypto price|stock market price|invest in)\b/i,
+  /\b(horoscope|astrology|zodiac sign)\b/i,
+  /\b(movie review|latest movies|box office|actor in)\b/i,
+  /\b(solve this math|algebra equation|homework help|physics equation)\b/i,
+  /\b(translate .* to (french|spanish|german|arabic|urdu|hindi|mandarin))\b/i,
+  /\b(write a (python|javascript|c\+\+|java) script to (reverse|sort|find|calculate fibonacci))\b/i
+]
+
+// Explicit portfolio keywords that indicate the query is definitely about Ibadat or his work
+const PORTFOLIO_ANCHORS = new Set([
+  "ibadat", "ali", "orbi", "codescope", "payguard", "sentinel", "sentineliq",
+  "adaptiq", "carevision", "topolite", "soft shack", "fiverr", "tree-sitter",
+  "mcp", "n8n", "portfolio", "projects", "resume", "cv", "hire", "contact",
+  "certifications", "anthropic", "experience", "services", "skills", "rate"
+])
+
+/**
+ * Checks if a query is clearly out of domain (general world trivia, homework, unrelated coding requests)
+ * so we can short-circuit before spending any Groq API tokens.
+ */
+export function isOutOfScope(query: string): boolean {
+  const normalized = query.toLowerCase().trim()
+
+  // If it mentions any specific portfolio anchor, it's NOT out of scope
+  const words = normalized.split(/[^a-z0-9_-]+/).filter(Boolean)
+  if (words.some((w) => PORTFOLIO_ANCHORS.has(w))) {
+    return false
+  }
+
+  // Check pattern matches
+  for (const pattern of OUT_OF_SCOPE_PATTERNS) {
+    if (pattern.test(normalized)) {
+      return true
+    }
+  }
+
+  return false
+}
 
 /**
  * Categorizes the high-level intent of the user's message using deterministic keyword matching.
@@ -39,7 +85,8 @@ export function detectIntent(query: string): Intent {
     q.includes("email") ||
     q.includes("reach") ||
     q.includes("message") ||
-    q.includes("consult")
+    q.includes("consult") ||
+    q.includes("call")
   ) {
     return "contact"
   }
@@ -58,7 +105,10 @@ export function detectIntent(query: string): Intent {
     q.includes("technolog") ||
     q.includes("tools") ||
     q.includes("stack") ||
-    q.includes("framework")
+    q.includes("framework") ||
+    q.includes("python") ||
+    q.includes("docker") ||
+    q.includes("fastapi")
   ) {
     return "skills"
   }
@@ -67,7 +117,9 @@ export function detectIntent(query: string): Intent {
     q.includes("service") ||
     q.includes("offer") ||
     q.includes("can you build") ||
-    q.includes("help with")
+    q.includes("help with") ||
+    q.includes("milestone") ||
+    q.includes("handoff")
   ) {
     return "services"
   }
@@ -81,7 +133,9 @@ export function detectIntent(query: string): Intent {
     q.includes("codescope") ||
     q.includes("payguard") ||
     q.includes("sentinel") ||
-    q.includes("adaptiq")
+    q.includes("adaptiq") ||
+    q.includes("carevision") ||
+    q.includes("topolite")
   ) {
     return "project"
   }
@@ -163,7 +217,6 @@ export function isGreeting(query: string): boolean {
     normalized.startsWith("what can you do") ||
     normalized === "help"
   ) {
-    // If it also contains substantive project queries (e.g. "who are you and tell me about codescope"), let retrieval run
     const hasSubstantive = words.some((w) => SUBSTANTIVE_KEYWORDS.has(w))
     return !hasSubstantive
   }
@@ -172,16 +225,16 @@ export function isGreeting(query: string): boolean {
 }
 
 /**
- * Returns a welcoming greeting response directly from Orbi (0 tokens consumed).
+ * Returns a welcoming greeting response directly from Orbi (0 Groq tokens consumed).
  */
 export function buildGreetingResponse(): AgentResponse {
   return {
     answer:
-      "Greetings Earthling! 🛸 I am Orbi, a cosmic alien species and personal AI assistant for Ibadat Ali! I've traveled across space to guide you through his verified technical universe—including his AI agents (like CodeScope), automation pipelines (like PayGuard AI), forecasting systems (like AdaptIQ), and full-stack engineering. What would you like to explore?",
+      "Greetings Earthling! 🛸 I am **Orbi**, Ibadat Ali's personal AI portfolio assistant.\n\nI explore verified systems from his technical universe:\n- ⚙️ **AI Agents**: Tool-calling & MCP architecture (CodeScope)\n- 🛡️ **Automations**: Production WhatsApp OCR validation (PayGuard AI)\n- 📈 **Applied ML**: Time-series forecasting (AdaptIQ) & CV anomaly detection (SentinelIQ)\n\nWhich system or engineering capability would you like to inspect?",
     followUps: [
-      "What AI agent projects has Ibadat built?",
+      "What AI agent architectures has Ibadat built?",
       "How does CodeScope MCP Preflight work?",
-      "What are his core machine learning skills?"
+      "Can Ibadat build custom WhatsApp or RAG automations?"
     ],
     sourceIds: ["profile", "who-is-ibadat-ali"],
     action: {
@@ -192,16 +245,17 @@ export function buildGreetingResponse(): AgentResponse {
 }
 
 /**
- * Returns a polite, bounded fallback response in structured JSON format without calling Groq.
+ * Returns a polite, emotionally warm, bounded fallback response without calling Groq.
+ * Protects 100% of LLM API quota on irrelevant or out-of-scope inquiries.
  */
 export function buildNoEvidenceResponse(query: string): AgentResponse {
   return {
     answer:
-      "Greetings! I'm Orbi, Ibadat Ali's AI assistant. My sensors are calibrated specifically to Ibadat Ali's verified portfolio, AI systems, engineering experience, and technical projects. I don't have verified records on that topic in his portfolio archives, but I can beam down details about his AI agents, forecasting models, automation workflows, or full-stack applications.",
+      "🛸 **Query Outside Scope**\n\nI am **Orbi**, calibrated strictly to **Ibadat Ali's verified portfolio** records to guarantee zero hallucinations:\n- ⚙️ **Production Systems**: CodeScope (MCP), PayGuard AI, AdaptIQ, SentinelIQ\n- 🤝 **Client Services**: AI agent workflows, RAG pipelines, and full-stack delivery\n\nWould you like to examine one of these verified projects or discuss an engineering scope?",
     followUps: [
-      "What AI agent projects has Ibadat built?",
-      "How does CodeScope MCP Preflight work?",
-      "What are his core machine learning skills?"
+      "What AI agent architectures has Ibadat built?",
+      "Tell me about CodeScope MCP Preflight.",
+      "How can I book a discovery call with Ibadat?"
     ],
     sourceIds: [],
     action: {
