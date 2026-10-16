@@ -3,15 +3,29 @@
   "version": "1.0.0",
   "private": true,
   "description": "Production RAG AI Agent for Ibadat Ali Portfolio powered by Groq and MiniSearch",
-  "workspaces": [
-    "portfolio-ai-agent"
-  ],
   "scripts": {
-    "dev": "npm run dev --prefix portfolio-ai-agent",
-    "build": "npm run build --prefix portfolio-ai-agent && ln -sfn portfolio-ai-agent/.next .next && mkdir -p dist",
-    "start": "npm run start --prefix portfolio-ai-agent",
-    "lint": "npm run lint --prefix portfolio-ai-agent",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
     "test": "tsx --test tests/*.test.ts"
+  },
+  "dependencies": {
+    "groq-sdk": "^1.6.0",
+    "minisearch": "^7.2.0",
+    "next": "16.4.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/turbopack": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.15",
+    "typescript": "^5"
   },
   "keywords": ["ai-agent", "rag", "portfolio", "groq", "minisearch"]
 }

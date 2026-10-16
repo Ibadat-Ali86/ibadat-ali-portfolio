@@ -1,6 +1,4 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "nextjs",
-  "installCommand": "npm install --prefix portfolio-ai-agent",
-  "buildCommand": "npm run build --prefix portfolio-ai-agent && ln -sfn portfolio-ai-agent/.next .next && mkdir -p dist"
+  "framework": "nextjs"
 }

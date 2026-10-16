@@ -3,7 +3,11 @@
     "target": "ES2022",
     "module": "esnext",
     "moduleResolution": "bundler",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -14,9 +18,25 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
-    }
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["src/**/*", "tests/**/*"],
-  "exclude": ["node_modules", "portfolio-ai-agent/node_modules"]
+  "include": [
+    "src/**/*",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "tests",
+    "portfolio-ai-agent/node_modules"
+  ]
 }

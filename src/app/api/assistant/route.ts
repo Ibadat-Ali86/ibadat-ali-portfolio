@@ -10,13 +10,32 @@ import { detectIntent } from "@/lib/agent/relevance"
 import { getDynamicQuestions } from "@/lib/agent/questions"
 import type { ConversationMode } from "@/types/chat"
 
-// Simple in-memory sliding window rate limiter
+// Bounded in-memory sliding window rate limiter with periodic cleanup
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
 const RATE_LIMIT_WINDOW_MS = 60 * 1000 // 1 minute
 const MAX_REQUESTS_PER_WINDOW = 20
+const MAX_RATE_LIMIT_ENTRIES = 2_000
 
 function checkRateLimit(clientIp: string): { allowed: boolean; remaining: number } {
   const now = Date.now()
+
+  // Evict expired entries when map approaches size threshold to prevent heap exhaustion
+  if (rateLimitMap.size > MAX_RATE_LIMIT_ENTRIES) {
+    for (const [key, record] of rateLimitMap) {
+      if (now > record.resetAt) {
+        rateLimitMap.delete(key)
+      }
+    }
+    // Hard cap fallback: if still saturated, clear stale keys
+    if (rateLimitMap.size > MAX_RATE_LIMIT_ENTRIES) {
+      const iterator = rateLimitMap.keys()
+      for (let i = 0; i < 200; i++) {
+        const nextKey = iterator.next().value
+        if (nextKey) rateLimitMap.delete(nextKey)
+      }
+    }
+  }
+
   const record = rateLimitMap.get(clientIp)
 
   if (!record || now > record.resetAt) {
@@ -32,13 +51,45 @@ function checkRateLimit(clientIp: string): { allowed: boolean; remaining: number
   return { allowed: true, remaining: MAX_REQUESTS_PER_WINDOW - record.count }
 }
 
+const ALLOWED_ORIGIN_PATTERNS = [
+  /^https?:\/\/localhost(?::\d+)?$/,
+  /^https?:\/\/127\.0\.0\.1(?::\d+)?$/,
+  /^https:\/\/ibadat-ali-portfolio\.vercel\.app$/,
+  /^https:\/\/.*\.vercel\.app$/
+]
+
+function isOriginAllowed(origin: string | null): boolean {
+  if (!origin) return true // Same-origin or server-to-server request
+  return ALLOWED_ORIGIN_PATTERNS.some((pattern) => pattern.test(origin))
+}
+
+function extractClientIp(req: NextRequest): string {
+  // Prefer direct or provider-verified IP headers before falling back to X-Forwarded-For
+  const rawIp =
+    req.headers.get("x-real-ip") ||
+    req.headers.get("cf-connecting-ip") ||
+    req.headers.get("x-vercel-ip") ||
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    "anonymous-visitor"
+
+  // Sanitize and bound length to prevent key injection DoS
+  return rawIp.slice(0, 45).replace(/[^a-zA-Z0-9.:_-]/g, "") || "anonymous-visitor"
+}
+
 export async function POST(req: NextRequest) {
   const startTime = Date.now()
 
-  // 1. Client IP identification for rate-limiting
-  const forwarded = req.headers.get("x-forwarded-for")
-  const clientIp = forwarded ? forwarded.split(",")[0].trim() : "anonymous-visitor"
+  // 1. Origin verification to prevent unauthorized cross-origin abuse
+  const origin = req.headers.get("origin")
+  if (!isOriginAllowed(origin)) {
+    return NextResponse.json(
+      { error: "Forbidden cross-origin request." },
+      { status: 403 }
+    )
+  }
 
+  // 2. Client IP identification & bounded rate-limiting
+  const clientIp = extractClientIp(req)
   const rateCheck = checkRateLimit(clientIp)
   if (!rateCheck.allowed) {
     return NextResponse.json(
@@ -63,7 +114,7 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  // 2. Parse and validate JSON payload
+  // 3. Parse and validate JSON payload
   let body: any
   try {
     body = await req.json()
