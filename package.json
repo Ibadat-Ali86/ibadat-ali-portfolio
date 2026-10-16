@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "description": "Production RAG AI Agent for Ibadat Ali Portfolio powered by Groq and MiniSearch",
+  "workspaces": [
+    "portfolio-ai-agent"
+  ],
   "scripts": {
     "dev": "npm run dev --prefix portfolio-ai-agent",
-    "build": "npm run build --prefix portfolio-ai-agent",
+    "build": "npm run build --prefix portfolio-ai-agent && ln -sfn portfolio-ai-agent/.next .next && mkdir -p dist",
     "start": "npm run start --prefix portfolio-ai-agent",
     "lint": "npm run lint --prefix portfolio-ai-agent",
     "test": "tsx --test tests/*.test.ts"
