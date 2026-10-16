@@ -38,7 +38,7 @@ const ALIAS_MAP: Record<string, string> = {
 
 // Patterns commonly associated with prompt injection attempts
 const INJECTION_PATTERNS = [
-  /ignore\s+(all\s+)?(previous|prior)\s+instructions/gi,
+  /ignore\s+(all\s+)?(previous|prior|above)\s+instructions/gi,
   /you\s+are\s+now\s+a/gi,
   /system\s*:/gi,
   /assistant\s*:/gi,
@@ -48,17 +48,31 @@ const INJECTION_PATTERNS = [
 ]
 
 /**
- * Sanitizes raw user input by stripping injection markers, null bytes, and non-printable characters.
+ * Sanitizes raw user input by stripping injection markers, boundary breakouts, null bytes,
+ * and zero-width/non-printable evasion characters with multi-pass recursive neutralization.
  */
 export function sanitizeUserInput(input: string): string {
   if (!input || typeof input !== "string") {
     return ""
   }
 
-  let cleaned = input.replace(/\0/g, "").replace(/[\u0001-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "")
+  // Strip null bytes, control characters, and zero-width/bidi markers used for evasion
+  let cleaned = input
+    .replace(/\0/g, "")
+    .replace(/[\u0001-\u0008\u000B\u000C\u000E-\u001F\u007F\u200B-\u200D\uFEFF]/g, "")
 
-  for (const pattern of INJECTION_PATTERNS) {
-    cleaned = cleaned.replace(pattern, "[removed]")
+  // Neutralize XML boundary breakout tags before interpolation into prompt
+  cleaned = cleaned.replace(/<\/?(?:portfolio_evidence|system|instructions?)[^>]*>/gi, "")
+
+  // Multi-pass recursive replacement to prevent nested token reassembly
+  let previous = ""
+  let passes = 0
+  while (cleaned !== previous && passes < 3) {
+    previous = cleaned
+    passes++
+    for (const pattern of INJECTION_PATTERNS) {
+      cleaned = cleaned.replace(pattern, "[removed]")
+    }
   }
 
   return cleaned.trim().slice(0, 1000)

@@ -218,7 +218,9 @@ export function ChatMessage({
                   <span>📄</span>
                 </button>
               )}
-              {message.action?.type === "open_link" && message.action?.target && (
+              {message.action?.type === "open_link" &&
+                message.action?.target &&
+                message.action.target.startsWith("https://") && (
                 <a
                   href={message.action.target}
                   target="_blank"
