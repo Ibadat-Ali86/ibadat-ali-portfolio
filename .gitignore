@@ -12,3 +12,5 @@ ai automation workflows/
 graphify-out/
 .playwright-cli/
 intro video/
+.next/
+portfolio-ai-agent/

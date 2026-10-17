@@ -1,6 +1,6 @@
 import { assistantSuggestions } from '../data/portfolio-profile.js';
 
-const MAX_MESSAGE_LENGTH = 2500;
+const MAX_MESSAGE_LENGTH = 5000;
 const REQUEST_TIMEOUT_MS = 30_000;
 
 export function initPortfolioAssistant() {
@@ -456,7 +456,16 @@ export function initPortfolioAssistant() {
   }
 
   input?.addEventListener('input', () => {
-    if (counter) counter.textContent = `${input.value.length} / ${MAX_MESSAGE_LENGTH}`;
+    if (counter) {
+      counter.textContent = `${input.value.length} / ${MAX_MESSAGE_LENGTH}`;
+      if (input.value.length >= 4500) {
+        counter.style.color = '#F5A623';
+        counter.style.fontWeight = '700';
+      } else {
+        counter.style.color = '';
+        counter.style.fontWeight = '';
+      }
+    }
     // Auto-grow textarea up to 180px
     input.style.height = 'auto';
     input.style.height = `${Math.min(input.scrollHeight, 180)}px`;

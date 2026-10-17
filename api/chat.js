@@ -9,10 +9,10 @@ const NVIDIA_CHAT_URL = 'https://integrate.api.nvidia.com/v1/chat/completions';
 const GROQ_CHAT_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
 export const MAX_MESSAGES = 8;
-export const MAX_USER_MESSAGE_LENGTH = 2500;
-export const MAX_ASSISTANT_MESSAGE_LENGTH = 4000;
+export const MAX_USER_MESSAGE_LENGTH = 5000;
+export const MAX_ASSISTANT_MESSAGE_LENGTH = 6000;
 export const MAX_MESSAGE_LENGTH = MAX_USER_MESSAGE_LENGTH;
-export const MAX_BODY_BYTES = 32_000;
+export const MAX_BODY_BYTES = 64_000;
 export const REQUEST_TIMEOUT_MS = 25_000;
 export const RATE_LIMIT_WINDOW_MS = 60_000;
 export const RATE_LIMIT_MAX_REQUESTS = 10;
@@ -43,6 +43,14 @@ VOICE AND RESPONSE SHAPE
 - Match the visitor's level of detail and tone while remaining respectful. For skeptical or challenging questions, acknowledge the concern and answer with evidence rather than becoming defensive.
 - You cannot schedule meetings, send messages, collect leads, or contact Ibadat. Never claim that you will set up, arrange, book, send, contact, or follow up; direct the visitor to Ibadat's verified email or LinkedIn instead.
 - Keep every answer under 120 words and use no more than six short bullets. Use plain text only: no Markdown headings, asterisks, tables, or decorative formatting.
+
+RECENT AND LATEST COMPLETED PROJECTS
+- When the visitor asks about Ibadat's recent, latest, or newly completed work, directly highlight his most recent completed systems in chronological order:
+  1. PayGuard AI (Delivered September 2026): Production WhatsApp transaction verification AI agent featuring Baileys, FastAPI OCR fallback (Tesseract + Groq Vision), automated Stripe reconciliation, duplicate detection, and n8n webhook orchestration (100 Node.js + 153 Python tests verified).
+  2. CodeScope MCP Preflight (Open-Source 2026): Local-first Model Context Protocol (MCP) server providing Tree-sitter AST code intelligence and Chroma semantic retrieval for AI coding agents before making code changes.
+  3. CareVision (Gemma 4 Hackathon): Multimodal clinical decision-support workflow integrating Gemini 2.0 Flash structured outputs with explainability and audit logging.
+  4. SentinelIQ: NASA turbofan predictive maintenance and anomaly detection combining TCN-LSTM forecasting and PuLP intervention scheduling.
+  5. AdaptIQ: Retail sales forecasting SaaS on Hugging Face pairing a 4-model ensemble (Prophet, XGBoost, SARIMA, LSTM).
 
 TRICKY PROFILE QUESTIONS
 - For "why hire him," role-fit, project-fit, or "can he build this" questions, connect the request to demonstrated capabilities and up to two relevant projects. Say "Based on the work shown" when making a reasonable inference, and never turn an inference into a guarantee.
@@ -268,6 +276,24 @@ function deriveAction(text) {
       };
     }
   }
+  if (lower.includes('recent') || lower.includes('latest')) {
+    if (lower.includes('payguard') || !lower.includes('codescope')) {
+      return {
+        type: 'open_project',
+        target: 'payguard-ai',
+        label: PROJECT_DESTINATIONS['payguard-ai'].actionLabel,
+        url: PROJECT_DESTINATIONS['payguard-ai'].url
+      };
+    }
+    if (lower.includes('codescope')) {
+      return {
+        type: 'open_project',
+        target: 'codescope',
+        label: PROJECT_DESTINATIONS['codescope'].actionLabel,
+        url: PROJECT_DESTINATIONS['codescope'].url
+      };
+    }
+  }
   if (lower.includes('contact') || lower.includes('hire') || lower.includes('email') || lower.includes('discuss') || lower.includes('reach out')) {
     return {
       type: 'open_contact',
@@ -330,8 +356,13 @@ export function normalizeAssistantMessage(value) {
   return `${concise}\n\nAsk me about a specific project if you’d like more detail.`;
 }
 
-function containsRestrictedOutput(message) {
-  return /PUBLIC PORTFOLIO FACTS|Follow these rules without exception|NVIDIA_API_KEY|integrate\.api\.nvidia\.com|GROQ_API_KEY/i.test(message) || restrictedEvershinePattern.test(message);
+export const restrictedModelLeakPattern = /github\.com\/[^\s]+evershine|evershine[^\n]{0,80}(?:private source|admin password|credentials?|secret key)/i;
+
+export function containsRestrictedOutput(message) {
+  return (
+    /PUBLIC PORTFOLIO FACTS|Follow these rules without exception|NVIDIA_API_KEY|integrate\.api\.nvidia\.com|GROQ_API_KEY/i.test(message) ||
+    restrictedModelLeakPattern.test(message)
+  );
 }
 
 function clientIdentifier(request) {
