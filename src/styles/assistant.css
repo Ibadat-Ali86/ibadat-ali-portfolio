@@ -125,7 +125,7 @@
   opacity: 1;
 }
 
-/* ── Small Box-Type Chat Window ────────────────────────────── */
+/* ── Expanded Responsive Chat Window ───────────────────────── */
 .assistant-panel {
   position: fixed;
   right: clamp(1rem, 2.5vw, 2rem);
@@ -133,14 +133,15 @@
   z-index: 995;
   display: flex;
   flex-direction: column;
-  width: min(410px, calc(100vw - 2rem));
-  height: min(610px, calc(100dvh - 5rem));
-  border-radius: 12px;
+  width: min(540px, calc(100vw - 2rem));
+  height: min(740px, calc(100dvh - 3.5rem));
+  max-height: 88vh;
+  border-radius: 16px;
   border: 1px solid var(--color-rule, #1E2032);
   background: linear-gradient(180deg, #10121C 0%, #07080D 100%);
-  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.75),
-              0 0 0 1px rgba(245, 166, 35, 0.16),
-              0 0 40px rgba(245, 166, 35, 0.08);
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.8),
+              0 0 0 1px rgba(245, 166, 35, 0.18),
+              0 0 48px rgba(245, 166, 35, 0.1);
   overflow: hidden;
   animation: panel-slide-up 0.26s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -254,30 +255,30 @@
 .assistant-messages {
   flex: 1;
   overflow-y: auto;
-  padding: 1rem 0.9rem;
+  padding: 1.15rem 1.1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.85rem;
   scrollbar-width: thin;
   scrollbar-color: var(--color-rule, #1E2032) transparent;
 }
 
 .assistant-messages::-webkit-scrollbar {
-  width: 4px;
+  width: 5px;
 }
 .assistant-messages::-webkit-scrollbar-thumb {
   background: var(--color-rule, #1E2032);
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
 /* ── Individual Messages ───────────────────────────────────── */
 .assistant-message {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  max-width: 88%;
-  font-size: 0.84rem;
-  line-height: 1.55;
+  gap: 0.4rem;
+  max-width: 92%;
+  font-size: 0.88rem;
+  line-height: 1.6;
   animation: message-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
@@ -285,8 +286,8 @@
   align-self: flex-end;
   background: linear-gradient(135deg, rgba(245, 166, 35, 0.14), rgba(22, 24, 36, 0.95));
   border: 1px solid rgba(245, 166, 35, 0.35);
-  border-radius: 12px 12px 3px 12px;
-  padding: 0.75rem 0.9rem;
+  border-radius: 14px 14px 4px 14px;
+  padding: 0.85rem 1.05rem;
   color: var(--color-ink, #F0EDE8);
 }
 
@@ -294,8 +295,8 @@
   align-self: flex-start;
   background: rgba(18, 20, 31, 0.92);
   border: 1px solid var(--color-rule, #1E2032);
-  border-radius: 12px 12px 12px 3px;
-  padding: 0.85rem 0.95rem;
+  border-radius: 14px 14px 14px 4px;
+  padding: 0.95rem 1.15rem;
   color: #D6D5E0;
 }
 
@@ -469,7 +470,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  padding: 0 0.9rem 0.65rem;
+  padding: 0 1.1rem 0.65rem;
 }
 
 .assistant-suggestion {
@@ -528,7 +529,7 @@
 
 /* ── Composer / Form ───────────────────────────────────────── */
 .assistant-form {
-  margin: 0 0.9rem 0.5rem;
+  margin: 0 1.1rem 0.55rem;
   border: 1px solid var(--color-rule, #1E2032);
   border-radius: 8px;
   background: rgba(15, 17, 25, 0.95);
@@ -612,7 +613,7 @@
 
 /* ── Disclaimer Footer ─────────────────────────────────────── */
 .assistant-disclaimer {
-  padding: 0.35rem 0.9rem 0.65rem;
+  padding: 0.35rem 1.1rem 0.65rem;
   text-align: center;
 }
 
@@ -660,6 +661,15 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* ── Large Screen Sizing Overrides ──────────────────────────── */
+@media (min-width: 1024px) {
+  .assistant-panel {
+    width: min(580px, calc(100vw - 3rem));
+    height: min(780px, calc(100dvh - 4.5rem));
+    max-height: 88vh;
   }
 }
 
