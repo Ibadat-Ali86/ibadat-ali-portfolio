@@ -164,18 +164,26 @@ export default function Home() {
     }
   }
 
-  function handleActionClick(type: string, target: string | null) {
+  function handleActionClick(type: string, target: string | null, url?: string | null) {
     if (type === "open_contact") {
-      window.location.href = "mailto:ibadcodes@gmail.com?subject=Technical%20Consultation%20via%20Portfolio%20Agent"
-    } else if (type === "open_project" && target) {
-      const el = document.getElementById(target)
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" })
-      } else {
-        window.open(`https://github.com/ibadat-ali/${target}`, "_blank")
+      const mailtoUrl = url || "mailto:ibadcodes@gmail.com?subject=Technical%20Consultation%20via%20Portfolio%20Agent"
+      window.open(mailtoUrl, "_blank", "noopener,noreferrer")
+    } else if (type === "open_project") {
+      if (url) {
+        window.open(url, "_blank", "noopener,noreferrer")
+      } else if (target) {
+        const el = document.getElementById(target)
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" })
+        } else {
+          window.open(`https://github.com/Ibadat-Ali86/${target}`, "_blank", "noopener,noreferrer")
+        }
       }
     } else if (type === "open_resume") {
-      window.open("/resume.pdf", "_blank")
+      const resumeUrl = url || "https://ibadat-ali-portfolio.vercel.app/Ibadat_Ali_Resume.pdf"
+      window.open(resumeUrl, "_blank", "noopener,noreferrer")
+    } else if (type === "open_link" && (url || target)) {
+      window.open(url || target!, "_blank", "noopener,noreferrer")
     }
   }
 

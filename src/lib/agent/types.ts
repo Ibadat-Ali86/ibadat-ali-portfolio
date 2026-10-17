@@ -32,6 +32,8 @@ export type AgentActionType =
 export interface AgentAction {
   type: AgentActionType
   target: string | null
+  label?: string
+  url?: string | null
 }
 
 export interface KnowledgeChunk {

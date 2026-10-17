@@ -160,6 +160,37 @@ export function loadAllChunks(): KnowledgeChunk[] {
         )
       }
     }
+
+    // Contact & Social Media Information
+    if (profile.contact) {
+      chunks.push(
+        createChunk({
+          id: "profile-contact",
+          entityId: "contact",
+          entityType: "profile",
+          section: "contact",
+          title: `${profile.name} - Official Contact Details & Social Media Links`,
+          text: `Contact details for ${profile.name}: Email: [${profile.contact.email}](mailto:${profile.contact.email}). WhatsApp: [${profile.contact.whatsapp}](https://wa.me/923220692321). LinkedIn: [LinkedIn Profile](${profile.contact.linkedinUrl}). GitHub: [GitHub Profile](${profile.contact.githubUrl}). Portfolio: [Portfolio Website](${profile.contact.portfolioUrl}). Kaggle: [Kaggle Profile](${profile.contact.kaggleUrl}). Resume: [Verified Resume](${profile.contact.resumeUrl}). Project Inquiry Guidance: ${profile.contact.projectInquiryGuidance || ""}`,
+          keywords: [
+            "contact",
+            "email",
+            "linkedin",
+            "github",
+            "whatsapp",
+            "kaggle",
+            "social media",
+            "hire",
+            "reach out",
+            "phone",
+            "connect",
+            profile.contact.email,
+            profile.name
+          ],
+          category: ["Profile", "Contact"],
+          sourceUrl: profile.contact.portfolioUrl
+        })
+      )
+    }
   }
 
   // 2. Skills Chunks
@@ -286,7 +317,7 @@ export function loadAllChunks(): KnowledgeChunk[] {
           keywords: allKeywords,
           technologies: pTech,
           category: pCat,
-          sourceUrl: p.links?.live || p.links?.caseStudy || null
+          sourceUrl: p.sourceUrl || p.links?.live || p.links?.caseStudy || null
         })
       )
 
@@ -302,7 +333,8 @@ export function loadAllChunks(): KnowledgeChunk[] {
             text: `Problem addressed in ${p.title}: ${p.problem || "N/A"}. Solution implemented: ${p.solution || "N/A"}.`,
             keywords: allKeywords,
             technologies: pTech,
-            category: pCat
+            category: pCat,
+            sourceUrl: p.sourceUrl || p.links?.live || p.links?.caseStudy || null
           })
         )
       }
@@ -319,7 +351,8 @@ export function loadAllChunks(): KnowledgeChunk[] {
             text: `Architecture of ${p.title}: ${p.architecture.join(" ")}`,
             keywords: ["architecture", "system design", "data flow", ...allKeywords],
             technologies: pTech,
-            category: pCat
+            category: pCat,
+            sourceUrl: p.sourceUrl || p.links?.live || p.links?.caseStudy || null
           })
         )
       }
@@ -339,7 +372,8 @@ export function loadAllChunks(): KnowledgeChunk[] {
             text: `Outcomes for ${p.title}: ${outcomes}. Allowed Claims: ${allowed}. Restricted/Private Details: ${restricted}`,
             keywords: ["results", "outcomes", "claims", "evidence", ...allKeywords],
             technologies: pTech,
-            category: pCat
+            category: pCat,
+            sourceUrl: p.sourceUrl || p.links?.live || p.links?.caseStudy || null
           })
         )
       }

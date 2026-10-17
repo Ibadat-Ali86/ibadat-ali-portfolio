@@ -8,7 +8,7 @@ import { SourceCard } from "./SourceCard"
 interface ChatMessageProps {
   message: UIMessage
   onSelectFollowUp?: (question: string) => void
-  onActionClick?: (type: string, target: string | null) => void
+  onActionClick?: (type: string, target: string | null, url?: string | null) => void
   onSourceClick?: (sourceId: string) => void
 }
 
@@ -85,6 +85,19 @@ function formatInline(text: string): string {
     /`([^`]+)`/g,
     '<code class="px-1.5 py-0.5 rounded bg-white/10 text-[var(--amber-pale)] font-mono text-xs border border-white/5">$1</code>'
   )
+
+  // Markdown mailto links: [Label](mailto:email...)
+  escaped = escaped.replace(
+    /\[([^\]]+)\]\((mailto:[^\s)]+)\)/g,
+    '<a href="$2" class="text-[var(--amber)] hover:text-[var(--amber-pale)] underline underline-offset-2 transition-colors font-medium inline-flex items-center gap-1"><span class="select-none">✉️</span>$1</a>'
+  )
+
+  // Markdown external links: [Label](https://...)
+  escaped = escaped.replace(
+    /\[([^\]]+)\]\(((?:https?:\/\/)[^\s)]+)\)/g,
+    '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-[var(--amber)] hover:text-[var(--amber-pale)] underline underline-offset-2 transition-colors font-medium inline-flex items-center gap-0.5">$1<span class="text-[10px] select-none opacity-80 font-mono">↗</span></a>'
+  )
+
   // Line breaks
   escaped = escaped.replace(/\n/g, "<br />")
 
@@ -191,43 +204,41 @@ export function ChatMessage({
               {message.action?.type === "open_project" && (
                 <button
                   type="button"
-                  onClick={() => onActionClick?.("open_project", message.action?.target || null)}
-                  className="dock-submit-btn text-xs py-2 px-3.5 inline-flex items-center gap-2"
+                  onClick={() => onActionClick?.("open_project", message.action?.target || null, message.action?.url)}
+                  className="dock-submit-btn text-xs py-2 px-3.5 inline-flex items-center gap-2 cursor-pointer shadow-[0_4px_14px_rgba(255,173,36,0.25)] hover:shadow-[0_4px_20px_rgba(255,173,36,0.4)] transition-all"
                 >
-                  <span>Explore Project: {message.action.target}</span>
+                  <span>{message.action?.label || `Explore Project: ${message.action.target}`}</span>
                   <span className="font-mono">↗</span>
                 </button>
               )}
               {message.action?.type === "open_contact" && (
                 <button
                   type="button"
-                  onClick={() => onActionClick?.("open_contact", message.action?.target || null)}
+                  onClick={() => onActionClick?.("open_contact", message.action?.target || null, message.action?.url)}
                   className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-blue-600 to-blue-500 text-white hover:from-blue-500 hover:to-blue-400 shadow-[0_4px_14px_rgba(37,99,235,0.4)] transition-all cursor-pointer"
                 >
-                  <span>Schedule Technical Discovery</span>
+                  <span>{message.action?.label || "Schedule Technical Discovery"}</span>
                   <span>✉️</span>
                 </button>
               )}
               {message.action?.type === "open_resume" && (
                 <button
                   type="button"
-                  onClick={() => onActionClick?.("open_resume", message.action?.target || null)}
+                  onClick={() => onActionClick?.("open_resume", message.action?.target || null, message.action?.url)}
                   className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/15 text-white border border-white/15 shadow-sm transition-all cursor-pointer"
                 >
-                  <span>Download Verified Resume</span>
+                  <span>{message.action?.label || "Download Verified Resume"}</span>
                   <span>📄</span>
                 </button>
               )}
-              {message.action?.type === "open_link" &&
-                message.action?.target &&
-                message.action.target.startsWith("https://") && (
+              {message.action?.type === "open_link" && (message.action?.url || message.action?.target) && (
                 <a
-                  href={message.action.target}
+                  href={message.action?.url || message.action?.target || "#"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/15 text-white border border-white/15 shadow-sm transition-all"
                 >
-                  <span>Open Resource</span>
+                  <span>{message.action?.label || "Open Resource"}</span>
                   <span>↗</span>
                 </a>
               )}
