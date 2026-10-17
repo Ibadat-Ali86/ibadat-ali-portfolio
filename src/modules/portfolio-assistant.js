@@ -85,13 +85,43 @@ export function initPortfolioAssistant() {
   }
 
   function formatInlineMarkdown(text) {
-    return text
+    let escaped = text
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/__(.*?)__/g, '<strong>$1</strong>')
       .replace(/`([^`]+)`/g, '<code>$1</code>');
+
+    // Markdown mailto links: [Label](mailto:...)
+    escaped = escaped.replace(
+      /\[([^\]]+)\]\((mailto:[^\s)]+)\)/g,
+      '<a href="$2" class="assistant-inline-link assistant-inline-link--mailto" style="color:var(--color-accent,#F5A623);text-decoration:underline;text-underline-offset:2px;font-weight:600;"><span aria-hidden="true">✉️ </span>$1</a>'
+    );
+
+    // Markdown external links: [Label](https://...)
+    escaped = escaped.replace(
+      /\[([^\]]+)\]\(((?:https?:\/\/)[^\s)]+)\)/g,
+      '<a href="$2" target="_blank" rel="noopener noreferrer" class="assistant-inline-link" style="color:var(--color-accent,#F5A623);text-decoration:underline;text-underline-offset:2px;font-weight:600;">$1<span style="font-size:10px;margin-left:2px;" aria-hidden="true">↗</span></a>'
+    );
+
+    // Raw email autolink (if not already inside an <a> tag)
+    escaped = escaped.replace(
+      /(?<!href="mailto:|">)\b([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})\b/g,
+      '<a href="mailto:$1" class="assistant-inline-link assistant-inline-link--mailto" style="color:var(--color-accent,#F5A623);text-decoration:underline;text-underline-offset:2px;font-weight:600;"><span aria-hidden="true">✉️ </span>$1</a>'
+    );
+
+    // Raw URL autolink (if not already inside an <a> tag)
+    escaped = escaped.replace(
+      /(?<!href="|>)(https?:\/\/[^\s<)]+)(?!<\/a>)/g,
+      (match) => {
+        let cleanUrl = match;
+        if (cleanUrl.endsWith('.') || cleanUrl.endsWith(',')) cleanUrl = cleanUrl.slice(0, -1);
+        return `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer" class="assistant-inline-link" style="color:var(--color-accent,#F5A623);text-decoration:underline;text-underline-offset:2px;font-weight:600;">${cleanUrl}<span style="font-size:10px;margin-left:2px;" aria-hidden="true">↗</span></a>`;
+      }
+    );
+
+    return escaped;
   }
 
   function handleActionClick(action) {
@@ -182,25 +212,51 @@ export function initPortfolioAssistant() {
       const body = renderFormattedContent(content);
       article.append(body);
 
-      // Render Action CTA button if present
+      // Render Action CTA buttons if present
       if (extras.action && extras.action.type !== 'none') {
         const actionWrap = document.createElement('div');
         actionWrap.className = 'assistant-action-card';
+        actionWrap.style.display = 'flex';
+        actionWrap.style.flexWrap = 'wrap';
+        actionWrap.style.gap = '0.5rem';
 
         const actionBtn = document.createElement('button');
         actionBtn.type = 'button';
         actionBtn.className = 'assistant-action-btn';
 
         if (extras.action.type === 'open_project') {
-          actionBtn.textContent = `🔍 View ${extras.action.target.toUpperCase()} Case Study ↗`;
+          actionBtn.textContent = `🔍 View ${extras.action.target.toUpperCase()} Case Study`;
+          actionBtn.addEventListener('click', () => handleActionClick(extras.action));
+          actionWrap.append(actionBtn);
+
+          // Direct verified project destination (live app or GitHub)
+          if (extras.action.url) {
+            const destLink = document.createElement('a');
+            destLink.href = extras.action.url;
+            destLink.target = '_blank';
+            destLink.rel = 'noopener noreferrer';
+            destLink.className = 'assistant-action-btn assistant-action-btn--dest';
+            destLink.style.textDecoration = 'none';
+            destLink.style.display = 'inline-flex';
+            destLink.style.alignItems = 'center';
+            destLink.style.gap = '0.35rem';
+            destLink.textContent = extras.action.label || 'Launch Project Destination ↗';
+            actionWrap.append(destLink);
+          }
         } else if (extras.action.type === 'open_contact') {
-          actionBtn.textContent = '📬 Discuss a Problem / Get in Touch ↗';
+          actionBtn.textContent = extras.action.label || '📬 Discuss a Problem / Get in Touch ✉️';
+          actionBtn.addEventListener('click', () => handleActionClick(extras.action));
+          actionWrap.append(actionBtn);
+        } else if (extras.action.type === 'open_resume') {
+          actionBtn.textContent = extras.action.label || '📄 Download Verified Resume ↗';
+          actionBtn.addEventListener('click', () => handleActionClick(extras.action));
+          actionWrap.append(actionBtn);
         } else {
-          actionBtn.textContent = 'Explore Link ↗';
+          actionBtn.textContent = extras.action.label || 'Explore Link ↗';
+          actionBtn.addEventListener('click', () => handleActionClick(extras.action));
+          actionWrap.append(actionBtn);
         }
 
-        actionBtn.addEventListener('click', () => handleActionClick(extras.action));
-        actionWrap.append(actionBtn);
         article.append(actionWrap);
       }
 

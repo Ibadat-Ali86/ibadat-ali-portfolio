@@ -4,6 +4,7 @@ import handler, {
   ASSISTANT_SYSTEM_PROMPT,
   NVIDIA_MODEL,
   PUBLIC_PORTFOLIO_CONTEXT,
+  PROJECT_DESTINATIONS,
   normalizeAssistantMessage,
   policyResponseFor,
   resetRateLimitsForTests
@@ -189,4 +190,13 @@ test('applies a best-effort per-client request limit', async () => {
   assert.equal(limited.statusCode, 429);
   assert.equal(limited.payload.error.code, 'RATE_LIMITED');
   assert.equal(limited.headers['Retry-After'], '60');
+});
+
+test('PROJECT_DESTINATIONS contains verified project URLs and labels', () => {
+  assert.ok(PROJECT_DESTINATIONS.codescope);
+  assert.equal(PROJECT_DESTINATIONS.codescope.url, 'https://github.com/Ibadat-Ali86/codescope-mcp-preflight');
+  assert.ok(PROJECT_DESTINATIONS.sentineliq);
+  assert.equal(PROJECT_DESTINATIONS.sentineliq.url, 'https://sentinel-iq-nasa.vercel.app');
+  assert.ok(PROJECT_DESTINATIONS.adaptiq);
+  assert.equal(PROJECT_DESTINATIONS.adaptiq.url, 'https://huggingface.co/spaces/ibadatali/walmart-sales-forecasting-saas');
 });

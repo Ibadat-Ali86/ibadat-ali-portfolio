@@ -171,14 +171,103 @@ function deriveContextualFollowUps(text) {
   ];
 }
 
+export const PROJECT_DESTINATIONS = {
+  codescope: {
+    title: "CodeScope MCP Preflight",
+    url: "https://github.com/Ibadat-Ali86/codescope-mcp-preflight",
+    actionLabel: "Inspect CodeScope MCP on GitHub ↗"
+  },
+  "payguard-ai": {
+    title: "PayGuard AI",
+    url: "https://ibadat-ali-portfolio.vercel.app/#featured",
+    actionLabel: "View PayGuard AI Architecture ↗"
+  },
+  sentineliq: {
+    title: "SentinelIQ NASA Anomaly Detection",
+    url: "https://sentinel-iq-nasa.vercel.app",
+    actionLabel: "Launch SentinelIQ Live Application ↗"
+  },
+  adaptiq: {
+    title: "AdaptIQ Retail Sales Forecasting SaaS",
+    url: "https://huggingface.co/spaces/ibadatali/walmart-sales-forecasting-saas",
+    actionLabel: "Open AdaptIQ on Hugging Face ↗"
+  },
+  carevision: {
+    title: "CareVision Assisted Living Safety Analytics",
+    url: "https://github.com/Ibadat-Ali86/Computer-Vision-Projects",
+    actionLabel: "Explore CareVision on GitHub ↗"
+  },
+  evershine: {
+    title: "Evershine Academy LMS",
+    url: "https://evershineacadmey.com/",
+    actionLabel: "Visit Evershine Academy Website ↗"
+  },
+  topolite: {
+    title: "Topolite Analytics B2B Portal",
+    url: "https://github.com/Ibadat-Ali86/Topolite_Client_Project",
+    actionLabel: "View Topolite Client Portal on GitHub ↗"
+  },
+  "vital-link": {
+    title: "VitalLink Patient Monitoring Dashboard",
+    url: "https://github.com/Ibadat-Ali86/Full-Stack-Web-Development-Projects",
+    actionLabel: "Explore VitalLink Telehealth Stack on GitHub ↗"
+  },
+  "ai-lead-generation": {
+    title: "Autonomous Lead Generation Engine",
+    url: "https://github.com/Ibadat-Ali86/Agentic-AI-Projects",
+    actionLabel: "View Lead Gen Agentic AI on GitHub ↗"
+  },
+  "ai-restaurant-chatbot": {
+    title: "Conversational Restaurant Agent",
+    url: "https://github.com/Ibadat-Ali86/Customer_Support_AI_Agent_Using_LangGraph",
+    actionLabel: "Explore LangGraph Restaurant Agent on GitHub ↗"
+  },
+  "covid-analytics": {
+    title: "Global COVID-19 Epidemiology Tracker",
+    url: "https://github.com/Ibadat-Ali86/Data-Visualization_Dashboard_WebApps",
+    actionLabel: "View Epidemiology Dashboard on GitHub ↗"
+  },
+  "pakistan-ecommerce": {
+    title: "Pakistan E-Commerce Analytics",
+    url: "https://github.com/Ibadat-Ali86/Exploratory_Data_Analysis_Projects",
+    actionLabel: "View E-Commerce Analytics on GitHub ↗"
+  },
+  "vendor-analysis": {
+    title: "Enterprise Vendor Performance Scoring",
+    url: "https://github.com/Ibadat-Ali86/Exploratory_Data_Analysis_Projects",
+    actionLabel: "View Vendor Scoring Model on GitHub ↗"
+  },
+  netflix: {
+    title: "Netflix Content Strategy Analytics",
+    url: "https://github.com/Ibadat-Ali86/Data-Visualization_Dashboard_WebApps",
+    actionLabel: "View Netflix Analysis on GitHub ↗"
+  },
+  "employee-form": {
+    title: "Employee Information Form",
+    url: "https://github.com/Ibadat-Ali86/R_Shiny-Web_Apps/blob/main/Scenario1.R",
+    actionLabel: "View Shiny App Script on GitHub ↗"
+  }
+};
+
 function deriveAction(text) {
   const lower = text.toLowerCase();
-  if (lower.includes('codescope')) return { type: 'open_project', target: 'codescope' };
-  if (lower.includes('payguard')) return { type: 'open_project', target: 'payguard-ai' };
-  if (lower.includes('sentinel')) return { type: 'open_project', target: 'sentineliq' };
-  if (lower.includes('adaptiq')) return { type: 'open_project', target: 'adaptiq' };
-  if (lower.includes('contact') || lower.includes('hire') || lower.includes('email') || lower.includes('discuss')) {
-    return { type: 'open_contact', target: 'contact' };
+  for (const [slug, dest] of Object.entries(PROJECT_DESTINATIONS)) {
+    if (lower.includes(slug) || lower.includes(slug.replace(/-/g, ' '))) {
+      return {
+        type: 'open_project',
+        target: slug,
+        label: dest.actionLabel,
+        url: dest.url
+      };
+    }
+  }
+  if (lower.includes('contact') || lower.includes('hire') || lower.includes('email') || lower.includes('discuss') || lower.includes('reach out')) {
+    return {
+      type: 'open_contact',
+      target: 'contact',
+      label: '📬 Get in Touch via Email ↗',
+      url: 'mailto:ibadcodes@gmail.com?subject=Technical%20Consultation%20via%20Portfolio%20Agent'
+    };
   }
   return { type: 'none', target: null };
 }
