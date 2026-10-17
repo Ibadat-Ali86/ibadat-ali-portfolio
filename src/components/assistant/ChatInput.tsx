@@ -18,7 +18,7 @@ interface ChatInputProps {
   onModeChange?: (mode: ConversationMode) => void
 }
 
-const MAX_CHARS = 400
+const MAX_CHARS = 2500
 
 export function ChatInput({
   onSendMessage,
@@ -30,12 +30,12 @@ export function ChatInput({
   const [input, setInput] = useState("")
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
-  // Auto-resize textarea to fit multi-line queries (up to 120px)
+  // Auto-resize textarea to fit multi-line queries (up to 180px)
   useEffect(() => {
     const el = textareaRef.current
     if (!el) return
     el.style.height = "auto"
-    const nextHeight = Math.min(el.scrollHeight, 130)
+    const nextHeight = Math.min(el.scrollHeight, 180)
     el.style.height = `${Math.max(42, nextHeight)}px`
   }, [input])
 
@@ -102,7 +102,7 @@ export function ChatInput({
           maxLength={MAX_CHARS}
           rows={1}
           autoComplete="off"
-          className="w-full resize-none bg-transparent text-sm text-white placeholder-slate-400/70 outline-none leading-relaxed min-h-[42px] max-h-[130px] scrollbar-thin scrollbar-thumb-white/10"
+          className="w-full resize-none bg-transparent text-sm text-white placeholder-slate-400/70 outline-none leading-relaxed min-h-[42px] max-h-[180px] scrollbar-thin scrollbar-thumb-white/10"
         />
 
         {input.length > 0 && !disabled && (
@@ -170,9 +170,9 @@ export function ChatInput({
 
         {/* Right Tools: Character Counter & Send Button */}
         <div className="flex items-center gap-2.5">
-          {input.length > 200 && (
+          {input.length > 800 && (
             <span className="text-[10px] font-mono text-slate-400 select-none">
-              {MAX_CHARS - input.length}
+              {input.length} / {MAX_CHARS}
             </span>
           )}
 
