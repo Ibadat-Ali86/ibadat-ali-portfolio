@@ -202,9 +202,9 @@ test('PROJECT_DESTINATIONS contains verified project URLs and labels', () => {
   assert.equal(PROJECT_DESTINATIONS.adaptiq.url, 'https://huggingface.co/spaces/ibadatali/walmart-sales-forecasting-saas');
 });
 
-test('accepts detailed client inquiry up to 5000 characters and handles long assistant history', async () => {
-  const longClientPrompt = 'We need an AI agent for automated workflow verification. '.repeat(80).slice(0, 4500);
-  assert.ok(longClientPrompt.length > 4000);
+test('accepts detailed client inquiry up to 10000 characters and handles long assistant history', async () => {
+  const longClientPrompt = 'We need an AI agent for automated workflow verification. '.repeat(160).slice(0, 9200);
+  assert.ok(longClientPrompt.length > 8000);
 
   const res = createResponse();
   await handler(createRequest({
@@ -222,8 +222,8 @@ test('accepts detailed client inquiry up to 5000 characters and handles long ass
   assert.equal(res.payload.error.code, 'ASSISTANT_NOT_CONFIGURED');
 });
 
-test('rejects user message exceeding 5000 characters with 400 INVALID_MESSAGES', async () => {
-  const overlyLongPrompt = 'a'.repeat(5100);
+test('rejects user message exceeding 10000 characters with 400 INVALID_MESSAGES', async () => {
+  const overlyLongPrompt = 'a'.repeat(10100);
   const res = createResponse();
   await handler(createRequest({
     body: {
@@ -233,7 +233,7 @@ test('rejects user message exceeding 5000 characters with 400 INVALID_MESSAGES',
 
   assert.equal(res.statusCode, 400);
   assert.equal(res.payload.error.code, 'INVALID_MESSAGES');
-  assert.match(res.payload.error.message, /5000 characters/);
+  assert.match(res.payload.error.message, /10000 characters/);
 });
 
 test('does not misclassify enumeration of CodeScope GitHub and Evershine as unsafe model leak', () => {

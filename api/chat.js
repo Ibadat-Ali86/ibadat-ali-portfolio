@@ -9,10 +9,10 @@ const NVIDIA_CHAT_URL = 'https://integrate.api.nvidia.com/v1/chat/completions';
 const GROQ_CHAT_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
 export const MAX_MESSAGES = 8;
-export const MAX_USER_MESSAGE_LENGTH = 5000;
-export const MAX_ASSISTANT_MESSAGE_LENGTH = 6000;
+export const MAX_USER_MESSAGE_LENGTH = 10000;
+export const MAX_ASSISTANT_MESSAGE_LENGTH = 8000;
 export const MAX_MESSAGE_LENGTH = MAX_USER_MESSAGE_LENGTH;
-export const MAX_BODY_BYTES = 64_000;
+export const MAX_BODY_BYTES = 128_000;
 export const REQUEST_TIMEOUT_MS = 25_000;
 export const RATE_LIMIT_WINDOW_MS = 60_000;
 export const RATE_LIMIT_MAX_REQUESTS = 10;

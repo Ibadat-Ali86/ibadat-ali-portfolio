@@ -1,6 +1,6 @@
 import { assistantSuggestions } from '../data/portfolio-profile.js';
 
-const MAX_MESSAGE_LENGTH = 5000;
+const MAX_MESSAGE_LENGTH = 10000;
 const REQUEST_TIMEOUT_MS = 30_000;
 
 export function initPortfolioAssistant() {
@@ -458,7 +458,7 @@ export function initPortfolioAssistant() {
   input?.addEventListener('input', () => {
     if (counter) {
       counter.textContent = `${input.value.length} / ${MAX_MESSAGE_LENGTH}`;
-      if (input.value.length >= 4500) {
+      if (input.value.length >= 9000) {
         counter.style.color = '#F5A623';
         counter.style.fontWeight = '700';
       } else {
