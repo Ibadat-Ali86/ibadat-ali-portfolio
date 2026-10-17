@@ -34,7 +34,7 @@ export function ChatWidget({
     <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end">
       {/* Expanded Chat Window */}
       {isOpen && (
-        <div className="w-[94vw] sm:w-[480px] md:w-[540px] mb-3.5 shadow-[0_24px_70px_rgba(0,0,0,0.7)] animate-fade-in">
+        <div className="w-[95vw] sm:w-[540px] md:w-[600px] lg:w-[640px] h-[700px] md:h-[760px] max-h-[88vh] mb-3.5 shadow-[0_24px_70px_rgba(0,0,0,0.7)] animate-fade-in flex flex-col">
           <ChatWindow
             initialMode={initialMode}
             onClose={() => setIsOpen(false)}

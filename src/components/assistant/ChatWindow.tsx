@@ -218,7 +218,7 @@ export function ChatWindow({
   }
 
   return (
-    <div className="flex flex-col h-full max-h-[85vh] bg-[#0c0e15]/95 backdrop-blur-2xl border border-white/[0.12] rounded-3xl shadow-[0_24px_64px_rgba(0,0,0,0.7)] overflow-hidden">
+    <div className="flex flex-col h-full max-h-[88vh] bg-[#0c0e15]/95 backdrop-blur-2xl border border-white/[0.12] rounded-3xl shadow-[0_24px_64px_rgba(0,0,0,0.7)] overflow-hidden">
       {/* Header Telemetry Bar */}
       <div className="flex items-center justify-between px-4 sm:px-5 py-3.5 border-b border-white/[0.08] bg-white/[0.02]">
         <div className="flex items-center gap-3">

@@ -76,9 +76,9 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--amber); out
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1180px;
-  min-height: calc(100dvh - clamp(24px, 5vw, 72px));
-  max-height: 94vh;
+  max-width: 1240px;
+  min-height: calc(100dvh - clamp(20px, 4vw, 56px));
+  max-height: 96vh;
   border-radius: 24px;
   border: 1px solid var(--rule-strong);
   background: linear-gradient(180deg, rgba(16, 20, 29, 0.88) 0%, rgba(9, 11, 16, 0.94) 100%);
