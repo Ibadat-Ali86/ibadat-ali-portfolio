@@ -12,12 +12,12 @@ export const RequestSchema = z.object({
     .string()
     .trim()
     .min(1, "Message is required")
-    .max(5000, "Message length must not exceed 5000 characters"),
+    .max(10000, "Message length must not exceed 10000 characters"),
   history: z
     .array(
       z.object({
         role: z.enum(["user", "assistant"]),
-        content: z.string().max(6000, "History message exceeds max length")
+        content: z.string().max(8000, "History message exceeds max length")
       })
     )
     .max(10, "History cannot exceed 10 messages")

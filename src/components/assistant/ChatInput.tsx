@@ -18,7 +18,7 @@ interface ChatInputProps {
   onModeChange?: (mode: ConversationMode) => void
 }
 
-const MAX_CHARS = 5000
+const MAX_CHARS = 10000
 
 export function ChatInput({
   onSendMessage,
@@ -102,7 +102,7 @@ export function ChatInput({
       {/* Truncation & Context Safety Notice */}
       {isTruncatedNotice && (
         <div className="px-3.5 py-1.5 text-[11px] bg-amber-500/10 border-b border-amber-500/20 text-amber-300 flex items-center justify-between">
-          <span>Inquiry smoothly capped at 5,000 characters for optimal agent context. For large RFPs, email ibadcodes@gmail.com.</span>
+          <span>Inquiry smoothly capped at 10,000 characters for optimal agent context. For large RFPs, email ibadcodes@gmail.com.</span>
           <button
             type="button"
             onClick={() => setIsTruncatedNotice(false)}
@@ -198,7 +198,7 @@ export function ChatInput({
           {input.length > 500 && (
             <span
               className={`text-[10px] font-mono select-none transition-colors ${
-                input.length >= 4500
+                input.length >= 9000
                   ? "text-amber-400 font-semibold"
                   : "text-slate-400"
               }`}

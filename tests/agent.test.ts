@@ -76,7 +76,7 @@ test("Agent provides open_contact action for contact inquiry", async () => {
   assert.ok(res.answer.includes("[ibadcodes@gmail.com](mailto:ibadcodes@gmail.com)"))
 })
 
-test("Agent accepts detailed client technical inquiries up to 5000 characters without 400 error", async () => {
+test("Agent accepts detailed client technical inquiries up to 10000 characters without 400 error", async () => {
   const deepClientPrompt = `
 We are looking for a Senior AI Systems Engineer to build an enterprise RAG and automated OCR validation system.
 Here is our detailed technical requirement and scope:
@@ -85,9 +85,9 @@ Here is our detailed technical requirement and scope:
 3. Machine learning and time-series forecasting: Demand forecasting, supply-chain spikes, XGBoost, LightGBM, and predictive telemetry.
 4. Computer vision & anomaly detection: Real-time surveillance tracking, YOLO models, and enterprise audit pipelines.
 Does Ibadat Ali have proven production delivery experience in these domains, and how does his past architecture in PayGuard AI, CodeScope, AdaptIQ, and SentinelIQ prove he can execute this scope?
-`.repeat(5).slice(0, 4500)
+`.repeat(10).slice(0, 9200)
 
-  assert.ok(deepClientPrompt.length > 4000, "Prompt should exceed 4000 characters")
+  assert.ok(deepClientPrompt.length > 8000, "Prompt should exceed 8000 characters")
   const res = await runPortfolioAgent({ message: deepClientPrompt })
   assert.ok(res.answer.length > 0, "Expected valid answer for long client inquiry")
   assert.doesNotMatch(res.answer, /Invalid request payload/i)

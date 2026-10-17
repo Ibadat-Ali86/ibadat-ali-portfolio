@@ -155,12 +155,12 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  // Bound message length to protect against buffer overflow & token exhaustion (5,000 characters)
-  if (message.length > 5000) {
+  // Bound message length to protect against buffer overflow & token exhaustion (10,000 characters)
+  if (message.length > 10000) {
     return NextResponse.json(
       {
         answer:
-          "Your inquiry is exceptionally detailed and exceeds our 5,000-character context limit. Please condense slightly, or reach out to Ibadat directly at ibadcodes@gmail.com with your full project specifications or RFP documents! 🛸",
+          "Your inquiry is exceptionally detailed and exceeds our 10,000-character context limit. Please condense slightly, or reach out to Ibadat directly at ibadcodes@gmail.com with your full project specifications or RFP documents! 🛸",
         followUps: [
           "How can I contact Ibadat directly?",
           "Tell me about CodeScope MCP Preflight.",

@@ -85,7 +85,7 @@ export function sanitizeUserInput(input: string): string {
     }
   }
 
-  return cleaned.trim().slice(0, 5000)
+  return cleaned.trim().slice(0, 10000)
 }
 
 /**
