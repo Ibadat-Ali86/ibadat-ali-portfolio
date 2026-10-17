@@ -18,7 +18,7 @@ interface ChatInputProps {
   onModeChange?: (mode: ConversationMode) => void
 }
 
-const MAX_CHARS = 2500
+const MAX_CHARS = 5000
 
 export function ChatInput({
   onSendMessage,
@@ -28,6 +28,7 @@ export function ChatInput({
   onModeChange
 }: ChatInputProps) {
   const [input, setInput] = useState("")
+  const [isTruncatedNotice, setIsTruncatedNotice] = useState(false)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   // Auto-resize textarea to fit multi-line queries (up to 180px)
@@ -46,6 +47,7 @@ export function ChatInput({
 
     onSendMessage(trimmed)
     setInput("")
+    setIsTruncatedNotice(false)
 
     if (textareaRef.current) {
       textareaRef.current.style.height = "42px"
@@ -60,11 +62,19 @@ export function ChatInput({
   }
 
   function handleChange(e: ChangeEvent<HTMLTextAreaElement>) {
-    setInput(e.target.value.slice(0, MAX_CHARS))
+    const val = e.target.value
+    if (val.length > MAX_CHARS) {
+      setInput(val.slice(0, MAX_CHARS))
+      setIsTruncatedNotice(true)
+    } else {
+      setInput(val)
+      if (isTruncatedNotice) setIsTruncatedNotice(false)
+    }
   }
 
   function handleClear() {
     setInput("")
+    setIsTruncatedNotice(false)
     if (textareaRef.current) {
       textareaRef.current.style.height = "42px"
       textareaRef.current.focus()
@@ -88,6 +98,21 @@ export function ChatInput({
       <label htmlFor="agent-chat-input" className="sr-only">
         Ask a question about Ibadat Ali
       </label>
+
+      {/* Truncation & Context Safety Notice */}
+      {isTruncatedNotice && (
+        <div className="px-3.5 py-1.5 text-[11px] bg-amber-500/10 border-b border-amber-500/20 text-amber-300 flex items-center justify-between">
+          <span>Inquiry smoothly capped at 5,000 characters for optimal agent context. For large RFPs, email ibadcodes@gmail.com.</span>
+          <button
+            type="button"
+            onClick={() => setIsTruncatedNotice(false)}
+            className="text-amber-400 hover:text-white ml-2 text-xs cursor-pointer"
+            aria-label="Dismiss notice"
+          >
+            ✕
+          </button>
+        </div>
+      )}
 
       {/* Top Textarea Area */}
       <div className="relative flex items-start px-3.5 pt-2.5 pb-1.5">
@@ -170,8 +195,14 @@ export function ChatInput({
 
         {/* Right Tools: Character Counter & Send Button */}
         <div className="flex items-center gap-2.5">
-          {input.length > 800 && (
-            <span className="text-[10px] font-mono text-slate-400 select-none">
+          {input.length > 500 && (
+            <span
+              className={`text-[10px] font-mono select-none transition-colors ${
+                input.length >= 4500
+                  ? "text-amber-400 font-semibold"
+                  : "text-slate-400"
+              }`}
+            >
               {input.length} / {MAX_CHARS}
             </span>
           )}

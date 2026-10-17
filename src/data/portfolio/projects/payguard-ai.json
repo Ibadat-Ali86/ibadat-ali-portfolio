@@ -50,7 +50,14 @@
     "ambiguous evidence",
     "manual review",
     "fail closed",
-    "duplicate screenshot"
+    "duplicate screenshot",
+    "recent",
+    "latest",
+    "newest",
+    "completed",
+    "recent project",
+    "latest project",
+    "completed project"
   ],
   "aliases": [
     "WhatsApp Transaction Verification AI Agent",
@@ -58,7 +65,9 @@
     "PayGuard AI",
     "WhatsApp payment verification",
     "transaction screenshot verification",
-    "payment evidence workflow"
+    "payment evidence workflow",
+    "recent project",
+    "latest completed project"
   ],
   "outcomes": [
     "Delivered payment-verification workflow with queueing, OCR fallback, Stripe reconciliation, duplicate handling, and handoff documentation.",

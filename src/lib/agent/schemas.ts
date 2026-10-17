@@ -12,15 +12,15 @@ export const RequestSchema = z.object({
     .string()
     .trim()
     .min(1, "Message is required")
-    .max(2500, "Message length must not exceed 2500 characters"),
+    .max(5000, "Message length must not exceed 5000 characters"),
   history: z
     .array(
       z.object({
         role: z.enum(["user", "assistant"]),
-        content: z.string().max(4000, "History message exceeds max length")
+        content: z.string().max(6000, "History message exceeds max length")
       })
     )
-    .max(8, "History cannot exceed 8 messages")
+    .max(10, "History cannot exceed 10 messages")
     .optional()
     .default([])
 })
@@ -42,7 +42,7 @@ export const AgentResponseSchema = z.object({
   answer: z
     .string()
     .min(1, "Answer cannot be empty")
-    .max(3500, "Answer exceeds maximum length"),
+    .max(4000, "Answer exceeds maximum length"),
   followUps: z
     .array(z.string().min(1).max(140))
     .min(1)

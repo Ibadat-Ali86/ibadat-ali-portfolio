@@ -53,7 +53,13 @@
     "extend",
     "create",
     "path guards",
-    "untrusted source"
+    "untrusted source",
+    "recent",
+    "latest",
+    "newest",
+    "completed",
+    "recent project",
+    "latest project"
   ],
   "aliases": [
     "CodeScope MCP Preflight",
@@ -61,7 +67,9 @@
     "CodeScope",
     "CodeScope MCP",
     "repository preflight",
-    "MCP code intelligence"
+    "MCP code intelligence",
+    "recent open-source project",
+    "latest developer tool"
   ],
   "outcomes": [
     "Open-source MCP tooling for structured repository context before agent actions.",

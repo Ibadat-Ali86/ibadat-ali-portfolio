@@ -33,7 +33,17 @@ const ALIAS_MAP: Record<string, string> = {
   hire: "hire contract services consulting freelance",
   pricing: "services consulting freelance rates",
   experience: "experience career soft-shack fiverr roles",
-  github: "github repositories open-source code"
+  github: "github repositories open-source code",
+  recent: "recent latest completed projects payguard-ai codescope carevision sentineliq adaptiq",
+  latest: "latest recent completed projects payguard-ai codescope carevision sentineliq adaptiq",
+  newest: "newest latest recent completed projects payguard-ai codescope carevision sentineliq adaptiq",
+  completed: "completed production delivered projects payguard-ai codescope carevision sentineliq adaptiq",
+  "recent project": "recent latest completed projects payguard-ai codescope carevision sentineliq adaptiq",
+  "recent projects": "recent latest completed projects payguard-ai codescope carevision sentineliq adaptiq",
+  "latest project": "latest recent completed projects payguard-ai codescope carevision sentineliq adaptiq",
+  "latest projects": "latest recent completed projects payguard-ai codescope carevision sentineliq adaptiq",
+  "completed project": "completed production delivered projects payguard-ai codescope carevision sentineliq adaptiq",
+  "completed projects": "completed production delivered projects payguard-ai codescope carevision sentineliq adaptiq"
 }
 
 // Patterns commonly associated with prompt injection attempts
@@ -75,7 +85,7 @@ export function sanitizeUserInput(input: string): string {
     }
   }
 
-  return cleaned.trim().slice(0, 1000)
+  return cleaned.trim().slice(0, 5000)
 }
 
 /**

@@ -155,19 +155,24 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  // Bound message length to protect against abuse
-  if (message.length > 500) {
+  // Bound message length to protect against buffer overflow & token exhaustion (5,000 characters)
+  if (message.length > 5000) {
     return NextResponse.json(
       {
         answer:
-          "Your transmission exceeds the maximum allowed message length (500 characters). Please condense your inquiry so Orbi's cosmic receiver can process it! 🛸",
+          "Your inquiry is exceptionally detailed and exceeds our 5,000-character context limit. Please condense slightly, or reach out to Ibadat directly at ibadcodes@gmail.com with your full project specifications or RFP documents! 🛸",
         followUps: [
-          "Summarize Ibadat's core AI skills.",
-          "What is CodeScope MCP Preflight?",
-          "How can I contact Ibadat?"
+          "How can I contact Ibadat directly?",
+          "Tell me about CodeScope MCP Preflight.",
+          "What AI automation systems has Ibadat built?"
         ],
         sourceIds: [],
-        action: { type: "none", target: null }
+        action: {
+          type: "open_contact",
+          target: "contact",
+          label: "📬 Email Ibadat Directly ↗",
+          url: "mailto:ibadcodes@gmail.com?subject=Detailed%20Project%20Inquiry%20via%20Portfolio%20Agent"
+        }
       },
       { status: 400 }
     )

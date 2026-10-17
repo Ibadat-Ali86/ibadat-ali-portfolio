@@ -51,14 +51,20 @@
     "step-level audit logging",
     "offline fallback",
     "human review",
-    "clinical decision support"
+    "clinical decision support",
+    "recent",
+    "latest",
+    "newest",
+    "completed"
   ],
   "aliases": [
     "CareVision",
     "carevision",
     "CareVision PWA",
     "CareVision clinical decision-support prototype",
-    "multimodal review PWA"
+    "multimodal review PWA",
+    "recent hackathon project",
+    "latest multimodal AI"
   ],
   "outcomes": [
     "Gemma hackathon submission with multimodal inputs, audit logging, and offline fallback.",

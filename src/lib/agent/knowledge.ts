@@ -378,6 +378,29 @@ export function loadAllChunks(): KnowledgeChunk[] {
         )
       }
     }
+
+    // Synthesized Chronological Timeline Chunk of Recent Deliveries
+    chunks.push(
+      createChunk({
+        id: "recent-projects-timeline",
+        entityId: "recent-projects",
+        entityType: "project",
+        section: "recency",
+        title: "Ibadat Ali - Recent Completed Projects & Systems (Chronological Deliveries)",
+        text: "Ibadat Ali's most recent completed systems and engineering deliveries in chronological order: 1. PayGuard AI (Delivered September 2026): Production WhatsApp transaction verification AI agent featuring Baileys WhatsApp automation, FastAPI OCR fallback pipeline (Tesseract OCR + Groq Vision), automated Stripe API reconciliation, n8n webhook orchestration, idempotency checking, duplicate detection, and human-in-the-loop review. Tested with 100 Node.js and 153 Python tests passing on 2026-09-24. 2. CodeScope MCP Preflight (Open-Source 2026): Local-first Model Context Protocol (MCP) server providing AST code intelligence via Tree-sitter and semantic retrieval via Chroma and sentence-transformers for AI coding agents before making modifications. 3. CareVision (Gemma 4 Hackathon 2026): Multimodal clinical workflow combining Gemini 2.0 Flash structured outputs, step-level audit logging, PostgreSQL persistence, and offline inference fallback. 4. SentinelIQ (Client Project / NASA CMAPSS): Predictive maintenance and turbofan anomaly detection combining sequence models (TCN-LSTM), dual anomaly detection (Isolation Forest + Autoencoder), SHAP interpretability, and PuLP maintenance scheduling. 5. AdaptIQ / ForecastAI: Production retail demand forecasting SaaS on Hugging Face pairing Prophet, XGBoost, SARIMA, and LSTM with regime selection and downloadable PDF/CSV reports.",
+        keywords: [
+          "recent", "latest", "newest", "completed", "recent projects", "recent project",
+          "latest project", "latest projects", "recent work", "completed work",
+          "payguard", "payguard-ai", "codescope", "carevision", "sentineliq", "adaptiq"
+        ],
+        technologies: [
+          "WhatsApp Baileys", "FastAPI", "Groq Vision", "Tesseract OCR", "n8n", "Stripe API",
+          "MCP", "Tree-sitter", "Chroma", "Gemini 2.0 Flash", "PyTorch", "Prophet"
+        ],
+        category: ["AI Agents", "Developer Tools", "Applied ML", "Full-Stack AI"],
+        sourceUrl: "https://ibadat-ali-portfolio.vercel.app/#featured"
+      })
+    )
   }
 
   cachedChunks = chunks
