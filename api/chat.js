@@ -8,13 +8,15 @@ export const GROQ_FALLBACK_MODEL = process.env.GROQ_FALLBACK_MODEL || 'openai/gp
 const NVIDIA_CHAT_URL = 'https://integrate.api.nvidia.com/v1/chat/completions';
 const GROQ_CHAT_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
-const MAX_MESSAGES = 8;
-const MAX_MESSAGE_LENGTH = 700;
-const MAX_BODY_BYTES = 12_000;
-const REQUEST_TIMEOUT_MS = 25_000;
-const RATE_LIMIT_WINDOW_MS = 60_000;
-const RATE_LIMIT_MAX_REQUESTS = 10;
-const MAX_RESPONSE_WORDS = 120;
+export const MAX_MESSAGES = 8;
+export const MAX_USER_MESSAGE_LENGTH = 2500;
+export const MAX_ASSISTANT_MESSAGE_LENGTH = 4000;
+export const MAX_MESSAGE_LENGTH = MAX_USER_MESSAGE_LENGTH;
+export const MAX_BODY_BYTES = 32_000;
+export const REQUEST_TIMEOUT_MS = 25_000;
+export const RATE_LIMIT_WINDOW_MS = 60_000;
+export const RATE_LIMIT_MAX_REQUESTS = 10;
+export const MAX_RESPONSE_WORDS = 120;
 const rateLimits = new Map();
 
 const publicProjects = professionalProjectSlugs
@@ -84,13 +86,18 @@ function parseBody(request) {
 
 function validateMessages(messages) {
   if (!Array.isArray(messages) || messages.length === 0 || messages.length > MAX_MESSAGES) return false;
-  const validContent = messages.every((message) =>
-    message &&
-    (message.role === 'user' || message.role === 'assistant') &&
-    typeof message.content === 'string' &&
-    message.content.trim().length > 0 &&
-    message.content.length <= MAX_MESSAGE_LENGTH
-  );
+  const validContent = messages.every((message) => {
+    if (!message || typeof message !== 'object') return false;
+    if (message.role !== 'user' && message.role !== 'assistant') return false;
+    if (typeof message.content !== 'string' || message.content.trim().length === 0) return false;
+    if (message.role === 'user') {
+      return message.content.length <= MAX_USER_MESSAGE_LENGTH;
+    }
+    if (message.role === 'assistant') {
+      return message.content.length <= MAX_ASSISTANT_MESSAGE_LENGTH;
+    }
+    return false;
+  });
   const alternates = messages.every((message, index) => index === 0 || message.role !== messages[index - 1].role);
   return validContent && alternates && messages[0]?.role === 'user' && messages.at(-1)?.role === 'user';
 }
@@ -393,7 +400,7 @@ export default async function handler(request, response) {
   }
 
   if (!validateMessages(body?.messages)) {
-    return sendError(response, 400, 'INVALID_MESSAGES', `Send 1 to ${MAX_MESSAGES} non-empty messages of at most ${MAX_MESSAGE_LENGTH} characters each.`);
+    return sendError(response, 400, 'INVALID_MESSAGES', `Send 1 to ${MAX_MESSAGES} non-empty messages of at most ${MAX_USER_MESSAGE_LENGTH} characters each.`);
   }
 
   const latestQuestion = body.messages.at(-1)?.content || '';

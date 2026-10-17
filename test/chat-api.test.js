@@ -200,3 +200,37 @@ test('PROJECT_DESTINATIONS contains verified project URLs and labels', () => {
   assert.ok(PROJECT_DESTINATIONS.adaptiq);
   assert.equal(PROJECT_DESTINATIONS.adaptiq.url, 'https://huggingface.co/spaces/ibadatali/walmart-sales-forecasting-saas');
 });
+
+test('accepts detailed client inquiry up to 2500 characters and handles long assistant history', async () => {
+  const longClientPrompt = 'We need an AI agent for automated workflow verification. '.repeat(40).slice(0, 2200);
+  assert.ok(longClientPrompt.length > 2000);
+
+  const res = createResponse();
+  await handler(createRequest({
+    body: {
+      messages: [
+        { role: 'user', content: 'Tell me about CodeScope MCP' },
+        { role: 'assistant', content: 'CodeScope MCP Preflight is a local-first preflight verification engine. '.repeat(15) }, // ~1050 chars (exceeded old 700 limit!)
+        { role: 'user', content: longClientPrompt }
+      ]
+    }
+  }), res);
+
+  // Status should be 503 (missing NVIDIA_API_KEY in test runner), NOT 400 INVALID_MESSAGES!
+  assert.equal(res.statusCode, 503);
+  assert.equal(res.payload.error.code, 'ASSISTANT_NOT_CONFIGURED');
+});
+
+test('rejects user message exceeding 2500 characters with 400 INVALID_MESSAGES', async () => {
+  const overlyLongPrompt = 'a'.repeat(2600);
+  const res = createResponse();
+  await handler(createRequest({
+    body: {
+      messages: [{ role: 'user', content: overlyLongPrompt }]
+    }
+  }), res);
+
+  assert.equal(res.statusCode, 400);
+  assert.equal(res.payload.error.code, 'INVALID_MESSAGES');
+  assert.match(res.payload.error.message, /2500 characters/);
+});

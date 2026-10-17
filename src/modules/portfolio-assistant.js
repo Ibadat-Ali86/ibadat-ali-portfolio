@@ -1,6 +1,6 @@
 import { assistantSuggestions } from '../data/portfolio-profile.js';
 
-const MAX_MESSAGE_LENGTH = 700;
+const MAX_MESSAGE_LENGTH = 2500;
 const REQUEST_TIMEOUT_MS = 30_000;
 
 export function initPortfolioAssistant() {
@@ -375,10 +375,17 @@ export function initPortfolioAssistant() {
     const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
     try {
+      const payloadMessages = conversation.slice(-6).map((msg) => {
+        if (msg.role === 'assistant' && msg.content.length > 2000) {
+          return { ...msg, content: msg.content.slice(0, 2000) + '…' };
+        }
+        return msg;
+      });
+
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: conversation.slice(-7) }),
+        body: JSON.stringify({ messages: payloadMessages }),
         signal: controller.signal
       });
 
@@ -444,11 +451,15 @@ export function initPortfolioAssistant() {
     if (input) ask(input.value);
   });
 
+  if (input) {
+    input.maxLength = MAX_MESSAGE_LENGTH;
+  }
+
   input?.addEventListener('input', () => {
     if (counter) counter.textContent = `${input.value.length} / ${MAX_MESSAGE_LENGTH}`;
-    // Auto-grow textarea
+    // Auto-grow textarea up to 180px
     input.style.height = 'auto';
-    input.style.height = `${Math.min(input.scrollHeight, 110)}px`;
+    input.style.height = `${Math.min(input.scrollHeight, 180)}px`;
   });
 
   input?.addEventListener('keydown', (event) => {
