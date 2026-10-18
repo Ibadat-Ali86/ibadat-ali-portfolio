@@ -3,8 +3,11 @@ import test from 'node:test';
 import handler, {
   ASSISTANT_SYSTEM_PROMPT,
   NVIDIA_MODEL,
+  MAX_MESSAGES,
   PUBLIC_PORTFOLIO_CONTEXT,
   PROJECT_DESTINATIONS,
+  prepareMessages,
+  validateMessages,
   normalizeAssistantMessage,
   policyResponseFor,
   containsRestrictedOutput,
@@ -240,3 +243,58 @@ test('does not misclassify enumeration of CodeScope GitHub and Evershine as unsa
   const safeEnumeration = 'Ibadat built CodeScope MCP Preflight with open source available on GitHub. He also developed Evershine Academy LMS for client education.';
   assert.equal(containsRestrictedOutput(safeEnumeration), false);
 });
+
+test('prepareMessages normalizes transcripts and drops leading assistant turns', () => {
+  assert.equal(MAX_MESSAGES, 10);
+
+  // Non-array returns empty
+  assert.deepEqual(prepareMessages(null), []);
+  assert.deepEqual(prepareMessages('string'), []);
+
+  // Drops leading assistant message from sliced window
+  const rawWithLeadingAssistant = [
+    { role: 'assistant', content: 'Greetings!' },
+    { role: 'user', content: 'What AI agent architectures has Ibadat built?' },
+    { role: 'assistant', content: 'Ibadat builds tool-calling agents.' },
+    { role: 'user', content: 'How can I get in touch with Ibadat?' }
+  ];
+  const cleaned = prepareMessages(rawWithLeadingAssistant);
+  assert.equal(cleaned.length, 3);
+  assert.equal(cleaned[0].role, 'user');
+  assert.equal(cleaned[0].content, 'What AI agent architectures has Ibadat built?');
+  assert.equal(validateMessages(cleaned), true);
+
+  // Slices to MAX_MESSAGES and cleans leading assistant if created by slicing
+  // Real transcripts always end with a user question
+  const longTranscript = Array.from({ length: 15 }, (_, idx) => ({
+    role: idx % 2 === 0 ? 'user' : 'assistant',
+    content: `Message ${idx + 1}`
+  }));
+  // 15 items: index 0 to 14, where index 14 is user.
+  const sliced = prepareMessages(longTranscript);
+  assert.ok(sliced.length <= MAX_MESSAGES);
+  assert.equal(sliced[0].role, 'user');
+  assert.equal(sliced.at(-1)?.role, 'user');
+  assert.equal(validateMessages(sliced), true);
+});
+
+test('handler handles turn 4+ conversations without throwing 400 INVALID_MESSAGES', async () => {
+  // Simulates turn 4 payload where naive client windowing sent a leading assistant turn
+  const turn4Messages = [
+    { role: 'assistant', content: 'Greetings Earthling! 🛸 I am Orbi.' },
+    { role: 'user', content: 'What AI agent architectures has Ibadat built?' },
+    { role: 'assistant', content: 'Ibadat builds tool-calling agents using MCP.' },
+    { role: 'user', content: 'How can I get in touch with Ibadat?' },
+    { role: 'assistant', content: 'You can reach Ibadat directly via email.' },
+    { role: 'user', content: 'tell me about it\'s latest completeted ai automation project' }
+  ];
+
+  const res = createResponse();
+  await handler(createRequest({ body: { messages: turn4Messages } }), res);
+
+  // It should NOT be 400 INVALID_MESSAGES; in test environment without keys it reaches 503
+  assert.notEqual(res.statusCode, 400);
+  assert.equal(res.statusCode, 503);
+  assert.equal(res.payload.error.code, 'ASSISTANT_NOT_CONFIGURED');
+});
+

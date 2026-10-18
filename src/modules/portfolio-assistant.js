@@ -375,9 +375,16 @@ export function initPortfolioAssistant() {
     const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
     try {
-      const payloadMessages = conversation.slice(-6).map((msg) => {
-        if (msg.role === 'assistant' && msg.content.length > 2000) {
-          return { ...msg, content: msg.content.slice(0, 2000) + '…' };
+      let payloadMessages = conversation.slice(-10);
+      while (payloadMessages.length > 0 && payloadMessages[0].role !== 'user') {
+        payloadMessages = payloadMessages.slice(1);
+      }
+      if (payloadMessages.length === 0 && conversation.length > 0) {
+        payloadMessages = [conversation[conversation.length - 1]];
+      }
+      payloadMessages = payloadMessages.map((msg) => {
+        if (msg.role === 'assistant' && msg.content.length > 2500) {
+          return { ...msg, content: msg.content.slice(0, 2500) + '…' };
         }
         return msg;
       });

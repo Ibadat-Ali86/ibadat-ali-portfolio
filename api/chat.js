@@ -8,7 +8,7 @@ export const GROQ_FALLBACK_MODEL = process.env.GROQ_FALLBACK_MODEL || 'openai/gp
 const NVIDIA_CHAT_URL = 'https://integrate.api.nvidia.com/v1/chat/completions';
 const GROQ_CHAT_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
-export const MAX_MESSAGES = 8;
+export const MAX_MESSAGES = 10;
 export const MAX_USER_MESSAGE_LENGTH = 10000;
 export const MAX_ASSISTANT_MESSAGE_LENGTH = 8000;
 export const MAX_MESSAGE_LENGTH = MAX_USER_MESSAGE_LENGTH;
@@ -92,7 +92,19 @@ function parseBody(request) {
   return request.body;
 }
 
-function validateMessages(messages) {
+export function prepareMessages(rawMessages) {
+  if (!Array.isArray(rawMessages)) return [];
+  let messages = [...rawMessages];
+  if (messages.length > MAX_MESSAGES) {
+    messages = messages.slice(-MAX_MESSAGES);
+  }
+  while (messages.length > 0 && messages[0]?.role === 'assistant') {
+    messages = messages.slice(1);
+  }
+  return messages;
+}
+
+export function validateMessages(messages) {
   if (!Array.isArray(messages) || messages.length === 0 || messages.length > MAX_MESSAGES) return false;
   const validContent = messages.every((message) => {
     if (!message || typeof message !== 'object') return false;
@@ -276,6 +288,21 @@ function deriveAction(text) {
       };
     }
   }
+  if (
+    lower.includes('payguard') ||
+    lower.includes('payment verification') ||
+    lower.includes('transaction verification') ||
+    lower.includes('whatsapp agent') ||
+    lower.includes('whatsapp automation') ||
+    (lower.includes('automation') && (lower.includes('recent') || lower.includes('latest') || lower.includes('completed')))
+  ) {
+    return {
+      type: 'open_project',
+      target: 'payguard-ai',
+      label: PROJECT_DESTINATIONS['payguard-ai'].actionLabel,
+      url: PROJECT_DESTINATIONS['payguard-ai'].url
+    };
+  }
   if (lower.includes('recent') || lower.includes('latest')) {
     if (lower.includes('payguard') || !lower.includes('codescope')) {
       return {
@@ -309,7 +336,12 @@ function deriveSources(text) {
   const sources = [];
   const lower = text.toLowerCase();
   if (lower.includes('codescope')) sources.push('CodeScope MCP');
-  if (lower.includes('payguard')) sources.push('PayGuard AI');
+  if (
+    lower.includes('payguard') ||
+    lower.includes('payment verification') ||
+    lower.includes('transaction verification') ||
+    lower.includes('whatsapp')
+  ) sources.push('PayGuard AI');
   if (lower.includes('sentinel')) sources.push('SentinelIQ');
   if (lower.includes('adaptiq')) sources.push('AdaptIQ');
   if (lower.includes('evershine')) sources.push('Evershine Academy');
@@ -430,14 +462,16 @@ export default async function handler(request, response) {
     return sendError(response, 413, 'REQUEST_TOO_LARGE', 'That request is too large. Please ask a shorter question.');
   }
 
-  if (!validateMessages(body?.messages)) {
+  const messages = prepareMessages(body?.messages);
+
+  if (!validateMessages(messages)) {
     return sendError(response, 400, 'INVALID_MESSAGES', `Send 1 to ${MAX_MESSAGES} non-empty messages of at most ${MAX_USER_MESSAGE_LENGTH} characters each.`);
   }
 
-  const latestQuestion = body.messages.at(-1)?.content || '';
+  const latestQuestion = messages.at(-1)?.content || '';
 
   // 1. Policy check (credentials, hidden prompts, restricted client code)
-  const policyResponse = policyResponseFor(body.messages);
+  const policyResponse = policyResponseFor(messages);
   if (policyResponse) {
     return sendJson(response, 200, {
       success: true,
@@ -519,7 +553,7 @@ export default async function handler(request, response) {
             model: activeModel,
             messages: [
               { role: 'system', content: ASSISTANT_SYSTEM_PROMPT },
-              { role: 'user', content: untrustedConversation(body.messages) }
+              { role: 'user', content: untrustedConversation(messages) }
             ],
             temperature: 0.2,
             max_tokens: 380,
@@ -541,7 +575,7 @@ export default async function handler(request, response) {
               model: activeModel,
               messages: [
                 { role: 'system', content: ASSISTANT_SYSTEM_PROMPT },
-                { role: 'user', content: untrustedConversation(body.messages) }
+                { role: 'user', content: untrustedConversation(messages) }
               ],
               temperature: 0.2,
               max_tokens: 380,
@@ -593,7 +627,7 @@ export default async function handler(request, response) {
         model: NVIDIA_MODEL,
         messages: [
           { role: 'system', content: ASSISTANT_SYSTEM_PROMPT },
-          { role: 'user', content: untrustedConversation(body.messages) }
+          { role: 'user', content: untrustedConversation(messages) }
         ],
         temperature: 0.3,
         top_p: 0.8,
